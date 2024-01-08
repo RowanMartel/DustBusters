@@ -23,6 +23,7 @@ public class GhostBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        agent.SetDestination(currentPatrolPoint.position);
         if(distToSwitch > Vector3.Distance(transform.position, currentPatrolPoint.position))
         {
             curIndex++;
