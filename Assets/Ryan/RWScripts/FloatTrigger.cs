@@ -6,6 +6,7 @@ public class FloatTrigger : MonoBehaviour
 {
 
     public float floatForce;
+    public GhostBehavior ghost;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -19,6 +20,7 @@ public class FloatTrigger : MonoBehaviour
                 rb.useGravity = false;
                 rb.AddForce(Vector3.up * floatForce);
             }
+            ghost.throwables.Add(obj.gameObject);
         }
         catch
         {
@@ -37,6 +39,7 @@ public class FloatTrigger : MonoBehaviour
                 obj.isFloating = false;
                 rb.useGravity = true;
             }
+            ghost.throwables.Remove(obj.gameObject);
         }
         catch
         {
