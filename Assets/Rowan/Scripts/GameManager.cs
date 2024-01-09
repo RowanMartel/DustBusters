@@ -6,10 +6,12 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager gameManager;
     public static TaskManager taskManager;
+    public static PlayerController playerController;
 
     private void Awake()
     {
         gameManager = this;
-        taskManager = GetComponentInChildren<TaskManager>();
+        taskManager = GetComponent<TaskManager>();
+        playerController = FindObjectOfType<PlayerController>();
     }
 }

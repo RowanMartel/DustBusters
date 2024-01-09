@@ -30,6 +30,8 @@ public class TaskManager : MonoBehaviour
 
     public void CompleteTask(Task task)
     {
+        Debug.Log(task.ToString() + " completed");
+
         taskList.Remove(task);
 
         if (task == Task.CleanDishes)

@@ -7,7 +7,7 @@ using static UnityEngine.GraphicsBuffer;
 public class PlayerController : MonoBehaviour
 {
     GameObject lookingAtObject;
-    GameObject heldObject;
+    public GameObject heldObject;
 
     GameObject midHold;
     public enum State
@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
         active
     }
 
-    private State state = State.active;
+    public State state = State.active;
 
     public float walkSpeed = 2;
     public float runSpeed;
@@ -73,14 +73,14 @@ public class PlayerController : MonoBehaviour
             if(lookingAtObject.tag == "Interactable") lookingAtObject.GetComponent<Outline>().enabled = false;
         }
 
+        if (Input.GetKeyDown(KeyCode.E)) Interact();
+
         if (state == State.active)
         {
             MoveCamera();
 
             if (Input.GetKeyDown(KeyCode.LeftShift)) isRunning = true;
             if (Input.GetKeyUp(KeyCode.LeftShift)) isRunning = false;
-
-            if (Input.GetKeyDown(KeyCode.E)) Interact();
 
             if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
             {
@@ -137,39 +137,62 @@ public class PlayerController : MonoBehaviour
     void Interact()
     {
         // Once I know more about the interaction system and what is needed from my side I can build this
-        if (heldObject == null && lookingAtObject.gameObject.tag == "Interactable")
+        if (heldObject == null && lookingAtObject.tag == "Interactable")
         {
-            heldObject = lookingAtObject;
+            Pickupable pickupable = lookingAtObject.GetComponent<Pickupable>();
 
-            heldObject.GetComponent<Rigidbody>().useGravity = false;
-            heldObject.GetComponent<Outline>().enabled = false;
+            if (pickupable != null)
+            {
+                heldObject = lookingAtObject;
+                Physics.IgnoreCollision(heldObject.GetComponent<Collider>(), GetComponent<Collider>());
 
-            heldObject.transform.position = midHold.transform.position;
+                heldObject.GetComponent<Rigidbody>().useGravity = false;
+                heldObject.GetComponent<Outline>().enabled = false;
 
-            int layerIgnoreRaycast = LayerMask.NameToLayer("Ignore Raycast");
-            heldObject.layer = layerIgnoreRaycast;
+                heldObject.transform.position = midHold.transform.position;
+
+                int layerIgnoreRaycast = LayerMask.NameToLayer("Ignore Raycast");
+                heldObject.layer = layerIgnoreRaycast;
+            }
+            else
+            {
+                lookingAtObject.GetComponent<Interactable>().Interact();
+                Debug.Log("interacting with " + lookingAtObject.name);
+            }
         }
-        else if(heldObject != null && lookingAtObject.gameObject.tag != "Interactable")
+        else if(heldObject != null && lookingAtObject.tag != "Interactable")
         {
             heldObject.layer = 0;
             heldObject.GetComponent<Rigidbody>().useGravity = true;
+            Physics.IgnoreCollision(heldObject.GetComponent<Collider>(), GetComponent<Collider>(), false);
             heldObject = null;
         }
-        else if (heldObject != null && lookingAtObject.gameObject.tag == "Interactable")
+        else if (heldObject != null && lookingAtObject.tag == "Interactable")
         {
-            heldObject.layer = 0;
-            heldObject.GetComponent<Rigidbody>().useGravity = true;
-            heldObject = null;
+            Pickupable pickupable = lookingAtObject.GetComponent<Pickupable>();
 
-            heldObject = lookingAtObject;
+            if (pickupable != null)
+            {
+                heldObject.layer = 0;
+                heldObject.GetComponent<Rigidbody>().useGravity = true;
+                heldObject = null;
 
-            heldObject.GetComponent<Rigidbody>().useGravity = false;
-            heldObject.GetComponent<Outline>().enabled = false;
+                Physics.IgnoreCollision(heldObject.GetComponent<Collider>(), GetComponent<Collider>(), false);
+                heldObject = lookingAtObject;
+                Physics.IgnoreCollision(heldObject.GetComponent<Collider>(), GetComponent<Collider>());
 
-            heldObject.transform.position = midHold.transform.position;
+                heldObject.GetComponent<Rigidbody>().useGravity = false;
+                heldObject.GetComponent<Outline>().enabled = false;
 
-            int layerIgnoreRaycast = LayerMask.NameToLayer("Ignore Raycast");
-            heldObject.layer = layerIgnoreRaycast;
+                heldObject.transform.position = midHold.transform.position;
+
+                int layerIgnoreRaycast = LayerMask.NameToLayer("Ignore Raycast");
+                heldObject.layer = layerIgnoreRaycast;
+            }
+            else
+            {
+                lookingAtObject.GetComponent<Interactable>().Interact();
+            }
         }
     }
 
