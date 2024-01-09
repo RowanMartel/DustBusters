@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     GameObject lookingAtObject;
     GameObject heldObject;
 
-    GameObject rightHold;
+    GameObject midHold;
     public enum State
     {
         inactive,
@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         lookingAtObject = GameObject.Find("Floor");
-        rightHold = GameObject.Find("RightHold");
+        midHold = GameObject.Find("MidHold");
 
         Cursor.lockState = CursorLockMode.Locked;
 
@@ -54,12 +54,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (heldObject != null) heldObject.transform.position = rightHold.transform.position;
-
         playerView = Camera.main.ScreenPointToRay(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2, 0));
         RaycastHit hit;
 
-        if (Physics.Raycast(playerView, out hit, 100))
+        if (Physics.Raycast(playerView, out hit, 5))
         {
             if(hit.collider.gameObject != lookingAtObject)
             {
@@ -69,6 +67,10 @@ public class PlayerController : MonoBehaviour
 
                 if(lookingAtObject.tag == "Interactable") lookingAtObject.GetComponent<Outline>().enabled = true;
             }
+        }
+        if (!Physics.Raycast(playerView, out hit, 3) && lookingAtObject != null)
+        {
+            if(lookingAtObject.tag == "Interactable") lookingAtObject.GetComponent<Outline>().enabled = false;
         }
 
         if (state == State.active)
@@ -95,6 +97,16 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
+        if (heldObject != null)
+        {
+            Vector3 direction = heldObject.transform.position - midHold.transform.position;
+            float distance = direction.magnitude;
+            Vector3 force = direction.normalized;
+
+            if (distance > 0) heldObject.GetComponent<Rigidbody>().AddForce(-force * distance * 10, ForceMode.VelocityChange);
+            heldObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        }
+
         if (state == State.active)
         {
             if (jump)
@@ -125,11 +137,40 @@ public class PlayerController : MonoBehaviour
     void Interact()
     {
         // Once I know more about the interaction system and what is needed from my side I can build this
-        if (heldObject == null)
+        if (heldObject == null && lookingAtObject.gameObject.tag == "Interactable")
         {
-            if (lookingAtObject.gameObject.tag == "Interactable") heldObject = lookingAtObject;
+            heldObject = lookingAtObject;
+
+            heldObject.GetComponent<Rigidbody>().useGravity = false;
+            heldObject.GetComponent<Outline>().enabled = false;
+
+            heldObject.transform.position = midHold.transform.position;
+
+            int layerIgnoreRaycast = LayerMask.NameToLayer("Ignore Raycast");
+            heldObject.layer = layerIgnoreRaycast;
         }
-        else heldObject = null;
+        else if(heldObject != null && lookingAtObject.gameObject.tag != "Interactable")
+        {
+            heldObject.layer = 0;
+            heldObject.GetComponent<Rigidbody>().useGravity = true;
+            heldObject = null;
+        }
+        else if (heldObject != null && lookingAtObject.gameObject.tag == "Interactable")
+        {
+            heldObject.layer = 0;
+            heldObject.GetComponent<Rigidbody>().useGravity = true;
+            heldObject = null;
+
+            heldObject = lookingAtObject;
+
+            heldObject.GetComponent<Rigidbody>().useGravity = false;
+            heldObject.GetComponent<Outline>().enabled = false;
+
+            heldObject.transform.position = midHold.transform.position;
+
+            int layerIgnoreRaycast = LayerMask.NameToLayer("Ignore Raycast");
+            heldObject.layer = layerIgnoreRaycast;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
