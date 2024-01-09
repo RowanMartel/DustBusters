@@ -188,7 +188,7 @@ public class GhostBehavior : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Light"))
+        if (other.CompareTag("Light") && lightSourcesEffecting.Contains(other.gameObject) == false)
         {
             lightSourcesEffecting.Add(other.gameObject);
         }
@@ -209,6 +209,7 @@ public class GhostBehavior : MonoBehaviour
             RaycastHit hit;
             if(Physics.Raycast(light.transform.position, transform.position - light.transform.position, out hit))
             {
+                Debug.Log(hit.collider.gameObject);
                 if (hit.collider.gameObject == gameObject) return true;
             }
         }
