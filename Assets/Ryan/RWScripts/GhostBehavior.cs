@@ -35,6 +35,11 @@ public class GhostBehavior : MonoBehaviour
     public GameObject key;
     public Transform[] hidingPlaces;
 
+    [Header("Light Interaction")]
+    public float baseSpeed;
+    public float slowedSpeed;
+    public List<GameObject> lightSourcesEffecting;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +51,15 @@ public class GhostBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (IsInLight())
+        {
+            agent.speed = slowedSpeed;
+        }
+        else
+        {
+            agent.speed = baseSpeed;
+        }
 
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -171,5 +185,35 @@ public class GhostBehavior : MonoBehaviour
         agent.SetDestination(hidingPlaces[rand].position);
         currentPatrolPoint = hidingPlaces[rand];
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Light"))
+        {
+            lightSourcesEffecting.Add(other.gameObject);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Light"))
+        {
+            lightSourcesEffecting.Remove(other.gameObject);
+        }
+    }
+
+    private bool IsInLight()
+    {
+        foreach (GameObject light in lightSourcesEffecting)
+        {
+            RaycastHit hit;
+            if(Physics.Raycast(light.transform.position, transform.position - light.transform.position, out hit))
+            {
+                if (hit.collider.gameObject == gameObject) return true;
+            }
+        }
+        return false;
+    }
+
 
 }
