@@ -8,7 +8,7 @@ public class GhostBehavior : MonoBehaviour
     [Header("Navigation")]
     public NavMeshAgent agent;
 
-    public Transform[] patrolPoints;
+    public List<Transform> patrolPoints;
     public Transform currentPatrolPoint;
     public int curIndex;
 
@@ -24,6 +24,9 @@ public class GhostBehavior : MonoBehaviour
     [Header("Aiming")]
     public float sightRange;
 
+    [Header("Other")]
+    public GameObject key;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,11 +37,17 @@ public class GhostBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            EnterEndGame();
+        }
+
         agent.SetDestination(currentPatrolPoint.position);
         if(distToSwitch > Vector3.Distance(transform.position, currentPatrolPoint.position))
         {
             curIndex++;
-            if(curIndex >= patrolPoints.Length) {
+            if(curIndex >= patrolPoints.Count) {
                 curIndex = 0;
             }
             SwitchToPoint(curIndex);
@@ -67,12 +76,38 @@ public class GhostBehavior : MonoBehaviour
 
     void SwitchToPoint(int index)
     {
-        if (index < patrolPoints.Length)
+        if (index < patrolPoints.Count)
         {
             currentPatrolPoint = patrolPoints[index];
             agent.SetDestination(currentPatrolPoint.position);
             curIndex = index;
         }
+    }
+
+    public void RemovePatrolPoint(int index)
+    {
+        patrolPoints.Remove(patrolPoints[index]);
+        if(curIndex == index)
+        {
+            if(curIndex >= patrolPoints.Count)
+            {
+                curIndex = 0;
+            }
+            SwitchToPoint(curIndex);
+        }
+    }
+
+    public void AddPatrolPoint(Transform point)
+    {
+        patrolPoints.Add(point);
+    }
+    
+    public void EnterEndGame()
+    {
+        patrolPoints.Clear();
+        AddPatrolPoint(key.transform);
+        AddPatrolPoint(victim.transform);
+        curIndex = 0;
     }
 
 }
