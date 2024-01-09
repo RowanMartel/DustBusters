@@ -9,6 +9,8 @@ public class LightSwitch : Interactable
 
     [Tooltip("Add all lights this controls")]
     public List<GameObject> lights;
+    [Tooltip("The light collider this controls")]
+    public Collider lightCollider;
 
     private void Start()
     {
@@ -31,10 +33,16 @@ public class LightSwitch : Interactable
         on = !on;
 
         if (on)
+        {
             foreach (GameObject light in lights)
                 light.SetActive(true);
+            lightCollider.enabled = true;
+        }
         else
+        {
             foreach (GameObject light in lights)
                 light.SetActive(false);
+            lightCollider.enabled = false;
+        }
     }
 }

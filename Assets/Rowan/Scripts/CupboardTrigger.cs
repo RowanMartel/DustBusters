@@ -4,20 +4,38 @@ using UnityEngine;
 
 public class CupboardTrigger : MonoBehaviour
 {
-    public List<Pickupable> dishes;
+    [Tooltip("Put all the dish game objects here")]
+    public List<Dish> dishes;
 
     private void OnTriggerEnter(Collider other)
     {
-        Pickupable pickupable = other.GetComponent<Pickupable>();
-        if (!pickupable || !pickupable.dish || pickupable.dirtyDish) return;
+        Dish plate = other.GetComponent<Dish>();
+        if (!plate || plate.dirtyDish || plate.broken) return;
 
-        pickupable.inCupboard = true;
+        plate.inCupboard = true;
+
+        CheckIfComplete();
     }
     private void OnTriggerExit(Collider other)
     {
-        Pickupable pickupable = other.GetComponent<Pickupable>();
-        if (!pickupable || !pickupable.dish || pickupable.dirtyDish) return;
+        Dish plate = other.GetComponent<Dish>();
+        if (!plate || plate.dirtyDish || plate.broken) return;
 
-        pickupable.inCupboard = false;
+        plate.inCupboard = false;
+
+        if (GameManager.taskManager.taskList.Contains(TaskManager.Task.PutAwayDishes) ||
+            GameManager.taskManager.taskList.Contains(TaskManager.Task.FindKey) ||
+            GameManager.taskManager.taskList.Contains(TaskManager.Task.EscapeHouse))
+            return;
+
+        GameManager.taskManager.taskList.Add(TaskManager.Task.PutAwayDishes);
+    }
+
+    public void CheckIfComplete()
+    {
+        foreach (Dish dish in dishes)
+            if (!dish.inCupboard) return;
+
+        GameManager.taskManager.CompleteTask(TaskManager.Task.PutAwayDishes);
     }
 }
