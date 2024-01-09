@@ -23,15 +23,11 @@ public class PlayerController : MonoBehaviour
     Rigidbody rb;
     GameObject cameraContainer;
 
-    float camH = 0;
-    float camV = 0;
+    float cameraVertical = 0;
 
-    float camVertical;
-    float camHorizontal;
-
-    float rotatePlayer;
     float playerForward;
-    float sideStep;
+    float playerSideStep;
+    float playerRotate;
 
     float speed;
 
@@ -48,24 +44,13 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        camVertical = camV + Input.GetAxis("Mouse Y");
-
-        CameraControls(camHorizontal, camVertical);
-
-        rotatePlayer = Input.GetAxis("Mouse X");
-
-        sideStep = Input.GetAxis("Horizontal");
-
-        playerForward = Input.GetAxis("Vertical");
-
-        if (!isRunning) speed = walkSpeed;
-        if (isRunning) speed = runSpeed;
+        MovePlayer();
+        MoveCamera();
 
         if (Input.GetKeyDown(KeyCode.LeftShift)) isRunning = true;
         if (Input.GetKeyUp(KeyCode.LeftShift)) isRunning = false;
 
-        transform.Rotate(0.0f, rotatePlayer, 0.0f);
-        rb.AddForce(transform.forward * playerForward);
+        if (Input.GetKeyDown(KeyCode.E)) Interact();
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
@@ -82,13 +67,38 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void CameraControls(float horizontal, float vertical)
+    void MovePlayer()
     {
-        //camH = Mathf.Clamp(horizontal, -25f, 25f);
-        camV = Mathf.Clamp(vertical, -10f, 90f);
+        playerForward = Input.GetAxis("Vertical");
+        playerSideStep = Input.GetAxis("Horizontal");
+        playerRotate = Input.GetAxis("Mouse X");
+
+        if (!isRunning) speed = walkSpeed;
+        if (isRunning) speed = runSpeed;
+
+        transform.Rotate(0.0f, playerRotate, 0.0f);
+        rb.AddForce(transform.forward * playerForward * speed);
+        rb.AddForce(transform.right * playerSideStep);
+    }
+    void MoveCamera()
+    {
+        float camV = cameraVertical + Input.GetAxis("Mouse Y");
+
+        cameraVertical = Mathf.Clamp(camV, -40f, 80f);
 
         float flipCamV = camV * -1;
 
-        cameraContainer.transform.localRotation = Quaternion.Euler(flipCamV, camH - 90, 0);
+        cameraContainer.transform.localRotation = Quaternion.Euler(flipCamV, 0, 0);
+    }
+
+    void Interact()
+    {
+        // Once I know more about the interaction system and what is needed from my side I can build this
+        Debug.Log("Pressed Activate");
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Floor") isGrounded = true;
     }
 }
