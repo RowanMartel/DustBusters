@@ -24,14 +24,23 @@ public class GhostBehavior : MonoBehaviour
     [Header("Aiming")]
     public float sightRange;
 
-    [Header("Other")]
+    [Header("Holding Items")]
+    public GameObject curHeldItem;
+    public GameObject heldItemParent;
+    public Transform heldItemSpinner;
+    public float spinSpeed;
+
+    [Header("Hiding Items")]
+    bool hiding;
     public GameObject key;
+    public Transform[] hidingPlaces;
 
     // Start is called before the first frame update
     void Start()
     {
         SwitchToPoint(0);
         curTime = timeToThrow;
+        hiding = false;
     }
 
     // Update is called once per frame
@@ -43,14 +52,35 @@ public class GhostBehavior : MonoBehaviour
             EnterEndGame();
         }
 
+        heldItemSpinner.Rotate(Vector3.up * spinSpeed);
+
+        if(curHeldItem != null)
+        {
+            curHeldItem.transform.position = heldItemParent.transform.position;
+        }
+
         agent.SetDestination(currentPatrolPoint.position);
         if(distToSwitch > Vector3.Distance(transform.position, currentPatrolPoint.position))
         {
-            curIndex++;
-            if(curIndex >= patrolPoints.Count) {
-                curIndex = 0;
+            if (hiding)
+            {
+                PlaceItem(currentPatrolPoint.position);
+                hiding = false;
             }
-            SwitchToPoint(curIndex);
+            if(currentPatrolPoint == key.transform)
+            {
+                PickUpItem(key);
+                ChooseHidingPlace();
+            }
+            if (!hiding)
+            {
+                curIndex++;
+                if (curIndex >= patrolPoints.Count)
+                {
+                    curIndex = 0;
+                }
+                SwitchToPoint(curIndex);
+            }
         }
 
         RaycastHit hit;
@@ -107,7 +137,39 @@ public class GhostBehavior : MonoBehaviour
         patrolPoints.Clear();
         AddPatrolPoint(key.transform);
         AddPatrolPoint(victim.transform);
+        agent.SetDestination(patrolPoints[0].position);
+        currentPatrolPoint = patrolPoints[0];
         curIndex = 0;
+    }
+
+    public void PickUpItem(GameObject item)
+    {
+        if(curHeldItem != null)
+            DropItem();
+        item.transform.parent = heldItemParent.transform;
+        item.transform.localPosition = Vector3.zero;
+        curHeldItem = item;
+    }
+
+    public void DropItem()
+    {
+        curHeldItem.transform.parent = null;
+        curHeldItem = null;
+    }
+
+    void PlaceItem(Vector3 pos)
+    {
+        GameObject item = curHeldItem;
+        DropItem();
+        item.transform.position = pos;
+    }
+
+    public void ChooseHidingPlace()
+    {
+        hiding = true;
+        int rand = Random.Range(0, hidingPlaces.Length);
+        agent.SetDestination(hidingPlaces[rand].position);
+        currentPatrolPoint = hidingPlaces[rand];
     }
 
 }
