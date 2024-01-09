@@ -6,6 +6,10 @@ using static UnityEngine.GraphicsBuffer;
 
 public class PlayerController : MonoBehaviour
 {
+    GameObject lookingAtObject;
+    GameObject heldObject;
+
+    GameObject rightHold;
     public enum State
     {
         inactive,
@@ -14,7 +18,7 @@ public class PlayerController : MonoBehaviour
 
     private State state = State.active;
 
-    public float walkSpeed;
+    public float walkSpeed = 2;
     public float runSpeed;
     bool isRunning = false;
     bool jump = false;
@@ -33,8 +37,14 @@ public class PlayerController : MonoBehaviour
 
     public bool isGrounded = true;
 
+    public Ray playerView;
+
+
     void Start()
     {
+        lookingAtObject = GameObject.Find("Floor");
+        rightHold = GameObject.Find("RightHold");
+
         Cursor.lockState = CursorLockMode.Locked;
 
         rb = GetComponent<Rigidbody>();
@@ -44,47 +54,68 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MovePlayer();
-        MoveCamera();
+        if (heldObject != null) heldObject.transform.position = rightHold.transform.position;
 
-        if (Input.GetKeyDown(KeyCode.LeftShift)) isRunning = true;
-        if (Input.GetKeyUp(KeyCode.LeftShift)) isRunning = false;
+        playerView = Camera.main.ScreenPointToRay(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2, 0));
+        RaycastHit hit;
 
-        if (Input.GetKeyDown(KeyCode.E)) Interact();
-
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Physics.Raycast(playerView, out hit, 100))
         {
-            jump = true;
-            isGrounded = false;
+            if(hit.collider.gameObject != lookingAtObject)
+            {
+                if (lookingAtObject.tag == "Interactable") lookingAtObject.GetComponent<Outline>().enabled = false;
+
+                lookingAtObject = hit.collider.gameObject;
+
+                if(lookingAtObject.tag == "Interactable") lookingAtObject.GetComponent<Outline>().enabled = true;
+            }
+        }
+
+        if (state == State.active)
+        {
+            MoveCamera();
+
+            if (Input.GetKeyDown(KeyCode.LeftShift)) isRunning = true;
+            if (Input.GetKeyUp(KeyCode.LeftShift)) isRunning = false;
+
+            if (Input.GetKeyDown(KeyCode.E)) Interact();
+
+            if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+            {
+                jump = true;
+                isGrounded = false;
+            }
+
+            playerForward = Input.GetAxis("Vertical");
+            playerSideStep = Input.GetAxis("Horizontal");
+            playerRotate = Input.GetAxis("Mouse X");
+
+            transform.Rotate(0.0f, playerRotate, 0.0f);
         }
     }
     void FixedUpdate()
     {
-        if (jump)
+        if (state == State.active)
         {
-            rb.AddRelativeForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            jump = false;
+            if (jump)
+            {
+                rb.AddRelativeForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                jump = false;
+            }
+
+            if (!isRunning) speed = walkSpeed;
+            if (isRunning) speed = runSpeed;
+
+            rb.AddForce(transform.forward * playerForward * speed);
+            rb.AddForce(transform.right * playerSideStep * speed);
         }
     }
 
-    void MovePlayer()
-    {
-        playerForward = Input.GetAxis("Vertical");
-        playerSideStep = Input.GetAxis("Horizontal");
-        playerRotate = Input.GetAxis("Mouse X");
-
-        if (!isRunning) speed = walkSpeed;
-        if (isRunning) speed = runSpeed;
-
-        transform.Rotate(0.0f, playerRotate, 0.0f);
-        rb.AddForce(transform.forward * playerForward * speed);
-        rb.AddForce(transform.right * playerSideStep);
-    }
     void MoveCamera()
     {
         float camV = cameraVertical + Input.GetAxis("Mouse Y");
 
-        cameraVertical = Mathf.Clamp(camV, -40f, 80f);
+        cameraVertical = Mathf.Clamp(camV, -60f, 80f);
 
         float flipCamV = camV * -1;
 
@@ -94,11 +125,31 @@ public class PlayerController : MonoBehaviour
     void Interact()
     {
         // Once I know more about the interaction system and what is needed from my side I can build this
-        Debug.Log("Pressed Activate");
+        if (heldObject == null)
+        {
+            if (lookingAtObject.gameObject.tag == "Interactable") heldObject = lookingAtObject;
+        }
+        else heldObject = null;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Floor") isGrounded = true;
+    }
+
+    void TogglePlayerControl()
+    {
+        switch(state)
+        {
+            case State.active:
+                state = State.inactive;
+                Cursor.lockState = CursorLockMode.None;
+                break;
+
+            case State.inactive:
+                state = State.active;
+                Cursor.lockState = CursorLockMode.Locked;
+                break;
+        }
     }
 }
