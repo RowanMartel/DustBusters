@@ -54,6 +54,9 @@ public class Dish : Pickupable
         cupboardTrigger.dishes.Remove(this);
         trashCanTrigger.dishes.Add(this);
 
+        GameManager.ghost.patrolPointsPerTask[GameManager.ghost.masterTaskList.IndexOf(TaskManager.Task.PutAwayDishes)].list.Remove(transform);
+        GameManager.ghost.currentPoints[GameManager.ghost.currentTasks.IndexOf(TaskManager.Task.PutAwayDishes)].list.Remove(transform);
+
         cupboardTrigger.CheckIfComplete();
     }
 

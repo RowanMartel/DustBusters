@@ -19,12 +19,14 @@ public class TaskManager : MonoBehaviour
 
     [HideInInspector] public Task currentTask;
 
-    [HideInInspector] public List<Task> taskList;
+    public List<Task> taskList;
+
+    public GhostBehavior ghost;
 
     private void Start()
     {
-        taskList = new List<Task>();
-        taskList.Add(Task.CleanMirror);
+        //taskList = new List<Task>();
+        //taskList.Add(Task.CleanMirror);
     }
 
     public void CompleteTask(Task task)
@@ -33,10 +35,13 @@ public class TaskManager : MonoBehaviour
 
         taskList.Remove(task);
 
+        ghost.RemoveTask(task);
+
         if (task == Task.CleanDishes)
         {
             taskList.Add(Task.PutAwayDishes);
             SetCurrentTask(Task.PutAwayDishes);
+            ghost.AddTask(Task.PutAwayDishes);
         }
         
         if (taskList.Count == 0)

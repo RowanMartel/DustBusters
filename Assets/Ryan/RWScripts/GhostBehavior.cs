@@ -8,18 +8,25 @@ public class GhostBehavior : MonoBehaviour
     [Header("Navigation")]
     public NavMeshAgent agent;
 
-    public List<Transform> patrolPoints;
+    public List<TaskManager.Task> currentTasks = new List<TaskManager.Task>();
+    public List<pointList> currentPoints = new List<pointList>();
+    public List<TaskManager.Task> startTasks;
+    public List<TaskManager.Task> endGameTasks;
+    [Tooltip("Every task the ghost can interact with")]
+    public List<TaskManager.Task> masterTaskList;
+    [Tooltip("All patrol points that the ghost can go to for the task that shares it's index in the master task list")]
+    public List<pointList> patrolPointsPerTask;
     public Transform currentPatrolPoint;
     public int curIndex;
 
     public float distToSwitch;
 
     [Header("Attack")]
-    public GameObject victim;
+    public GameObject playerObject;
     public float timeToThrow;
     public float curTime;
     public List<GameObject> throwables;
-    public float throwForce;
+    public float attackThrowForce;
 
     [Header("Aiming")]
     public float sightRange;
@@ -30,10 +37,10 @@ public class GhostBehavior : MonoBehaviour
     public Transform heldItemSpinner;
     public float spinSpeed;
 
-    [Header("Hiding Items")]
+    [Header("Task Item Interaction")]
     bool hiding;
-    public GameObject key;
     public Transform[] hidingPlaces;
+    public float breakThrowForce;
 
     [Header("Light Interaction")]
     public float baseSpeed;
@@ -43,6 +50,17 @@ public class GhostBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        for (int i = 0; i < startTasks.Count; i++)
+        {
+            currentTasks.Add(startTasks[i]);
+            pointList pList = new pointList();
+            foreach (Transform item in patrolPointsPerTask[masterTaskList.IndexOf(startTasks[i])].list)
+            {
+                pList.Add(item);
+            }
+            currentPoints.Add(pList);
+        }
+
         SwitchToPoint(0);
         curTime = timeToThrow;
         hiding = false;
@@ -52,7 +70,7 @@ public class GhostBehavior : MonoBehaviour
     void Update()
     {
 
-        if (IsInLight())
+        if (lightSourcesEffecting.Count > 0)
         {
             agent.speed = slowedSpeed;
         }
@@ -76,83 +94,127 @@ public class GhostBehavior : MonoBehaviour
         agent.SetDestination(currentPatrolPoint.position);
         if(distToSwitch > Vector3.Distance(transform.position, currentPatrolPoint.position))
         {
-            if (hiding)
+            try
             {
-                PlaceItem(currentPatrolPoint.position);
-                hiding = false;
-            }
-            if(currentPatrolPoint == key.transform)
-            {
-                PickUpItem(key);
-                ChooseHidingPlace();
-            }
-            if (!hiding)
-            {
-                curIndex++;
-                if (curIndex >= patrolPoints.Count)
+                Pickupable item = currentPatrolPoint.GetComponent<Pickupable>();
+                if (item.hideable)
                 {
-                    curIndex = 0;
+                    PickUpItem(item.gameObject);
+                    ChooseHidingPlace();
+                }else if (item.breakable)
+                {
+                    item.transform.LookAt(transform.position);
+                    item.GetComponent<Rigidbody>().AddForce(item.transform.forward * breakThrowForce, ForceMode.Impulse);
+
+                    curIndex++;
+                    if (curIndex >= currentPoints.Count)
+                    {
+                        curIndex = 0;
+                    }
+                    SwitchToPoint(curIndex);
                 }
-                SwitchToPoint(curIndex);
+            }
+            catch
+            {
+                if (hiding)
+                {
+                    PlaceItem(currentPatrolPoint.position);
+                    hiding = false;
+                }
+                else
+                {
+                    curIndex++;
+                    if (curIndex >= currentPoints.Count)
+                    {
+                        curIndex = 0;
+                    }
+                    SwitchToPoint(curIndex);
+                }
             }
         }
 
-        RaycastHit hit;
-        if(Physics.Raycast(transform.position, victim.transform.position - transform.position, out hit, sightRange))
+        if (currentTasks.Contains(TaskManager.Task.EscapeHouse))
         {
-            if(hit.collider.gameObject == victim)
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, playerObject.transform.position - transform.position, out hit, sightRange))
             {
-                if (throwables.Count > 0)
+                if (hit.collider.gameObject == playerObject)
                 {
-                    curTime -= Time.deltaTime;
-                    if (curTime <= 0)
+                    if (throwables.Count > 0)
                     {
-                        curTime = timeToThrow;
-                        GameObject toThrow = throwables[0];
-                        toThrow.transform.LookAt(victim.transform.position);
-                        toThrow.GetComponent<Rigidbody>().AddForce(toThrow.transform.forward * throwForce, ForceMode.Impulse);
+                        curTime -= Time.deltaTime;
+                        if (curTime <= 0)
+                        {
+                            curTime = timeToThrow;
+                            GameObject toThrow = throwables[0];
+                            toThrow.transform.LookAt(playerObject.transform.position);
+                            toThrow.GetComponent<Rigidbody>().AddForce(toThrow.transform.forward * attackThrowForce, ForceMode.Impulse);
+                        }
                     }
                 }
             }
         }
-        
     }
 
     void SwitchToPoint(int index)
     {
-        if (index < patrolPoints.Count)
+        if (index < currentPoints.Count)
         {
-            currentPatrolPoint = patrolPoints[index];
+            int pointIndex = Random.Range(0, currentPoints[index].list.Count);
+            currentPatrolPoint = currentPoints[index].list[pointIndex];
             agent.SetDestination(currentPatrolPoint.position);
             curIndex = index;
         }
     }
 
-    public void RemovePatrolPoint(int index)
+    public void RemoveTask(TaskManager.Task task)
     {
-        patrolPoints.Remove(patrolPoints[index]);
-        if(curIndex == index)
+        if (!currentTasks.Contains(task)){
+            Debug.Log("Task Not In Ghost List");
+            return;
+        }
+
+        int index = currentTasks.IndexOf(task);
+
+        currentTasks.Remove(task);
+        currentPoints.Remove(currentPoints[index]);
+
+        if (curIndex == index)
         {
-            if(curIndex >= patrolPoints.Count)
+            if (curIndex >= currentPoints.Count)
             {
                 curIndex = 0;
             }
             SwitchToPoint(curIndex);
         }
+
     }
 
-    public void AddPatrolPoint(Transform point)
+    public void AddTask(TaskManager.Task task)
     {
-        patrolPoints.Add(point);
+        currentTasks.Add(task);
+        currentPoints.Add(new pointList());
+        foreach (Transform item in patrolPointsPerTask[masterTaskList.IndexOf(task)].list)
+        {
+            currentPoints[currentPoints.Count - 1].Add(item);
+        }
     }
     
     public void EnterEndGame()
     {
-        patrolPoints.Clear();
-        AddPatrolPoint(key.transform);
-        AddPatrolPoint(victim.transform);
-        agent.SetDestination(patrolPoints[0].position);
-        currentPatrolPoint = patrolPoints[0];
+        currentTasks.Clear();
+        currentPoints.Clear();
+
+        for (int i = 0; i < endGameTasks.Count; i++)
+        {
+            currentTasks.Add(endGameTasks[i]);
+            currentPoints.Add(new pointList());
+            foreach (Transform item in patrolPointsPerTask[masterTaskList.IndexOf(endGameTasks[i])].list)
+            {
+                currentPoints[i].Add(item);
+            }
+        }
+
         curIndex = 0;
     }
 
@@ -168,6 +230,8 @@ public class GhostBehavior : MonoBehaviour
     public void DropItem()
     {
         curHeldItem.transform.parent = null;
+        curHeldItem.transform.position = heldItemParent.transform.position;
+        curHeldItem.GetComponent<Rigidbody>().velocity = Vector3.zero;
         curHeldItem = null;
     }
 
@@ -176,6 +240,7 @@ public class GhostBehavior : MonoBehaviour
         GameObject item = curHeldItem;
         DropItem();
         item.transform.position = pos;
+        item.GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
 
     public void ChooseHidingPlace()
@@ -186,35 +251,31 @@ public class GhostBehavior : MonoBehaviour
         currentPatrolPoint = hidingPlaces[rand];
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void EnterLight(GameObject lightsource)
     {
-        if (other.CompareTag("Light") && lightSourcesEffecting.Contains(other.gameObject) == false)
-        {
-            lightSourcesEffecting.Add(other.gameObject);
-        }
+        lightSourcesEffecting.Add(lightsource);
     }
 
-    private void OnTriggerExit(Collider other)
+    public void ExitLight(GameObject lightsource)
     {
-        if (other.CompareTag("Light"))
-        {
-            lightSourcesEffecting.Remove(other.gameObject);
-        }
+        lightSourcesEffecting.Remove(lightsource);
     }
 
-    private bool IsInLight()
+    [System.Serializable]
+    public class pointList
     {
-        foreach (GameObject light in lightSourcesEffecting)
-        {
-            RaycastHit hit;
-            if(Physics.Raycast(light.transform.position, transform.position - light.transform.position, out hit))
-            {
-                Debug.Log(hit.collider.gameObject);
-                if (hit.collider.gameObject == gameObject) return true;
-            }
-        }
-        return false;
-    }
+        public List<Transform> list;
 
+        public pointList()
+        {
+            list = new List<Transform>();
+        }
+
+        public void Add(Transform item)
+        {
+            list.Add(item);
+        }
+
+    }
 
 }

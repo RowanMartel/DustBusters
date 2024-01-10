@@ -200,7 +200,7 @@ GameObject:
   - component: {fileID: 6789743469464714939}
   m_Layer: 0
   m_Name: Ghost
-  m_TagString: Untagged
+  m_TagString: Ghost
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -357,15 +357,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 6990169330593324436}
-  patrolPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  startTasks: 0300000001000000
+  endGameTasks: 0600000007000000
+  masterTaskList: 03000000010000000600000007000000
+  patrolPointsPerTask:
+  - list:
+    - {fileID: 0}
+  - list:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - list:
+    - {fileID: 0}
+  - list:
+    - {fileID: 0}
   currentPatrolPoint: {fileID: 0}
   curIndex: 0
   distToSwitch: 5
-  victim: {fileID: 0}
+  playerObject: {fileID: 0}
   timeToThrow: 2
   curTime: 0
   throwables: []
@@ -375,7 +384,6 @@ MonoBehaviour:
   heldItemParent: {fileID: 7263785423210560717}
   heldItemSpinner: {fileID: 717651196072784010}
   spinSpeed: 0.5
-  key: {fileID: 0}
   hidingPlaces:
   - {fileID: 0}
   - {fileID: 0}

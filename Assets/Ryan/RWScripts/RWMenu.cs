@@ -24,8 +24,6 @@ public class RWMenu : MonoBehaviour
             Destroy(gameObject);
         }
 
-
-
         SwitchScreen(titleScreen);
     }
 
