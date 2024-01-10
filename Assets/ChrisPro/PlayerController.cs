@@ -61,16 +61,17 @@ public class PlayerController : MonoBehaviour
         {
             if(hit.collider.gameObject != lookingAtObject)
             {
-                if (lookingAtObject.tag == "Interactable") lookingAtObject.GetComponent<Outline>().enabled = false;
+                if (lookingAtObject != null && lookingAtObject.CompareTag("Interactable")) lookingAtObject.GetComponent<Outline>().enabled = false;
 
                 lookingAtObject = hit.collider.gameObject;
 
-                if(lookingAtObject.tag == "Interactable") lookingAtObject.GetComponent<Outline>().enabled = true;
+                if(lookingAtObject.CompareTag("Interactable")) lookingAtObject.GetComponent<Outline>().enabled = true;
             }
         }
         if (!Physics.Raycast(playerView, out hit, 3) && lookingAtObject != null)
         {
-            if(lookingAtObject.tag == "Interactable") lookingAtObject.GetComponent<Outline>().enabled = false;
+            if(lookingAtObject.CompareTag("Interactable")) lookingAtObject.GetComponent<Outline>().enabled = false;
+            lookingAtObject = null;
         }
 
         if (Input.GetKeyDown(KeyCode.E)) Interact();
@@ -137,7 +138,7 @@ public class PlayerController : MonoBehaviour
     void Interact()
     {
         // Once I know more about the interaction system and what is needed from my side I can build this
-        if (heldObject == null && lookingAtObject.tag == "Interactable")
+        if (heldObject == null && lookingAtObject.CompareTag("Interactable"))
         {
             Pickupable pickupable = lookingAtObject.GetComponent<Pickupable>();
 
@@ -160,14 +161,14 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("interacting with " + lookingAtObject.name);
             }
         }
-        else if(heldObject != null && lookingAtObject.tag != "Interactable")
+        else if(heldObject != null && (lookingAtObject == null || lookingAtObject.tag != "Interactable"))
         {
             heldObject.layer = 0;
             heldObject.GetComponent<Rigidbody>().useGravity = true;
             Physics.IgnoreCollision(heldObject.GetComponent<Collider>(), GetComponent<Collider>(), false);
             heldObject = null;
         }
-        else if (heldObject != null && lookingAtObject.tag == "Interactable")
+        else if (heldObject != null && lookingAtObject.CompareTag("Interactable"))
         {
             Pickupable pickupable = lookingAtObject.GetComponent<Pickupable>();
 
@@ -177,7 +178,8 @@ public class PlayerController : MonoBehaviour
                 heldObject.GetComponent<Rigidbody>().useGravity = true;
                 heldObject = null;
 
-                Physics.IgnoreCollision(heldObject.GetComponent<Collider>(), GetComponent<Collider>(), false);
+                if (heldObject != null)
+                    Physics.IgnoreCollision(heldObject.GetComponent<Collider>(), GetComponent<Collider>(), false);
                 heldObject = lookingAtObject;
                 Physics.IgnoreCollision(heldObject.GetComponent<Collider>(), GetComponent<Collider>());
 

@@ -34,6 +34,7 @@ public class CupboardTrigger : MonoBehaviour
 
     public void CheckIfComplete()
     {
+        if (!GameManager.taskManager.taskList.Contains(TaskManager.Task.PutAwayDishes)) return;
         foreach (Dish dish in dishes)
             if (!dish.inCupboard) return;
 

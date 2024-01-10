@@ -1,4 +1,4 @@
-/*using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,16 +11,22 @@ public class FloorMess : Interactable
 
     public override void Interact()
     {
-        // if (!player.heldItem.mop) return;
+        if (GameManager.playerController.heldObject == null || !GameManager.playerController.heldObject.GetComponent<Pickupable>().mop) return;
 
         if (clean) return;
 
         gameActive = !gameActive;
 
-        // if (gameActive)
-        // unpull focus();
-        // else
-        // pull focus();
+        if (gameActive)
+        {
+            Cursor.lockState = CursorLockMode.Confined;
+            GameManager.playerController.state = PlayerController.State.inactive;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            GameManager.playerController.state = PlayerController.State.active;
+        }
     }
 
     public void CleanSplat()
@@ -29,8 +35,10 @@ public class FloorMess : Interactable
         if (splats <= 0)
         {
             GameManager.taskManager.CompleteTask(TaskManager.Task.MopFloor);
-            // unpull focus();
+            Cursor.lockState = CursorLockMode.Locked;
+            GameManager.playerController.state = PlayerController.State.active;
+            gameActive = false;
             clean = true;
         }
     }
-}*/
+}

@@ -19,14 +19,13 @@ public class TaskManager : MonoBehaviour
 
     [HideInInspector] public Task currentTask;
 
-    [HideInInspector] public List<Task> taskList = new()
+    [HideInInspector] public List<Task> taskList;
+
+    private void Start()
     {
-        Task.CleanDishes,
-        Task.MopFloor,
-        Task.CleanMirror,
-        Task.CleanCobwebs,
-        Task.LightFireplace
-    };
+        taskList = new List<Task>();
+        taskList.Add(Task.CleanMirror);
+    }
 
     public void CompleteTask(Task task)
     {
@@ -39,9 +38,10 @@ public class TaskManager : MonoBehaviour
             taskList.Add(Task.PutAwayDishes);
             SetCurrentTask(Task.PutAwayDishes);
         }
-
+        
         if (taskList.Count == 0)
         {
+            Debug.Log("task list empty");
             if (task == Task.FindKey)
             {
                 taskList.Add(Task.EscapeHouse);
@@ -49,6 +49,11 @@ public class TaskManager : MonoBehaviour
             }
             else if (task == Task.EscapeHouse)
                 return;
+            else
+            {
+                taskList.Add(Task.FindKey);
+                Debug.Log("find the key");
+            }
         }
     }
 
