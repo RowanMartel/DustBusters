@@ -16,6 +16,9 @@ public class Pickupable : Interactable
     [Tooltip("Check if object can be used to unlock the front door")]
     public bool frontDoorKey;
 
+    [Tooltip("Check if the ghost wants to hide this")]
+    public bool hideable;
+
     protected Rigidbody rb;
     [HideInInspector] public bool held;
     protected Material baseMat;
