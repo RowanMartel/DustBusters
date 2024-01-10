@@ -29,6 +29,7 @@ public class CupboardTrigger : MonoBehaviour
             return;
 
         GameManager.taskManager.taskList.Add(TaskManager.Task.PutAwayDishes);
+        Debug.Log("put the dishes back");
     }
 
     public void CheckIfComplete()

@@ -11,16 +11,22 @@ public class Mirror : Interactable
 
     public override void Interact()
     {
-        // if (!player.heldItem.duster) return;
+        if (GameManager.playerController.heldObject == null || !GameManager.playerController.heldObject.GetComponent<Pickupable>().duster) return;
 
         if (clean) return;
 
         gameActive = !gameActive;
 
-        // if (gameActive)
-            // unpull focus();
-        // else
-            // pull focus();
+        if (gameActive)
+        {
+            Cursor.lockState = CursorLockMode.Confined;
+            GameManager.playerController.state = PlayerController.State.inactive;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            GameManager.playerController.state = PlayerController.State.active;
+        }
     }
 
     public void CleanSplat()
@@ -29,7 +35,9 @@ public class Mirror : Interactable
         if (splats <= 0)
         {
             GameManager.taskManager.CompleteTask(TaskManager.Task.CleanMirror);
-            // unpull focus();
+            Cursor.lockState = CursorLockMode.Locked;
+            GameManager.playerController.state = PlayerController.State.active;
+            gameActive = false;
             clean = true;
         }
     }
