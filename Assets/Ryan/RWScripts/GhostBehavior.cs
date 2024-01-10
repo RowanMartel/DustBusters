@@ -149,25 +149,27 @@ public class GhostBehavior : MonoBehaviour
             }*/
         }
 
-        RaycastHit hit;
-        if(Physics.Raycast(transform.position, playerObject.transform.position - transform.position, out hit, sightRange))
+        if (currentTasks.Contains(TaskManager.Task.EscapeHouse))
         {
-            if(hit.collider.gameObject == playerObject)
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, playerObject.transform.position - transform.position, out hit, sightRange))
             {
-                if (throwables.Count > 0)
+                if (hit.collider.gameObject == playerObject)
                 {
-                    curTime -= Time.deltaTime;
-                    if (curTime <= 0)
+                    if (throwables.Count > 0)
                     {
-                        curTime = timeToThrow;
-                        GameObject toThrow = throwables[0];
-                        toThrow.transform.LookAt(playerObject.transform.position);
-                        toThrow.GetComponent<Rigidbody>().AddForce(toThrow.transform.forward * throwForce, ForceMode.Impulse);
+                        curTime -= Time.deltaTime;
+                        if (curTime <= 0)
+                        {
+                            curTime = timeToThrow;
+                            GameObject toThrow = throwables[0];
+                            toThrow.transform.LookAt(playerObject.transform.position);
+                            toThrow.GetComponent<Rigidbody>().AddForce(toThrow.transform.forward * throwForce, ForceMode.Impulse);
+                        }
                     }
                 }
             }
         }
-        
     }
 
     void SwitchToPoint(int index)
@@ -321,21 +323,6 @@ public class GhostBehavior : MonoBehaviour
             lightSourcesEffecting.Remove(other.gameObject);
         }
     }*/
-
-    private bool IsInLight()
-    {
-        foreach (GameObject light in lightSourcesEffecting)
-        {
-            //RaycastHit hit;
-            //if(Physics.Raycast(light.transform.position, transform.position - light.transform.position, out hit, LayerMask.NameToLayer("Ignore Raycast")))
-            //{
-            //    //Debug.Log(hit.collider.gameObject);
-            //    if (hit.collider.gameObject == gameObject) return true;
-            //}
-        }
-        return false;
-    }
-
 
     [System.Serializable]
     public class pointList
