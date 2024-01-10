@@ -17,6 +17,10 @@ public class Dish : Pickupable
     [Tooltip("Add material here if dirtyDish is true")]
     public Material dirtyMat;
 
+    [Tooltip("Put the breaking SFX here")]
+    public AudioClip breakingSFX;
+    AudioSource audioSource;
+
     private void Start()
     {
         pickupable = true;
@@ -27,6 +31,8 @@ public class Dish : Pickupable
 
         if (dirtyDish)
             meshRenderer.material = dirtyMat;
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     void OnCollisionEnter(Collision collision)
@@ -37,6 +43,7 @@ public class Dish : Pickupable
 
     void Break()
     {
+        audioSource.PlayOneShot(breakingSFX);
         GetComponent<MeshFilter>().mesh = brokenMesh;
 
         CleaningWater cleaningWater = FindObjectOfType<CleaningWater>();

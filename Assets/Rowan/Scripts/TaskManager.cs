@@ -43,7 +43,7 @@ public class TaskManager : MonoBehaviour
             SetCurrentTask(Task.PutAwayDishes);
             ghost.AddTask(Task.PutAwayDishes);
         }
-
+        
         if (taskList.Count == 0)
         {
             Debug.Log("task list empty");

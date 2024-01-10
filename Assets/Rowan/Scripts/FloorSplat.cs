@@ -1,4 +1,4 @@
-/*using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -13,10 +13,16 @@ public class FloorSplat : MonoBehaviour, IPointerExitHandler
     Image image;
     FloorMess floorMess;
 
+    [Tooltip("Put the mopping SFX here")]
+    public AudioClip cleanSFX;
+    AudioSource audioSource;
+
     private void Start()
     {
         floorMess = transform.parent.GetComponentInParent<FloorMess>();
         image = GetComponent<Image>();
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -25,10 +31,11 @@ public class FloorSplat : MonoBehaviour, IPointerExitHandler
 
         dirtLevel--;
         image.color = new Color(image.color.r, image.color.g, image.color.g, image.color.a - .2f);
+        audioSource.PlayOneShot(cleanSFX);
         if (dirtLevel == 0)
         {
             cleaned = true;
             floorMess.CleanSplat();
         }
     }
-}*/
+}
