@@ -13,10 +13,16 @@ public class MirrorSplat : MonoBehaviour, IPointerExitHandler
     Image image;
     Mirror mirror;
 
+    [Tooltip("Put the dusting SFX here")]
+    public AudioClip cleanSFX;
+    AudioSource audioSource;
+
     private void Start()
     {
         mirror = transform.parent.GetComponentInParent<Mirror>();
         image = GetComponent<Image>();
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -25,6 +31,7 @@ public class MirrorSplat : MonoBehaviour, IPointerExitHandler
 
         dirtLevel--;
         image.color = new Color(image.color.r, image.color.g, image.color.g, image.color.a - .2f);
+        audioSource.PlayOneShot(cleanSFX);
         if (dirtLevel == 0)
         {
             cleaned = true;
