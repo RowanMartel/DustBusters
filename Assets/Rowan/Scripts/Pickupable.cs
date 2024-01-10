@@ -19,6 +19,9 @@ public class Pickupable : Interactable
     [Tooltip("Check if the ghost wants to hide this")]
     public bool hideable;
 
+    [Tooltip("Check if the ghost wants to break this")]
+    public bool breakable;
+
     protected Rigidbody rb;
     [HideInInspector] public bool held;
     protected Material baseMat;

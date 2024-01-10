@@ -19,14 +19,14 @@ public class TaskManager : MonoBehaviour
 
     [HideInInspector] public Task currentTask;
 
-    [HideInInspector] public List<Task> taskList;
+    public List<Task> taskList;
 
     public GhostBehavior ghost;
 
     private void Start()
     {
-        taskList = new List<Task>();
-        taskList.Add(Task.CleanMirror);
+        //taskList = new List<Task>();
+        //taskList.Add(Task.CleanMirror);
     }
 
     public void CompleteTask(Task task)

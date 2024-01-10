@@ -8,8 +8,8 @@ public class GhostBehavior : MonoBehaviour
     [Header("Navigation")]
     public NavMeshAgent agent;
 
-    List<TaskManager.Task> currentTasks = new List<TaskManager.Task>();
-    List<pointList> currentPoints = new List<pointList>();
+    public List<TaskManager.Task> currentTasks = new List<TaskManager.Task>();
+    public List<pointList> currentPoints = new List<pointList>();
     public List<TaskManager.Task> startTasks;
     public List<TaskManager.Task> endGameTasks;
     [Tooltip("Every task the ghost can interact with")]
@@ -26,7 +26,7 @@ public class GhostBehavior : MonoBehaviour
     public float timeToThrow;
     public float curTime;
     public List<GameObject> throwables;
-    public float throwForce;
+    public float attackThrowForce;
 
     [Header("Aiming")]
     public float sightRange;
@@ -37,10 +37,10 @@ public class GhostBehavior : MonoBehaviour
     public Transform heldItemSpinner;
     public float spinSpeed;
 
-    [Header("Hiding Items")]
+    [Header("Task Item Interaction")]
     bool hiding;
-    //public GameObject key;
     public Transform[] hidingPlaces;
+    public float breakThrowForce;
 
     [Header("Light Interaction")]
     public float baseSpeed;
@@ -101,6 +101,17 @@ public class GhostBehavior : MonoBehaviour
                 {
                     PickUpItem(item.gameObject);
                     ChooseHidingPlace();
+                }else if (item.breakable)
+                {
+                    item.transform.LookAt(transform.position);
+                    item.GetComponent<Rigidbody>().AddForce(item.transform.forward * breakThrowForce, ForceMode.Impulse);
+
+                    curIndex++;
+                    if (curIndex >= currentPoints.Count)
+                    {
+                        curIndex = 0;
+                    }
+                    SwitchToPoint(curIndex);
                 }
             }
             catch
@@ -137,7 +148,7 @@ public class GhostBehavior : MonoBehaviour
                             curTime = timeToThrow;
                             GameObject toThrow = throwables[0];
                             toThrow.transform.LookAt(playerObject.transform.position);
-                            toThrow.GetComponent<Rigidbody>().AddForce(toThrow.transform.forward * throwForce, ForceMode.Impulse);
+                            toThrow.GetComponent<Rigidbody>().AddForce(toThrow.transform.forward * attackThrowForce, ForceMode.Impulse);
                         }
                     }
                 }
