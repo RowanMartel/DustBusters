@@ -8,9 +8,6 @@ public class GhostBehavior : MonoBehaviour
     [Header("Navigation")]
     public NavMeshAgent agent;
 
-    //List<Transform> patrolPoints;
-    //public List<Transform> startingPoints;
-    //public List<Transform> endGamePoints;
     List<TaskManager.Task> currentTasks = new List<TaskManager.Task>();
     List<pointList> currentPoints = new List<pointList>();
     public List<TaskManager.Task> startTasks;
@@ -53,20 +50,6 @@ public class GhostBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        /*foreach (TaskManager.Task item in startTasks)
-        {
-            currentTasks.Add(item);
-
-        }
-        foreach (List<Transform> item in startPointsPerTask)
-        {
-            currentPoints.Add(new List<Transform>());
-            foreach (Transform trans in item)
-            {
-                currentPoints[currentPoints.Count - 1].Add(trans);
-            }
-        }*/
-
         for (int i = 0; i < startTasks.Count; i++)
         {
             currentTasks.Add(startTasks[i]);
@@ -87,7 +70,7 @@ public class GhostBehavior : MonoBehaviour
     void Update()
     {
 
-        if (/*IsInLight()*/ lightSourcesEffecting.Count > 0)
+        if (lightSourcesEffecting.Count > 0)
         {
             agent.speed = slowedSpeed;
         }
@@ -137,16 +120,6 @@ public class GhostBehavior : MonoBehaviour
                     SwitchToPoint(curIndex);
                 }
             }
-
-            /*if (!hiding)
-            {
-                curIndex++;
-                if (curIndex >= currentPoints.Count)
-                {
-                    curIndex = 0;
-                }
-                SwitchToPoint(curIndex);
-            }*/
         }
 
         if (currentTasks.Contains(TaskManager.Task.EscapeHouse))
@@ -185,16 +158,6 @@ public class GhostBehavior : MonoBehaviour
 
     public void RemoveTask(TaskManager.Task task)
     {
-        /*patrolPoints.Remove(patrolPoints[index]);
-        if(curIndex == index)
-        {
-            if(curIndex >= patrolPoints.Count)
-            {
-                curIndex = 0;
-            }
-            SwitchToPoint(curIndex);
-        }*/
-
         if (!currentTasks.Contains(task)){
             Debug.Log("Task Not In Ghost List");
             return;
@@ -228,29 +191,8 @@ public class GhostBehavior : MonoBehaviour
     
     public void EnterEndGame()
     {
-        /*
-        patrolPoints.Clear();
-        foreach (Transform item in endGamePoints)
-        {
-            patrolPoints.Add(item);
-        }
-        agent.SetDestination(patrolPoints[0].position);
-        currentPatrolPoint = patrolPoints[0];
-        */
         currentTasks.Clear();
         currentPoints.Clear();
-        /*foreach (TaskManager.Task item in endGameTasks)
-        {
-            currentTasks.Add(item);
-        }
-        foreach (List<Transform> item in endPointsPerTask)
-        {
-            currentPoints.Add(new List<Transform>());
-            foreach (Transform trans in item)
-            {
-                currentPoints[currentPoints.Count - 1].Add(trans);
-            }
-        }*/
 
         for (int i = 0; i < endGameTasks.Count; i++)
         {
@@ -307,22 +249,6 @@ public class GhostBehavior : MonoBehaviour
     {
         lightSourcesEffecting.Remove(lightsource);
     }
-
-    /*private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Light") && lightSourcesEffecting.Contains(other.gameObject) == false)
-        {
-            lightSourcesEffecting.Add(other.gameObject);
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Light"))
-        {
-            lightSourcesEffecting.Remove(other.gameObject);
-        }
-    }*/
 
     [System.Serializable]
     public class pointList
