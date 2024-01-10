@@ -87,7 +87,7 @@ public class GhostBehavior : MonoBehaviour
     void Update()
     {
 
-        if (IsInLight())
+        if (/*IsInLight()*/ lightSourcesEffecting.Count > 0)
         {
             agent.speed = slowedSpeed;
         }
@@ -296,7 +296,17 @@ public class GhostBehavior : MonoBehaviour
         currentPatrolPoint = hidingPlaces[rand];
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void EnterLight(GameObject lightsource)
+    {
+        lightSourcesEffecting.Add(lightsource);
+    }
+
+    public void ExitLight(GameObject lightsource)
+    {
+        lightSourcesEffecting.Remove(lightsource);
+    }
+
+    /*private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Light") && lightSourcesEffecting.Contains(other.gameObject) == false)
         {
@@ -310,18 +320,18 @@ public class GhostBehavior : MonoBehaviour
         {
             lightSourcesEffecting.Remove(other.gameObject);
         }
-    }
+    }*/
 
     private bool IsInLight()
     {
         foreach (GameObject light in lightSourcesEffecting)
         {
-            RaycastHit hit;
-            if(Physics.Raycast(light.transform.position, transform.position - light.transform.position, out hit, LayerMask.NameToLayer("Ignore Raycast")))
-            {
-                //Debug.Log(hit.collider.gameObject);
-                if (hit.collider.gameObject == gameObject) return true;
-            }
+            //RaycastHit hit;
+            //if(Physics.Raycast(light.transform.position, transform.position - light.transform.position, out hit, LayerMask.NameToLayer("Ignore Raycast")))
+            //{
+            //    //Debug.Log(hit.collider.gameObject);
+            //    if (hit.collider.gameObject == gameObject) return true;
+            //}
         }
         return false;
     }
