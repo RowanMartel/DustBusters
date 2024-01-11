@@ -2,18 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class HealthSystem : MonoBehaviour
 {
     Image damageOverlay;
+    Image deathMessage;
     public int health;
     public PlayerController playerController;
+
+    RWMenu menuReference;
 
     // Start is called before the first frame update
     void Start()
     {
         damageOverlay = GameObject.Find("DamageOverlay").GetComponent<Image>();
-        // damageOverlay.color = new Color(damageOverlay.color.r, damageOverlay.color.g, damageOverlay.color.b, 0);
+        deathMessage = GameObject.Find("DeathMessage").GetComponent<Image>();
+        menuReference = GameObject.Find("Menu").GetComponent<RWMenu>();
     }
 
     // Update is called once per frame
@@ -32,9 +37,13 @@ public class HealthSystem : MonoBehaviour
         if (pickupable.canDamagePlayer)
         {
             health--;
-            if (health <= 0) playerController.Die();
+            if (health <= 0)
+            {
+                playerController.Die();
+                LeanTween.alpha(deathMessage.GetComponent<RectTransform>(), 1, 1f).setOnComplete(menuReference.ShowDeathScreen);
+            }
 
-            LeanTween.alpha(damageOverlay.GetComponent<RectTransform>(), damageOverlay.color.a + 0.33f, 0.2f);            
+            LeanTween.alpha(damageOverlay.GetComponent<RectTransform>(), damageOverlay.color.a + 0.33f, 0.2f);         
         }
         else
         {
