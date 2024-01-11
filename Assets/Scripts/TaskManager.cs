@@ -39,7 +39,6 @@ public class TaskManager : MonoBehaviour
     public void CompleteTask(Task task)
     {
         if (!taskList.Contains(task)) return;
-
         string text = "";
         switch (task)
         {
@@ -72,7 +71,7 @@ public class TaskManager : MonoBehaviour
                 break;
         }
         int i = taskListTxt.text.IndexOf(text);
-        taskListTxt.text.Remove(i, text.Length);
+        taskListTxt.text = taskListTxt.text.Remove(i, text.Length);
 
         taskList.Remove(task);
 
@@ -81,7 +80,7 @@ public class TaskManager : MonoBehaviour
         if (task == Task.CleanDishes)
         {
             taskList.Add(Task.PutAwayDishes);
-            ghost.AddTask(Task.PutAwayDishes);
+            ghost?.AddTask(Task.PutAwayDishes);
         }
         
         if (taskList.Count == 0)
@@ -132,6 +131,5 @@ public class TaskManager : MonoBehaviour
                 break;
         }
         taskListTxt.text += text;
-        Debug.Log("adding " + task.ToString());
     }
 }
