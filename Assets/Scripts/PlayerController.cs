@@ -112,7 +112,6 @@ public class PlayerController : MonoBehaviour
         }
         else if(heldObject != null && state == State.inactive)
         {
-            Debug.Log(Camera.main.ScreenToWorldPoint(Input.mousePosition));
             Vector3 heldPosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1.5f));
             Vector3 direction = heldObject.transform.position - heldPosition;
             float distance = direction.magnitude;
@@ -156,7 +155,7 @@ public class PlayerController : MonoBehaviour
     void Interact()
     {
         // Once I know more about the interaction system and what is needed from my side I can build this
-        if (heldObject == null && lookingAtObject.CompareTag("Interactable"))
+        if (heldObject == null && lookingAtObject != null && lookingAtObject.CompareTag("Interactable"))
         {
             Pickupable pickupable = lookingAtObject.GetComponent<Pickupable>();
 
