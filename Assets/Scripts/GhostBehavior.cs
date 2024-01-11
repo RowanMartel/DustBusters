@@ -72,6 +72,7 @@ public class GhostBehavior : MonoBehaviour
         SwitchToPoint(0);
         curTime = timeToThrow;
         curSFXTime = sfxTime;
+        hiding = false;
     }
 
     // Update is called once per frame
