@@ -9,6 +9,7 @@ public class RWMenu : MonoBehaviour
     public GameObject optionsScreen;
     public GameObject gameScreen;
     public GameObject pauseScreen;
+    public GameObject deathScreen;
 
     public static RWMenu instance;
 
@@ -37,6 +38,14 @@ public class RWMenu : MonoBehaviour
         if (screen != pauseScreen) Time.timeScale = 1;
 
         screen.SetActive(true);
+    }
+
+    public void ShowDeathScreen()
+    {
+        deathScreen.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+
+        Time.timeScale = 0;
     }
 
     public void EnterScene(int index)

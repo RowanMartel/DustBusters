@@ -217,7 +217,7 @@ public class PlayerController : MonoBehaviour
 
     public void Die()
     {
-        Debug.Log("Player DIED!");
+        state = State.inactive;
     }
 
     private void OnCollisionEnter(Collision collision)
