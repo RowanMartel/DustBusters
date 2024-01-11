@@ -47,6 +47,14 @@ public class GhostBehavior : MonoBehaviour
     public float slowedSpeed;
     public List<GameObject> lightSourcesEffecting;
 
+    [Header("Spooky SFX")]
+    public AudioClip[] sounds;
+    AudioClip lastPlayed;
+    public AudioSource aSource;
+    public float sfxTime;
+    public float sfxTimeDeviationRange;
+    public float curSFXTime;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -63,6 +71,7 @@ public class GhostBehavior : MonoBehaviour
 
         SwitchToPoint(0);
         curTime = timeToThrow;
+        curSFXTime = sfxTime;
         hiding = false;
     }
 
@@ -154,6 +163,12 @@ public class GhostBehavior : MonoBehaviour
                 }
             }
         }
+
+        curSFXTime -= Time.deltaTime;
+        if(curSFXTime <= 0)
+        {
+            PlaySound();
+        }
     }
 
     void SwitchToPoint(int index)
@@ -188,6 +203,20 @@ public class GhostBehavior : MonoBehaviour
             SwitchToPoint(curIndex);
         }
 
+    }
+
+    public void PlaySound()
+    {
+        AudioClip clip;
+        do
+        {
+            clip = sounds[Random.Range(0, sounds.Length - 1)];
+        } while (clip == lastPlayed);
+
+        aSource.clip = clip;
+        aSource.Play();
+        lastPlayed = clip;
+        curSFXTime = sfxTime + Random.Range(-sfxTimeDeviationRange, sfxTimeDeviationRange);
     }
 
     public void AddTask(TaskManager.Task task)
