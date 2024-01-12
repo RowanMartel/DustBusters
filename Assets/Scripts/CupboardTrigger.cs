@@ -28,7 +28,7 @@ public class CupboardTrigger : MonoBehaviour
             GameManager.taskManager.taskList.Contains(TaskManager.Task.EscapeHouse))
             return;
 
-        GameManager.taskManager.taskList.Add(TaskManager.Task.PutAwayDishes);
+        GameManager.taskManager.AddTask(TaskManager.Task.PutAwayDishes);
         Debug.Log("put the dishes back");
     }
 

@@ -10,10 +10,12 @@ public class RWMenu : MonoBehaviour
     public GameObject gameScreen;
     public GameObject pauseScreen;
     public GameObject deathScreen;
+    public GameObject startScreen;
+    public GameObject endScreen;
 
     public static RWMenu instance;
 
-    private void Start()
+    private void Awake()
     {
         if(instance == null)
         {
@@ -25,7 +27,7 @@ public class RWMenu : MonoBehaviour
             Destroy(gameObject);
         }
 
-        // SwitchScreen(titleScreen);
+        SwitchScreen(titleScreen);
     }
 
     public void SwitchScreen(GameObject screen)
@@ -34,8 +36,12 @@ public class RWMenu : MonoBehaviour
         optionsScreen.SetActive(false);
         gameScreen.SetActive(false);
         pauseScreen.SetActive(false);
+        deathScreen.SetActive(false);
+        startScreen.SetActive(false);
+        endScreen.SetActive(false);
 
-        if (screen != pauseScreen) Time.timeScale = 1;
+        if (screen != pauseScreen && screen != startScreen)
+            Time.timeScale = 1;
 
         screen.SetActive(true);
     }
@@ -51,7 +57,21 @@ public class RWMenu : MonoBehaviour
     public void EnterScene(int index)
     {
         SceneManager.LoadScene(index);
+
+        SwitchScreen(startScreen);
+
+        Cursor.lockState = CursorLockMode.Confined;
+        Time.timeScale = 0;
+
+    }
+
+    public void StartGame()
+    {
         SwitchScreen(gameScreen);
+
+        Cursor.lockState = CursorLockMode.Locked;
+
+        GameManager.playerController.TogglePlayerControl();
     }
 
     public void ToTitle()
@@ -60,23 +80,37 @@ public class RWMenu : MonoBehaviour
         SwitchScreen(titleScreen);
     }
 
+    public void ToEnd()
+    {
+        SceneManager.LoadScene(2);
+        SwitchScreen(endScreen);
+        Cursor.lockState = CursorLockMode.Confined;
+    }
+
     public void Quit()
     {
         Application.Quit();
     }
 
+    public void Unpause()
+    {
+        SwitchScreen(gameScreen);
+        GameManager.playerController.TogglePlayerControl();
+    }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (gameScreen.activeSelf)
             {
                 SwitchScreen(pauseScreen);
+                GameManager.playerController.TogglePlayerControl();
                 Time.timeScale = 0;
             }
             else if (pauseScreen.activeSelf)
             {
                 SwitchScreen(gameScreen);
+                GameManager.playerController.TogglePlayerControl();
                 //Time.timeScale = 1;
             }
         }

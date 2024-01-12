@@ -25,9 +25,10 @@ public class TrashCanTrigger : MonoBehaviour
 
         plate.inTrash = false;
 
-        if (GameManager.taskManager.taskList.Contains(TaskManager.Task.PutAwayDishes) ||
+        if (GameManager.taskManager.taskList.Contains(TaskManager.Task.ThrowOutBrokenDishes) ||
             GameManager.taskManager.taskList.Contains(TaskManager.Task.FindKey) ||
             GameManager.taskManager.taskList.Contains(TaskManager.Task.EscapeHouse))
             return;
+        GameManager.taskManager.AddTask(TaskManager.Task.ThrowOutBrokenDishes);
     }
 }

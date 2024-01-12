@@ -6,7 +6,9 @@ public class Dish : Pickupable
 {
     [HideInInspector] public bool inCupboard;
     [HideInInspector] public bool inTrash;
-    [HideInInspector] public bool broken;
+
+    [Tooltip("Check if the dish starts broken")]
+    public bool broken;
 
     [Tooltip("Add broken mesh here")]
     public Mesh brokenMesh;
@@ -33,6 +35,8 @@ public class Dish : Pickupable
             meshRenderer.material = dirtyMat;
 
         audioSource = GetComponent<AudioSource>();
+
+        if (broken) Break();
     }
 
     void OnCollisionEnter(Collision collision)
@@ -54,8 +58,8 @@ public class Dish : Pickupable
         cupboardTrigger.dishes.Remove(this);
         trashCanTrigger.dishes.Add(this);
 
-        GameManager.ghost.patrolPointsPerTask[GameManager.ghost.masterTaskList.IndexOf(TaskManager.Task.PutAwayDishes)].list.Remove(transform);
-        GameManager.ghost.currentPoints[GameManager.ghost.currentTasks.IndexOf(TaskManager.Task.PutAwayDishes)].list.Remove(transform);
+        //GameManager.ghost?.patrolPointsPerTask[GameManager.ghost.masterTaskList.IndexOf(TaskManager.Task.PutAwayDishes)].list.Remove(transform);
+        //GameManager.ghost?.currentPoints[GameManager.ghost.currentTasks.IndexOf(TaskManager.Task.PutAwayDishes)].list.Remove(transform);
 
         cupboardTrigger.CheckIfComplete();
     }

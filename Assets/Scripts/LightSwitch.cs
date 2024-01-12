@@ -12,6 +12,8 @@ public class LightSwitch : Interactable
     [Tooltip("The light collider this controls")]
     public Collider lightCollider;
 
+    public bool rotated;
+
     private void Start()
     {
         if (on)
@@ -29,7 +31,11 @@ public class LightSwitch : Interactable
 
     void Toggle()
     {
-        transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + 180);
+        if (rotated)
+            transform.Rotate(transform.right, 180, Space.Self);
+        else
+            transform.Rotate(transform.forward, 180, Space.Self);
+
         on = !on;
 
         if (on)

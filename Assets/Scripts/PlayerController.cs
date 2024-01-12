@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
         active
     }
 
-    public State state = State.active;
+    public State state = State.inactive;
 
     public float walkSpeed = 2;
     public float runSpeed;
@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
         lookingAtObject = GameObject.Find("Floor");
         midHold = GameObject.Find("MidHold");
 
-        Cursor.lockState = CursorLockMode.Locked;
+        // Cursor.lockState = CursorLockMode.Locked;
 
         rb = GetComponent<Rigidbody>();
         cameraContainer = GameObject.Find("Player/CameraContainer");
@@ -172,11 +172,7 @@ public class PlayerController : MonoBehaviour
                 int layerIgnoreRaycast = LayerMask.NameToLayer("Ignore Raycast");
                 heldObject.layer = layerIgnoreRaycast;
             }
-            else
-            {
-                lookingAtObject.GetComponent<Interactable>().Interact();
-                Debug.Log("interacting with " + lookingAtObject.name);
-            }
+            lookingAtObject.GetComponent<Interactable>().Interact();
         }
         else if(heldObject != null && (lookingAtObject == null || lookingAtObject.tag != "Interactable"))
         {
@@ -193,6 +189,7 @@ public class PlayerController : MonoBehaviour
             {
                 heldObject.layer = 0;
                 heldObject.GetComponent<Rigidbody>().useGravity = true;
+                Physics.IgnoreCollision(heldObject.GetComponent<Collider>(), GetComponent<Collider>(), false);
                 heldObject = null;
 
                 if (heldObject != null)
@@ -208,10 +205,7 @@ public class PlayerController : MonoBehaviour
                 int layerIgnoreRaycast = LayerMask.NameToLayer("Ignore Raycast");
                 heldObject.layer = layerIgnoreRaycast;
             }
-            else
-            {
-                lookingAtObject.GetComponent<Interactable>().Interact();
-            }
+            lookingAtObject.GetComponent<Interactable>().Interact();
         }
     }
 
@@ -225,13 +219,13 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "Floor") isGrounded = true;
     }
 
-    void TogglePlayerControl()
+    public void TogglePlayerControl()
     {
         switch(state)
         {
             case State.active:
                 state = State.inactive;
-                Cursor.lockState = CursorLockMode.None;
+                Cursor.lockState = CursorLockMode.Confined;
                 break;
 
             case State.inactive:

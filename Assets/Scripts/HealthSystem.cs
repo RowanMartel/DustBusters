@@ -16,8 +16,8 @@ public class HealthSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        damageOverlay = GameObject.Find("DamageOverlay").GetComponent<Image>();
-        deathMessage = GameObject.Find("DeathMessage").GetComponent<Image>();
+        damageOverlay = FindObjectOfType<DamageOverlay>(true).GetComponent<Image>();
+        deathMessage = FindObjectOfType<DeathMessage>(true).GetComponent<Image>();
         menuReference = GameObject.Find("Menu").GetComponent<RWMenu>();
     }
 
@@ -29,7 +29,7 @@ public class HealthSystem : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.relativeVelocity.magnitude < 10) return;
+        if (collision.relativeVelocity.magnitude < 5) return;
 
         Pickupable pickupable = collision.gameObject.GetComponent<Pickupable>();
         if (pickupable == null) return;
