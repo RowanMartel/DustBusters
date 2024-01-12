@@ -88,7 +88,7 @@ public class GhostBehavior : MonoBehaviour
             agent.speed = baseSpeed;
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.R))
         {
             EnterEndGame();
         }
@@ -130,6 +130,8 @@ public class GhostBehavior : MonoBehaviour
                     PlaceItem(currentPatrolPoint.position);
                     hiding = false;
                 }
+                else if (curHeldItem != null)
+                    ChooseHidingPlace();
                 else
                 {
                     curIndex++;
@@ -249,8 +251,20 @@ public class GhostBehavior : MonoBehaviour
 
     public void PickUpItem(GameObject item)
     {
+        if (GameManager.playerController.heldObject.name == item.name)
+        {
+            curIndex++;
+            if (curIndex >= currentPoints.Count)
+            {
+                curIndex = 0;
+            }
+            SwitchToPoint(curIndex);
+            return;
+        }
+
         if(curHeldItem != null)
             DropItem();
+
         item.transform.parent = heldItemParent.transform;
         item.transform.localPosition = Vector3.zero;
         curHeldItem = item;
@@ -261,6 +275,7 @@ public class GhostBehavior : MonoBehaviour
         curHeldItem.transform.parent = null;
         curHeldItem.transform.position = heldItemParent.transform.position;
         curHeldItem.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        curHeldItem.GetComponent<Rigidbody>().Sleep();
         curHeldItem = null;
     }
 
@@ -274,6 +289,7 @@ public class GhostBehavior : MonoBehaviour
 
     public void ChooseHidingPlace()
     {
+        if (curHeldItem == null) return;
         hiding = true;
         int rand = Random.Range(0, hidingPlaces.Length);
         agent.SetDestination(hidingPlaces[rand].position);

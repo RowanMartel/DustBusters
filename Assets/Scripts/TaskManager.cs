@@ -43,31 +43,31 @@ public class TaskManager : MonoBehaviour
         switch (task)
         {
             case Task.CleanDishes:
-                text = "\nClean dishes";
+                text = "\nClean the dirty dishes";
                 break;
             case Task.PutAwayDishes:
-                text = "\nPut away dishes";
+                text = "\nPut away the dishes on the counter";
                 break;
             case Task.CleanCobwebs:
-                text = "\nClean cobwebs";
+                text = "\nClean away the cobwebs in the foyer";
                 break;
             case Task.CleanMirror:
-                text = "\nClean mirror";
+                text = "\nClean the bathroom mirror";
                 break;
             case Task.ThrowOutBrokenDishes:
-                text = "\nThrow out broken dishes";
+                text = "\nThrow out the broken dishes";
                 break;
             case Task.EscapeHouse:
-                text = "\nEscape house";
+                text = "\nEscape the house";
                 break;
             case Task.FindKey:
-                text = "\nFind key";
+                text = "\nFind the front door key";
                 break;
             case Task.LightFireplace:
-                text = "\nLight fireplace";
+                text = "\nLight the fireplace";
                 break;
             case Task.MopFloor:
-                text = "\nMop floor";
+                text = "\nMop the laundry room floor";
                 break;
         }
         int i = taskListTxt.text.IndexOf(text);
@@ -79,7 +79,7 @@ public class TaskManager : MonoBehaviour
 
         if (task == Task.CleanDishes)
         {
-            taskList.Add(Task.PutAwayDishes);
+            AddTask(Task.PutAwayDishes);
             ghost?.AddTask(Task.PutAwayDishes);
         }
         
@@ -87,11 +87,11 @@ public class TaskManager : MonoBehaviour
         {
             Debug.Log("task list empty");
             if (task == Task.FindKey)
-                taskList.Add(Task.EscapeHouse);
+                AddTask(Task.EscapeHouse);
             else if (task == Task.EscapeHouse)
                 return;
             else
-                taskList.Add(Task.FindKey);
+                AddTask(Task.FindKey);
         }
     }
 
@@ -103,31 +103,31 @@ public class TaskManager : MonoBehaviour
         switch (task)
         {
             case Task.CleanDishes:
-                text = "\nClean dishes";
+                text = "\nClean the dirty dishes";
                 break;
             case Task.PutAwayDishes:
-                text = "\nPut away dishes";
+                text = "\nPut away the dishes on the counter";
                 break;
             case Task.CleanCobwebs:
-                text = "\nClean cobwebs";
+                text = "\nClean away the cobwebs in the foyer";
                 break;
             case Task.CleanMirror:
-                text = "\nClean mirror";
+                text = "\nClean the bathroom mirror";
                 break;
             case Task.ThrowOutBrokenDishes:
-                text = "\nThrow out broken dishes";
+                text = "\nThrow out the broken dishes";
                 break;
             case Task.EscapeHouse:
-                text = "\nEscape house";
+                text = "\nEscape the house";
                 break;
             case Task.FindKey:
-                text = "\nFind key";
+                text = "\nFind the front door key";
                 break;
             case Task.LightFireplace:
-                text = "\nLight fireplace";
+                text = "\nLight the fireplace";
                 break;
             case Task.MopFloor:
-                text = "\nMop floor";
+                text = "\nMop the laundry room floor";
                 break;
         }
         taskListTxt.text += text;

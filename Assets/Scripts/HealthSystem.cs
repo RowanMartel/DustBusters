@@ -29,7 +29,7 @@ public class HealthSystem : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.relativeVelocity.magnitude < 10) return;
+        if (collision.relativeVelocity.magnitude < 5) return;
 
         Pickupable pickupable = collision.gameObject.GetComponent<Pickupable>();
         if (pickupable == null) return;

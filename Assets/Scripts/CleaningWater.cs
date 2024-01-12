@@ -22,6 +22,7 @@ public class CleaningWater : MonoBehaviour
         if (!dish || !dish.dirtyDish) return;
 
         dish.Clean();
+        audioSource.PlayOneShot(cleanSFX);
 
         CheckIfComplete();
     }
@@ -31,7 +32,6 @@ public class CleaningWater : MonoBehaviour
         foreach (Dish dish in dishes)
             if (dish.dirtyDish) return;
 
-        audioSource.PlayOneShot(cleanSFX);
         GameManager.taskManager.CompleteTask(TaskManager.Task.CleanDishes);
     }
 }

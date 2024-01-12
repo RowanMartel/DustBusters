@@ -193,6 +193,7 @@ public class PlayerController : MonoBehaviour
             {
                 heldObject.layer = 0;
                 heldObject.GetComponent<Rigidbody>().useGravity = true;
+                Physics.IgnoreCollision(heldObject.GetComponent<Collider>(), GetComponent<Collider>(), false);
                 heldObject = null;
 
                 if (heldObject != null)
