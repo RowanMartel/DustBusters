@@ -25,12 +25,12 @@ public class TaskManager : MonoBehaviour
 
     public GhostBehavior ghost;
 
-    TMP_Text taskListTxt;
+    public TMP_Text taskListTxt;
 
     private void Start()
     {
         taskList = new();
-        taskListTxt = GameObject.Find("TaskList").GetComponent<TMP_Text>();
+        taskListTxt = FindObjectOfType<EmptyTaskList>(true).GetComponent<TMP_Text>();
         taskListTxt.text = "";
         foreach (Task task in startingTasks)
             AddTask(task);
@@ -85,13 +85,15 @@ public class TaskManager : MonoBehaviour
         
         if (taskList.Count == 0)
         {
-            Debug.Log("task list empty");
             if (task == Task.FindKey)
                 AddTask(Task.EscapeHouse);
             else if (task == Task.EscapeHouse)
                 return;
             else
+            {
                 AddTask(Task.FindKey);
+                FindObjectOfType<GhostBehavior>().EnterEndGame();
+            }
         }
     }
 

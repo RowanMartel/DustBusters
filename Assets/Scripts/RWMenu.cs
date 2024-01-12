@@ -11,6 +11,7 @@ public class RWMenu : MonoBehaviour
     public GameObject pauseScreen;
     public GameObject deathScreen;
     public GameObject startScreen;
+    public GameObject endScreen;
 
     public static RWMenu instance;
 
@@ -37,13 +38,10 @@ public class RWMenu : MonoBehaviour
         pauseScreen.SetActive(false);
         deathScreen.SetActive(false);
         startScreen.SetActive(false);
+        endScreen.SetActive(false);
 
-        Debug.Log(screen);
         if (screen != pauseScreen && screen != startScreen)
-        {
             Time.timeScale = 1;
-            Debug.Log(Time.timeScale);
-        }
 
         screen.SetActive(true);
     }
@@ -80,6 +78,13 @@ public class RWMenu : MonoBehaviour
     {
         SceneManager.LoadScene(0);
         SwitchScreen(titleScreen);
+    }
+
+    public void ToEnd()
+    {
+        SceneManager.LoadScene(2);
+        SwitchScreen(endScreen);
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     public void Quit()

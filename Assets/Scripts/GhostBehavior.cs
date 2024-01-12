@@ -88,11 +88,6 @@ public class GhostBehavior : MonoBehaviour
             agent.speed = baseSpeed;
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            EnterEndGame();
-        }
-
         heldItemSpinner.Rotate(Vector3.up * spinSpeed);
 
         if(curHeldItem != null)
@@ -251,7 +246,7 @@ public class GhostBehavior : MonoBehaviour
 
     public void PickUpItem(GameObject item)
     {
-        if (GameManager.playerController.heldObject.name == item.name)
+        if (GameManager.playerController.heldObject != null && GameManager.playerController.heldObject.name == item.name)
         {
             curIndex++;
             if (curIndex >= currentPoints.Count)
@@ -262,12 +257,13 @@ public class GhostBehavior : MonoBehaviour
             return;
         }
 
-        if(curHeldItem != null)
+        if (curHeldItem != null)
             DropItem();
 
         item.transform.parent = heldItemParent.transform;
         item.transform.localPosition = Vector3.zero;
         curHeldItem = item;
+        Debug.Log("holding " + item.name);
     }
 
     public void DropItem()

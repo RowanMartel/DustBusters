@@ -172,11 +172,7 @@ public class PlayerController : MonoBehaviour
                 int layerIgnoreRaycast = LayerMask.NameToLayer("Ignore Raycast");
                 heldObject.layer = layerIgnoreRaycast;
             }
-            else
-            {
-                lookingAtObject.GetComponent<Interactable>().Interact();
-                Debug.Log("interacting with " + lookingAtObject.name);
-            }
+            lookingAtObject.GetComponent<Interactable>().Interact();
         }
         else if(heldObject != null && (lookingAtObject == null || lookingAtObject.tag != "Interactable"))
         {
@@ -209,10 +205,7 @@ public class PlayerController : MonoBehaviour
                 int layerIgnoreRaycast = LayerMask.NameToLayer("Ignore Raycast");
                 heldObject.layer = layerIgnoreRaycast;
             }
-            else
-            {
-                lookingAtObject.GetComponent<Interactable>().Interact();
-            }
+            lookingAtObject.GetComponent<Interactable>().Interact();
         }
     }
 

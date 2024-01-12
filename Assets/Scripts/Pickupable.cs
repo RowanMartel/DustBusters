@@ -45,6 +45,7 @@ public class Pickupable : Interactable
     public override void Interact()
     {
         // do nothing
+        Debug.Log("picked up an item");
     }
 
     public void PickUp()

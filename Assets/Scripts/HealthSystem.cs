@@ -16,8 +16,8 @@ public class HealthSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        damageOverlay = GameObject.Find("DamageOverlay").GetComponent<Image>();
-        deathMessage = GameObject.Find("DeathMessage").GetComponent<Image>();
+        damageOverlay = FindObjectOfType<DamageOverlay>(true).GetComponent<Image>();
+        deathMessage = FindObjectOfType<DeathMessage>(true).GetComponent<Image>();
         menuReference = GameObject.Find("Menu").GetComponent<RWMenu>();
     }
 

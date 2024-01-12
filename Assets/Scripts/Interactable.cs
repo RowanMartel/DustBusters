@@ -6,7 +6,10 @@ public abstract class Interactable : MonoBehaviour
 {
     [HideInInspector] public bool pickupable;
 
-    public abstract void Interact();
+    public virtual void Interact()
+    {
+        Debug.Log("interacted with a thing");
+    }
 
     private void Awake()
     {

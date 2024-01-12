@@ -22,6 +22,6 @@ public class Exit : Interactable
 
         audioSource.PlayOneShot(unlockSFX);
 
-        // start game end sequence();
+        FindObjectOfType<RWMenu>().ToEnd();
     }
 }
