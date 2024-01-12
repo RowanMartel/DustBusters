@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
         active
     }
 
-    public State state = State.active;
+    public State state = State.inactive;
 
     public float walkSpeed = 2;
     public float runSpeed;
@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
         lookingAtObject = GameObject.Find("Floor");
         midHold = GameObject.Find("MidHold");
 
-        Cursor.lockState = CursorLockMode.Locked;
+        // Cursor.lockState = CursorLockMode.Locked;
 
         rb = GetComponent<Rigidbody>();
         cameraContainer = GameObject.Find("Player/CameraContainer");
@@ -226,13 +226,13 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "Floor") isGrounded = true;
     }
 
-    void TogglePlayerControl()
+    public void TogglePlayerControl()
     {
         switch(state)
         {
             case State.active:
                 state = State.inactive;
-                Cursor.lockState = CursorLockMode.None;
+                Cursor.lockState = CursorLockMode.Confined;
                 break;
 
             case State.inactive:
