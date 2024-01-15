@@ -12447,6 +12447,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2052196313}
     - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
+      propertyPath: lightSwitchDist
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
       propertyPath: startTasks.Array.size
       value: 5
       objectReference: {fileID: 0}
@@ -23841,7 +23845,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupable: 0
-  on: 0
+  on: 1
   lights:
   - {fileID: 1565862961}
   lightCollider: {fileID: 859116603}
@@ -40304,7 +40308,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupable: 0
-  on: 0
+  on: 1
   lights:
   - {fileID: 2074316169}
   - {fileID: 826149703}
@@ -40682,7 +40686,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupable: 0
-  on: 0
+  on: 1
   lights:
   - {fileID: 1756613440}
   lightCollider: {fileID: 77077814}
@@ -46167,7 +46171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupable: 0
-  on: 0
+  on: 1
   lights:
   - {fileID: 1066042750}
   lightCollider: {fileID: 1689281160}
@@ -47547,7 +47551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupable: 0
-  on: 0
+  on: 1
   lights:
   - {fileID: 43187688}
   lightCollider: {fileID: 899343939}
@@ -48187,7 +48191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupable: 0
-  on: 0
+  on: 1
   lights:
   - {fileID: 1448665710}
   lightCollider: {fileID: 1535463518}
@@ -52251,7 +52255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupable: 0
-  on: 0
+  on: 1
   lights:
   - {fileID: 122592610}
   - {fileID: 701429815}
@@ -59556,7 +59560,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupable: 0
-  on: 0
+  on: 1
   lights:
   - {fileID: 1700614954}
   - {fileID: 704186950}

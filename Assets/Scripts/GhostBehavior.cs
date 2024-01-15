@@ -55,6 +55,11 @@ public class GhostBehavior : MonoBehaviour
     public float sfxTimeDeviationRange;
     public float curSFXTime;
 
+    [Header("Light Switch")]
+    private LightSwitch[] switches;
+    public float lightSwitchDist;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -73,11 +78,14 @@ public class GhostBehavior : MonoBehaviour
         curTime = timeToThrow;
         curSFXTime = sfxTime;
         hiding = false;
+        switches = FindObjectsByType<LightSwitch>(FindObjectsSortMode.InstanceID);
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        LightSwitchCheck();
 
         if (lightSourcesEffecting.Count > 0)
         {
@@ -165,6 +173,20 @@ public class GhostBehavior : MonoBehaviour
         if(curSFXTime <= 0)
         {
             PlaySound();
+        }
+    }
+
+    private void LightSwitchCheck()
+    {
+        foreach (LightSwitch lightSwitch in switches)
+        {
+            if(Vector3.Distance(lightSwitch.transform.position, transform.position) <= lightSwitchDist)
+            {
+                if (lightSwitch.on)
+                {
+                    lightSwitch.Interact();
+                }
+            }
         }
     }
 
