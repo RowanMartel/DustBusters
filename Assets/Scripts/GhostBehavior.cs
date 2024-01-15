@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEditor.Progress;
 
 public class GhostBehavior : MonoBehaviour
 {
@@ -106,27 +107,28 @@ public class GhostBehavior : MonoBehaviour
         agent.SetDestination(currentPatrolPoint.position);
         if(distToSwitch > Vector3.Distance(transform.position, currentPatrolPoint.position))
         {
-            try
+            Pickupable pickup = currentPatrolPoint.GetComponent<Pickupable>();
+            if (pickup != null)
             {
-                Pickupable item = currentPatrolPoint.GetComponent<Pickupable>();
-                if (item.hideable)
+                if (pickup.hideable)
                 {
-                    PickUpItem(item.gameObject);
+                    PickUpItem(pickup.gameObject);
                     ChooseHidingPlace();
-                }else if (item.breakable)
+                }
+                else if (pickup.breakable)
                 {
-                    item.transform.LookAt(transform.position);
-                    item.GetComponent<Rigidbody>().AddForce(item.transform.forward * breakThrowForce, ForceMode.Impulse);
+                    pickup.transform.LookAt(transform.position);
+                    pickup.GetComponent<Rigidbody>().AddForce(pickup.transform.forward * breakThrowForce, ForceMode.Impulse);
 
                     curIndex++;
                     if (curIndex >= currentPoints.Count)
                     {
                         curIndex = 0;
                     }
-                    SwitchToPoint(curIndex);
+
                 }
             }
-            catch
+            else
             {
                 if (hiding)
                 {

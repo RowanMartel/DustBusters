@@ -9,11 +9,12 @@ public class FloatTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        try
+        
+        TestFloatObject obj = other.GetComponent<TestFloatObject>();
+        if (obj != null)
         {
-            TestFloatObject obj = other.GetComponent<TestFloatObject>();
             Rigidbody rb = obj.gameObject.GetComponent<Rigidbody>();
-            if(!obj.isFloating && obj.canFloat)
+            if (!obj.isFloating && obj.canFloat)
             {
                 obj.isFloating = true;
                 rb.useGravity = false;
@@ -21,17 +22,13 @@ public class FloatTrigger : MonoBehaviour
             }
             GameManager.ghost.throwables.Add(obj.gameObject);
         }
-        catch
-        {
-
-        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        try
+        TestFloatObject obj = other.GetComponent<TestFloatObject>();
+        if (obj != null)
         {
-            TestFloatObject obj = other.GetComponent<TestFloatObject>();
             Rigidbody rb = obj.gameObject.GetComponent<Rigidbody>();
             if (obj.isFloating)
             {
@@ -39,10 +36,6 @@ public class FloatTrigger : MonoBehaviour
                 rb.useGravity = true;
             }
             GameManager.ghost.throwables.Remove(obj.gameObject);
-        }
-        catch
-        {
-
         }
     }
 
