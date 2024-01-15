@@ -167,7 +167,7 @@ public class PlayerController : MonoBehaviour
                 heldObject.GetComponent<Rigidbody>().useGravity = false;
                 heldObject.GetComponent<Outline>().enabled = false;
 
-                heldObject.transform.position = midHold.transform.position;
+                //heldObject.transform.position = midHold.transform.position;
 
                 int layerIgnoreRaycast = LayerMask.NameToLayer("Ignore Raycast");
                 heldObject.layer = layerIgnoreRaycast;
@@ -200,7 +200,7 @@ public class PlayerController : MonoBehaviour
                 heldObject.GetComponent<Rigidbody>().useGravity = false;
                 heldObject.GetComponent<Outline>().enabled = false;
 
-                heldObject.transform.position = midHold.transform.position;
+                //heldObject.transform.position = midHold.transform.position;
 
                 int layerIgnoreRaycast = LayerMask.NameToLayer("Ignore Raycast");
                 heldObject.layer = layerIgnoreRaycast;
