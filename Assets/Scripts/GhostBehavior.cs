@@ -2,52 +2,57 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEditor.Progress;
 
 public class GhostBehavior : MonoBehaviour
 {
+    //Variables that revolve around the Ghost's Navigation Abilities
     [Header("Navigation")]
     public NavMeshAgent agent;
-
-    public List<TaskManager.Task> currentTasks = new List<TaskManager.Task>();
-    public List<pointList> currentPoints = new List<pointList>();
-    public List<TaskManager.Task> startTasks;
-    public List<TaskManager.Task> endGameTasks;
+    //The ghost's task list that determines where it travels.
+    public List<TaskManager.Task> currentTasks = new List<TaskManager.Task>();  //Current tasks
+    public List<pointList> currentPoints = new List<pointList>();   //Current travel points
+    public List<TaskManager.Task> startTasks;   //Tasks it has at the beginning of the game
+    public List<TaskManager.Task> endGameTasks; //Tasks it gains at the end of the game
     [Tooltip("Every task the ghost can interact with")]
-    public List<TaskManager.Task> masterTaskList;
+    public List<TaskManager.Task> masterTaskList;   //Every task the ghost can have
     [Tooltip("All patrol points that the ghost can go to for the task that shares it's index in the master task list")]
-    public List<pointList> patrolPointsPerTask;
+    public List<pointList> patrolPointsPerTask; //Patrol points matching the tasks from the task list
     public Transform currentPatrolPoint;
     public int curIndex;
 
-    public float distToSwitch;
+    public float distToSwitch;  //Distance between ghost and patrol point at the time of the switch
 
+    //Variables that revolve around attacking the player
     [Header("Attack")]
-    public GameObject playerObject;
+    public GameObject playerObject; //The player's GameObject
     public float timeToThrow;
     public float curTime;
-    public List<GameObject> throwables;
+    public List<GameObject> throwables; //List of objects the ghost is currently floating
     public float attackThrowForce;
 
     [Header("Aiming")]
     public float sightRange;
 
+    //Variables that revolve around holding an object
     [Header("Holding Items")]
     public GameObject curHeldItem;
     public GameObject heldItemParent;
     public Transform heldItemSpinner;
     public float spinSpeed;
 
+    //Variables around interacting with items
     [Header("Task Item Interaction")]
     bool hiding;
     public Transform[] hidingPlaces;
     public float breakThrowForce;
 
+    //Variables around interacting with Light
     [Header("Light Interaction")]
     public float baseSpeed;
     public float slowedSpeed;
     public List<GameObject> lightSourcesEffecting;
 
+    //Audio Variables
     [Header("Spooky SFX")]
     public AudioClip[] sounds;
     AudioClip lastPlayed;
@@ -56,6 +61,7 @@ public class GhostBehavior : MonoBehaviour
     public float sfxTimeDeviationRange;
     public float curSFXTime;
 
+    //Light Switch Variables
     [Header("Light Switch")]
     private LightSwitch[] switches;
     public float lightSwitchDist;
@@ -64,6 +70,7 @@ public class GhostBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Set Current Tasks to be the starting tasks
         for (int i = 0; i < startTasks.Count; i++)
         {
             currentTasks.Add(startTasks[i]);
@@ -75,6 +82,7 @@ public class GhostBehavior : MonoBehaviour
             currentPoints.Add(pList);
         }
 
+        //Set all to default
         SwitchToPoint(0);
         curTime = timeToThrow;
         curSFXTime = sfxTime;
@@ -85,9 +93,10 @@ public class GhostBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        //Check if near lightswitch and turn them off if needed
         LightSwitchCheck();
 
+        //Light Interaction
         if (lightSourcesEffecting.Count > 0)
         {
             agent.speed = slowedSpeed;
@@ -97,16 +106,18 @@ public class GhostBehavior : MonoBehaviour
             agent.speed = baseSpeed;
         }
 
+        //Move the held item
         heldItemSpinner.Rotate(Vector3.up * spinSpeed);
-
         if(curHeldItem != null)
         {
             curHeldItem.transform.position = heldItemParent.transform.position;
         }
 
+        //Travel to current patrol point
         agent.SetDestination(currentPatrolPoint.position);
         if(distToSwitch > Vector3.Distance(transform.position, currentPatrolPoint.position))
         {
+            //Attempt to interact with patrol point
             Pickupable pickup = currentPatrolPoint.GetComponent<Pickupable>();
             if (pickup != null)
             {
@@ -130,6 +141,7 @@ public class GhostBehavior : MonoBehaviour
             }
             else
             {
+                //Start next patrol point
                 if (hiding)
                 {
                     PlaceItem(currentPatrolPoint.position);
@@ -151,6 +163,7 @@ public class GhostBehavior : MonoBehaviour
 
         if (currentTasks.Contains(TaskManager.Task.EscapeHouse))
         {
+            //Attack player if player is visible
             RaycastHit hit;
             if (Physics.Raycast(transform.position, playerObject.transform.position - transform.position, out hit, sightRange))
             {
@@ -171,6 +184,7 @@ public class GhostBehavior : MonoBehaviour
             }
         }
 
+        //Play Audio
         curSFXTime -= Time.deltaTime;
         if(curSFXTime <= 0)
         {
@@ -178,6 +192,7 @@ public class GhostBehavior : MonoBehaviour
         }
     }
 
+    //Check if Lightswitch is nearby. Turn off if needed
     private void LightSwitchCheck()
     {
         foreach (LightSwitch lightSwitch in switches)
@@ -192,6 +207,7 @@ public class GhostBehavior : MonoBehaviour
         }
     }
 
+    //Set ghost's destination to the appropriate point
     void SwitchToPoint(int index)
     {
         if (index < currentPoints.Count)
@@ -203,6 +219,7 @@ public class GhostBehavior : MonoBehaviour
         }
     }
 
+    //Remove task from ghost's current task list
     public void RemoveTask(TaskManager.Task task)
     {
         if (!currentTasks.Contains(task)){
@@ -226,6 +243,7 @@ public class GhostBehavior : MonoBehaviour
 
     }
 
+    //Play a random audio clip
     public void PlaySound()
     {
         AudioClip clip;
@@ -240,6 +258,7 @@ public class GhostBehavior : MonoBehaviour
         curSFXTime = sfxTime + Random.Range(-sfxTimeDeviationRange, sfxTimeDeviationRange);
     }
 
+    //Add task to current task list
     public void AddTask(TaskManager.Task task)
     {
         currentTasks.Add(task);
@@ -250,6 +269,7 @@ public class GhostBehavior : MonoBehaviour
         }
     }
     
+    //Set current tasks to be the End Game Tasks
     public void EnterEndGame()
     {
         currentTasks.Clear();
@@ -268,6 +288,7 @@ public class GhostBehavior : MonoBehaviour
         curIndex = 0;
     }
 
+    //Set an item to be the current held item
     public void PickUpItem(GameObject item)
     {
         if (GameManager.playerController.heldObject != null && GameManager.playerController.heldObject.name == item.name)
@@ -290,6 +311,7 @@ public class GhostBehavior : MonoBehaviour
         Debug.Log("holding " + item.name);
     }
 
+    //Remove current held item from ghost
     public void DropItem()
     {
         curHeldItem.transform.parent = null;
@@ -299,6 +321,7 @@ public class GhostBehavior : MonoBehaviour
         curHeldItem = null;
     }
 
+    //Place current held item in designated location
     void PlaceItem(Vector3 pos)
     {
         GameObject item = curHeldItem;
@@ -307,6 +330,7 @@ public class GhostBehavior : MonoBehaviour
         item.GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
 
+    //set current destination to be a random hiding place
     public void ChooseHidingPlace()
     {
         if (curHeldItem == null) return;
@@ -316,16 +340,19 @@ public class GhostBehavior : MonoBehaviour
         currentPatrolPoint = hidingPlaces[rand];
     }
 
+    //Add light to light sources list
     public void EnterLight(GameObject lightsource)
     {
         lightSourcesEffecting.Add(lightsource);
     }
 
+    //Remove light from light sources list
     public void ExitLight(GameObject lightsource)
     {
         lightSourcesEffecting.Remove(lightsource);
     }
 
+    //Allows a list of lists to be filled in the inspector
     [System.Serializable]
     public class pointList
     {
