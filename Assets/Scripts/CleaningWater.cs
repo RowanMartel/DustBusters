@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CleaningWater : MonoBehaviour
@@ -7,23 +8,29 @@ public class CleaningWater : MonoBehaviour
     public List<Dish> dishes;
 
     [Tooltip("Put the clean SFX here")]
-    public AudioClip cleanSFX;
+    public AudioClip splashSFX;
     AudioSource audioSource;
+
+    List<CleaningWater> cleaningWaters;
 
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        cleaningWaters = FindObjectsByType<CleaningWater>(FindObjectsSortMode.None).ToList();
     }
 
-    // if other is a dirty dish, clean it, then check if complete
+    // if other is a dirty dish, clean it, then check if complete in all instances of this script
     private void OnTriggerEnter(Collider other)
     {
+        audioSource.PlayOneShot(splashSFX);
+
         Dish dish = other.GetComponent<Dish>();
         if (!dish || !dish.dirtyDish) return;
 
         dish.Clean();
-        audioSource.PlayOneShot(cleanSFX);
 
+        foreach (CleaningWater water in cleaningWaters)
+            if (water != this) water.CheckIfComplete();
         CheckIfComplete();
     }
 

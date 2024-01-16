@@ -7,6 +7,13 @@ public class Mirror : Interactable
     [HideInInspector] public bool gameActive = false;
     bool clean = false;
 
+    Collider collider;
+
+    private void Start()
+    {
+        collider = GetComponent<Collider>();
+    }
+
     // toggles the mirror cleaning minigame if the player is holding the right object
     public override void Interact()
     {
@@ -22,11 +29,13 @@ public class Mirror : Interactable
         {
             Cursor.lockState = CursorLockMode.Confined;
             GameManager.playerController.state = PlayerController.State.inactive;
+            collider.enabled = false;
         }
         else
         {
             Cursor.lockState = CursorLockMode.Locked;
             GameManager.playerController.state = PlayerController.State.active;
+            collider.enabled = true;
         }
     }
 

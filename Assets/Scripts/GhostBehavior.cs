@@ -8,8 +8,8 @@ public class GhostBehavior : MonoBehaviour
     [Header("Navigation")]
     public NavMeshAgent agent;
     //The ghost's task list that determines where it travels.
-    public List<TaskManager.Task> currentTasks = new List<TaskManager.Task>();  //Current tasks
-    public List<pointList> currentPoints = new List<pointList>();   //Current travel points
+    public List<TaskManager.Task> currentTasks = new();  //Current tasks
+    public List<pointList> currentPoints = new();   //Current travel points
     public List<TaskManager.Task> startTasks;   //Tasks it has at the beginning of the game
     public List<TaskManager.Task> endGameTasks; //Tasks it gains at the end of the game
     [Tooltip("Every task the ghost can interact with")]
