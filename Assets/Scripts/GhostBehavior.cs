@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEditor.Progress;
 
 public class GhostBehavior : MonoBehaviour
 {
@@ -55,6 +56,11 @@ public class GhostBehavior : MonoBehaviour
     public float sfxTimeDeviationRange;
     public float curSFXTime;
 
+    [Header("Light Switch")]
+    private LightSwitch[] switches;
+    public float lightSwitchDist;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -73,11 +79,14 @@ public class GhostBehavior : MonoBehaviour
         curTime = timeToThrow;
         curSFXTime = sfxTime;
         hiding = false;
+        switches = FindObjectsByType<LightSwitch>(FindObjectsSortMode.InstanceID);
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        LightSwitchCheck();
 
         if (lightSourcesEffecting.Count > 0)
         {
@@ -98,27 +107,28 @@ public class GhostBehavior : MonoBehaviour
         agent.SetDestination(currentPatrolPoint.position);
         if(distToSwitch > Vector3.Distance(transform.position, currentPatrolPoint.position))
         {
-            try
+            Pickupable pickup = currentPatrolPoint.GetComponent<Pickupable>();
+            if (pickup != null)
             {
-                Pickupable item = currentPatrolPoint.GetComponent<Pickupable>();
-                if (item.hideable)
+                if (pickup.hideable)
                 {
-                    PickUpItem(item.gameObject);
+                    PickUpItem(pickup.gameObject);
                     ChooseHidingPlace();
-                }else if (item.breakable)
+                }
+                else if (pickup.breakable)
                 {
-                    item.transform.LookAt(transform.position);
-                    item.GetComponent<Rigidbody>().AddForce(item.transform.forward * breakThrowForce, ForceMode.Impulse);
+                    pickup.transform.LookAt(transform.position);
+                    pickup.GetComponent<Rigidbody>().AddForce(pickup.transform.forward * breakThrowForce, ForceMode.Impulse);
 
                     curIndex++;
                     if (curIndex >= currentPoints.Count)
                     {
                         curIndex = 0;
                     }
-                    SwitchToPoint(curIndex);
+
                 }
             }
-            catch
+            else
             {
                 if (hiding)
                 {
@@ -165,6 +175,20 @@ public class GhostBehavior : MonoBehaviour
         if(curSFXTime <= 0)
         {
             PlaySound();
+        }
+    }
+
+    private void LightSwitchCheck()
+    {
+        foreach (LightSwitch lightSwitch in switches)
+        {
+            if(Vector3.Distance(lightSwitch.transform.position, transform.position) <= lightSwitchDist)
+            {
+                if (lightSwitch.on)
+                {
+                    lightSwitch.Interact();
+                }
+            }
         }
     }
 
