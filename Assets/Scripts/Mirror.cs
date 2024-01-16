@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Mirror : Interactable
@@ -9,9 +7,12 @@ public class Mirror : Interactable
     [HideInInspector] public bool gameActive = false;
     bool clean = false;
 
+    // toggles the mirror cleaning minigame if the player is holding the right object
     public override void Interact()
     {
-        if (GameManager.playerController.heldObject == null || !GameManager.playerController.heldObject.GetComponent<Pickupable>().duster) return;
+        if (GameManager.playerController.heldObject == null ||
+            !GameManager.playerController.heldObject.GetComponent<Pickupable>().duster)
+            return;
 
         if (clean) return;
 
@@ -29,6 +30,7 @@ public class Mirror : Interactable
         }
     }
 
+    // ticks down splats int, then checks if the minigame is complete
     public void CleanSplat()
     {
         splats--;

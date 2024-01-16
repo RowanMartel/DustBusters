@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Dish : Pickupable
@@ -28,23 +26,24 @@ public class Dish : Pickupable
         pickupable = true;
         meshRenderer = GetComponent<MeshRenderer>();
         rb = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
 
         baseMat = meshRenderer.material;
 
         if (dirtyDish)
             meshRenderer.material = dirtyMat;
 
-        audioSource = GetComponent<AudioSource>();
-
         if (broken) Break();
     }
 
+    // calls break if the dish collides with anything too hard
     void OnCollisionEnter(Collision collision)
     {
         if (collision.relativeVelocity.magnitude > 10)
             Break();
     }
 
+    // changes the model and adjusts all tasks relating to this dish to either remove or add it as a requirement
     void Break()
     {
         audioSource.PlayOneShot(breakingSFX);
@@ -64,6 +63,7 @@ public class Dish : Pickupable
         cupboardTrigger.CheckIfComplete();
     }
 
+    // marks dish as clean and changes back to the clean material
     public void Clean()
     {
         if (!dirtyDish) return;

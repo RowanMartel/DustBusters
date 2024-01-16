@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class Key : Pickupable
 {
+    // completes the find key task when picked up by the player, only if they have that task
     public override void Interact()
     {
         if (GameManager.taskManager.taskList.Contains(TaskManager.Task.FindKey))

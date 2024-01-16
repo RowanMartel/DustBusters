@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Pickupable : Interactable
@@ -30,23 +28,21 @@ public class Pickupable : Interactable
 
     protected Rigidbody rb;
     [HideInInspector] public bool held;
-    protected Material baseMat;
     protected MeshRenderer meshRenderer;
+    // holds the default material for objects that change materials
+    // i.e. clean material for dirty dish
+    protected Material baseMat;
 
     private void Start()
     {
         pickupable = true;
         meshRenderer = GetComponent<MeshRenderer>();
         rb = GetComponent<Rigidbody>();
-
         baseMat = meshRenderer.material;
     }
 
-    public override void Interact()
-    {
-        // do nothing
-        Debug.Log("picked up an item");
-    }
+    // does nothing
+    public override void Interact(){}
 
     public void PickUp()
     {

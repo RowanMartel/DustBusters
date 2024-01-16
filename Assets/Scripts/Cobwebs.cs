@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Cobwebs : MonoBehaviour
 {
     [Tooltip("Put the amount of cobwebs the player needs to clean here")]
     public int cobwebs;
-    [HideInInspector] public bool gameActive = false;
 
+    // ticks down cobwebs int, then ends the task if complete
     public void CleanWeb()
     {
         cobwebs--;
