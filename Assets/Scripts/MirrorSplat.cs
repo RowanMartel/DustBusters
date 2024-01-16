@@ -2,33 +2,32 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class MirrorSplat : MonoBehaviour, IPointerExitHandler
+public class MirrorSplat : MonoBehaviour
 {
     [HideInInspector]
     public bool cleaned;
     int dirtLevel = 5;
 
-    Image image;
+    Renderer renderer;
     Mirror mirror;
 
-    [Tooltip("Put the dusting SFX here")]
+    [Tooltip("Put the mopping SFX here")]
     public AudioClip cleanSFX;
     AudioSource audioSource;
 
     private void Start()
     {
-        mirror = transform.parent.GetComponentInParent<Mirror>();
-        image = GetComponent<Image>();
+        Physics.queriesHitTriggers = true;
+        mirror = transform.GetComponentInParent<Mirror>();
+        renderer = GetComponent<Renderer>();
         audioSource = GetComponent<AudioSource>();
     }
 
-    // lowers the dirt level and alpha when the mouse pointer enters the image, and cleans it if dirt level is 0
-    public void OnPointerExit(PointerEventData eventData)
+    private void OnMouseExit()
     {
         if (cleaned || !mirror.gameActive) return;
-
         dirtLevel--;
-        image.color = new Color(image.color.r, image.color.g, image.color.g, image.color.a - .2f);
+        renderer.material.color = new Color(renderer.material.color.r, renderer.material.color.g, renderer.material.color.g, renderer.material.color.a - .2f);
         audioSource.PlayOneShot(cleanSFX);
         if (dirtLevel == 0)
         {

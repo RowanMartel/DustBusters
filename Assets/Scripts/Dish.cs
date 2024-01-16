@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Dish : Pickupable
@@ -49,18 +51,28 @@ public class Dish : Pickupable
         audioSource.PlayOneShot(breakingSFX);
         GetComponent<MeshFilter>().mesh = brokenMesh;
 
-        CleaningWater cleaningWater = FindObjectOfType<CleaningWater>();
-        CupboardTrigger cupboardTrigger = FindObjectOfType<CupboardTrigger>();
-        TrashCanTrigger trashCanTrigger = FindObjectOfType<TrashCanTrigger>();
+        List<CleaningWater> waters = FindObjectsByType<CleaningWater>(FindObjectsSortMode.None).ToList();
+        List<CupboardTrigger> cupboards = FindObjectsByType<CupboardTrigger>(FindObjectsSortMode.None).ToList();
+        List<TrashCanTrigger> trashes = FindObjectsByType<TrashCanTrigger>(FindObjectsSortMode.None).ToList();
 
-        cleaningWater.dishes.Remove(this);
-        cupboardTrigger.dishes.Remove(this);
-        trashCanTrigger.dishes.Add(this);
+        foreach(CleaningWater w in waters)
+        {
+            w.dishes.Remove(this);
+            w.CheckIfComplete();
+        }
+        foreach(CupboardTrigger c in cupboards)
+        {
+            c.dishes.Remove(this);
+            c.CheckIfComplete();
+        }
+        foreach(TrashCanTrigger t in trashes)
+        {
+            t.dishes.Add(this);
+            t.CheckIfComplete();
+        }
 
         //GameManager.ghost?.patrolPointsPerTask[GameManager.ghost.masterTaskList.IndexOf(TaskManager.Task.PutAwayDishes)].list.Remove(transform);
         //GameManager.ghost?.currentPoints[GameManager.ghost.currentTasks.IndexOf(TaskManager.Task.PutAwayDishes)].list.Remove(transform);
-
-        cupboardTrigger.CheckIfComplete();
     }
 
     // marks dish as clean and changes back to the clean material

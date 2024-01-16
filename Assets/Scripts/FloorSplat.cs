@@ -2,13 +2,13 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class FloorSplat : MonoBehaviour, IPointerExitHandler
+public class FloorSplat : MonoBehaviour
 {
     [HideInInspector]
     public bool cleaned;
     int dirtLevel = 5;
 
-    Image image;
+    Renderer renderer;
     FloorMess floorMess;
 
     [Tooltip("Put the mopping SFX here")]
@@ -17,19 +17,17 @@ public class FloorSplat : MonoBehaviour, IPointerExitHandler
 
     private void Start()
     {
-        floorMess = transform.parent.GetComponentInParent<FloorMess>();
-        image = GetComponent<Image>();
-
+        Physics.queriesHitTriggers = true;
+        floorMess = transform.GetComponentInParent<FloorMess>();
+        renderer = GetComponent<Renderer>();
         audioSource = GetComponent<AudioSource>();
     }
 
-    // lowers the dirt level and alpha when the mouse pointer enters the image, and cleans it if dirt level is 0
-    public void OnPointerExit(PointerEventData eventData)
+    private void OnMouseExit()
     {
         if (cleaned || !floorMess.gameActive) return;
-
         dirtLevel--;
-        image.color = new Color(image.color.r, image.color.g, image.color.g, image.color.a - .2f);
+        renderer.material.color = new Color(renderer.material.color.r, renderer.material.color.g, renderer.material.color.g, renderer.material.color.a - .2f);
         audioSource.PlayOneShot(cleanSFX);
         if (dirtLevel == 0)
         {
