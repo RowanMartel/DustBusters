@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Cobweb : MonoBehaviour
@@ -17,10 +15,10 @@ public class Cobweb : MonoBehaviour
     {
         cobwebs = GetComponentInParent<Cobwebs>();
         meshRenderer = GetComponent<MeshRenderer>();
-
         audioSource = GetComponent<AudioSource>();
     }
 
+    // cleans the cobweb when colliding with the duster
     private void OnTriggerEnter(Collider other)
     {
         Pickupable pickupable = other.GetComponent<Pickupable>();

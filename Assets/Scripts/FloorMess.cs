@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FloorMess : Interactable
@@ -9,6 +7,7 @@ public class FloorMess : Interactable
     [HideInInspector] public bool gameActive = false;
     bool clean = false;
 
+    // toggles the floor cleaning minigame if the player is holding the right object
     public override void Interact()
     {
         if (GameManager.playerController.heldObject == null || !GameManager.playerController.heldObject.GetComponent<Pickupable>().mop) return;
@@ -29,6 +28,7 @@ public class FloorMess : Interactable
         }
     }
 
+    // ticks down splats int, then checks if the minigame is complete
     public void CleanSplat()
     {
         splats--;

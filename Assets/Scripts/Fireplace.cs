@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Fireplace : Interactable
@@ -17,6 +15,7 @@ public class Fireplace : Interactable
         audioSource.clip = fireplaceSFX;
     }
 
+    // light the fireplace if the player is holding the right item
     public override void Interact()
     {
         if (GameManager.playerController.heldObject == null || !GameManager.playerController.heldObject.GetComponent<Pickupable>().lighter) return;
@@ -24,6 +23,7 @@ public class Fireplace : Interactable
         Light();
     }
 
+    // complete the light fireplace task and start the vfx and sfx
     public void Light()
     {
         fireFX.SetActive(true);
@@ -31,6 +31,7 @@ public class Fireplace : Interactable
 
         GameManager.taskManager.CompleteTask(TaskManager.Task.LightFireplace);
     }
+    // stop the vfx and sfx, and re-grant the light fireplace task
     public void UnLight()
     {
         fireFX.SetActive(false);

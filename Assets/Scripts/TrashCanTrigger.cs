@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +5,7 @@ public class TrashCanTrigger : MonoBehaviour
 {
     [HideInInspector] public List<Dish> dishes;
 
+    // marks the entering broken plate as being in the trash
     private void OnTriggerEnter(Collider other)
     {
         Dish plate = other.GetComponent<Dish>();
@@ -18,6 +18,7 @@ public class TrashCanTrigger : MonoBehaviour
 
         GameManager.taskManager.CompleteTask(TaskManager.Task.ThrowOutBrokenDishes);
     }
+    // marks the exiting broken plate as no longer being in the trash and re-grants the task
     private void OnTriggerExit(Collider other)
     {
         Dish plate = other.GetComponent<Dish>();
