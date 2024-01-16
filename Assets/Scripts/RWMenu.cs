@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class RWMenu : MonoBehaviour
 {
+    //Game Screens
     public GameObject titleScreen;
     public GameObject optionsScreen;
     public GameObject gameScreen;
@@ -11,10 +12,12 @@ public class RWMenu : MonoBehaviour
     public GameObject startScreen;
     public GameObject endScreen;
 
+    //Singleton
     public static RWMenu instance;
 
     private void Awake()
     {
+        //Singleton
         if(instance == null)
         {
             DontDestroyOnLoad(gameObject);
@@ -25,9 +28,11 @@ public class RWMenu : MonoBehaviour
             Destroy(gameObject);
         }
 
+        //Set up
         SwitchScreen(titleScreen);
     }
 
+    //Switch the currently displayed screen to be the designated screen
     public void SwitchScreen(GameObject screen)
     {
         titleScreen.SetActive(false);
@@ -44,6 +49,7 @@ public class RWMenu : MonoBehaviour
         screen.SetActive(true);
     }
 
+    //Switch to Death Screen
     public void ShowDeathScreen()
     {
         deathScreen.SetActive(true);
@@ -52,6 +58,7 @@ public class RWMenu : MonoBehaviour
         Time.timeScale = 0;
     }
 
+    //Enter the Start Scene
     public void EnterScene(int index)
     {
         SceneManager.LoadScene(index);
@@ -63,6 +70,7 @@ public class RWMenu : MonoBehaviour
 
     }
 
+    //Start Game
     public void StartGame()
     {
         SwitchScreen(gameScreen);
@@ -72,12 +80,14 @@ public class RWMenu : MonoBehaviour
         GameManager.playerController.TogglePlayerControl();
     }
 
+    //Go To Title Screen
     public void ToTitle()
     {
         SceneManager.LoadScene(0);
         SwitchScreen(titleScreen);
     }
 
+    //Go to End Scene
     public void ToEnd()
     {
         SceneManager.LoadScene(2);
@@ -85,18 +95,22 @@ public class RWMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
     }
 
+    //Close the game
     public void Quit()
     {
         Application.Quit();
     }
 
+    //Go to Gameplay from Pause
     public void Unpause()
     {
         SwitchScreen(gameScreen);
         GameManager.playerController.TogglePlayerControl();
     }
+
     private void Update()
     {
+        //Toggle Pause
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (gameScreen.activeSelf)
