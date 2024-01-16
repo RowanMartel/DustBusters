@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CollisionSfx : MonoBehaviour
@@ -13,6 +11,7 @@ public class CollisionSfx : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
+    // plays the collide sfx whenever the object collides with something
     private void OnCollisionEnter(Collision collision)
     {
         if (audioSource == null || collideSFX == null) return;

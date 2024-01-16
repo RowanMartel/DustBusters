@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Exit : Interactable
@@ -13,6 +11,7 @@ public class Exit : Interactable
         audioSource = GetComponent<AudioSource>();
     }
 
+    // ends the game if the player is holding the key and has the escape house task
     public override void Interact()
     {
         if (GameManager.playerController.heldObject == null ||

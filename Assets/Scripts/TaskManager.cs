@@ -1,10 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class TaskManager : MonoBehaviour
 {
+    // masterlist enum of all the tasks
     public enum Task
     {
         CleanDishes,
@@ -18,13 +18,12 @@ public class TaskManager : MonoBehaviour
         ThrowOutBrokenDishes
     }
 
-    [HideInInspector] public Task currentTask;
-
+    // list of tasks the player starts with, set in inspector
     public List<Task> startingTasks;
+    // dynamic list of the player's current tasks
     [HideInInspector] public List<Task> taskList;
 
     public GhostBehavior ghost;
-
     public TMP_Text taskListTxt;
 
     private void Start()
@@ -32,10 +31,13 @@ public class TaskManager : MonoBehaviour
         taskList = new();
         taskListTxt = FindObjectOfType<EmptyTaskList>(true).GetComponent<TMP_Text>();
         taskListTxt.text = "";
+
+        // fill the task list with the starting tasks
         foreach (Task task in startingTasks)
             AddTask(task);
     }
 
+    // removes the given task from the task list
     public void CompleteTask(Task task)
     {
         if (!taskList.Contains(task)) return;
@@ -75,14 +77,16 @@ public class TaskManager : MonoBehaviour
 
         taskList.Remove(task);
 
-        ghost?.RemoveTask(task);
+        ghost.RemoveTask(task);
 
+        // gives put away dishes if clean dishes was the given task
         if (task == Task.CleanDishes)
         {
             AddTask(Task.PutAwayDishes);
-            ghost?.AddTask(Task.PutAwayDishes);
+            ghost.AddTask(Task.PutAwayDishes);
         }
         
+        // determines which task to give if the task list is now empty
         if (taskList.Count == 0)
         {
             if (task == Task.FindKey)
@@ -97,6 +101,7 @@ public class TaskManager : MonoBehaviour
         }
     }
 
+    // adds the given task to the task list
     public void AddTask(Task task)
     {
         if (taskList.Contains(task)) return;

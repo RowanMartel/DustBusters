@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,6 +15,7 @@ public class CleaningWater : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
+    // if other is a dirty dish, clean it, then check if complete
     private void OnTriggerEnter(Collider other)
     {
         Dish dish = other.GetComponent<Dish>();
@@ -27,6 +27,7 @@ public class CleaningWater : MonoBehaviour
         CheckIfComplete();
     }
 
+    // checks if all the dishes in the dishes list are clean, and ends the task if so
     public void CheckIfComplete()
     {
         foreach (Dish dish in dishes)

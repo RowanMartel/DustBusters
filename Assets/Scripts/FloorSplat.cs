@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -25,6 +23,7 @@ public class FloorSplat : MonoBehaviour, IPointerExitHandler
         audioSource = GetComponent<AudioSource>();
     }
 
+    // lowers the dirt level and alpha when the mouse pointer enters the image, and cleans it if dirt level is 0
     public void OnPointerExit(PointerEventData eventData)
     {
         if (cleaned || !floorMess.gameActive) return;
