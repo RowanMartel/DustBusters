@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class RWMenu : MonoBehaviour
 {
+    //Game Screens
     public GameObject titleScreen;
     public GameObject optionsScreen;
     public GameObject gameScreen;
@@ -13,10 +14,12 @@ public class RWMenu : MonoBehaviour
     public GameObject startScreen;
     public GameObject endScreen;
 
+    //Singleton
     public static RWMenu instance;
 
     private void Awake()
     {
+        //Singleton
         if(instance == null)
         {
             DontDestroyOnLoad(gameObject);
@@ -27,9 +30,11 @@ public class RWMenu : MonoBehaviour
             Destroy(gameObject);
         }
 
+        //Set up
         SwitchScreen(titleScreen);
     }
 
+    //Switch the currently displayed screen to be the designated screen
     public void SwitchScreen(GameObject screen)
     {
         titleScreen.SetActive(false);

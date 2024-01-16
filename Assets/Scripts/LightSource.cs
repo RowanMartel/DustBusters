@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class LightSource : MonoBehaviour
 {
-    public GhostBehavior ghost;
-
+    //Add light to ghost's light source list
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Ghost"))
         {
-            ghost.EnterLight(gameObject);
+            GameManager.ghost.EnterLight(gameObject);
         }
     }
 
+    //Remove light from ghost's light source list
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Ghost"))
         {
-            ghost.ExitLight(gameObject);
+            GameManager.ghost.ExitLight(gameObject);
         }
     }
 

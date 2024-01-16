@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class FloatTrigger : MonoBehaviour
 {
-
+    //The amount of force applied to floating object
     public float floatForce;
 
     private void OnTriggerEnter(Collider other)
     {
-        
+        //Make Float Object stop having gravity, and push it upwards
         TestFloatObject obj = other.GetComponent<TestFloatObject>();
         if (obj != null)
         {
@@ -26,6 +26,7 @@ public class FloatTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        //Give Float Object it's gravity back
         TestFloatObject obj = other.GetComponent<TestFloatObject>();
         if (obj != null)
         {
