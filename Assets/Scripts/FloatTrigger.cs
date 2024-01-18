@@ -12,9 +12,9 @@ public class FloatTrigger : MonoBehaviour
         if (obj != null)
         {
             Rigidbody rb = obj.gameObject.GetComponent<Rigidbody>();
-            if (!obj.isFloating && obj.canFloat)
+            if (!obj.bl_isFloating && obj.bl_canFloat)
             {
-                obj.isFloating = true;
+                obj.bl_isFloating = true;
                 rb.useGravity = false;
                 rb.AddForce(Vector3.up * flt_floatForce);
             }
@@ -29,9 +29,9 @@ public class FloatTrigger : MonoBehaviour
         if (obj != null)
         {
             Rigidbody rb = obj.gameObject.GetComponent<Rigidbody>();
-            if (obj.isFloating)
+            if (obj.bl_isFloating)
             {
-                obj.isFloating = false;
+                obj.bl_isFloating = false;
                 rb.useGravity = true;
             }
             GameManager.ghost.l_go_throwables.Remove(obj.gameObject);
