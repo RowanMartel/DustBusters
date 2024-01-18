@@ -18,7 +18,7 @@ public class FloatTrigger : MonoBehaviour
                 rb.useGravity = false;
                 rb.AddForce(Vector3.up * floatForce);
             }
-            GameManager.ghost.throwables.Add(obj.gameObject);
+            GameManager.ghost.l_go_throwables.Add(obj.gameObject);
         }
     }
 
@@ -34,7 +34,7 @@ public class FloatTrigger : MonoBehaviour
                 obj.isFloating = false;
                 rb.useGravity = true;
             }
-            GameManager.ghost.throwables.Remove(obj.gameObject);
+            GameManager.ghost.l_go_throwables.Remove(obj.gameObject);
         }
     }
 
