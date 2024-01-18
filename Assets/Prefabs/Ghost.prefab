@@ -62,7 +62,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 15, y: 15, z: 15}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3277824746571262815}
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 574a3c1c3278f9642b0910606cb03bd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flt_floatForce: 50
+  floatForce: 50
 --- !u!1 &7263785423210560717
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,7 +176,7 @@ Transform:
   m_GameObject: {fileID: 7263785423210560717}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0, z: 0}
+  m_LocalPosition: {x: -2.51, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -321,7 +321,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 126
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!195 &6990169330593324436
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -362,10 +362,26 @@ MonoBehaviour:
   l_tsk_startTasks: 0000000002000000040000000500000003000000
   l_tsk_endGameTasks: 0600000007000000
   l_tsk_masterTaskList: 0000000002000000040000000500000003000000010000000600000007000000
-  l_pl_patrolPointsPerTask: []
+  l_pl_patrolPointsPerTask:
+  - list:
+    - {fileID: 0}
+  - list:
+    - {fileID: 0}
+  - list:
+    - {fileID: 0}
+  - list:
+    - {fileID: 0}
+  - list:
+    - {fileID: 0}
+  - list:
+    - {fileID: 0}
+  - list:
+    - {fileID: 0}
+  - list:
+    - {fileID: 0}
   tr_currentPatrolPoint: {fileID: 0}
   int_curIndex: 0
-  flt_distToSwitch: 5
+  flt_distToSwitch: 3
   go_player: {fileID: 0}
   flt_timeToThrow: 2
   flt_curTime: 0
@@ -373,26 +389,30 @@ MonoBehaviour:
   flt_attackThrowForce: 50
   flt_sightRange: 10
   go_curHeldItem: {fileID: 0}
-  go_heldItemParent: {fileID: 0}
-  tr_heldItemSpinner: {fileID: 0}
+  go_heldItemParent: {fileID: 7263785423210560717}
+  tr_heldItemSpinner: {fileID: 717651196072784010}
   flt_spinSpeed: 0.5
-  a_tr_hidingPlaces: []
+  a_tr_hidingPlaces:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   flt_breakThrowForce: 25
   flt_baseSpeed: 4
   flt_slowedSpeed: 2
   l_go_lightSourcesEffecting: []
   a_ac_sounds:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  as_aSource: {fileID: 0}
-  flt_sfxTime: 0
-  flt_sfxTimeDeviationRange: 0
+  - {fileID: 8300000, guid: 1500e77b897976b4796db44ab0b32bef, type: 3}
+  - {fileID: 8300000, guid: bb38c58e867f57c4891bd2ef5460cc69, type: 3}
+  - {fileID: 8300000, guid: 4fef5c0b3e1738e4989faedf5094502d, type: 3}
+  - {fileID: 8300000, guid: dde52d8a24c2100438ad2738dd10079d, type: 3}
+  - {fileID: 8300000, guid: e5dd73bcdacb26e41b1b597efcfc0a09, type: 3}
+  - {fileID: 8300000, guid: 5587c0dd2e0d24b4f877c5a83683be42, type: 3}
+  as_aSource: {fileID: 5198980086939035474}
+  flt_sfxTime: 15
+  flt_sfxTimeDeviationRange: 5
   flt_curSFXTime: 0
-  flt_lightSwitchDist: 0
+  flt_lightSwitchDist: 3
 --- !u!82 &5198980086939035474
 AudioSource:
   m_ObjectHideFlags: 0
