@@ -6,7 +6,6 @@ public class TestFloatObject : MonoBehaviour
     public bool bl_isFloating;
 
     Rigidbody rb;
-    float flt_baseGravity = 1;
     float flt_bobForce = 50;
     float flt_baseHeight;
     float flt_curHeight;
@@ -14,6 +13,7 @@ public class TestFloatObject : MonoBehaviour
     float flt_bobHeightMin = 0.75f;
     bool bl_downBob = false;
 
+    //Setup needed variables
     private void Start()
     {
         bl_canFloat = true;
@@ -23,6 +23,7 @@ public class TestFloatObject : MonoBehaviour
 
     private void Update()
     {
+        //Determine bobbing
         if (bl_isFloating)
         {
             flt_curHeight = transform.position.y - flt_baseHeight;
@@ -33,6 +34,7 @@ public class TestFloatObject : MonoBehaviour
         }
     }
 
+    //Start floating and push upwards
     public void StartFloat()
     {
         bl_downBob = false;
@@ -42,12 +44,14 @@ public class TestFloatObject : MonoBehaviour
         Debug.Log("A");
     }
 
+    //Reset gravity
     public void StopFloat()
     {
         rb.useGravity = true;
         bl_isFloating = false;
     }
 
+    //Switch Directions
     void ToggleDirection()
     {
         if (bl_downBob)
