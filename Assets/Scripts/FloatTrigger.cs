@@ -8,7 +8,7 @@ public class FloatTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider cl_other)
     {
         //Make Float Object stop having gravity, and push it upwards
-        TestFloatObject obj = cl_other.GetComponent<TestFloatObject>();
+        /*TestFloatObject obj = cl_other.GetComponent<TestFloatObject>();
         if (obj != null)
         {
             Rigidbody rb = obj.gameObject.GetComponent<Rigidbody>();
@@ -19,13 +19,21 @@ public class FloatTrigger : MonoBehaviour
                 rb.AddForce(Vector3.up * flt_floatForce);
             }
             GameManager.ghost.l_go_throwables.Add(obj.gameObject);
+        }*/
+
+        TestFloatObject obj = cl_other.GetComponent<TestFloatObject>();
+        if(obj != null)
+        {
+            obj.StartFloat();
+            GameManager.ghost.l_go_throwables.Add(obj.gameObject);
         }
+
     }
 
     private void OnTriggerExit(Collider cl_other)
     {
         //Give Float Object it's gravity back
-        TestFloatObject obj = cl_other.GetComponent<TestFloatObject>();
+        /*TestFloatObject obj = cl_other.GetComponent<TestFloatObject>();
         if (obj != null)
         {
             Rigidbody rb = obj.gameObject.GetComponent<Rigidbody>();
@@ -35,7 +43,15 @@ public class FloatTrigger : MonoBehaviour
                 rb.useGravity = true;
             }
             GameManager.ghost.l_go_throwables.Remove(obj.gameObject);
+        }*/
+
+        TestFloatObject obj = cl_other.GetComponent<TestFloatObject>();
+        if (obj != null)
+        {
+            obj.StopFloat();
+            GameManager.ghost.l_go_throwables.Remove(obj.gameObject);
         }
+
     }
 
 }
