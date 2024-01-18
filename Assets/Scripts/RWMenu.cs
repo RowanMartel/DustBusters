@@ -4,13 +4,13 @@ using UnityEngine.SceneManagement;
 public class RWMenu : MonoBehaviour
 {
     //Game Screens
-    public GameObject titleScreen;
-    public GameObject optionsScreen;
-    public GameObject gameScreen;
-    public GameObject pauseScreen;
-    public GameObject deathScreen;
-    public GameObject startScreen;
-    public GameObject endScreen;
+    public GameObject go_titleScreen;
+    public GameObject go_optionsScreen;
+    public GameObject go_gameScreen;
+    public GameObject go_pauseScreen;
+    public GameObject go_deathScreen;
+    public GameObject go_startScreen;
+    public GameObject go_endScreen;
 
     //Singleton
     public static RWMenu instance;
@@ -29,21 +29,21 @@ public class RWMenu : MonoBehaviour
         }
 
         //Set up
-        SwitchScreen(titleScreen);
+        SwitchScreen(go_titleScreen);
     }
 
     //Switch the currently displayed screen to be the designated screen
     public void SwitchScreen(GameObject screen)
     {
-        titleScreen.SetActive(false);
-        optionsScreen.SetActive(false);
-        gameScreen.SetActive(false);
-        pauseScreen.SetActive(false);
-        deathScreen.SetActive(false);
-        startScreen.SetActive(false);
-        endScreen.SetActive(false);
+        go_titleScreen.SetActive(false);
+        go_optionsScreen.SetActive(false);
+        go_gameScreen.SetActive(false);
+        go_pauseScreen.SetActive(false);
+        go_deathScreen.SetActive(false);
+        go_startScreen.SetActive(false);
+        go_endScreen.SetActive(false);
 
-        if (screen != pauseScreen && screen != startScreen)
+        if (screen != go_pauseScreen && screen != go_startScreen)
             Time.timeScale = 1;
 
         screen.SetActive(true);
@@ -52,7 +52,7 @@ public class RWMenu : MonoBehaviour
     //Switch to Death Screen
     public void ShowDeathScreen()
     {
-        deathScreen.SetActive(true);
+        go_deathScreen.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
 
         Time.timeScale = 0;
@@ -63,7 +63,7 @@ public class RWMenu : MonoBehaviour
     {
         SceneManager.LoadScene(index);
 
-        SwitchScreen(startScreen);
+        SwitchScreen(go_startScreen);
 
         Cursor.lockState = CursorLockMode.Confined;
         Time.timeScale = 0;
@@ -73,7 +73,7 @@ public class RWMenu : MonoBehaviour
     //Start Game
     public void StartGame()
     {
-        SwitchScreen(gameScreen);
+        SwitchScreen(go_gameScreen);
 
         Cursor.lockState = CursorLockMode.Locked;
 
@@ -84,14 +84,14 @@ public class RWMenu : MonoBehaviour
     public void ToTitle()
     {
         SceneManager.LoadScene(0);
-        SwitchScreen(titleScreen);
+        SwitchScreen(go_titleScreen);
     }
 
     //Go to End Scene
     public void ToEnd()
     {
         SceneManager.LoadScene(2);
-        SwitchScreen(endScreen);
+        SwitchScreen(go_endScreen);
         Cursor.lockState = CursorLockMode.Confined;
     }
 
@@ -104,7 +104,7 @@ public class RWMenu : MonoBehaviour
     //Go to Gameplay from Pause
     public void Unpause()
     {
-        SwitchScreen(gameScreen);
+        SwitchScreen(go_gameScreen);
         GameManager.playerController.TogglePlayerControl();
     }
 
@@ -113,15 +113,15 @@ public class RWMenu : MonoBehaviour
         //Toggle Pause
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (gameScreen.activeSelf)
+            if (go_gameScreen.activeSelf)
             {
-                SwitchScreen(pauseScreen);
+                SwitchScreen(go_pauseScreen);
                 GameManager.playerController.TogglePlayerControl();
                 Time.timeScale = 0;
             }
-            else if (pauseScreen.activeSelf)
+            else if (go_pauseScreen.activeSelf)
             {
-                SwitchScreen(gameScreen);
+                SwitchScreen(go_gameScreen);
                 GameManager.playerController.TogglePlayerControl();
                 //Time.timeScale = 1;
             }
