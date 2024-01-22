@@ -19,11 +19,14 @@ public class MenuManager : MonoBehaviour
     //Image Assets
     protected Image img_deathMessage;
     protected Image img_deathScreen;
+    protected Image img_damageOverlay;
+    public Image Img_damageOverlay { get { return img_damageOverlay; } set { img_damageOverlay = value; } }
 
     protected int int_deathSequence = 0;
     protected GameObject go_quitButton;
     private void Awake()
     {
+        img_damageOverlay = FindObjectOfType<DamageOverlay>(true).GetComponent<Image>();
         img_deathMessage = FindObjectOfType<DeathMessage>(true).GetComponent<Image>();
         go_quitButton = GameObject.Find("DeathScreenQuit");
         img_deathScreen = GameObject.Find("DeathOverlay").GetComponent<Image>();
@@ -60,13 +63,19 @@ public class MenuManager : MonoBehaviour
         screen.SetActive(true);
     }
 
-    //Switch to Death Screen
-    public void ShowDeathScreen()
+    public void IncreaseDamageOverlay()
     {
-        go_deathScreen.SetActive(true);
-        Cursor.lockState = CursorLockMode.None;
+        LeanTween.alpha(img_damageOverlay.GetComponent<RectTransform>(), img_damageOverlay.color.a + 0.33f, 0.2f);
+    }
 
-        Time.timeScale = 0;
+    public void IncreaseDamageOverlayTemporarily()
+    {
+        LeanTween.alpha(img_damageOverlay.GetComponent<RectTransform>(), img_damageOverlay.color.a + 0.33f, 0.2f).setOnComplete(ReduceDamageOverlay);
+    }
+
+    private void ReduceDamageOverlay()
+    {
+        LeanTween.alpha(img_damageOverlay.GetComponent<RectTransform>(), img_damageOverlay.color.a - 0.33f, 1f);
     }
 
     public void ShowDeathSequence()
@@ -121,6 +130,7 @@ public class MenuManager : MonoBehaviour
     {
         SceneManager.LoadScene(0);
         SwitchScreen(go_titleScreen);
+        GameManager.ResetGame();
     }
 
     //Go to End Scene
