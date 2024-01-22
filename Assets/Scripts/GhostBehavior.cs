@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -174,9 +175,22 @@ public class GhostBehavior : MonoBehaviour
                         if (flt_curTime <= 0)
                         {
                             flt_curTime = flt_timeToThrow;
-                            GameObject toThrow = l_go_throwables[0];
-                            toThrow.transform.LookAt(go_player.transform.position);
-                            toThrow.GetComponent<Rigidbody>().AddForce(toThrow.transform.forward * flt_attackThrowForce, ForceMode.Impulse);
+                            GameObject go_toThrow = l_go_throwables[0];
+
+                            foreach (GameObject go_throwable in l_go_throwables)
+                            {
+                                Pickupable pu_throwable = go_throwable.GetComponent<Pickupable>();
+                                if(pu_throwable != null)
+                                {
+                                    if (pu_throwable.canDamagePlayer)
+                                    {
+                                        go_toThrow = go_throwable;
+                                    }
+                                }
+                            }
+
+                            go_toThrow.transform.LookAt(go_player.transform.position);
+                            go_toThrow.GetComponent<Rigidbody>().AddForce(go_toThrow.transform.forward * flt_attackThrowForce, ForceMode.Impulse);
                         }
                     }
                 }
