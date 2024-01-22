@@ -12692,10 +12692,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3243110742716137245, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3277824746571262815, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.66
@@ -12736,168 +12732,56 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5198980086939035474, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5198980086939035474, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
-      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
-      propertyPath: distToSwitch
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
-      propertyPath: playerObject
+      propertyPath: go_player
       value: 
       objectReference: {fileID: 2052196313}
     - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
-      propertyPath: lightSwitchDist
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
-      propertyPath: startTasks.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
-      propertyPath: startTasks.Array.data[0]
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
-      propertyPath: startTasks.Array.data[1]
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
-      propertyPath: startTasks.Array.data[2]
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
-      propertyPath: startTasks.Array.data[3]
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
-      propertyPath: startTasks.Array.data[4]
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
-      propertyPath: masterTaskList.Array.size
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
-      propertyPath: hidingPlaces.Array.data[0]
-      value: 
-      objectReference: {fileID: 515817874}
-    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
-      propertyPath: hidingPlaces.Array.data[1]
-      value: 
-      objectReference: {fileID: 1856845591}
-    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
-      propertyPath: hidingPlaces.Array.data[2]
-      value: 
-      objectReference: {fileID: 513940968}
-    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
-      propertyPath: hidingPlaces.Array.data[3]
+      propertyPath: a_tr_hidingPlaces.Array.data[0]
       value: 
       objectReference: {fileID: 736089336}
     - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
-      propertyPath: masterTaskList.Array.data[0]
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: a_tr_hidingPlaces.Array.data[1]
+      value: 
+      objectReference: {fileID: 1856845591}
     - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
-      propertyPath: masterTaskList.Array.data[1]
-      value: 2
-      objectReference: {fileID: 0}
+      propertyPath: a_tr_hidingPlaces.Array.data[2]
+      value: 
+      objectReference: {fileID: 515817874}
     - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
-      propertyPath: masterTaskList.Array.data[2]
-      value: 4
-      objectReference: {fileID: 0}
+      propertyPath: a_tr_hidingPlaces.Array.data[3]
+      value: 
+      objectReference: {fileID: 513940968}
     - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
-      propertyPath: masterTaskList.Array.data[3]
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
-      propertyPath: masterTaskList.Array.data[4]
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
-      propertyPath: masterTaskList.Array.data[5]
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
-      propertyPath: masterTaskList.Array.data[6]
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
-      propertyPath: masterTaskList.Array.data[7]
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
-      propertyPath: patrolPointsPerTask.Array.size
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
-      propertyPath: patrolPointsPerTask.Array.data[0].list.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
-      propertyPath: patrolPointsPerTask.Array.data[1].list.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
-      propertyPath: patrolPointsPerTask.Array.data[4].list.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
-      propertyPath: patrolPointsPerTask.Array.data[5].list.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
-      propertyPath: patrolPointsPerTask.Array.data[6].list.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
-      propertyPath: patrolPointsPerTask.Array.data[7].list.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
-      propertyPath: patrolPointsPerTask.Array.data[8].list.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
-      propertyPath: patrolPointsPerTask.Array.data[0].list.Array.data[0]
+      propertyPath: l_pl_patrolPointsPerTask.Array.data[0].list.Array.data[0]
       value: 
       objectReference: {fileID: 295595091063885859}
     - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
-      propertyPath: patrolPointsPerTask.Array.data[1].list.Array.data[0]
+      propertyPath: l_pl_patrolPointsPerTask.Array.data[1].list.Array.data[0]
       value: 
       objectReference: {fileID: 6560032357001031041}
     - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
-      propertyPath: patrolPointsPerTask.Array.data[2].list.Array.data[0]
+      propertyPath: l_pl_patrolPointsPerTask.Array.data[2].list.Array.data[0]
       value: 
       objectReference: {fileID: 100779822193515415}
     - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
-      propertyPath: patrolPointsPerTask.Array.data[3].list.Array.data[0]
+      propertyPath: l_pl_patrolPointsPerTask.Array.data[3].list.Array.data[0]
       value: 
       objectReference: {fileID: 4444900548904068654}
     - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
-      propertyPath: patrolPointsPerTask.Array.data[4].list.Array.data[0]
+      propertyPath: l_pl_patrolPointsPerTask.Array.data[4].list.Array.data[0]
       value: 
       objectReference: {fileID: 100779822193515415}
     - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
-      propertyPath: patrolPointsPerTask.Array.data[5].list.Array.data[0]
+      propertyPath: l_pl_patrolPointsPerTask.Array.data[5].list.Array.data[0]
       value: 
-      objectReference: {fileID: 295595091063885859}
+      objectReference: {fileID: 3650070170491966503}
     - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
-      propertyPath: patrolPointsPerTask.Array.data[6].list.Array.data[0]
+      propertyPath: l_pl_patrolPointsPerTask.Array.data[6].list.Array.data[0]
       value: 
       objectReference: {fileID: 6894072336278116469}
     - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
-      propertyPath: patrolPointsPerTask.Array.data[7].list.Array.data[0]
-      value: 
-      objectReference: {fileID: 2052196319}
-    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
-      propertyPath: patrolPointsPerTask.Array.data[8].list.Array.data[0]
+      propertyPath: l_pl_patrolPointsPerTask.Array.data[7].list.Array.data[0]
       value: 
       objectReference: {fileID: 2052196319}
     - target: {fileID: 7813583447088648802, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
