@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class RWMenu : MonoBehaviour
 {
@@ -15,8 +16,18 @@ public class RWMenu : MonoBehaviour
     //Singleton
     public static RWMenu instance;
 
+    //Image Assets
+    protected Image img_deathMessage;
+    protected Image img_deathScreen;
+
+    protected int int_deathSequence = 0;
+    protected GameObject go_quitButton;
     private void Awake()
     {
+        img_deathMessage = FindObjectOfType<DeathMessage>(true).GetComponent<Image>();
+        go_quitButton = GameObject.Find("DeathScreenQuit");
+        img_deathScreen = GameObject.Find("DeathOverlay").GetComponent<Image>();
+
         //Singleton
         if (instance == null)
         {
@@ -56,6 +67,31 @@ public class RWMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
 
         Time.timeScale = 0;
+    }
+
+    public void ShowDeathSequence()
+    {
+        switch(int_deathSequence)
+        {
+            case 0:
+                Time.timeScale = 0;
+                go_deathScreen.SetActive(true);
+                int_deathSequence++;
+                LeanTween.alpha(img_deathScreen.GetComponent<RectTransform>(), 1, 1f).setOnComplete(ShowDeathSequence).setIgnoreTimeScale(true);
+                break;
+
+            case 1:
+                int_deathSequence++;
+                LeanTween.alpha(img_deathMessage.GetComponent<RectTransform>(), 1, 1f).setOnComplete(ShowDeathSequence).setIgnoreTimeScale(true);
+                break;
+            case 2:
+                int_deathSequence++;
+                LeanTween.moveLocal(go_quitButton, new Vector3(0f, -110f, 0f), 1f).setEase(LeanTweenType.easeInSine).setOnComplete(ShowDeathSequence).setIgnoreTimeScale(true);
+                break;
+            case 3:
+                Cursor.lockState = CursorLockMode.None;
+                break;
+        }
     }
 
     //Enter the Start Scene

@@ -4,16 +4,15 @@ using UnityEngine.UI;
 public class HealthSystem : MonoBehaviour
 {
     protected Image img_damageOverlay;
-    protected Image img_deathMessage;
-    protected int int_playerHealth;
+    protected int int_playerHealth = 3;
     protected PlayerController playerController;
     protected RWMenu menuReference;
 
     // Start is called before the first frame update
     void Start()
     {
+        playerController = GetComponent<PlayerController>();
         img_damageOverlay = FindObjectOfType<DamageOverlay>(true).GetComponent<Image>();
-        img_deathMessage = FindObjectOfType<DeathMessage>(true).GetComponent<Image>();
         menuReference = GameObject.Find("Menu").GetComponent<RWMenu>();
     }
 
@@ -30,15 +29,25 @@ public class HealthSystem : MonoBehaviour
             if (int_playerHealth <= 0)
             {
                 playerController.Die();
-                LeanTween.alpha(img_deathMessage.GetComponent<RectTransform>(), 1, 1f).setOnComplete(menuReference.ShowDeathScreen);
+                menuReference.ShowDeathSequence();
             }
-
             LeanTween.alpha(img_damageOverlay.GetComponent<RectTransform>(), img_damageOverlay.color.a + 0.33f, 0.2f);         
         }
         else
         {
             LeanTween.alpha(img_damageOverlay.GetComponent<RectTransform>(), img_damageOverlay.color.a + 0.33f, 0.2f).setOnComplete(ReduceDamageOverlay);
         }
+    }
+
+    public void DamageTest()
+    {
+        int_playerHealth--;
+        if (int_playerHealth <= 0)
+        {
+            playerController.Die();
+            menuReference.ShowDeathSequence();
+        }
+        LeanTween.alpha(img_damageOverlay.GetComponent<RectTransform>(), img_damageOverlay.color.a + 0.33f, 0.2f);
     }
 
     private void ReduceDamageOverlay()
