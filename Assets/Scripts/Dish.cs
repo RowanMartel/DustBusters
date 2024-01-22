@@ -71,8 +71,7 @@ public class Dish : Pickupable
             t.CheckIfComplete();
         }
 
-        //GameManager.ghost?.patrolPointsPerTask[GameManager.ghost.masterTaskList.IndexOf(TaskManager.Task.PutAwayDishes)].list.Remove(transform);
-        //GameManager.ghost?.currentPoints[GameManager.ghost.currentTasks.IndexOf(TaskManager.Task.PutAwayDishes)].list.Remove(transform);
+        GameManager.ghost.RemovePoint(transform);
     }
 
     // marks dish as clean and changes back to the clean material
