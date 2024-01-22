@@ -17,8 +17,8 @@ public class FloorMess : Interactable
     // toggles the floor cleaning minigame if the player is holding the right object
     public override void Interact()
     {
-        if (GameManager.playerController.go_heldObject == null ||
-            !GameManager.playerController.go_heldObject.GetComponent<Pickupable>().mop)
+        if (GameManager.playerController.Go_heldObject == null ||
+            !GameManager.playerController.Go_heldObject.GetComponent<Pickupable>().mop)
             return;
 
         if (clean) return;
@@ -28,13 +28,13 @@ public class FloorMess : Interactable
         if (gameActive)
         {
             Cursor.lockState = CursorLockMode.Confined;
-            GameManager.playerController.en_state = PlayerController.State.inactive;
+            GameManager.playerController.En_state = PlayerController.State.inactive;
             collider.enabled = false;
         }
         else
         {
             Cursor.lockState = CursorLockMode.Locked;
-            GameManager.playerController.en_state = PlayerController.State.active;
+            GameManager.playerController.En_state = PlayerController.State.active;
             collider.enabled = true;
         }
     }
@@ -47,7 +47,7 @@ public class FloorMess : Interactable
         {
             GameManager.taskManager.CompleteTask(TaskManager.Task.MopFloor);
             Cursor.lockState = CursorLockMode.Locked;
-            GameManager.playerController.en_state = PlayerController.State.active;
+            GameManager.playerController.En_state = PlayerController.State.active;
             gameActive = false;
             clean = true;
         }

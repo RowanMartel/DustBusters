@@ -418,7 +418,7 @@ public class GhostBehavior : MonoBehaviour
     //Set an item to be the current held item
     public void PickUpItem(GameObject go_item)
     {
-        if (GameManager.playerController.go_heldObject != null && GameManager.playerController.go_heldObject.name == go_item.name)
+        if (GameManager.playerController.Go_heldObject != null && GameManager.playerController.Go_heldObject.name == go_item.name)
         {
             int_curIndex++;
             if (int_curIndex >= l_pl_currentPoints.Count)

@@ -2,36 +2,37 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    GameObject go_lookingAtObject;
-    public GameObject go_heldObject;
+    protected GameObject go_lookingAtObject;
+    protected GameObject go_heldPosition;
+    protected GameObject go_heldObject;
+    public GameObject Go_heldObject {  get { return go_heldObject; } }
 
-    GameObject go_heldPosition;
-    Vector3 v3_heldPositionReset;
+    protected GameObject go_cameraContainer;
+
+    protected Vector3 v3_heldPositionReset;
+
+    protected Rigidbody rb_player;
     public enum State
     {
         inactive,
         active
     }
 
-    public State en_state = State.inactive;
+    protected State en_state = State.inactive;
+    public State En_state { get { return en_state; } set { en_state = value; } }
 
-    public float flt_speed;
-    bool bl_hasJumped = false;
-    public float flt_jumpForce;
-
-    Rigidbody rb_player;
-    GameObject go_cameraContainer;
-
-    float flt_cameraVertical = 0;
-
-    float flt_playerRotate;
-
+    protected float flt_cameraVertical = 0;
+    protected float flt_playerRotate;
+    
+    public float flt_speed = 250;
+    public float flt_jumpForce = 75;
+    public float flt_mouseSensitivity = 2;
 
     public Ray ray_playerView;
-    public float flt_mouseSensitivity;
 
-    bool bl_isGrounded = true;
-    bool bl_isCrouching = false;
+    protected bool bl_hasJumped = false;
+    protected bool bl_isGrounded = true;
+    protected bool bl_isCrouching = false;
     void Start()
     {
         go_lookingAtObject = GameObject.Find("Floor");
@@ -47,49 +48,22 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ray_playerView = Camera.main.ScreenPointToRay(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2, 0));
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray_playerView, out hit, 5))
-        {
-            if(hit.collider.gameObject != go_lookingAtObject)
-            {
-                if (go_lookingAtObject != null && go_lookingAtObject.CompareTag("Interactable")) go_lookingAtObject.GetComponent<Outline>().enabled = false;
-
-                go_lookingAtObject = hit.collider.gameObject;
-
-                if(go_lookingAtObject.CompareTag("Interactable")) go_lookingAtObject.GetComponent<Outline>().enabled = true;
-            }
-        }
-        if (!Physics.Raycast(ray_playerView, out hit, 3) && go_lookingAtObject != null)
-        {
-            if(go_lookingAtObject.CompareTag("Interactable")) go_lookingAtObject.GetComponent<Outline>().enabled = false;
-            go_lookingAtObject = null;
-        }
+        DoPlayerView();
 
         if (Input.GetKeyDown(KeyCode.E)) Interact();
 
         if (en_state == State.active)
         {
-            if (go_heldPosition.transform.localPosition.z >= 1.0f && go_heldPosition.transform.localPosition.z <= 2.0f)
-            {
-                go_heldPosition.transform.localPosition = new Vector3(go_heldPosition.transform.localPosition.x, go_heldPosition.transform.localPosition.y, go_heldPosition.transform.localPosition.z + Input.mouseScrollDelta.y * 0.1f);
-
-                if (go_heldPosition.transform.localPosition.z > 2) go_heldPosition.transform.localPosition = go_heldPosition.transform.localPosition = new Vector3(go_heldPosition.transform.localPosition.x, go_heldPosition.transform.localPosition.y, 2.0f);
-                if (go_heldPosition.transform.localPosition.z < 1) go_heldPosition.transform.localPosition = go_heldPosition.transform.localPosition = new Vector3(go_heldPosition.transform.localPosition.x, go_heldPosition.transform.localPosition.y, 1.0f);
-            }
-
             MoveCamera();
+
+            // This allows the player to use the reach mechanic with their mousewheel to put props on hard to reach surfaces.
+            DoPlayerReach();
 
             if (Input.GetKeyDown(KeyCode.Space) && bl_isGrounded)
             {
                 bl_hasJumped = true;
                 bl_isGrounded = false;
             }
-
-            flt_playerRotate = Input.GetAxis("Mouse X");
-
-            transform.Rotate(0.0f, flt_playerRotate * flt_mouseSensitivity, 0.0f);
 
             if (Input.GetKey(KeyCode.LeftShift)) bl_isCrouching = true;
         }
@@ -141,6 +115,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // This handles the player's ability to look up and down, and rotate the player.
     void MoveCamera()
     {
         float camV = flt_cameraVertical + Input.GetAxis("Mouse Y");
@@ -150,8 +125,13 @@ public class PlayerController : MonoBehaviour
         float flipCamV = camV * -1;
 
         go_cameraContainer.transform.localRotation = Quaternion.Euler(flipCamV, 0, 0);
+
+        flt_playerRotate = Input.GetAxis("Mouse X");
+
+        transform.Rotate(0.0f, flt_playerRotate * flt_mouseSensitivity, 0.0f);
     }
 
+    // This handles the player's basic forward/backward/left/right movement, mapped to the WASD keys.
     void DoPlayerMovement()
     {
         if (Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
@@ -199,6 +179,42 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // This handles the player's view at the crosshair and if pointed at an Interactable object, will activate the object's outline to indicate it can be interacted with.
+    void DoPlayerView()
+    {
+        ray_playerView = Camera.main.ScreenPointToRay(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2, 0));
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray_playerView, out hit, 5))
+        {
+            if (hit.collider.gameObject != go_lookingAtObject)
+            {
+                if (go_lookingAtObject != null && go_lookingAtObject.CompareTag("Interactable")) go_lookingAtObject.GetComponent<Outline>().enabled = false;
+
+                go_lookingAtObject = hit.collider.gameObject;
+
+                if (go_lookingAtObject.CompareTag("Interactable")) go_lookingAtObject.GetComponent<Outline>().enabled = true;
+            }
+        }
+        if (!Physics.Raycast(ray_playerView, out hit, 3) && go_lookingAtObject != null)
+        {
+            if (go_lookingAtObject.CompareTag("Interactable")) go_lookingAtObject.GetComponent<Outline>().enabled = false;
+            go_lookingAtObject = null;
+        }
+    }
+
+    void DoPlayerReach()
+    {
+        if (go_heldPosition.transform.localPosition.z >= 1.0f && go_heldPosition.transform.localPosition.z <= 2.0f)
+        {
+            go_heldPosition.transform.localPosition = new Vector3(go_heldPosition.transform.localPosition.x, go_heldPosition.transform.localPosition.y, go_heldPosition.transform.localPosition.z + Input.mouseScrollDelta.y * 0.1f);
+
+            if (go_heldPosition.transform.localPosition.z > 2) go_heldPosition.transform.localPosition = go_heldPosition.transform.localPosition = new Vector3(go_heldPosition.transform.localPosition.x, go_heldPosition.transform.localPosition.y, 2.0f);
+            if (go_heldPosition.transform.localPosition.z < 1) go_heldPosition.transform.localPosition = go_heldPosition.transform.localPosition = new Vector3(go_heldPosition.transform.localPosition.x, go_heldPosition.transform.localPosition.y, 1.0f);
+        }
+    }
+
+    // This handles the interactions between the player and the props and environment.
     void Interact()
     {
         go_heldPosition.transform.localPosition = v3_heldPositionReset;
