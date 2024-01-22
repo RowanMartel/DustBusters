@@ -5,37 +5,53 @@ public class FloatTrigger : MonoBehaviour
     //The amount of force applied to floating object
     public float flt_floatForce;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider cl_other)
     {
         //Make Float Object stop having gravity, and push it upwards
-        TestFloatObject obj = other.GetComponent<TestFloatObject>();
+        /*TestFloatObject obj = cl_other.GetComponent<TestFloatObject>();
         if (obj != null)
         {
             Rigidbody rb = obj.gameObject.GetComponent<Rigidbody>();
-            if (!obj.isFloating && obj.canFloat)
+            if (!obj.bl_isFloating && obj.bl_canFloat)
             {
-                obj.isFloating = true;
+                obj.bl_isFloating = true;
                 rb.useGravity = false;
                 rb.AddForce(Vector3.up * flt_floatForce);
             }
             GameManager.ghost.l_go_throwables.Add(obj.gameObject);
+        }*/
+
+        TestFloatObject obj = cl_other.GetComponent<TestFloatObject>();
+        if(obj != null)
+        {
+            obj.StartFloat();
+            GameManager.ghost.l_go_throwables.Add(obj.gameObject);
         }
+
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider cl_other)
     {
         //Give Float Object it's gravity back
-        TestFloatObject obj = other.GetComponent<TestFloatObject>();
+        /*TestFloatObject obj = cl_other.GetComponent<TestFloatObject>();
         if (obj != null)
         {
             Rigidbody rb = obj.gameObject.GetComponent<Rigidbody>();
-            if (obj.isFloating)
+            if (obj.bl_isFloating)
             {
-                obj.isFloating = false;
+                obj.bl_isFloating = false;
                 rb.useGravity = true;
             }
             GameManager.ghost.l_go_throwables.Remove(obj.gameObject);
+        }*/
+
+        TestFloatObject obj = cl_other.GetComponent<TestFloatObject>();
+        if (obj != null)
+        {
+            obj.StopFloat();
+            GameManager.ghost.l_go_throwables.Remove(obj.gameObject);
         }
+
     }
 
 }

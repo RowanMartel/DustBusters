@@ -107,14 +107,14 @@ public class GhostBehavior : MonoBehaviour
 
         //Move the held item
         tr_heldItemSpinner.Rotate(Vector3.up * flt_spinSpeed);
-        if (go_curHeldItem != null)
+        if(go_curHeldItem != null)
         {
             go_curHeldItem.transform.position = go_heldItemParent.transform.position;
         }
 
         //Travel to current patrol point
         nav_agent.SetDestination(tr_currentPatrolPoint.position);
-        if (flt_distToSwitch > Vector3.Distance(transform.position, tr_currentPatrolPoint.position))
+        if(flt_distToSwitch > Vector3.Distance(transform.position, tr_currentPatrolPoint.position))
         {
             //Attempt to interact with patrol point
             Pickupable pickup = tr_currentPatrolPoint.GetComponent<Pickupable>();
@@ -185,7 +185,7 @@ public class GhostBehavior : MonoBehaviour
 
         //Play Audio
         flt_curSFXTime -= Time.deltaTime;
-        if (flt_curSFXTime <= 0)
+        if(flt_curSFXTime <= 0)
         {
             PlaySound();
         }
@@ -196,7 +196,7 @@ public class GhostBehavior : MonoBehaviour
     {
         foreach (LightSwitch lightSwitch in a_ls_switches)
         {
-            if (Vector3.Distance(lightSwitch.transform.position, transform.position) <= flt_lightSwitchDist)
+            if(Vector3.Distance(lightSwitch.transform.position, transform.position) <= flt_lightSwitchDist)
             {
                 if (lightSwitch.on)
                 {
@@ -221,8 +221,7 @@ public class GhostBehavior : MonoBehaviour
     //Remove task from ghost's current task list
     public void RemoveTask(TaskManager.Task tsk_task)
     {
-        if (!l_tsk_currentTasks.Contains(tsk_task))
-        {
+        if (!l_tsk_currentTasks.Contains(tsk_task)){
             Debug.Log("Task Not In Ghost List");
             return;
         }
@@ -268,7 +267,7 @@ public class GhostBehavior : MonoBehaviour
             l_pl_currentPoints[l_pl_currentPoints.Count - 1].Add(tr_item);
         }
     }
-
+    
     //Set current tasks to be the End Game Tasks
     public void EnterEndGame()
     {

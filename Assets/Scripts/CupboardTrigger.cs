@@ -26,7 +26,8 @@ public class CupboardTrigger : MonoBehaviour
 
         if (GameManager.taskManager.taskList.Contains(TaskManager.Task.PutAwayDishes) ||
             GameManager.taskManager.taskList.Contains(TaskManager.Task.FindKey) ||
-            GameManager.taskManager.taskList.Contains(TaskManager.Task.EscapeHouse))
+            GameManager.taskManager.taskList.Contains(TaskManager.Task.EscapeHouse) ||
+            GameManager.taskManager.taskList.Contains(TaskManager.Task.CleanDishes))
             return;
 
         GameManager.taskManager.AddTask(TaskManager.Task.PutAwayDishes);
