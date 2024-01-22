@@ -62,7 +62,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 15, y: 15, z: 15}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3277824746571262815}
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 574a3c1c3278f9642b0910606cb03bd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floatForce: 50
+  flt_floatForce: 0
 --- !u!1 &7263785423210560717
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,7 +176,7 @@ Transform:
   m_GameObject: {fileID: 7263785423210560717}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.51, y: 0, z: 0}
+  m_LocalPosition: {x: 0.62, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -356,56 +356,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f196e2b1d6a48df47ad694d9b5686f3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 6990169330593324436}
-  currentTasks: 
-  currentPoints: []
-  startTasks: 0300000001000000
-  endGameTasks: 0600000007000000
-  masterTaskList: 03000000010000000600000007000000
-  patrolPointsPerTask:
-  - list:
-    - {fileID: 0}
-  - list:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-  - list:
-    - {fileID: 0}
-  - list:
-    - {fileID: 0}
-  currentPatrolPoint: {fileID: 0}
-  curIndex: 0
-  distToSwitch: 5
-  playerObject: {fileID: 0}
-  timeToThrow: 2
-  curTime: 0
-  throwables: []
-  attackThrowForce: 50
-  sightRange: 10
-  curHeldItem: {fileID: 0}
-  heldItemParent: {fileID: 7263785423210560717}
-  heldItemSpinner: {fileID: 717651196072784010}
-  spinSpeed: 0.5
-  hidingPlaces:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  breakThrowForce: 25
-  baseSpeed: 4
-  slowedSpeed: 2
-  lightSourcesEffecting: []
-  sounds:
-  - {fileID: 8300000, guid: 1500e77b897976b4796db44ab0b32bef, type: 3}
-  - {fileID: 8300000, guid: bb38c58e867f57c4891bd2ef5460cc69, type: 3}
-  - {fileID: 8300000, guid: 4fef5c0b3e1738e4989faedf5094502d, type: 3}
-  - {fileID: 8300000, guid: dde52d8a24c2100438ad2738dd10079d, type: 3}
-  - {fileID: 8300000, guid: e5dd73bcdacb26e41b1b597efcfc0a09, type: 3}
-  - {fileID: 8300000, guid: 5587c0dd2e0d24b4f877c5a83683be42, type: 3}
-  aSource: {fileID: 5198980086939035474}
-  sfxTime: 15
-  sfxTimeDeviationRange: 5
-  curSFXTime: 0
+  nav_agent: {fileID: 0}
+  l_tsk_currentTasks: 
+  l_pl_currentPoints: []
+  l_tsk_startTasks: 
+  l_tsk_endGameTasks: 
+  l_tsk_masterTaskList: 
+  l_pl_patrolPointsPerTask: []
+  tr_currentPatrolPoint: {fileID: 0}
+  int_curIndex: 0
+  flt_distToSwitch: 0
+  go_player: {fileID: 0}
+  flt_timeToThrow: 0
+  flt_curTime: 0
+  l_go_throwables: []
+  flt_attackThrowForce: 0
+  flt_sightRange: 0
+  go_curHeldItem: {fileID: 0}
+  go_heldItemParent: {fileID: 0}
+  tr_heldItemSpinner: {fileID: 0}
+  flt_spinSpeed: 0
+  a_tr_hidingPlaces: []
+  flt_breakThrowForce: 0
+  flt_baseSpeed: 0
+  flt_slowedSpeed: 0
+  l_go_lightSourcesEffecting: []
+  a_ac_sounds: []
+  as_aSource: {fileID: 0}
+  flt_sfxTime: 0
+  flt_sfxTimeDeviationRange: 0
+  flt_curSFXTime: 0
+  flt_lightSwitchDist: 0
 --- !u!82 &5198980086939035474
 AudioSource:
   m_ObjectHideFlags: 0

@@ -3,7 +3,7 @@ using UnityEngine;
 public class FloatTrigger : MonoBehaviour
 {
     //The amount of force applied to floating object
-    public float floatForce;
+    public float flt_floatForce;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -16,7 +16,7 @@ public class FloatTrigger : MonoBehaviour
             {
                 obj.isFloating = true;
                 rb.useGravity = false;
-                rb.AddForce(Vector3.up * floatForce);
+                rb.AddForce(Vector3.up * flt_floatForce);
             }
             GameManager.ghost.l_go_throwables.Add(obj.gameObject);
         }
