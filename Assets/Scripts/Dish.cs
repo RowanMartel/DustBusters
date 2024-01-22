@@ -50,6 +50,7 @@ public class Dish : Pickupable
     {
         audioSource.PlayOneShot(breakingSFX);
         GetComponent<MeshFilter>().mesh = brokenMesh;
+        broken = true;
 
         List<CleaningWater> waters = FindObjectsByType<CleaningWater>(FindObjectsSortMode.None).ToList();
         List<CupboardTrigger> cupboards = FindObjectsByType<CupboardTrigger>(FindObjectsSortMode.None).ToList();

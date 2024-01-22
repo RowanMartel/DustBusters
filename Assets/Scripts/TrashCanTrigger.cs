@@ -42,7 +42,17 @@ public class TrashCanTrigger : MonoBehaviour
     public void CheckIfComplete()
     {
         foreach (Dish dish in dishes)
-            if (!dish.inTrash) return;
+        {
+            if (!dish.inTrash)
+            {
+                if (GameManager.taskManager.taskList.Contains(TaskManager.Task.ThrowOutBrokenDishes) ||
+                    GameManager.taskManager.taskList.Contains(TaskManager.Task.FindKey) ||
+                    GameManager.taskManager.taskList.Contains(TaskManager.Task.EscapeHouse))
+                    return;
+                GameManager.taskManager.AddTask(TaskManager.Task.ThrowOutBrokenDishes);
+                return;
+            }
+        }
         GameManager.taskManager.CompleteTask(TaskManager.Task.ThrowOutBrokenDishes);
     }
 }
