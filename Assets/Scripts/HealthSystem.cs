@@ -3,53 +3,46 @@ using UnityEngine.UI;
 
 public class HealthSystem : MonoBehaviour
 {
-    Image damageOverlay;
-    Image deathMessage;
-    public int health;
-    public PlayerController playerController;
-
-    RWMenu menuReference;
+    protected Image img_damageOverlay;
+    protected Image img_deathMessage;
+    protected int int_playerHealth;
+    protected PlayerController playerController;
+    protected RWMenu menuReference;
 
     // Start is called before the first frame update
     void Start()
     {
-        damageOverlay = FindObjectOfType<DamageOverlay>(true).GetComponent<Image>();
-        deathMessage = FindObjectOfType<DeathMessage>(true).GetComponent<Image>();
+        img_damageOverlay = FindObjectOfType<DamageOverlay>(true).GetComponent<Image>();
+        img_deathMessage = FindObjectOfType<DeathMessage>(true).GetComponent<Image>();
         menuReference = GameObject.Find("Menu").GetComponent<RWMenu>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.relativeVelocity.magnitude < 5) return;
 
-        Pickupable pickupable = collision.gameObject.GetComponent<Pickupable>();
-        if (pickupable == null) return;
+        Pickupable pu_pickupable = collision.gameObject.GetComponent<Pickupable>();
+        if (pu_pickupable == null) return;
 
-        if (pickupable.canDamagePlayer)
+        if (pu_pickupable.canDamagePlayer)
         {
-            health--;
-            if (health <= 0)
+            int_playerHealth--;
+            if (int_playerHealth <= 0)
             {
                 playerController.Die();
-                LeanTween.alpha(deathMessage.GetComponent<RectTransform>(), 1, 1f).setOnComplete(menuReference.ShowDeathScreen);
+                LeanTween.alpha(img_deathMessage.GetComponent<RectTransform>(), 1, 1f).setOnComplete(menuReference.ShowDeathScreen);
             }
 
-            LeanTween.alpha(damageOverlay.GetComponent<RectTransform>(), damageOverlay.color.a + 0.33f, 0.2f);         
+            LeanTween.alpha(img_damageOverlay.GetComponent<RectTransform>(), img_damageOverlay.color.a + 0.33f, 0.2f);         
         }
         else
         {
-            LeanTween.alpha(damageOverlay.GetComponent<RectTransform>(), damageOverlay.color.a + 0.33f, 0.2f).setOnComplete(ReduceDamageOverlay);
+            LeanTween.alpha(img_damageOverlay.GetComponent<RectTransform>(), img_damageOverlay.color.a + 0.33f, 0.2f).setOnComplete(ReduceDamageOverlay);
         }
     }
 
     private void ReduceDamageOverlay()
     {
-        LeanTween.alpha(damageOverlay.GetComponent<RectTransform>(), damageOverlay.color.a - 0.33f, 1f);
+        LeanTween.alpha(img_damageOverlay.GetComponent<RectTransform>(), img_damageOverlay.color.a - 0.33f, 1f);
     }
 }
