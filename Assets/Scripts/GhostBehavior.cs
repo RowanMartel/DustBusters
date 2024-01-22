@@ -382,6 +382,29 @@ public class GhostBehavior : MonoBehaviour
         }
     }
     
+    public void RemovePoint(Transform tr_point)
+    {
+        foreach(pointList pl_list in l_pl_patrolPointsPerTask)
+        {
+            if (pl_list.listAggro1.Contains(tr_point))
+            {
+                pl_list.listAggro1.Remove(tr_point);
+            }
+            if (pl_list.listAggro2.Contains(tr_point))
+            {
+                pl_list.listAggro2.Remove(tr_point);
+            }
+            if (pl_list.listAggro3.Contains(tr_point))
+            {
+                pl_list.listAggro3.Remove(tr_point);
+            }
+            if (pl_list.listAggro4.Contains(tr_point))
+            {
+                pl_list.listAggro4.Remove(tr_point);
+            }
+        }
+    }
+
     //Set current tasks to be the End Game Tasks
     public void EnterEndGame()
     {
