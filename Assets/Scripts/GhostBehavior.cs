@@ -49,7 +49,9 @@ public class GhostBehavior : MonoBehaviour
     //Variables around interacting with Light
     [Header("Light Interaction")]
     public float flt_baseSpeed;
+    public float flt_aggroSpeed = 6;
     public float flt_slowedSpeed;
+    public float flt_aggroSlowedSpeed = 3;
     public List<GameObject> l_go_lightSourcesEffecting;
 
     //Audio Variables
@@ -65,6 +67,8 @@ public class GhostBehavior : MonoBehaviour
     [Header("Light Switch")]
     private LightSwitch[] a_ls_switches;
     public float flt_lightSwitchDist;
+    /*public*/ float flt_lightSwitchCooldown = 5;
+    public float flt_curSwitchCooldown;
 
 
     //Aggression Levels
@@ -106,6 +110,7 @@ public class GhostBehavior : MonoBehaviour
         SwitchToPoint(0);
         flt_curTime = flt_timeToThrow;
         flt_curSFXTime = flt_sfxTime;
+        flt_curSwitchCooldown = flt_lightSwitchCooldown;
         bl_hiding = false;
         a_ls_switches = FindObjectsByType<LightSwitch>(FindObjectsSortMode.InstanceID);
     }
@@ -113,9 +118,6 @@ public class GhostBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Check if near lightswitch and turn them off if needed
-        LightSwitchCheck();
-
         //Test Material To Remove Later
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -123,13 +125,27 @@ public class GhostBehavior : MonoBehaviour
         }
 
         //Light Interaction
-        if (l_go_lightSourcesEffecting.Count > 0)
+        if (int_curAggressionLevel < 4)
         {
-            nav_agent.speed = flt_slowedSpeed;
+            if (l_go_lightSourcesEffecting.Count > 0)
+            {
+                nav_agent.speed = flt_slowedSpeed;
+            }
+            else
+            {
+                nav_agent.speed = flt_baseSpeed;
+            }
         }
         else
         {
-            nav_agent.speed = flt_baseSpeed;
+            if (l_go_lightSourcesEffecting.Count > 0)
+            {
+                nav_agent.speed = flt_aggroSlowedSpeed;
+            }
+            else
+            {
+                nav_agent.speed = flt_aggroSpeed;
+            }
         }
 
         //Move the held item
@@ -188,6 +204,19 @@ public class GhostBehavior : MonoBehaviour
             }
         }
 
+        if(int_curAggressionLevel >= 2)
+        {
+            //Check if near lightswitch and turn them off if needed
+            if (flt_curSwitchCooldown <= 0)
+            {
+                LightSwitchCheck();
+            }
+            else
+            {
+                flt_curSwitchCooldown -= Time.deltaTime;
+            }
+        }
+
         if (int_curAggressionLevel >= 3)
         {
             //Attack player if player is visible
@@ -220,9 +249,9 @@ public class GhostBehavior : MonoBehaviour
                                 }
                                 else
                                 {
-                                    if (pu_throwable.canDamagePlayer)
+                                    if (pu_throwable != null)
                                     {
-                                        if (pu_throwable != null)
+                                        if (pu_throwable.canDamagePlayer)
                                         {
                                             if (!pu_throwable.canDamagePlayer)
                                             {
@@ -261,6 +290,7 @@ public class GhostBehavior : MonoBehaviour
                 if (lightSwitch.on)
                 {
                     lightSwitch.Interact();
+                    flt_curSwitchCooldown = flt_lightSwitchCooldown;
                 }
             }
         }
