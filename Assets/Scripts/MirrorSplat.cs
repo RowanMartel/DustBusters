@@ -5,33 +5,33 @@ using UnityEngine.UI;
 public class MirrorSplat : MonoBehaviour
 {
     [HideInInspector]
-    public bool cleaned;
-    int dirtLevel = 5;
+    public bool bl_cleaned;
+    int int_dirtLevel = 5;
 
-    Renderer renderer;
+    Renderer ren;
     Mirror mirror;
 
     [Tooltip("Put the mopping SFX here")]
-    public AudioClip cleanSFX;
-    AudioSource audioSource;
+    public AudioClip ac_clean;
+    AudioSource as_clean;
 
     private void Start()
     {
         Physics.queriesHitTriggers = true;
         mirror = transform.GetComponentInParent<Mirror>();
-        renderer = GetComponent<Renderer>();
-        audioSource = GetComponent<AudioSource>();
+        ren = GetComponent<Renderer>();
+        as_clean = GetComponent<AudioSource>();
     }
 
     private void OnMouseExit()
     {
-        if (cleaned || !mirror.gameActive) return;
-        dirtLevel--;
-        renderer.material.color = new Color(renderer.material.color.r, renderer.material.color.g, renderer.material.color.g, renderer.material.color.a - .2f);
-        audioSource.PlayOneShot(cleanSFX);
-        if (dirtLevel == 0)
+        if (bl_cleaned || !mirror.bl_gameActive) return;
+        int_dirtLevel--;
+        ren.material.color = new Color(ren.material.color.r, ren.material.color.g, ren.material.color.g, ren.material.color.a - .2f);
+        as_clean.PlayOneShot(ac_clean);
+        if (int_dirtLevel == 0)
         {
-            cleaned = true;
+            bl_cleaned = true;
             mirror.CleanSplat();
         }
     }

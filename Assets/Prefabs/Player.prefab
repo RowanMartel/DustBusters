@@ -123,12 +123,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15479caf8530fd543b3b47b3c423636a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  go_heldObject: {fileID: 0}
-  en_state: 0
   flt_speed: 250
   flt_jumpForce: 75
-  bl_isGrounded: 1
   flt_mouseSensitivity: 2
+  lm:
+    serializedVersion: 2
+    m_Bits: 123
 --- !u!54 &2924403984974301946
 Rigidbody:
   m_ObjectHideFlags: 0

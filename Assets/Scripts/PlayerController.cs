@@ -33,6 +33,8 @@ public class PlayerController : MonoBehaviour
     protected bool bl_hasJumped = false;
     protected bool bl_isGrounded = true;
     protected bool bl_isCrouching = false;
+
+    public LayerMask lm;
     void Start()
     {
         go_lookingAtObject = GameObject.Find("Floor");
@@ -188,7 +190,7 @@ public class PlayerController : MonoBehaviour
         ray_playerView = Camera.main.ScreenPointToRay(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2, 0));
         RaycastHit hit;
 
-        if (Physics.Raycast(ray_playerView, out hit, 5))
+        if (Physics.Raycast(ray_playerView, out hit, 5, lm))
         {
             if (hit.collider.gameObject != go_lookingAtObject)
             {
@@ -199,7 +201,7 @@ public class PlayerController : MonoBehaviour
                 if (go_lookingAtObject.CompareTag("Interactable")) go_lookingAtObject.GetComponent<Outline>().enabled = true;
             }
         }
-        if (!Physics.Raycast(ray_playerView, out hit, 3) && go_lookingAtObject != null)
+        if (!Physics.Raycast(ray_playerView, out hit, 3, lm) && go_lookingAtObject != null)
         {
             if (go_lookingAtObject.CompareTag("Interactable")) go_lookingAtObject.GetComponent<Outline>().enabled = false;
             go_lookingAtObject = null;
