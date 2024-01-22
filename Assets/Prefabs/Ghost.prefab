@@ -363,21 +363,123 @@ MonoBehaviour:
   l_tsk_endGameTasks: 0600000007000000
   l_tsk_masterTaskList: 0000000002000000040000000500000003000000010000000600000007000000
   l_pl_patrolPointsPerTask:
-  - list:
+  - listAggro1:
     - {fileID: 0}
-  - list:
+    listAggro2:
     - {fileID: 0}
-  - list:
     - {fileID: 0}
-  - list:
     - {fileID: 0}
-  - list:
     - {fileID: 0}
-  - list:
     - {fileID: 0}
-  - list:
     - {fileID: 0}
-  - list:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    listAggro3:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    listAggro4:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - listAggro1:
+    - {fileID: 0}
+    listAggro2:
+    - {fileID: 0}
+    - {fileID: 0}
+    listAggro3:
+    - {fileID: 0}
+    - {fileID: 0}
+    listAggro4:
+    - {fileID: 0}
+    - {fileID: 0}
+  - listAggro1:
+    - {fileID: 0}
+    listAggro2:
+    - {fileID: 0}
+    listAggro3:
+    - {fileID: 0}
+    listAggro4:
+    - {fileID: 0}
+  - listAggro1:
+    - {fileID: 0}
+    listAggro2:
+    - {fileID: 0}
+    listAggro3:
+    - {fileID: 0}
+    listAggro4:
+    - {fileID: 0}
+  - listAggro1:
+    - {fileID: 0}
+    listAggro2:
+    - {fileID: 0}
+    - {fileID: 0}
+    listAggro3:
+    - {fileID: 0}
+    - {fileID: 0}
+    listAggro4:
+    - {fileID: 0}
+    - {fileID: 0}
+  - listAggro1:
+    - {fileID: 0}
+    listAggro2:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    listAggro3:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    listAggro4:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - listAggro1:
+    - {fileID: 0}
+    listAggro2:
+    - {fileID: 0}
+    listAggro3:
+    - {fileID: 0}
+    listAggro4:
+    - {fileID: 0}
+  - listAggro1:
+    - {fileID: 0}
+    listAggro2:
+    - {fileID: 0}
+    listAggro3:
+    - {fileID: 0}
+    listAggro4:
     - {fileID: 0}
   tr_currentPatrolPoint: {fileID: 0}
   int_curIndex: 0
@@ -413,6 +515,10 @@ MonoBehaviour:
   flt_sfxTimeDeviationRange: 5
   flt_curSFXTime: 0
   flt_lightSwitchDist: 5
+  int_curAggressionLevel: 1
+  int_tasksToStage2: 2
+  int_tasksToStage3: 4
+  l_tsk_completedTasks: 
 --- !u!82 &5198980086939035474
 AudioSource:
   m_ObjectHideFlags: 0
