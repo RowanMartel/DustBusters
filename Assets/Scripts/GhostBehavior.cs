@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -66,6 +67,14 @@ public class GhostBehavior : MonoBehaviour
     public float flt_lightSwitchDist;
 
 
+    //Aggression Levels
+    [Header("Aggression Levels")]
+    public int int_curAggressionLevel;
+    public int int_tasksToStage2;
+    public int int_tasksToStage3;
+    public List<TaskManager.Task> l_tsk_completedTasks;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -74,9 +83,21 @@ public class GhostBehavior : MonoBehaviour
         {
             l_tsk_currentTasks.Add(l_tsk_startTasks[i]);
             pointList pl_pList = new pointList();
-            foreach (Transform item in l_pl_patrolPointsPerTask[l_tsk_masterTaskList.IndexOf(l_tsk_startTasks[i])].list)
+            foreach (Transform item in l_pl_patrolPointsPerTask[l_tsk_masterTaskList.IndexOf(l_tsk_startTasks[i])].listAggro1)
             {
-                pl_pList.Add(item);
+                pl_pList.Add1(item);
+            }
+            foreach (Transform item in l_pl_patrolPointsPerTask[l_tsk_masterTaskList.IndexOf(l_tsk_startTasks[i])].listAggro2)
+            {
+                pl_pList.Add2(item);
+            }
+            foreach (Transform item in l_pl_patrolPointsPerTask[l_tsk_masterTaskList.IndexOf(l_tsk_startTasks[i])].listAggro3)
+            {
+                pl_pList.Add3(item);
+            }
+            foreach (Transform item in l_pl_patrolPointsPerTask[l_tsk_masterTaskList.IndexOf(l_tsk_startTasks[i])].listAggro4)
+            {
+                pl_pList.Add4(item);
             }
             l_pl_currentPoints.Add(pl_pList);
         }
@@ -94,6 +115,12 @@ public class GhostBehavior : MonoBehaviour
     {
         //Check if near lightswitch and turn them off if needed
         LightSwitchCheck();
+
+        //Test Material To Remove Later
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            EnterEndGame();
+        }
 
         //Light Interaction
         if (l_go_lightSourcesEffecting.Count > 0)
@@ -135,6 +162,7 @@ public class GhostBehavior : MonoBehaviour
                     {
                         int_curIndex = 0;
                     }
+                    SwitchToPoint(int_curIndex);
 
                 }
             }
@@ -160,7 +188,7 @@ public class GhostBehavior : MonoBehaviour
             }
         }
 
-        if (l_tsk_currentTasks.Contains(TaskManager.Task.EscapeHouse))
+        if (int_curAggressionLevel >= 3)
         {
             //Attack player if player is visible
             RaycastHit hit;
@@ -174,9 +202,41 @@ public class GhostBehavior : MonoBehaviour
                         if (flt_curTime <= 0)
                         {
                             flt_curTime = flt_timeToThrow;
-                            GameObject toThrow = l_go_throwables[0];
-                            toThrow.transform.LookAt(go_player.transform.position);
-                            toThrow.GetComponent<Rigidbody>().AddForce(toThrow.transform.forward * flt_attackThrowForce, ForceMode.Impulse);
+                            GameObject go_toThrow = l_go_throwables[0];
+
+                            foreach (GameObject go_throwable in l_go_throwables)
+                            {
+                                Pickupable pu_throwable = go_throwable.GetComponent<Pickupable>();
+                                if (int_curAggressionLevel >= 4)
+                                {
+                                    if (pu_throwable != null)
+                                    {
+                                        if (pu_throwable.canDamagePlayer)
+                                        {
+                                            Debug.Log(go_throwable);
+                                            go_toThrow = go_throwable;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    if (pu_throwable.canDamagePlayer)
+                                    {
+                                        if (pu_throwable != null)
+                                        {
+                                            if (!pu_throwable.canDamagePlayer)
+                                            {
+                                                Debug.Log(go_throwable);
+                                                go_toThrow = go_throwable;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            Debug.Log(go_toThrow);
+
+                            go_toThrow.transform.LookAt(go_player.transform.position);
+                            go_toThrow.GetComponent<Rigidbody>().AddForce(go_toThrow.transform.forward * flt_attackThrowForce, ForceMode.Impulse);
                         }
                     }
                 }
@@ -211,8 +271,25 @@ public class GhostBehavior : MonoBehaviour
     {
         if (index < l_pl_currentPoints.Count)
         {
-            int int_pointIndex = Random.Range(0, l_pl_currentPoints[index].list.Count);
-            tr_currentPatrolPoint = l_pl_currentPoints[index].list[int_pointIndex];
+            List<Transform> l_tr_points;
+            switch (int_curAggressionLevel)
+            {
+                default:
+                case 1:
+                    l_tr_points = l_pl_currentPoints[index].listAggro1;
+                    break;
+                case 2:
+                    l_tr_points = l_pl_currentPoints[index].listAggro2;
+                    break;
+                case 3:
+                    l_tr_points = l_pl_currentPoints[index].listAggro3;
+                    break;
+                case 4:
+                    l_tr_points = l_pl_currentPoints[index].listAggro4;
+                    break;
+            }
+            int int_pointIndex = Random.Range(0, l_tr_points.Count);
+            tr_currentPatrolPoint = l_tr_points[int_pointIndex];
             nav_agent.SetDestination(tr_currentPatrolPoint.position);
             int_curIndex = index;
         }
@@ -239,7 +316,32 @@ public class GhostBehavior : MonoBehaviour
             }
             SwitchToPoint(int_curIndex);
         }
-
+        if(l_tsk_completedTasks.Contains(tsk_task) == false)
+        {
+            l_tsk_completedTasks.Add(tsk_task);
+            switch (int_curAggressionLevel)
+            {
+                default:
+                case 1:
+                    if (l_tsk_completedTasks.Count >= int_tasksToStage2)
+                    {
+                        int_curAggressionLevel = 2;
+                        Debug.Log("Entering Aggression Level 2");
+                    }
+                    break;
+                case 2:
+                    if (l_tsk_completedTasks.Count >= int_tasksToStage3)
+                    {
+                        int_curAggressionLevel = 3;
+                        Debug.Log("Entering Aggression Level 3");
+                    }
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+            }
+        }
     }
 
     //Play a random audio clip
@@ -262,9 +364,21 @@ public class GhostBehavior : MonoBehaviour
     {
         l_tsk_currentTasks.Add(tsk_task);
         l_pl_currentPoints.Add(new pointList());
-        foreach (Transform tr_item in l_pl_patrolPointsPerTask[l_tsk_masterTaskList.IndexOf(tsk_task)].list)
+        foreach (Transform tr_item in l_pl_patrolPointsPerTask[l_tsk_masterTaskList.IndexOf(tsk_task)].listAggro1)
         {
-            l_pl_currentPoints[l_pl_currentPoints.Count - 1].Add(tr_item);
+            l_pl_currentPoints[l_pl_currentPoints.Count - 1].Add1(tr_item);
+        }
+        foreach (Transform tr_item in l_pl_patrolPointsPerTask[l_tsk_masterTaskList.IndexOf(tsk_task)].listAggro2)
+        {
+            l_pl_currentPoints[l_pl_currentPoints.Count - 1].Add2(tr_item);
+        }
+        foreach (Transform tr_item in l_pl_patrolPointsPerTask[l_tsk_masterTaskList.IndexOf(tsk_task)].listAggro3)
+        {
+            l_pl_currentPoints[l_pl_currentPoints.Count - 1].Add3(tr_item);
+        }
+        foreach (Transform tr_item in l_pl_patrolPointsPerTask[l_tsk_masterTaskList.IndexOf(tsk_task)].listAggro4)
+        {
+            l_pl_currentPoints[l_pl_currentPoints.Count - 1].Add4(tr_item);
         }
     }
     
@@ -274,13 +388,27 @@ public class GhostBehavior : MonoBehaviour
         l_tsk_currentTasks.Clear();
         l_pl_currentPoints.Clear();
 
+        int_curAggressionLevel = 4;
+
         for (int i = 0; i < l_tsk_endGameTasks.Count; i++)
         {
             l_tsk_currentTasks.Add(l_tsk_endGameTasks[i]);
             l_pl_currentPoints.Add(new pointList());
-            foreach (Transform item in l_pl_patrolPointsPerTask[l_tsk_masterTaskList.IndexOf(l_tsk_endGameTasks[i])].list)
+            foreach (Transform item in l_pl_patrolPointsPerTask[l_tsk_masterTaskList.IndexOf(l_tsk_endGameTasks[i])].listAggro1)
             {
-                l_pl_currentPoints[i].Add(item);
+                l_pl_currentPoints[i].Add1(item);
+            }
+            foreach (Transform item in l_pl_patrolPointsPerTask[l_tsk_masterTaskList.IndexOf(l_tsk_endGameTasks[i])].listAggro2)
+            {
+                l_pl_currentPoints[i].Add2(item);
+            }
+            foreach (Transform item in l_pl_patrolPointsPerTask[l_tsk_masterTaskList.IndexOf(l_tsk_endGameTasks[i])].listAggro3)
+            {
+                l_pl_currentPoints[i].Add3(item);
+            }
+            foreach (Transform item in l_pl_patrolPointsPerTask[l_tsk_masterTaskList.IndexOf(l_tsk_endGameTasks[i])].listAggro4)
+            {
+                l_pl_currentPoints[i].Add4(item);
             }
         }
 
@@ -355,16 +483,34 @@ public class GhostBehavior : MonoBehaviour
     [System.Serializable]
     public class pointList
     {
-        public List<Transform> list;
+        public List<Transform> listAggro1;
+        public List<Transform> listAggro2;
+        public List<Transform> listAggro3;
+        public List<Transform> listAggro4;
 
         public pointList()
         {
-            list = new List<Transform>();
+            listAggro1 = new List<Transform>();
+            listAggro2 = new List<Transform>();
+            listAggro3 = new List<Transform>();
+            listAggro4 = new List<Transform>();
         }
 
-        public void Add(Transform item)
+        public void Add1(Transform item)
         {
-            list.Add(item);
+            listAggro1.Add(item);
+        }
+        public void Add2(Transform item)
+        {
+            listAggro2.Add(item);
+        }
+        public void Add3(Transform item)
+        {
+            listAggro3.Add(item);
+        }
+        public void Add4(Transform item)
+        {
+            listAggro4.Add(item);
         }
 
     }

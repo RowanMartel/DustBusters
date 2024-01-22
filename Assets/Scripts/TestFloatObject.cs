@@ -6,11 +6,12 @@ public class TestFloatObject : MonoBehaviour
     public bool bl_isFloating;
 
     Rigidbody rb;
-    float flt_bobForce = 50;
+    float flt_bobForce = 2.5f;
+    float flt_bobMaxVelocity = 2.5f;
     float flt_baseHeight;
     float flt_curHeight;
-    float flt_bobHeightMax = 1.25f;
-    float flt_bobHeightMin = 0.75f;
+    float flt_bobHeightMax = 0.75f;
+    float flt_bobHeightMin = 0.5f;
     bool bl_downBob = false;
 
     //Setup needed variables
@@ -31,6 +32,15 @@ public class TestFloatObject : MonoBehaviour
             {
                 ToggleDirection();
             }
+
+            if (bl_downBob && rb.velocity.y > -flt_bobMaxVelocity)
+            {
+                rb.AddForce(Vector3.down * flt_bobForce);
+            }else if(!bl_downBob && rb.velocity.y < flt_bobMaxVelocity)
+            {
+                rb.AddForce(Vector3.up * flt_bobForce);
+            }
+
         }
     }
 
@@ -56,13 +66,13 @@ public class TestFloatObject : MonoBehaviour
         if (bl_downBob)
         {
             bl_downBob = false;
-            rb.velocity = Vector3.zero;
+            //rb.velocity = Vector3.zero;
             rb.AddForce(Vector3.up * flt_bobForce);
         }
         else
         {
             bl_downBob = true;
-            rb.velocity = Vector3.zero;
+            //rb.velocity = Vector3.zero;
             rb.AddForce(Vector3.down * flt_bobForce);
         }
     }
