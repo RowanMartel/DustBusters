@@ -6,14 +6,14 @@ public class HealthSystem : MonoBehaviour
     protected Image img_damageOverlay;
     protected int int_playerHealth = 3;
     protected PlayerController playerController;
-    protected RWMenu menuReference;
+    protected MenuManager menuReference;
 
     // Start is called before the first frame update
     void Start()
     {
         playerController = GetComponent<PlayerController>();
         img_damageOverlay = FindObjectOfType<DamageOverlay>(true).GetComponent<Image>();
-        menuReference = GameObject.Find("Menu").GetComponent<RWMenu>();
+        menuReference = GameObject.Find("Menu").GetComponent<MenuManager>();
     }
 
     private void OnCollisionEnter(Collision collision)

@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class RWMenu : MonoBehaviour
+public class MenuManager : MonoBehaviour
 {
     //Game Screens
     public GameObject go_titleScreen;
@@ -14,7 +14,7 @@ public class RWMenu : MonoBehaviour
     public GameObject go_endScreen;
 
     //Singleton
-    public static RWMenu instance;
+    public static MenuManager instance;
 
     //Image Assets
     protected Image img_deathMessage;

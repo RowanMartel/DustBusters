@@ -69,11 +69,7 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.LeftShift)) LeanTween.moveLocalY(go_cameraContainer, 0.2f, 0.25f); // bl_isCrouching = true;
             if (Input.GetKeyUp(KeyCode.LeftShift)) LeanTween.moveLocalY(go_cameraContainer, 0.5f, 0.25f); // bl_isCrouching = false;
-        }
-
-        // if (bl_isCrouching) LeanTween
-
-        
+        }        
     }
     void FixedUpdate()
     {

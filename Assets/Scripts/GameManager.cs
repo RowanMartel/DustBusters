@@ -14,4 +14,9 @@ public class GameManager : MonoBehaviour
         playerController = FindObjectOfType<PlayerController>();
         ghost = FindAnyObjectByType<GhostBehavior>();
     }
+
+    public void ResetGame()
+    {
+        
+    }
 }
