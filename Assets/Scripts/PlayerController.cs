@@ -5,7 +5,8 @@ public class PlayerController : MonoBehaviour
     GameObject lookingAtObject;
     public GameObject heldObject;
 
-    GameObject midHold;
+    GameObject heldPosition;
+    Vector3 heldPositionReset;
     public enum State
     {
         inactive,
@@ -14,9 +15,7 @@ public class PlayerController : MonoBehaviour
 
     public State state = State.inactive;
 
-    public float walkSpeed = 2;
-    public float runSpeed;
-    bool isRunning = false;
+    public float speed;
     bool jump = false;
     public float jumpForce = 8f;
 
@@ -29,17 +28,16 @@ public class PlayerController : MonoBehaviour
     float playerSideStep;
     float playerRotate;
 
-    float speed;
-
     public bool isGrounded = true;
 
     public Ray playerView;
-
-
+    float reachFactor;
+    float mouseScrollFactor;
     void Start()
     {
         lookingAtObject = GameObject.Find("Floor");
-        midHold = GameObject.Find("MidHold");
+        heldPosition = GameObject.Find("HeldPosition");
+        heldPositionReset = heldPosition.transform.localPosition;
 
         // Cursor.lockState = CursorLockMode.Locked;
 
@@ -74,10 +72,15 @@ public class PlayerController : MonoBehaviour
 
         if (state == State.active)
         {
-            MoveCamera();
+            if (heldPosition.transform.localPosition.z >= 1.0f && heldPosition.transform.localPosition.z <= 2.0f)
+            {
+                heldPosition.transform.localPosition = new Vector3(heldPosition.transform.localPosition.x, heldPosition.transform.localPosition.y, heldPosition.transform.localPosition.z + Input.mouseScrollDelta.y * 0.1f);
 
-            if (Input.GetKeyDown(KeyCode.LeftShift)) isRunning = true;
-            if (Input.GetKeyUp(KeyCode.LeftShift)) isRunning = false;
+                if (heldPosition.transform.localPosition.z > 2) heldPosition.transform.localPosition = heldPosition.transform.localPosition = new Vector3(heldPosition.transform.localPosition.x, heldPosition.transform.localPosition.y, 2.0f);
+                if (heldPosition.transform.localPosition.z < 1) heldPosition.transform.localPosition = heldPosition.transform.localPosition = new Vector3(heldPosition.transform.localPosition.x, heldPosition.transform.localPosition.y, 1.0f);
+            }
+
+            MoveCamera();
 
             if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
             {
@@ -96,7 +99,7 @@ public class PlayerController : MonoBehaviour
     {
         if (heldObject != null && state == State.active)
         {
-            Vector3 direction = heldObject.transform.position - midHold.transform.position;
+            Vector3 direction = heldObject.transform.position - heldPosition.transform.position;
             float distance = direction.magnitude;
             Vector3 force = direction.normalized;
 
@@ -128,12 +131,12 @@ public class PlayerController : MonoBehaviour
                 rb.AddRelativeForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 jump = false;
             }
+            if (!isGrounded)
+            {
+                rb.AddForce(-Vector3.up * jumpForce);
+            }
 
-            if (!isRunning) speed = walkSpeed;
-            if (isRunning) speed = runSpeed;
-
-            rb.AddForce(transform.forward * playerForward * speed);
-            rb.AddForce(transform.right * playerSideStep * speed);
+            DoPlayerMovement();
         }
     }
 
@@ -141,16 +144,64 @@ public class PlayerController : MonoBehaviour
     {
         float camV = cameraVertical + Input.GetAxis("Mouse Y");
 
-        cameraVertical = Mathf.Clamp(camV, -60f, 80f);
+        cameraVertical = Mathf.Clamp(camV, -90f, 80f);
 
         float flipCamV = camV * -1;
 
         cameraContainer.transform.localRotation = Quaternion.Euler(flipCamV, 0, 0);
     }
 
+    void DoPlayerMovement()
+    {
+        if (Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
+        {
+            rb.AddForce(transform.forward * speed);
+        }
+
+        if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
+        {
+            rb.AddForce(transform.forward * speed * 0.75f);
+            rb.AddForce(transform.right * speed * 0.75f);
+        }
+
+        if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))
+        {
+            rb.AddForce(transform.right * speed);
+        }
+
+        if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.S))
+        {
+            rb.AddForce(-transform.forward * speed * 0.75f);
+            rb.AddForce(transform.right * speed * 0.75f);
+        }
+
+        if (Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
+        {
+            rb.AddForce(-transform.forward * speed);
+        }
+
+        if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
+        {
+            rb.AddForce(-transform.forward * speed * 0.75f);
+            rb.AddForce(-transform.right * speed * 0.75f);
+        }
+
+        if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))
+        {
+            rb.AddForce(-transform.right * speed);
+        }
+
+        if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
+        {
+            rb.AddForce(transform.forward * speed * 0.75f);
+            rb.AddForce(-transform.right * speed * 0.75f);
+        }
+    }
+
     void Interact()
     {
-        // Once I know more about the interaction system and what is needed from my side I can build this
+        heldPosition.transform.localPosition = heldPositionReset;
+
         if (heldObject == null && lookingAtObject != null && lookingAtObject.CompareTag("Interactable"))
         {
             Pickupable pickupable = lookingAtObject.GetComponent<Pickupable>();
