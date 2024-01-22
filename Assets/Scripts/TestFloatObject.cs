@@ -41,7 +41,6 @@ public class TestFloatObject : MonoBehaviour
         rb.useGravity = false;
         bl_isFloating = true;
         rb.AddForce(Vector3.up * flt_bobForce);
-        Debug.Log("A");
     }
 
     //Reset gravity

@@ -96,6 +96,12 @@ public class GhostBehavior : MonoBehaviour
         //Check if near lightswitch and turn them off if needed
         LightSwitchCheck();
 
+        //Test Material To Remove Later
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            EnterEndGame();
+        }
+
         //Light Interaction
         if (l_go_lightSourcesEffecting.Count > 0)
         {
