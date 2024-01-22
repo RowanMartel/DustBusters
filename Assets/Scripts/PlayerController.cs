@@ -2,138 +2,139 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    GameObject lookingAtObject;
-    public GameObject heldObject;
+    GameObject go_lookingAtObject;
+    public GameObject go_heldObject;
 
-    GameObject heldPosition;
-    Vector3 heldPositionReset;
+    GameObject go_heldPosition;
+    Vector3 v3_heldPositionReset;
     public enum State
     {
         inactive,
         active
     }
 
-    public State state = State.inactive;
+    public State en_state = State.inactive;
 
-    public float speed;
-    bool jump = false;
-    public float jumpForce = 8f;
+    public float flt_speed;
+    bool bl_hasJumped = false;
+    public float flt_jumpForce;
 
-    Rigidbody rb;
-    GameObject cameraContainer;
+    Rigidbody rb_player;
+    GameObject go_cameraContainer;
 
-    float cameraVertical = 0;
+    float flt_cameraVertical = 0;
 
-    float playerForward;
-    float playerSideStep;
-    float playerRotate;
+    float flt_playerRotate;
 
-    public bool isGrounded = true;
 
-    public Ray playerView;
-    float reachFactor;
-    float mouseScrollFactor;
+    public Ray ray_playerView;
+    public float flt_mouseSensitivity;
+
+    bool bl_isGrounded = true;
+    bool bl_isCrouching = false;
     void Start()
     {
-        lookingAtObject = GameObject.Find("Floor");
-        heldPosition = GameObject.Find("HeldPosition");
-        heldPositionReset = heldPosition.transform.localPosition;
+        go_lookingAtObject = GameObject.Find("Floor");
+        go_heldPosition = GameObject.Find("HeldPosition");
+        v3_heldPositionReset = go_heldPosition.transform.localPosition;
 
         // Cursor.lockState = CursorLockMode.Locked;
 
-        rb = GetComponent<Rigidbody>();
-        cameraContainer = GameObject.Find("Player/CameraContainer");
+        rb_player = GetComponent<Rigidbody>();
+        go_cameraContainer = GameObject.Find("Player/CameraContainer");
     }
 
     // Update is called once per frame
     void Update()
     {
-        playerView = Camera.main.ScreenPointToRay(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2, 0));
+        ray_playerView = Camera.main.ScreenPointToRay(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2, 0));
         RaycastHit hit;
 
-        if (Physics.Raycast(playerView, out hit, 5))
+        if (Physics.Raycast(ray_playerView, out hit, 5))
         {
-            if(hit.collider.gameObject != lookingAtObject)
+            if(hit.collider.gameObject != go_lookingAtObject)
             {
-                if (lookingAtObject != null && lookingAtObject.CompareTag("Interactable")) lookingAtObject.GetComponent<Outline>().enabled = false;
+                if (go_lookingAtObject != null && go_lookingAtObject.CompareTag("Interactable")) go_lookingAtObject.GetComponent<Outline>().enabled = false;
 
-                lookingAtObject = hit.collider.gameObject;
+                go_lookingAtObject = hit.collider.gameObject;
 
-                if(lookingAtObject.CompareTag("Interactable")) lookingAtObject.GetComponent<Outline>().enabled = true;
+                if(go_lookingAtObject.CompareTag("Interactable")) go_lookingAtObject.GetComponent<Outline>().enabled = true;
             }
         }
-        if (!Physics.Raycast(playerView, out hit, 3) && lookingAtObject != null)
+        if (!Physics.Raycast(ray_playerView, out hit, 3) && go_lookingAtObject != null)
         {
-            if(lookingAtObject.CompareTag("Interactable")) lookingAtObject.GetComponent<Outline>().enabled = false;
-            lookingAtObject = null;
+            if(go_lookingAtObject.CompareTag("Interactable")) go_lookingAtObject.GetComponent<Outline>().enabled = false;
+            go_lookingAtObject = null;
         }
 
         if (Input.GetKeyDown(KeyCode.E)) Interact();
 
-        if (state == State.active)
+        if (en_state == State.active)
         {
-            if (heldPosition.transform.localPosition.z >= 1.0f && heldPosition.transform.localPosition.z <= 2.0f)
+            if (go_heldPosition.transform.localPosition.z >= 1.0f && go_heldPosition.transform.localPosition.z <= 2.0f)
             {
-                heldPosition.transform.localPosition = new Vector3(heldPosition.transform.localPosition.x, heldPosition.transform.localPosition.y, heldPosition.transform.localPosition.z + Input.mouseScrollDelta.y * 0.1f);
+                go_heldPosition.transform.localPosition = new Vector3(go_heldPosition.transform.localPosition.x, go_heldPosition.transform.localPosition.y, go_heldPosition.transform.localPosition.z + Input.mouseScrollDelta.y * 0.1f);
 
-                if (heldPosition.transform.localPosition.z > 2) heldPosition.transform.localPosition = heldPosition.transform.localPosition = new Vector3(heldPosition.transform.localPosition.x, heldPosition.transform.localPosition.y, 2.0f);
-                if (heldPosition.transform.localPosition.z < 1) heldPosition.transform.localPosition = heldPosition.transform.localPosition = new Vector3(heldPosition.transform.localPosition.x, heldPosition.transform.localPosition.y, 1.0f);
+                if (go_heldPosition.transform.localPosition.z > 2) go_heldPosition.transform.localPosition = go_heldPosition.transform.localPosition = new Vector3(go_heldPosition.transform.localPosition.x, go_heldPosition.transform.localPosition.y, 2.0f);
+                if (go_heldPosition.transform.localPosition.z < 1) go_heldPosition.transform.localPosition = go_heldPosition.transform.localPosition = new Vector3(go_heldPosition.transform.localPosition.x, go_heldPosition.transform.localPosition.y, 1.0f);
             }
 
             MoveCamera();
 
-            if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+            if (Input.GetKeyDown(KeyCode.Space) && bl_isGrounded)
             {
-                jump = true;
-                isGrounded = false;
+                bl_hasJumped = true;
+                bl_isGrounded = false;
             }
 
-            playerForward = Input.GetAxis("Vertical");
-            playerSideStep = Input.GetAxis("Horizontal");
-            playerRotate = Input.GetAxis("Mouse X");
+            flt_playerRotate = Input.GetAxis("Mouse X");
 
-            transform.Rotate(0.0f, playerRotate, 0.0f);
+            transform.Rotate(0.0f, flt_playerRotate * flt_mouseSensitivity, 0.0f);
+
+            if (Input.GetKey(KeyCode.LeftShift)) bl_isCrouching = true;
         }
+
+        if (bl_isCrouching) Debug.Log("crouching");
     }
     void FixedUpdate()
     {
-        if (heldObject != null && state == State.active)
+        if (go_heldObject != null && en_state == State.active)
         {
-            Vector3 direction = heldObject.transform.position - heldPosition.transform.position;
+            Vector3 direction = go_heldObject.transform.position - go_heldPosition.transform.position;
             float distance = direction.magnitude;
             Vector3 force = direction.normalized;
 
-            if (distance > 0) heldObject.GetComponent<Rigidbody>().AddForce(-force * distance * 10, ForceMode.VelocityChange);
-            heldObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            heldObject.transform.rotation = transform.rotation;
+            if (distance > 0) go_heldObject.GetComponent<Rigidbody>().AddForce(-force * distance * 10, ForceMode.VelocityChange);
+            go_heldObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            go_heldObject.transform.rotation = transform.rotation;
 
-            heldObject.transform.Rotate(heldObject.GetComponent<Pickupable>().heldRotationMod);
+            go_heldObject.transform.Rotate(go_heldObject.GetComponent<Pickupable>().heldRotationMod);
         }
-        else if(heldObject != null && state == State.inactive)
+        else if(go_heldObject != null && en_state == State.inactive)
         {
             Vector3 heldPosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1.5f));
-            Vector3 direction = heldObject.transform.position - heldPosition;
+            Vector3 direction = go_heldObject.transform.position - heldPosition;
             float distance = direction.magnitude;
             Vector3 force = direction.normalized;
 
-            if (distance > 0) heldObject.GetComponent<Rigidbody>().AddForce(-force * distance * 10, ForceMode.VelocityChange);
+            if (distance > 0) go_heldObject.GetComponent<Rigidbody>().AddForce(-force * distance * 10, ForceMode.VelocityChange);
 
-            heldObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            heldObject.transform.rotation = transform.rotation;
+            go_heldObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            go_heldObject.transform.rotation = transform.rotation;
 
-            heldObject.transform.Rotate(heldObject.GetComponent<Pickupable>().heldRotationMod);
+            go_heldObject.transform.Rotate(go_heldObject.GetComponent<Pickupable>().heldRotationMod);
         }
 
-        if (state == State.active)
+        if (en_state == State.active)
         {
-            if (jump)
+            if (bl_hasJumped)
             {
-                rb.AddRelativeForce(Vector3.up * jumpForce, ForceMode.Impulse);
-                jump = false;
+                rb_player.AddRelativeForce(Vector3.up * flt_jumpForce, ForceMode.Impulse);
+                bl_hasJumped = false;
             }
-            if (!isGrounded)
+            if (!bl_isGrounded)
             {
-                rb.AddForce(-Vector3.up * jumpForce);
+                rb_player.AddForce(-Vector3.up * flt_jumpForce);
             }
 
             DoPlayerMovement();
@@ -142,141 +143,141 @@ public class PlayerController : MonoBehaviour
 
     void MoveCamera()
     {
-        float camV = cameraVertical + Input.GetAxis("Mouse Y");
+        float camV = flt_cameraVertical + Input.GetAxis("Mouse Y");
 
-        cameraVertical = Mathf.Clamp(camV, -90f, 80f);
+        flt_cameraVertical = Mathf.Clamp(camV, -90f, 80f);
 
         float flipCamV = camV * -1;
 
-        cameraContainer.transform.localRotation = Quaternion.Euler(flipCamV, 0, 0);
+        go_cameraContainer.transform.localRotation = Quaternion.Euler(flipCamV, 0, 0);
     }
 
     void DoPlayerMovement()
     {
         if (Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
         {
-            rb.AddForce(transform.forward * speed);
+            rb_player.AddForce(transform.forward * flt_speed);
         }
 
         if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
         {
-            rb.AddForce(transform.forward * speed * 0.75f);
-            rb.AddForce(transform.right * speed * 0.75f);
+            rb_player.AddForce(transform.forward * flt_speed * 0.75f);
+            rb_player.AddForce(transform.right * flt_speed * 0.75f);
         }
 
         if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))
         {
-            rb.AddForce(transform.right * speed);
+            rb_player.AddForce(transform.right * flt_speed);
         }
 
         if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.S))
         {
-            rb.AddForce(-transform.forward * speed * 0.75f);
-            rb.AddForce(transform.right * speed * 0.75f);
+            rb_player.AddForce(-transform.forward * flt_speed * 0.75f);
+            rb_player.AddForce(transform.right * flt_speed * 0.75f);
         }
 
         if (Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
         {
-            rb.AddForce(-transform.forward * speed);
+            rb_player.AddForce(-transform.forward * flt_speed);
         }
 
         if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
         {
-            rb.AddForce(-transform.forward * speed * 0.75f);
-            rb.AddForce(-transform.right * speed * 0.75f);
+            rb_player.AddForce(-transform.forward * flt_speed * 0.75f);
+            rb_player.AddForce(-transform.right * flt_speed * 0.75f);
         }
 
         if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))
         {
-            rb.AddForce(-transform.right * speed);
+            rb_player.AddForce(-transform.right * flt_speed);
         }
 
         if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
         {
-            rb.AddForce(transform.forward * speed * 0.75f);
-            rb.AddForce(-transform.right * speed * 0.75f);
+            rb_player.AddForce(transform.forward * flt_speed * 0.75f);
+            rb_player.AddForce(-transform.right * flt_speed * 0.75f);
         }
     }
 
     void Interact()
     {
-        heldPosition.transform.localPosition = heldPositionReset;
+        go_heldPosition.transform.localPosition = v3_heldPositionReset;
 
-        if (heldObject == null && lookingAtObject != null && lookingAtObject.CompareTag("Interactable"))
+        if (go_heldObject == null && go_lookingAtObject != null && go_lookingAtObject.CompareTag("Interactable"))
         {
-            Pickupable pickupable = lookingAtObject.GetComponent<Pickupable>();
+            Pickupable pickupable = go_lookingAtObject.GetComponent<Pickupable>();
 
             if (pickupable != null)
             {
-                heldObject = lookingAtObject;
-                Physics.IgnoreCollision(heldObject.GetComponent<Collider>(), GetComponent<Collider>());
+                go_heldObject = go_lookingAtObject;
+                Physics.IgnoreCollision(go_heldObject.GetComponent<Collider>(), GetComponent<Collider>());
 
-                heldObject.GetComponent<Rigidbody>().useGravity = false;
-                heldObject.GetComponent<Outline>().enabled = false;
+                go_heldObject.GetComponent<Rigidbody>().useGravity = false;
+                go_heldObject.GetComponent<Outline>().enabled = false;
 
                 //heldObject.transform.position = midHold.transform.position;
 
                 int layerIgnoreRaycast = LayerMask.NameToLayer("Ignore Raycast");
-                heldObject.layer = layerIgnoreRaycast;
+                go_heldObject.layer = layerIgnoreRaycast;
             }
-            lookingAtObject.GetComponent<Interactable>().Interact();
+            go_lookingAtObject.GetComponent<Interactable>().Interact();
         }
-        else if(heldObject != null && (lookingAtObject == null || lookingAtObject.tag != "Interactable"))
+        else if(go_heldObject != null && (go_lookingAtObject == null || go_lookingAtObject.tag != "Interactable"))
         {
-            heldObject.layer = 0;
-            heldObject.GetComponent<Rigidbody>().useGravity = true;
-            Physics.IgnoreCollision(heldObject.GetComponent<Collider>(), GetComponent<Collider>(), false);
-            heldObject = null;
+            go_heldObject.layer = 0;
+            go_heldObject.GetComponent<Rigidbody>().useGravity = true;
+            Physics.IgnoreCollision(go_heldObject.GetComponent<Collider>(), GetComponent<Collider>(), false);
+            go_heldObject = null;
         }
-        else if (heldObject != null && lookingAtObject.CompareTag("Interactable"))
+        else if (go_heldObject != null && go_lookingAtObject.CompareTag("Interactable"))
         {
-            Pickupable pickupable = lookingAtObject.GetComponent<Pickupable>();
+            Pickupable pickupable = go_lookingAtObject.GetComponent<Pickupable>();
 
             if (pickupable != null)
             {
-                heldObject.layer = 0;
-                heldObject.GetComponent<Rigidbody>().useGravity = true;
-                Physics.IgnoreCollision(heldObject.GetComponent<Collider>(), GetComponent<Collider>(), false);
-                heldObject = null;
+                go_heldObject.layer = 0;
+                go_heldObject.GetComponent<Rigidbody>().useGravity = true;
+                Physics.IgnoreCollision(go_heldObject.GetComponent<Collider>(), GetComponent<Collider>(), false);
+                go_heldObject = null;
 
-                if (heldObject != null)
-                    Physics.IgnoreCollision(heldObject.GetComponent<Collider>(), GetComponent<Collider>(), false);
-                heldObject = lookingAtObject;
-                Physics.IgnoreCollision(heldObject.GetComponent<Collider>(), GetComponent<Collider>());
+                if (go_heldObject != null)
+                    Physics.IgnoreCollision(go_heldObject.GetComponent<Collider>(), GetComponent<Collider>(), false);
+                go_heldObject = go_lookingAtObject;
+                Physics.IgnoreCollision(go_heldObject.GetComponent<Collider>(), GetComponent<Collider>());
 
-                heldObject.GetComponent<Rigidbody>().useGravity = false;
-                heldObject.GetComponent<Outline>().enabled = false;
+                go_heldObject.GetComponent<Rigidbody>().useGravity = false;
+                go_heldObject.GetComponent<Outline>().enabled = false;
 
                 //heldObject.transform.position = midHold.transform.position;
 
                 int layerIgnoreRaycast = LayerMask.NameToLayer("Ignore Raycast");
-                heldObject.layer = layerIgnoreRaycast;
+                go_heldObject.layer = layerIgnoreRaycast;
             }
-            lookingAtObject.GetComponent<Interactable>().Interact();
+            go_lookingAtObject.GetComponent<Interactable>().Interact();
         }
     }
 
     public void Die()
     {
-        state = State.inactive;
+        en_state = State.inactive;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Floor") isGrounded = true;
+        if (collision.gameObject.tag == "Floor") bl_isGrounded = true;
     }
 
     public void TogglePlayerControl()
     {
-        switch(state)
+        switch(en_state)
         {
             case State.active:
-                state = State.inactive;
+                en_state = State.inactive;
                 Cursor.lockState = CursorLockMode.Confined;
                 break;
 
             case State.inactive:
-                state = State.active;
+                en_state = State.active;
                 Cursor.lockState = CursorLockMode.Locked;
                 break;
         }

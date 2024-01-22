@@ -14,8 +14,8 @@ public class Exit : Interactable
     // ends the game if the player is holding the key and has the escape house task
     public override void Interact()
     {
-        if (GameManager.playerController.heldObject == null ||
-            !GameManager.playerController.heldObject.GetComponent<Pickupable>().frontDoorKey ||
+        if (GameManager.playerController.go_heldObject == null ||
+            !GameManager.playerController.go_heldObject.GetComponent<Pickupable>().frontDoorKey ||
             !GameManager.taskManager.taskList.Contains(TaskManager.Task.EscapeHouse))
             return;
 

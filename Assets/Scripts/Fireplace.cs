@@ -18,7 +18,7 @@ public class Fireplace : Interactable
     // light the fireplace if the player is holding the right item
     public override void Interact()
     {
-        if (GameManager.playerController.heldObject == null || !GameManager.playerController.heldObject.GetComponent<Pickupable>().lighter) return;
+        if (GameManager.playerController.go_heldObject == null || !GameManager.playerController.go_heldObject.GetComponent<Pickupable>().lighter) return;
 
         Light();
     }

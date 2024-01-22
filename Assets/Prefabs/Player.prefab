@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 3844044986079945532}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -123,11 +123,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15479caf8530fd543b3b47b3c423636a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heldObject: {fileID: 0}
-  state: 1
-  speed: 200
-  jumpForce: 75
-  isGrounded: 1
+  go_heldObject: {fileID: 0}
+  en_state: 0
+  flt_speed: 250
+  flt_jumpForce: 75
+  bl_isGrounded: 1
+  flt_mouseSensitivity: 2
 --- !u!54 &2924403984974301946
 Rigidbody:
   m_ObjectHideFlags: 0
