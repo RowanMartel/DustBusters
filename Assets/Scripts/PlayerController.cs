@@ -65,10 +65,13 @@ public class PlayerController : MonoBehaviour
                 bl_isGrounded = false;
             }
 
-            if (Input.GetKey(KeyCode.LeftShift)) bl_isCrouching = true;
+            if (Input.GetKeyDown(KeyCode.LeftShift)) LeanTween.moveLocalY(go_cameraContainer, 0.2f, 0.25f); // bl_isCrouching = true;
+            if (Input.GetKeyUp(KeyCode.LeftShift)) LeanTween.moveLocalY(go_cameraContainer, 0.5f, 0.25f); // bl_isCrouching = false;
         }
 
-        if (bl_isCrouching) Debug.Log("crouching");
+        // if (bl_isCrouching) LeanTween
+
+        
     }
     void FixedUpdate()
     {
