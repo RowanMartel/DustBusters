@@ -62,7 +62,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 7.5, y: 7.5, z: 7.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3277824746571262815}
@@ -501,7 +501,9 @@ MonoBehaviour:
   - {fileID: 0}
   flt_breakThrowForce: 25
   flt_baseSpeed: 4
+  flt_aggroSpeed: 6
   flt_slowedSpeed: 2
+  flt_aggroSlowedSpeed: 3
   l_go_lightSourcesEffecting: []
   a_ac_sounds:
   - {fileID: 8300000, guid: 1500e77b897976b4796db44ab0b32bef, type: 3}
@@ -515,6 +517,7 @@ MonoBehaviour:
   flt_sfxTimeDeviationRange: 5
   flt_curSFXTime: 0
   flt_lightSwitchDist: 5
+  flt_curSwitchCooldown: 0
   int_curAggressionLevel: 1
   int_tasksToStage2: 2
   int_tasksToStage3: 4
