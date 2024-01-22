@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 574a3c1c3278f9642b0910606cb03bd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flt_floatForce: 0
+  flt_floatForce: 50
 --- !u!1 &7263785423210560717
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,7 +176,7 @@ Transform:
   m_GameObject: {fileID: 7263785423210560717}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.62, y: 0, z: 0}
+  m_LocalPosition: {x: 0.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -356,12 +356,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f196e2b1d6a48df47ad694d9b5686f3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nav_agent: {fileID: 0}
+  nav_agent: {fileID: 6990169330593324436}
   l_tsk_currentTasks: 
   l_pl_currentPoints: []
   l_tsk_startTasks: 
   l_tsk_endGameTasks: 
-  l_tsk_masterTaskList: 
+  l_tsk_masterTaskList: 0000000000000000000000000000000000000000000000000000000000000000
   l_pl_patrolPointsPerTask: []
   tr_currentPatrolPoint: {fileID: 0}
   int_curIndex: 0
