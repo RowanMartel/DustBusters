@@ -190,10 +190,12 @@ public class GhostBehavior : MonoBehaviour
                                 {
                                     if (pu_throwable.canDamagePlayer)
                                     {
+                                        Debug.Log(go_throwable);
                                         go_toThrow = go_throwable;
                                     }
                                 }
                             }
+                            Debug.Log(go_toThrow);
 
                             go_toThrow.transform.LookAt(go_player.transform.position);
                             go_toThrow.GetComponent<Rigidbody>().AddForce(go_toThrow.transform.forward * flt_attackThrowForce, ForceMode.Impulse);
