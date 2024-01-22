@@ -365,23 +365,29 @@ MonoBehaviour:
   l_pl_patrolPointsPerTask: []
   tr_currentPatrolPoint: {fileID: 0}
   int_curIndex: 0
-  flt_distToSwitch: 0
+  flt_distToSwitch: 5
   go_player: {fileID: 0}
-  flt_timeToThrow: 0
+  flt_timeToThrow: 2
   flt_curTime: 0
   l_go_throwables: []
-  flt_attackThrowForce: 0
-  flt_sightRange: 0
+  flt_attackThrowForce: 50
+  flt_sightRange: 10
   go_curHeldItem: {fileID: 0}
   go_heldItemParent: {fileID: 0}
   tr_heldItemSpinner: {fileID: 0}
-  flt_spinSpeed: 0
+  flt_spinSpeed: 0.5
   a_tr_hidingPlaces: []
-  flt_breakThrowForce: 0
-  flt_baseSpeed: 0
-  flt_slowedSpeed: 0
+  flt_breakThrowForce: 25
+  flt_baseSpeed: 4
+  flt_slowedSpeed: 2
   l_go_lightSourcesEffecting: []
-  a_ac_sounds: []
+  a_ac_sounds:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   as_aSource: {fileID: 0}
   flt_sfxTime: 0
   flt_sfxTimeDeviationRange: 0
