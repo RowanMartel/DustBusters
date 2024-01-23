@@ -45,6 +45,9 @@ public class GhostBehavior : MonoBehaviour
     bool bl_hiding;
     public Transform[] a_tr_hidingPlaces;
     public float flt_breakThrowForce;
+    public float flt_douseFireplaceChance;
+    public float flt_dirtyMirrorChance;
+    public float flt_dirtyFloorChance;
 
     //Variables around interacting with Light
     [Header("Light Interaction")]
@@ -189,7 +192,7 @@ public class GhostBehavior : MonoBehaviour
                 if(fireplace != null)
                 {
                     int int_rand = Random.Range(0, 10);
-                    if(int_rand <= 0 && int_curAggressionLevel >= 2)
+                    if(int_rand <= flt_douseFireplaceChance && int_curAggressionLevel >= 2)
                     {
                         fireplace.UnLight();
                     }
@@ -206,7 +209,7 @@ public class GhostBehavior : MonoBehaviour
                     if(mr_mirror != null)
                     {
                         int int_rand = Random.Range(0, 10);
-                        if (int_rand <= 0 && int_curAggressionLevel >= 2)
+                        if (int_rand <= flt_dirtyMirrorChance && int_curAggressionLevel >= 2)
                         {
                             //Debug.Log("Attempting to dirty mirror");
                             mr_mirror.GhostDirty(int_curAggressionLevel);
@@ -224,7 +227,7 @@ public class GhostBehavior : MonoBehaviour
                         if (fm_mess != null)
                         {
                             int int_rand = Random.Range(0, 10);
-                            if (int_rand <= 0 && int_curAggressionLevel >= 2)
+                            if (int_rand <= flt_dirtyFloorChance && int_curAggressionLevel >= 2)
                             {
                                 //Debug.Log("Attempting to dirty floor");
                                 fm_mess.GhostDirty(int_curAggressionLevel);
