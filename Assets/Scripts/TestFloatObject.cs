@@ -22,7 +22,7 @@ public class TestFloatObject : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         //Determine bobbing
         if (bl_isFloating)

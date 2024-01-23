@@ -100,6 +100,7 @@ public class TaskManager : MonoBehaviour
             {
                 AddTask(Task.FindKey);
                 FindObjectOfType<GhostBehavior>().EnterEndGame();
+                FindObjectOfType<Fireplace>().SpawnEmbers();
             }
         }
     }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Fireplace : Interactable
@@ -7,6 +8,8 @@ public class Fireplace : Interactable
     [Tooltip("Put the fireplace SFX here")]
     public AudioClip fireplaceSFX;
     AudioSource audioSource;
+    public GameObject go_ember;
+    public List<Transform> l_tr_emberSpawnPoints;
 
     private void Start()
     {
@@ -43,4 +46,13 @@ public class Fireplace : Interactable
 
         GameManager.taskManager.AddTask(TaskManager.Task.LightFireplace);
     }
+
+    public void SpawnEmbers()
+    {
+        foreach (Transform tr in l_tr_emberSpawnPoints)
+        {
+            GameObject.Instantiate(go_ember, tr.position, tr.rotation);
+        }
+    }
+
 }
