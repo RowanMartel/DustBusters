@@ -15,6 +15,8 @@ public class MirrorSplat : MonoBehaviour
     public AudioClip ac_clean;
     AudioSource as_clean;
 
+    public Material mat_bloody;
+
     private void Start()
     {
         Physics.queriesHitTriggers = true;
@@ -34,5 +36,14 @@ public class MirrorSplat : MonoBehaviour
             bl_cleaned = true;
             mirror.CleanSplat();
         }
+    }
+
+    public void ReDirty(bool bl_bloody = false)
+    {
+        if (bl_bloody) GetComponent<Renderer>().material = mat_bloody;
+
+        bl_cleaned = false;
+        ren.material.color = new Color(ren.material.color.r, ren.material.color.g, ren.material.color.g, 1);
+        int_dirtLevel = 5;
     }
 }
