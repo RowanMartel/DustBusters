@@ -58,22 +58,17 @@ public class FloorMess : Interactable
 
         bl_clean = false;
 
-        bool bl_splatClean = true;
         bool bl_bloody = false;
         FloorSplat floorSplat = null;
 
         if (int_aggression >= 3)
-        {
             bl_bloody = true;
-        }
 
-        while (bl_splatClean)
-        {
-            int int_rand = Random.Range(0, int_splats);
-
-            bl_splatClean = l_floorSplat[int_rand].bl_cleaned;
-            floorSplat = l_floorSplat[int_rand];
-        }
+        int int_rand = Random.Range(0, int_splats);
+        floorSplat = l_floorSplat[int_rand];
+        GameManager.taskManager.AddTask(TaskManager.Task.MopFloor);
+        GameManager.ghost.AddTask(TaskManager.Task.MopFloor);
+        GameManager.ghost.RemoveTask(TaskManager.Task.GhostDirtyFloor);
 
         floorSplat.ReDirty(bl_bloody);
     }
