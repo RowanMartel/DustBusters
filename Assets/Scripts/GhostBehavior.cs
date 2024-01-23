@@ -616,7 +616,7 @@ public class GhostBehavior : MonoBehaviour
             int_curIndex = 0;
         }
         SwitchToPoint(int_curIndex);
-        Debug.Log(go_curHeldItem);
+        //Debug.Log(go_curHeldItem);
     }
 
     //Allows a list of lists to be filled in the inspector

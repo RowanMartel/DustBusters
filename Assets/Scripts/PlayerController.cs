@@ -45,6 +45,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(bl_hasJumped + "|" + bl_isGrounded);
+
         DoPlayerView();
 
         if (Input.GetKeyDown(KeyCode.E)) Interact();
@@ -282,9 +284,14 @@ public class PlayerController : MonoBehaviour
         en_state = State.inactive;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.tag == "Floor") bl_isGrounded = true;
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if(collision.gameObject.tag == "Floor") bl_isGrounded = false;
     }
 
     public void TogglePlayerControl()
