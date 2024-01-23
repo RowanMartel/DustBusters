@@ -59,7 +59,6 @@ public class Mirror : Interactable
 
         bl_clean = false;
 
-        bool bl_splatClean = true;
         bool bl_bloody = false;
         MirrorSplat mirrorSplat = null;
 
@@ -69,13 +68,7 @@ public class Mirror : Interactable
             bloodText?.ReDirty();
         }
 
-        while (bl_splatClean)
-        {
-            int int_rand = Random.Range(0, int_splats);
-
-            bl_splatClean = l_mirrorSplat[int_rand].bl_cleaned;
-            mirrorSplat = l_mirrorSplat[int_rand];
-        }
+        int int_rand = Random.Range(0, int_splats);
 
         mirrorSplat.ReDirty(bl_bloody);
     }
