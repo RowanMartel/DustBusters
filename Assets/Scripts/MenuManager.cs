@@ -12,6 +12,7 @@ public class MenuManager : MonoBehaviour
     public GameObject go_deathScreen;
     public GameObject go_startScreen;
     public GameObject go_endScreen;
+    protected GameObject go_lastScreen;
 
     //Singleton
     public static MenuManager instance;
@@ -71,6 +72,7 @@ public class MenuManager : MonoBehaviour
             Time.timeScale = 1;
 
         screen.SetActive(true);
+        if(screen != go_optionsScreen) go_lastScreen = screen;
     }
 
     private void ClearScreens()
@@ -216,12 +218,11 @@ public class MenuManager : MonoBehaviour
                 break;
         }
     }
-    // public void ToTitle()
-    // {
-    //     SceneManager.LoadScene(0);
-    //     SwitchScreen(go_titleScreen);
-    //     GameManager.ResetGame();
-    // }
+
+    public void BackButton()
+    {
+        SwitchScreen(go_lastScreen);
+    }
 
     //Go to End Scene
     public void ToEnd()
@@ -271,6 +272,6 @@ public class MenuManager : MonoBehaviour
 
     public void UpdateLookSensitivity()
     {
-        Settings.flt_lookSensitivity = sli_volume.value;
+        Settings.flt_lookSensitivity = sli_lookSensitivity.value;
     }
 }
