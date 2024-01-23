@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Mirror : Interactable
@@ -6,6 +7,9 @@ public class Mirror : Interactable
     public int int_splats;
     [HideInInspector] public bool bl_gameActive = false;
     bool bl_clean = false;
+
+    public List<MirrorSplat> l_mirrorSplat;
+    public MirrorSplat bloodText;
 
     // toggles the mirror cleaning minigame if the player is holding the right object
     public override void Interact()
@@ -42,5 +46,37 @@ public class Mirror : Interactable
             bl_gameActive = false;
             bl_clean = true;
         }
+    }
+
+    public void GhostDirty(int int_aggression)
+    {
+        if (!bl_clean ||
+            bl_gameActive ||
+            GameManager.taskManager.taskList.Contains(TaskManager.Task.FindKey) ||
+            GameManager.taskManager.taskList.Contains(TaskManager.Task.EscapeHouse) ||
+            int_aggression < 2)
+            return;
+
+        bl_clean = false;
+
+        bool bl_splatClean = true;
+        bool bl_bloody = false;
+        MirrorSplat mirrorSplat = null;
+
+        if (int_aggression >= 3)
+        {
+            bl_bloody = true;
+            bloodText?.ReDirty();
+        }
+
+        while (bl_splatClean)
+        {
+            int int_rand = Random.Range(0, int_splats);
+
+            bl_splatClean = l_mirrorSplat[int_rand].bl_cleaned;
+            mirrorSplat = l_mirrorSplat[int_rand];
+        }
+
+        mirrorSplat.ReDirty(bl_bloody);
     }
 }

@@ -41,6 +41,6 @@ public class Fireplace : Interactable
             GameManager.taskManager.taskList.Contains(TaskManager.Task.EscapeHouse))
             return;
 
-        GameManager.taskManager.taskList.Add(TaskManager.Task.LightFireplace);
+        GameManager.taskManager.AddTask(TaskManager.Task.LightFireplace);
     }
 }

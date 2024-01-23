@@ -15,7 +15,10 @@ public class TaskManager : MonoBehaviour
         LightFireplace,
         FindKey,
         EscapeHouse,
-        ThrowOutBrokenDishes
+        ThrowOutBrokenDishes,
+        GhostDirtyMirror,
+        GhostDirtyFloor,
+        GhostDouseFireplace
     }
 
     // list of tasks the player starts with, set in inspector
