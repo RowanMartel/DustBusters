@@ -3433,6 +3433,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bl_cleaned: 0
   ac_clean: {fileID: 0}
+  mat_bloody: {fileID: 0}
 --- !u!64 &443339847
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5321,6 +5322,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bl_cleaned: 0
   ac_clean: {fileID: 0}
+  mat_bloody: {fileID: 0}
 --- !u!64 &727230757
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -8567,6 +8569,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bl_cleaned: 0
   ac_clean: {fileID: 0}
+  mat_bloody: {fileID: 0}
 --- !u!64 &1150439453
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -12779,6 +12782,22 @@ PrefabInstance:
       propertyPath: l_pl_patrolPointsPerTask.Array.data[7].listAggro4.Array.data[0]
       value: 
       objectReference: {fileID: 2052196319}
+    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
+      propertyPath: l_pl_patrolPointsPerTask.Array.data[8].listAggro1.Array.data[0]
+      value: 
+      objectReference: {fileID: 9217313398706954544}
+    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
+      propertyPath: l_pl_patrolPointsPerTask.Array.data[8].listAggro2.Array.data[0]
+      value: 
+      objectReference: {fileID: 9217313398706954544}
+    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
+      propertyPath: l_pl_patrolPointsPerTask.Array.data[8].listAggro3.Array.data[0]
+      value: 
+      objectReference: {fileID: 9217313398706954544}
+    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
+      propertyPath: l_pl_patrolPointsPerTask.Array.data[8].listAggro4.Array.data[0]
+      value: 
+      objectReference: {fileID: 9217313398706954544}
     - target: {fileID: 7813583447088648802, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
       propertyPath: m_Name
       value: Ghost
@@ -14068,6 +14087,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bl_cleaned: 0
   ac_clean: {fileID: 0}
+  mat_bloody: {fileID: 0}
 --- !u!64 &2126539141
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -43044,6 +43064,8 @@ MonoBehaviour:
   pickupable: 0
   int_splats: 4
   bl_gameActive: 0
+  l_mirrorSplat: []
+  bloodText: {fileID: 0}
 --- !u!114 &7048760086169430730
 MonoBehaviour:
   m_ObjectHideFlags: 0

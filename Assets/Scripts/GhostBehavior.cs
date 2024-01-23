@@ -184,6 +184,23 @@ public class GhostBehavior : MonoBehaviour
             }
             else
             {
+                //Attempt to douse fireplace
+                Fireplace fireplace = tr_currentPatrolPoint.GetComponent<Fireplace>();
+                if(fireplace != null)
+                {
+                    int int_rand = Random.Range(0, 10);
+                    if(int_rand <= 0 && int_curAggressionLevel >= 2)
+                    {
+                        fireplace.UnLight();
+                    }
+                    int_curIndex++;
+                    if (int_curIndex >= l_pl_currentPoints.Count)
+                    {
+                        int_curIndex = 0;
+                    }
+                    SwitchToPoint(int_curIndex);
+                }
+
                 //Start next patrol point
                 if (bl_hiding)
                 {
@@ -372,6 +389,21 @@ public class GhostBehavior : MonoBehaviour
                     break;
             }
         }
+
+        switch (tsk_task)
+        {
+            case TaskManager.Task.LightFireplace:
+                AddTask(TaskManager.Task.GhostDouseFireplace);
+                break;
+            case TaskManager.Task.CleanMirror:
+                AddTask(TaskManager.Task.GhostDirtyMirror);
+                break;
+            case TaskManager.Task.MopFloor:
+                AddTask(TaskManager.Task.GhostDirtyFloor);
+                break;
+                
+        }
+
     }
 
     //Play a random audio clip
@@ -392,6 +424,7 @@ public class GhostBehavior : MonoBehaviour
     //Add task to current task list
     public void AddTask(TaskManager.Task tsk_task)
     {
+        if (l_tsk_currentTasks.Contains(tsk_task)) return;
         l_tsk_currentTasks.Add(tsk_task);
         l_pl_currentPoints.Add(new pointList());
         foreach (Transform tr_item in l_pl_patrolPointsPerTask[l_tsk_masterTaskList.IndexOf(tsk_task)].listAggro1)
