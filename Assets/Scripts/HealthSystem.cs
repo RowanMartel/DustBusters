@@ -3,8 +3,8 @@ using UnityEngine.UI;
 
 public class HealthSystem : MonoBehaviour
 {
-    protected Image img_damageOverlay;
     protected int int_playerHealth = 3;
+    public int Int_playerHealth { get { return int_playerHealth; } set { int_playerHealth = value; } }
     protected PlayerController playerController;
     protected MenuManager menuReference;
 
@@ -12,7 +12,6 @@ public class HealthSystem : MonoBehaviour
     void Start()
     {
         playerController = GetComponent<PlayerController>();
-        img_damageOverlay = FindObjectOfType<DamageOverlay>(true).GetComponent<Image>();
         menuReference = GameObject.Find("Menu").GetComponent<MenuManager>();
     }
 
@@ -31,27 +30,11 @@ public class HealthSystem : MonoBehaviour
                 playerController.Die();
                 menuReference.ShowDeathSequence();
             }
-            LeanTween.alpha(img_damageOverlay.GetComponent<RectTransform>(), img_damageOverlay.color.a + 0.33f, 0.2f);         
+            menuReference.IncreaseDamageOverlay();
         }
         else
         {
-            LeanTween.alpha(img_damageOverlay.GetComponent<RectTransform>(), img_damageOverlay.color.a + 0.33f, 0.2f).setOnComplete(ReduceDamageOverlay);
+            menuReference.IncreaseDamageOverlayTemporarily();
         }
-    }
-
-    public void DamageTest()
-    {
-        int_playerHealth--;
-        if (int_playerHealth <= 0)
-        {
-            playerController.Die();
-            menuReference.ShowDeathSequence();
-        }
-        LeanTween.alpha(img_damageOverlay.GetComponent<RectTransform>(), img_damageOverlay.color.a + 0.33f, 0.2f);
-    }
-
-    private void ReduceDamageOverlay()
-    {
-        LeanTween.alpha(img_damageOverlay.GetComponent<RectTransform>(), img_damageOverlay.color.a - 0.33f, 1f);
     }
 }
