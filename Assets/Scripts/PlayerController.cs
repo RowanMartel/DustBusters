@@ -236,6 +236,10 @@ public class PlayerController : MonoBehaviour
 
                 int layerIgnoreRaycast = LayerMask.NameToLayer("Ignore Raycast");
                 go_heldObject.layer = layerIgnoreRaycast;
+                if(go_heldObject == GameManager.ghost.go_curHeldItem)
+                {
+                    GameManager.ghost.GetRobbed();
+                }
             }
             go_lookingAtObject.GetComponent<Interactable>().Interact();
         }
@@ -269,6 +273,10 @@ public class PlayerController : MonoBehaviour
 
                 int layerIgnoreRaycast = LayerMask.NameToLayer("Ignore Raycast");
                 go_heldObject.layer = layerIgnoreRaycast;
+                if (go_heldObject == GameManager.ghost.go_curHeldItem)
+                {
+                    GameManager.ghost.GetRobbed();
+                }
             }
             go_lookingAtObject.GetComponent<Interactable>().Interact();
         }
