@@ -69,6 +69,10 @@ public class Mirror : Interactable
         }
 
         int int_rand = Random.Range(0, int_splats);
+        mirrorSplat = l_mirrorSplat[int_rand];
+        GameManager.taskManager.AddTask(TaskManager.Task.CleanMirror);
+        GameManager.ghost.AddTask(TaskManager.Task.CleanMirror);
+        GameManager.ghost.RemoveTask(TaskManager.Task.GhostDirtyMirror);
 
         mirrorSplat.ReDirty(bl_bloody);
     }
