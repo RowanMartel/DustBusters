@@ -23,16 +23,11 @@ public class PlayerController : MonoBehaviour
 
     protected float flt_cameraVertical = 0;
     protected float flt_playerRotate;
-    
-    public float flt_speed = 250;
-    public float flt_jumpForce = 75;
-    public float flt_mouseSensitivity = 2;
 
     public Ray ray_playerView;
 
     protected bool bl_hasJumped = false;
     protected bool bl_isGrounded = true;
-    protected bool bl_isCrouching = false;
 
     public LayerMask lm;
     void Start()
@@ -104,12 +99,12 @@ public class PlayerController : MonoBehaviour
         {
             if (bl_hasJumped)
             {
-                rb_player.AddRelativeForce(Vector3.up * flt_jumpForce, ForceMode.Impulse);
+                rb_player.AddRelativeForce(Vector3.up * Settings.int_playerJumpForce, ForceMode.Impulse);
                 bl_hasJumped = false;
             }
             if (!bl_isGrounded)
             {
-                rb_player.AddForce(-Vector3.up * flt_jumpForce);
+                rb_player.AddForce(-Vector3.up * Settings.int_playerJumpForce);
             }
 
             DoPlayerMovement();
@@ -129,7 +124,7 @@ public class PlayerController : MonoBehaviour
 
         flt_playerRotate = Input.GetAxis("Mouse X");
 
-        transform.Rotate(0.0f, flt_playerRotate * flt_mouseSensitivity, 0.0f);
+        transform.Rotate(0.0f, flt_playerRotate * Settings.flt_lookSensitivity, 0.0f);
     }
 
     // This handles the player's basic forward/backward/left/right movement, mapped to the WASD keys.
@@ -137,46 +132,46 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
         {
-            rb_player.AddForce(transform.forward * flt_speed);
+            rb_player.AddForce(transform.forward * Settings.int_playerSpeed);
         }
 
         if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
         {
-            rb_player.AddForce(transform.forward * flt_speed * 0.75f);
-            rb_player.AddForce(transform.right * flt_speed * 0.75f);
+            rb_player.AddForce(transform.forward * Settings.int_playerSpeed * 0.75f);
+            rb_player.AddForce(transform.right * Settings.int_playerSpeed * 0.75f);
         }
 
         if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))
         {
-            rb_player.AddForce(transform.right * flt_speed);
+            rb_player.AddForce(transform.right * Settings.int_playerSpeed);
         }
 
         if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.S))
         {
-            rb_player.AddForce(-transform.forward * flt_speed * 0.75f);
-            rb_player.AddForce(transform.right * flt_speed * 0.75f);
+            rb_player.AddForce(-transform.forward * Settings.int_playerSpeed * 0.75f);
+            rb_player.AddForce(transform.right * Settings.int_playerSpeed * 0.75f);
         }
 
         if (Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
         {
-            rb_player.AddForce(-transform.forward * flt_speed);
+            rb_player.AddForce(-transform.forward * Settings.int_playerSpeed);
         }
 
         if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
         {
-            rb_player.AddForce(-transform.forward * flt_speed * 0.75f);
-            rb_player.AddForce(-transform.right * flt_speed * 0.75f);
+            rb_player.AddForce(-transform.forward * Settings.int_playerSpeed * 0.75f);
+            rb_player.AddForce(-transform.right * Settings.int_playerSpeed * 0.75f);
         }
 
         if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))
         {
-            rb_player.AddForce(-transform.right * flt_speed);
+            rb_player.AddForce(-transform.right * Settings.int_playerSpeed);
         }
 
         if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
         {
-            rb_player.AddForce(transform.forward * flt_speed * 0.75f);
-            rb_player.AddForce(-transform.right * flt_speed * 0.75f);
+            rb_player.AddForce(transform.forward * Settings.int_playerSpeed * 0.75f);
+            rb_player.AddForce(-transform.right * Settings.int_playerSpeed * 0.75f);
         }
     }
 

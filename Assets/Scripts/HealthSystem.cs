@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class HealthSystem : MonoBehaviour
 {
-    protected int int_playerHealth = 3;
+    protected int int_playerHealth;
     public int Int_playerHealth { get { return int_playerHealth; } set { int_playerHealth = value; } }
     protected PlayerController playerController;
     protected MenuManager menuReference;
@@ -11,6 +11,7 @@ public class HealthSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        int_playerHealth = Settings.int_playerHealthMax;
         playerController = GetComponent<PlayerController>();
         menuReference = GameObject.Find("Menu").GetComponent<MenuManager>();
     }
