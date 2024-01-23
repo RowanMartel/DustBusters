@@ -206,7 +206,7 @@ public class GhostBehavior : MonoBehaviour
                     if(mr_mirror != null)
                     {
                         int int_rand = Random.Range(0, 10);
-                        if (int_rand >= 0 && int_curAggressionLevel >= 2)
+                        if (int_rand <= 0 && int_curAggressionLevel >= 2)
                         {
                             Debug.Log("Attempting to dirty mirror");
                             mr_mirror.GhostDirty(int_curAggressionLevel);
@@ -217,6 +217,25 @@ public class GhostBehavior : MonoBehaviour
                             int_curIndex = 0;
                         }
                         SwitchToPoint(int_curIndex);
+                    }
+                    else
+                    {
+                        FloorMess fm_mess = tr_currentPatrolPoint.GetComponent<FloorMess>();
+                        if (fm_mess != null)
+                        {
+                            int int_rand = Random.Range(0, 10);
+                            if (int_rand <= 0 && int_curAggressionLevel >= 2)
+                            {
+                                Debug.Log("Attempting to dirty floor");
+                                fm_mess.GhostDirty(int_curAggressionLevel);
+                            }
+                            int_curIndex++;
+                            if (int_curIndex >= l_pl_currentPoints.Count)
+                            {
+                                int_curIndex = 0;
+                            }
+                            SwitchToPoint(int_curIndex);
+                        }
                     }
                 }
 

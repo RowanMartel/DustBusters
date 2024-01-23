@@ -8305,7 +8305,11 @@ MonoBehaviour:
   pickupable: 0
   int_splats: 4
   bl_gameActive: 0
-  l_floorSplat: []
+  l_floorSplat:
+  - {fileID: 1276925244}
+  - {fileID: 520574442}
+  - {fileID: 1599162651}
+  - {fileID: 1478225154}
 --- !u!1 &1132496035
 GameObject:
   m_ObjectHideFlags: 0
@@ -12787,6 +12791,22 @@ PrefabInstance:
       propertyPath: l_pl_patrolPointsPerTask.Array.data[9].listAggro4.Array.data[0]
       value: 
       objectReference: {fileID: 7048760086169430727}
+    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
+      propertyPath: l_pl_patrolPointsPerTask.Array.data[10].listAggro1.Array.data[0]
+      value: 
+      objectReference: {fileID: 1128051059}
+    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
+      propertyPath: l_pl_patrolPointsPerTask.Array.data[10].listAggro2.Array.data[0]
+      value: 
+      objectReference: {fileID: 1128051059}
+    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
+      propertyPath: l_pl_patrolPointsPerTask.Array.data[10].listAggro3.Array.data[0]
+      value: 
+      objectReference: {fileID: 1128051059}
+    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
+      propertyPath: l_pl_patrolPointsPerTask.Array.data[10].listAggro4.Array.data[0]
+      value: 
+      objectReference: {fileID: 1128051059}
     - target: {fileID: 7813583447088648802, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
       propertyPath: m_Name
       value: Ghost
