@@ -20,10 +20,7 @@ public class GameManager : MonoBehaviour
 
     public static void ResetGame()
     {
-        healthSystem.Int_playerHealth = 3;
-
-        Color tempcolor = menuManager.Img_damageOverlay.color;
-        tempcolor.a = 0;
-        menuManager.Img_damageOverlay.color = tempcolor;
+        healthSystem.Int_playerHealth = Settings.int_playerLives;
+        menuManager.ResetMenus();
     }
 }

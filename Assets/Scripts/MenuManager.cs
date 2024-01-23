@@ -20,16 +20,26 @@ public class MenuManager : MonoBehaviour
     protected Image img_deathMessage;
     protected Image img_deathScreen;
     protected Image img_damageOverlay;
+    protected Image img_fadeOverlay;
     public Image Img_damageOverlay { get { return img_damageOverlay; } set { img_damageOverlay = value; } }
 
+    protected int int_enterSequence = 0;
     protected int int_deathSequence = 0;
+
+    protected Slider sli_volume;
+
     protected GameObject go_quitButton;
     private void Awake()
     {
+
         img_damageOverlay = FindObjectOfType<DamageOverlay>(true).GetComponent<Image>();
         img_deathMessage = FindObjectOfType<DeathMessage>(true).GetComponent<Image>();
         go_quitButton = GameObject.Find("DeathScreenQuit");
         img_deathScreen = GameObject.Find("DeathOverlay").GetComponent<Image>();
+        img_fadeOverlay = GameObject.Find("FadeOverlay").GetComponent<Image>();
+        sli_volume = GameObject.Find("VolumeSlider").GetComponent<Slider>();
+
+        sli_volume.value = Settings.flt_volume;
 
         //Singleton
         if (instance == null)
@@ -43,11 +53,23 @@ public class MenuManager : MonoBehaviour
         }
 
         //Set up
+
         SwitchScreen(go_titleScreen);
+        FadeIn();
     }
 
     //Switch the currently displayed screen to be the designated screen
     public void SwitchScreen(GameObject screen)
+    {
+        ClearScreens();
+
+        if (screen != go_pauseScreen && screen != go_startScreen)
+            Time.timeScale = 1;
+
+        screen.SetActive(true);
+    }
+
+    private void ClearScreens()
     {
         go_titleScreen.SetActive(false);
         go_optionsScreen.SetActive(false);
@@ -56,11 +78,16 @@ public class MenuManager : MonoBehaviour
         go_deathScreen.SetActive(false);
         go_startScreen.SetActive(false);
         go_endScreen.SetActive(false);
+    }
 
-        if (screen != go_pauseScreen && screen != go_startScreen)
-            Time.timeScale = 1;
+    public void FadeIn()
+    {
+        LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 0f, 0.2f);
+    }
 
-        screen.SetActive(true);
+    public void FadeOut()
+    {
+        LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 0f, 0.2f);
     }
 
     public void IncreaseDamageOverlay()
@@ -99,8 +126,18 @@ public class MenuManager : MonoBehaviour
                 break;
             case 3:
                 Cursor.lockState = CursorLockMode.None;
+                int_deathSequence = 0;
                 break;
         }
+    }
+
+    public void ResetMenus()
+    {
+        Color tempcolor = Img_damageOverlay.color;
+        tempcolor.a = 0;
+        Img_damageOverlay.color = tempcolor;
+
+        go_quitButton.transform.position = new Vector3(0f, -300, 0f);
     }
 
     //Enter the Start Scene
@@ -112,7 +149,30 @@ public class MenuManager : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Confined;
         Time.timeScale = 0;
+    }
 
+    public void EnterGameSequence()
+    {
+        switch (int_enterSequence)
+        {
+            case 0:
+                int_enterSequence++;
+                LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 1, 1f).setOnComplete(EnterGameSequence).setIgnoreTimeScale(true);
+                break;
+
+            case 1:
+                int_enterSequence++;
+                ClearScreens();
+                SceneManager.LoadScene(1);
+                LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 0, 1f).setOnComplete(EnterGameSequence).setIgnoreTimeScale(true);
+                break;
+            case 2:
+                // Time.timeScale = 1;
+                SwitchScreen(go_startScreen);
+                Cursor.lockState = CursorLockMode.Confined;
+                int_enterSequence = 0;
+                break;
+        }
     }
 
     //Start Game
@@ -172,5 +232,10 @@ public class MenuManager : MonoBehaviour
                 //Time.timeScale = 1;
             }
         }
+    }
+
+    public void UpdateVolume()
+    {
+        Settings.flt_volume = sli_volume.value;
     }
 }
