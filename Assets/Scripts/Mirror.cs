@@ -53,7 +53,8 @@ public class Mirror : Interactable
         if (!bl_clean ||
             bl_gameActive ||
             GameManager.taskManager.taskList.Contains(TaskManager.Task.FindKey) ||
-            GameManager.taskManager.taskList.Contains(TaskManager.Task.EscapeHouse))
+            GameManager.taskManager.taskList.Contains(TaskManager.Task.EscapeHouse) ||
+            int_aggression < 2)
             return;
 
         bl_clean = false;
@@ -65,7 +66,7 @@ public class Mirror : Interactable
         if (int_aggression >= 3)
         {
             bl_bloody = true;
-            bloodText.ReDirty();
+            bloodText?.ReDirty();
         }
 
         while (bl_splatClean)
