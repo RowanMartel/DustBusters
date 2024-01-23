@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
 
     public static void ResetGame()
     {
-        healthSystem.Int_playerHealth = Settings.int_playerLives;
+        healthSystem.Int_playerHealth = Settings.int_playerHealthMax;
         menuManager.ResetMenus();
     }
 }
