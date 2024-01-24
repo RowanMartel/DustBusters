@@ -121,12 +121,6 @@ public class GhostBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Test Material To Remove Later
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            EnterEndGame();
-        }
-
         //Light Interaction
         if (int_curAggressionLevel < 4)
         {
