@@ -13,6 +13,7 @@ public class MenuManager : MonoBehaviour
     public GameObject go_startScreen;
     public GameObject go_endScreen;
     protected GameObject go_lastScreen;
+    public GameObject go_debugScreen;
 
     //Singleton
     public static MenuManager instance;
@@ -47,6 +48,8 @@ public class MenuManager : MonoBehaviour
 
         sli_volume.value = Settings.flt_volume;
         sli_lookSensitivity.value = Settings.flt_lookSensitivity;
+
+        go_debugScreen.SetActive(false);
 
         //Singleton
         if (instance == null)
@@ -263,6 +266,16 @@ public class MenuManager : MonoBehaviour
                 //Time.timeScale = 1;
             }
         }
+    }
+
+    public void EnterDebug()
+    {
+        go_debugScreen.SetActive(true);
+    }
+
+    public void ExitDebug()
+    {
+        go_debugScreen.SetActive(false);
     }
 
     public void UpdateVolume()
