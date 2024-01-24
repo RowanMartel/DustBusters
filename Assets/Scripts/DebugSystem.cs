@@ -24,6 +24,7 @@ public class DebugSystem : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
+
         if (Input.GetKeyDown(KeyCode.F3))
         {
             if (bl_inDebug)
@@ -47,8 +48,25 @@ public class DebugSystem : MonoBehaviour
             if(gb_ghost != null)
             {
 
+                if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
+                {
+                    gb_ghost.int_curAggressionLevel = 1;
+                }
+                if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
+                {
+                    gb_ghost.int_curAggressionLevel = 2;
+                }
+                if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3))
+                {
+                    gb_ghost.int_curAggressionLevel = 3;
+                }
+                if (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Keypad4))
+                {
+                    gb_ghost.int_curAggressionLevel = 4;
+                }
+
                 //Make Ghost Visible
-                if(gb_ghost.GetComponent<MeshRenderer>().enabled == false)
+                if (gb_ghost.GetComponent<MeshRenderer>().enabled == false)
                 {
                     gb_ghost.GetComponent<MeshRenderer>().enabled = true;
                     gb_ghost.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = true;
