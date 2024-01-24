@@ -58,13 +58,13 @@ public class DebugSystem : MonoBehaviour
                 }
 
                 //Update
-                tmp_leftText.text = "Debug Mode Enabled:\n-Press R to enter\n end game\n-Press G to freeze\n the ghost\n-Press 1-4 to set\n the ghost's aggro level\n-Player can jump: " + pc_player.bl_isGrounded + "\n-Player has jumped: " + pc_player.bl_hasJumped + "\n\nGhost Patrol Point:\n" + gb_ghost.tr_currentPatrolPoint.gameObject;
+                tmp_leftText.text = "Debug Mode Enabled:\n-Press R to enter\n end game\n-Press G to freeze\n the ghost\n-Press 1-4 to set\n the ghost's aggro level\n-Player can jump: " + pc_player.bl_isGrounded + "\n-Player has jumped: " + pc_player.bl_hasJumped + "\n\nGhost Patrol Point:\n" + gb_ghost.tr_currentPatrolPoint.gameObject + "\n\nGhost Held Item: " + gb_ghost.go_curHeldItem;
                 tmp_rightText.text = "Ghost Aggro Level: " + gb_ghost.int_curAggressionLevel + "\n\nGhost Current Task:\n" + GetTaskString(gb_ghost.l_tsk_currentTasks[gb_ghost.int_curIndex]) + "\nGhost Task List:\n" + TaskListToString(gb_ghost.l_tsk_currentTasks);
             }
             else
             {
                 //Update
-                tmp_leftText.text = "Debug Mode Enabled:\n-Press R to enter\n end game\n-Press G to freeze\n the ghost\n-Press 1-4 to set\n the ghost's aggro level\n-Player can jump: Null\n-Player has jumped: Null\n\nGhost Patrol Point:\nNull";
+                tmp_leftText.text = "Debug Mode Enabled:\n-Press R to enter\n end game\n-Press G to freeze\n the ghost\n-Press 1-4 to set\n the ghost's aggro level\n-Player can jump: Null\n-Player has jumped: Null\n\nGhost Patrol Point:\nNull\n\nGhost Held Item: Null";
                 tmp_rightText.text = "Ghost Aggro Level: Null\n\nGhost Current Task:\nNull\nGhost Task List:\nNull";
             }
         }
