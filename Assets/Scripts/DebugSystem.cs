@@ -46,6 +46,15 @@ public class DebugSystem : MonoBehaviour
             }
             if(gb_ghost != null)
             {
+
+                //Make Ghost Visible
+                if(gb_ghost.GetComponent<MeshRenderer>().enabled == false)
+                {
+                    gb_ghost.GetComponent<MeshRenderer>().enabled = true;
+                    gb_ghost.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = true;
+                    gb_ghost.go_heldItemParent.GetComponent<MeshRenderer>().enabled = true;
+                }
+
                 //Test Material To Remove Later
                 if (Input.GetKeyDown(KeyCode.R))
                 {
@@ -143,6 +152,14 @@ public class DebugSystem : MonoBehaviour
 
     void ExitDebug()
     {
+
+        if(gb_ghost != null)
+        {
+            gb_ghost.GetComponent<MeshRenderer>().enabled = false;
+            gb_ghost.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
+            gb_ghost.go_heldItemParent.GetComponent<MeshRenderer>().enabled = false;
+        }
+
         bl_inDebug = false;
         MenuManager.instance.ExitDebug();
         UnityEditorInternal.InternalEditorUtility.SetShowGizmos(true);
