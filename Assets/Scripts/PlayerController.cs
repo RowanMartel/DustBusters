@@ -129,6 +129,11 @@ public class PlayerController : MonoBehaviour
         transform.Rotate(0.0f, flt_playerRotate * Settings.flt_lookSensitivity, 0.0f);
     }
 
+    public void LookAt(Vector3 position)
+    {
+        LeanTween.rotateLocal(go_cameraContainer, position, 0.25f);
+    }
+
     // This handles the player's basic forward/backward/left/right movement, mapped to the WASD keys.
     void DoPlayerMovement()
     {
@@ -199,11 +204,6 @@ public class PlayerController : MonoBehaviour
             if (go_lookingAtObject.CompareTag("Interactable")) go_lookingAtObject.GetComponent<Outline>().enabled = false;
             go_lookingAtObject = null;
         }
-    }
-
-    public void LookAt(Vector3 position)
-    {
-        go_cameraContainer.transform.LookAt(position);
     }
 
     void DoPlayerReach()
