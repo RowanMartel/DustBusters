@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Rendering;
 
 public class GhostBehavior : MonoBehaviour
 {
@@ -81,6 +82,8 @@ public class GhostBehavior : MonoBehaviour
     public int int_tasksToStage3;
     public List<TaskManager.Task> l_tsk_completedTasks;
 
+    public bool bl_frozen;
+
 
     // Start is called before the first frame update
     void Start()
@@ -109,26 +112,25 @@ public class GhostBehavior : MonoBehaviour
             l_pl_currentPoints.Add(pl_pList);
         }
 
-        //Set all to default
+        //Set all variables to default
         SwitchToPoint(0);
         flt_curTime = flt_timeToThrow;
         flt_curSFXTime = flt_sfxTime;
         flt_curSwitchCooldown = flt_lightSwitchCooldown;
         bl_hiding = false;
         a_ls_switches = FindObjectsByType<LightSwitch>(FindObjectsSortMode.InstanceID);
+        bl_frozen = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Test Material To Remove Later
-        if (Input.GetKeyDown(KeyCode.R))
+        //Speed Determination
+        if (bl_frozen)
         {
-            EnterEndGame();
+            nav_agent.speed = 0;
         }
-
-        //Light Interaction
-        if (int_curAggressionLevel < 4)
+        else if (int_curAggressionLevel < 4)
         {
             if (l_go_lightSourcesEffecting.Count > 0)
             {
@@ -152,7 +154,10 @@ public class GhostBehavior : MonoBehaviour
         }
 
         //Move the held item
-        tr_heldItemSpinner.Rotate(Vector3.up * flt_spinSpeed);
+        if (!bl_frozen)
+        {
+            tr_heldItemSpinner.Rotate(Vector3.up * flt_spinSpeed);
+        }
         if(go_curHeldItem != null)
         {
             go_curHeldItem.transform.position = go_heldItemParent.transform.position;
@@ -176,13 +181,6 @@ public class GhostBehavior : MonoBehaviour
                     pickup.transform.LookAt(transform.position);
                     pickup.GetComponent<Rigidbody>().AddForce(pickup.transform.forward * flt_breakThrowForce, ForceMode.Impulse);
 
-                    int_curIndex++;
-                    if (int_curIndex >= l_pl_currentPoints.Count)
-                    {
-                        int_curIndex = 0;
-                    }
-                    SwitchToPoint(int_curIndex);
-
                 }
             }
             else
@@ -196,48 +194,30 @@ public class GhostBehavior : MonoBehaviour
                     {
                         fireplace.UnLight();
                     }
-                    int_curIndex++;
-                    if (int_curIndex >= l_pl_currentPoints.Count)
-                    {
-                        int_curIndex = 0;
-                    }
-                    SwitchToPoint(int_curIndex);
                 }
                 else
                 {
+                    //Attempt to dirty mirror
                     Mirror mr_mirror = tr_currentPatrolPoint.GetComponent<Mirror>();
                     if(mr_mirror != null)
                     {
                         int int_rand = Random.Range(0, 10);
                         if (int_rand <= flt_dirtyMirrorChance && int_curAggressionLevel >= 2)
                         {
-                            //Debug.Log("Attempting to dirty mirror");
                             mr_mirror.GhostDirty(int_curAggressionLevel);
                         }
-                        int_curIndex++;
-                        if (int_curIndex >= l_pl_currentPoints.Count)
-                        {
-                            int_curIndex = 0;
-                        }
-                        SwitchToPoint(int_curIndex);
                     }
                     else
                     {
+                        //Attempt to dirty floor
                         FloorMess fm_mess = tr_currentPatrolPoint.GetComponent<FloorMess>();
                         if (fm_mess != null)
                         {
                             int int_rand = Random.Range(0, 10);
                             if (int_rand <= flt_dirtyFloorChance && int_curAggressionLevel >= 2)
                             {
-                                //Debug.Log("Attempting to dirty floor");
                                 fm_mess.GhostDirty(int_curAggressionLevel);
                             }
-                            int_curIndex++;
-                            if (int_curIndex >= l_pl_currentPoints.Count)
-                            {
-                                int_curIndex = 0;
-                            }
-                            SwitchToPoint(int_curIndex);
                         }
                     }
                 }
@@ -277,7 +257,7 @@ public class GhostBehavior : MonoBehaviour
 
         if (int_curAggressionLevel >= 3)
         {
-            //Attack player if player is visible
+            //Attack player if player is visible and done cooldown
             RaycastHit hit;
             if (Physics.Raycast(transform.position, go_player.transform.position - transform.position, out hit, flt_sightRange))
             {
@@ -293,6 +273,7 @@ public class GhostBehavior : MonoBehaviour
 
                             foreach (GameObject go_throwable in l_go_throwables)
                             {
+                                //Prioritize damaging or nondamaging objects depending on aggression level
                                 Pickupable pu_throwable = go_throwable.GetComponent<Pickupable>();
                                 if (int_curAggressionLevel >= 4)
                                 {
@@ -300,7 +281,6 @@ public class GhostBehavior : MonoBehaviour
                                     {
                                         if (pu_throwable.canDamagePlayer)
                                         {
-                                            //Debug.Log(go_throwable);
                                             go_toThrow = go_throwable;
                                         }
                                     }
@@ -313,15 +293,14 @@ public class GhostBehavior : MonoBehaviour
                                         {
                                             if (!pu_throwable.canDamagePlayer)
                                             {
-                                                //Debug.Log(go_throwable);
                                                 go_toThrow = go_throwable;
                                             }
                                         }
                                     }
                                 }
                             }
-                            //Debug.Log(go_toThrow);
 
+                            //Throw object
                             go_toThrow.transform.LookAt(go_player.transform.position);
                             go_toThrow.GetComponent<Rigidbody>().AddForce(go_toThrow.transform.forward * flt_attackThrowForce, ForceMode.Impulse);
                         }
@@ -381,14 +360,12 @@ public class GhostBehavior : MonoBehaviour
             nav_agent.SetDestination(tr_currentPatrolPoint.position);
             int_curIndex = index;
         }
-        //Debug.Log(tr_currentPatrolPoint);
     }
 
     //Remove task from ghost's current task list
     public void RemoveTask(TaskManager.Task tsk_task)
     {
         if (!l_tsk_currentTasks.Contains(tsk_task)){
-            //Debug.Log("Task Not In Ghost List");
             return;
         }
 
@@ -396,6 +373,8 @@ public class GhostBehavior : MonoBehaviour
 
         l_tsk_currentTasks.Remove(tsk_task);
         l_pl_currentPoints.Remove(l_pl_currentPoints[int_index]);
+
+        //Debug.Log(int_curIndex + " | " + int_index + " | " + l_tsk_currentTasks.Count);
 
         if (int_curIndex == int_index)
         {
@@ -405,6 +384,8 @@ public class GhostBehavior : MonoBehaviour
             }
             SwitchToPoint(int_curIndex);
         }
+
+        //Set aggression level based on tasks completed
         if(l_tsk_completedTasks.Contains(tsk_task) == false)
         {
             l_tsk_completedTasks.Add(tsk_task);
@@ -415,14 +396,12 @@ public class GhostBehavior : MonoBehaviour
                     if (l_tsk_completedTasks.Count >= int_tasksToStage2)
                     {
                         int_curAggressionLevel = 2;
-                        //Debug.Log("Entering Aggression Level 2");
                     }
                     break;
                 case 2:
                     if (l_tsk_completedTasks.Count >= int_tasksToStage3)
                     {
                         int_curAggressionLevel = 3;
-                        //Debug.Log("Entering Aggression Level 3");
                     }
                     break;
                 case 3:
@@ -432,6 +411,7 @@ public class GhostBehavior : MonoBehaviour
             }
         }
 
+        //Add tasks to undo player tasks
         switch (tsk_task)
         {
             case TaskManager.Task.LightFireplace:
@@ -486,7 +466,8 @@ public class GhostBehavior : MonoBehaviour
             l_pl_currentPoints[l_pl_currentPoints.Count - 1].Add4(tr_item);
         }
     }
-    
+
+    //Remove patrol point from patrol points per task list
     public void RemovePoint(Transform tr_point)
     {
         foreach(pointList pl_list in l_pl_patrolPointsPerTask)
@@ -563,17 +544,14 @@ public class GhostBehavior : MonoBehaviour
         go_item.transform.parent = go_heldItemParent.transform;
         go_item.transform.localPosition = Vector3.zero;
         go_curHeldItem = go_item;
-        //Debug.Log("holding " + go_item.name);
     }
 
     //Remove current held item from ghost
     public void DropItem()
     {
         go_curHeldItem.transform.parent = null;
-        //go_curHeldItem.transform.position = go_heldItemParent.transform.position;
         go_curHeldItem.GetComponent<Rigidbody>().velocity = Vector3.zero;
         if (bl_hiding) bl_hiding = false;
-        //go_curHeldItem.GetComponent<Rigidbody>().Sleep();
         go_curHeldItem = null;
     }
 
@@ -608,6 +586,7 @@ public class GhostBehavior : MonoBehaviour
         l_go_lightSourcesEffecting.Remove(lightsource);
     }
 
+    //Player takes ghost's item
     public void GetRobbed()
     {
         DropItem();
@@ -616,7 +595,6 @@ public class GhostBehavior : MonoBehaviour
             int_curIndex = 0;
         }
         SwitchToPoint(int_curIndex);
-        //Debug.Log(go_curHeldItem);
     }
 
     //Allows a list of lists to be filled in the inspector

@@ -12,6 +12,8 @@ public class MenuManager : MonoBehaviour
     public GameObject go_deathScreen;
     public GameObject go_startScreen;
     public GameObject go_endScreen;
+    protected GameObject go_lastScreen;
+    public GameObject go_debugScreen;
 
     //Singleton
     public static MenuManager instance;
@@ -47,6 +49,8 @@ public class MenuManager : MonoBehaviour
         sli_volume.value = Settings.flt_volume;
         sli_lookSensitivity.value = Settings.flt_lookSensitivity;
 
+        go_debugScreen.SetActive(false);
+
         //Singleton
         if (instance == null)
         {
@@ -71,8 +75,10 @@ public class MenuManager : MonoBehaviour
             Time.timeScale = 1;
 
         screen.SetActive(true);
+        if(screen != go_optionsScreen) go_lastScreen = screen;
     }
 
+    //Set all screens to inactive
     private void ClearScreens()
     {
         go_titleScreen.SetActive(false);
@@ -84,31 +90,37 @@ public class MenuManager : MonoBehaviour
         go_endScreen.SetActive(false);
     }
 
+    //Fade effect
     public void FadeIn()
     {
         LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 0f, 0.2f);
     }
 
+    //Fade effect
     public void FadeOut()
     {
         LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 0f, 0.2f);
     }
 
+    //Damage effect
     public void IncreaseDamageOverlay()
     {
         LeanTween.alpha(img_damageOverlay.GetComponent<RectTransform>(), img_damageOverlay.color.a + 0.33f, 0.2f);
     }
 
+    //Temp damage effect
     public void IncreaseDamageOverlayTemporarily()
     {
         LeanTween.alpha(img_damageOverlay.GetComponent<RectTransform>(), img_damageOverlay.color.a + 0.33f, 0.2f).setOnComplete(ReduceDamageOverlay);
     }
 
+    //Lower damage effect
     private void ReduceDamageOverlay()
     {
         LeanTween.alpha(img_damageOverlay.GetComponent<RectTransform>(), img_damageOverlay.color.a - 0.33f, 1f);
     }
 
+    //Shows death sequence
     public void ShowDeathSequence()
     {
         switch(int_deathSequence)
@@ -135,6 +147,7 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    //IDK
     public void ResetMenus()
     {
         Color tempcolor = Img_damageOverlay.color;
@@ -156,6 +169,7 @@ public class MenuManager : MonoBehaviour
     //     Time.timeScale = 0;
     // }
 
+    //Plays between Menu and Game scene?
     public void EnterGameSequence()
     {
         switch (int_enterSequence)
@@ -192,7 +206,6 @@ public class MenuManager : MonoBehaviour
     }
 
     //Go To Title Screen
-
     public void QuitToTitleSequence()
     {
         switch (int_quitToMenuSequence)
@@ -216,12 +229,12 @@ public class MenuManager : MonoBehaviour
                 break;
         }
     }
-    // public void ToTitle()
-    // {
-    //     SceneManager.LoadScene(0);
-    //     SwitchScreen(go_titleScreen);
-    //     GameManager.ResetGame();
-    // }
+
+    //Go to previous screen
+    public void BackButton()
+    {
+        SwitchScreen(go_lastScreen);
+    }
 
     //Go to End Scene
     public void ToEnd()
@@ -242,6 +255,10 @@ public class MenuManager : MonoBehaviour
     {
         SwitchScreen(go_gameScreen);
         GameManager.playerController.TogglePlayerControl();
+        if (GameManager.ghost != null)
+        {
+            GameManager.ghost.bl_frozen = false;
+        }
     }
 
     private void Update()
@@ -254,23 +271,44 @@ public class MenuManager : MonoBehaviour
                 SwitchScreen(go_pauseScreen);
                 GameManager.playerController.TogglePlayerControl();
                 Time.timeScale = 0;
+                if(GameManager.ghost != null)
+                {
+                    GameManager.ghost.bl_frozen = true;
+                }
             }
             else if (go_pauseScreen.activeSelf)
             {
                 SwitchScreen(go_gameScreen);
                 GameManager.playerController.TogglePlayerControl();
+                if(GameManager.ghost != null)
+                {
+                    GameManager.ghost.bl_frozen = false;
+                }
                 //Time.timeScale = 1;
             }
         }
     }
 
+    //Debug screen management
+    public void EnterDebug()
+    {
+        go_debugScreen.SetActive(true);
+    }
+
+    public void ExitDebug()
+    {
+        go_debugScreen.SetActive(false);
+    }
+
+    //Volume management
     public void UpdateVolume()
     {
         Settings.flt_volume = sli_volume.value;
     }
 
+    //Mouse sensitivity management
     public void UpdateLookSensitivity()
     {
-        Settings.flt_lookSensitivity = sli_volume.value;
+        Settings.flt_lookSensitivity = sli_lookSensitivity.value;
     }
 }

@@ -26,8 +26,8 @@ public class PlayerController : MonoBehaviour
 
     public Ray ray_playerView;
 
-    protected bool bl_hasJumped = false;
-    protected bool bl_isGrounded = true;
+    public bool bl_hasJumped = false;
+    public bool bl_isGrounded = true;
 
     public LayerMask lm;
     void Start()
@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(bl_hasJumped + "|" + bl_isGrounded);
+        //Debug.Log(bl_hasJumped + "|" + bl_isGrounded);
 
         DoPlayerView();
 
@@ -127,6 +127,11 @@ public class PlayerController : MonoBehaviour
         flt_playerRotate = Input.GetAxis("Mouse X");
 
         transform.Rotate(0.0f, flt_playerRotate * Settings.flt_lookSensitivity, 0.0f);
+    }
+
+    public void LookAt(Vector3 position)
+    {
+        LeanTween.rotateLocal(go_cameraContainer, position, 0.25f);
     }
 
     // This handles the player's basic forward/backward/left/right movement, mapped to the WASD keys.
@@ -278,7 +283,6 @@ public class PlayerController : MonoBehaviour
             go_lookingAtObject.GetComponent<Interactable>().Interact();
         }
     }
-
     public void Die()
     {
         en_state = State.inactive;
