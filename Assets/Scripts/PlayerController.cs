@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    protected MenuManager menuManager;
+
     protected GameObject go_lookingAtObject;
     protected GameObject go_heldPosition;
     protected GameObject go_heldObject;
@@ -32,6 +34,8 @@ public class PlayerController : MonoBehaviour
     public LayerMask lm;
     void Start()
     {
+        menuManager = GameObject.Find("Menu").GetComponent<MenuManager>();
+
         go_lookingAtObject = GameObject.Find("Floor");
         go_heldPosition = GameObject.Find("HeldPosition");
         v3_heldPositionReset = go_heldPosition.transform.localPosition;
@@ -66,7 +70,9 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.LeftShift)) LeanTween.moveLocalY(go_cameraContainer, 0.2f, 0.25f); // bl_isCrouching = true;
             if (Input.GetKeyUp(KeyCode.LeftShift)) LeanTween.moveLocalY(go_cameraContainer, 0.5f, 0.25f); // bl_isCrouching = false;
-        }        
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape)) menuManager.TogglePause();
     }
     void FixedUpdate()
     {
