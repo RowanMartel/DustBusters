@@ -81,6 +81,7 @@ public class GhostBehavior : MonoBehaviour
     public int int_tasksToStage2;
     public int int_tasksToStage3;
     public List<TaskManager.Task> l_tsk_completedTasks;
+    public GameObject go_floatTrigger;
 
     public bool bl_frozen;
 
@@ -120,11 +121,21 @@ public class GhostBehavior : MonoBehaviour
         bl_hiding = false;
         a_ls_switches = FindObjectsByType<LightSwitch>(FindObjectsSortMode.InstanceID);
         bl_frozen = false;
+        go_floatTrigger.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(go_floatTrigger.activeSelf == false && int_curAggressionLevel > 1)
+        {
+            go_floatTrigger.SetActive(true);
+        }
+        else if(go_floatTrigger.activeSelf == true && int_curAggressionLevel <= 1)
+        {
+            go_floatTrigger.GetComponent<FloatTrigger>().CloseTrigger();
+        }
+
         //Speed Determination
         if (bl_frozen)
         {
@@ -373,15 +384,6 @@ public class GhostBehavior : MonoBehaviour
 
         l_tsk_currentTasks.Remove(tsk_task);
         l_pl_currentPoints.Remove(l_pl_currentPoints[int_index]);
-
-        /*if (int_curIndex == int_index)
-        {
-            if (int_curIndex >= l_pl_currentPoints.Count)
-            {
-                int_curIndex = 0;
-            }
-            SwitchToPoint(int_curIndex);
-        }*/
 
         if(int_index < int_curIndex)
         {
