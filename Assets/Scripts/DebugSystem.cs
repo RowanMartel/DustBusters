@@ -149,7 +149,7 @@ public class DebugSystem : MonoBehaviour
     void EnterDebug()
     {
         bl_inDebug = true;
-        MenuManager.instance.EnterDebug()
+        MenuManager.instance.EnterDebug();
     }
 
     //Exit Debug Mode
