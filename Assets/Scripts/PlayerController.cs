@@ -80,7 +80,7 @@ public class PlayerController : MonoBehaviour
             go_heldObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
             go_heldObject.transform.rotation = transform.rotation;
 
-            go_heldObject.transform.Rotate(go_heldObject.GetComponent<Pickupable>().heldRotationMod);
+            go_heldObject.transform.Rotate(go_heldObject.GetComponent<Pickupable>().v3_heldRotationMod);
         }
         else if(go_heldObject != null && en_state == State.inactive)
         {
@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
             go_heldObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
             go_heldObject.transform.rotation = transform.rotation;
 
-            go_heldObject.transform.Rotate(go_heldObject.GetComponent<Pickupable>().heldRotationMod);
+            go_heldObject.transform.Rotate(go_heldObject.GetComponent<Pickupable>().v3_heldRotationMod);
         }
 
         if (en_state == State.active)

@@ -78,9 +78,9 @@ public class DebugSystem : MonoBehaviour
                 {
                     gb_ghost.EnterEndGame();
 
-                    while (tm_taskManager.taskList.Contains(TaskManager.Task.FindKey) == false && tm_taskManager.taskList.Contains(TaskManager.Task.EscapeHouse) == false)
+                    while (tm_taskManager.li_taskList.Contains(TaskManager.Task.FindKey) == false && tm_taskManager.li_taskList.Contains(TaskManager.Task.EscapeHouse) == false)
                     {
-                        tm_taskManager.CompleteTask(tm_taskManager.taskList[0]);
+                        tm_taskManager.CompleteTask(tm_taskManager.li_taskList[0]);
                     }
                 }
 

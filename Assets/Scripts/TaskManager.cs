@@ -22,30 +22,30 @@ public class TaskManager : MonoBehaviour
     }
 
     // list of tasks the player starts with, set in inspector
-    public List<Task> startingTasks;
+    public List<Task> li_startingTasks;
     // dynamic list of the player's current tasks
-    [HideInInspector] public List<Task> taskList;
+    [HideInInspector] public List<Task> li_taskList;
 
     public GhostBehavior ghost;
-    public TMP_Text taskListTxt;
+    public TMP_Text tmp_taskListTxt;
 
     public void ResetValues()
     {
         ghost = GameManager.ghost;
 
-        taskList = new();
-        taskListTxt = FindObjectOfType<EmptyTaskList>(true).GetComponent<TMP_Text>();
-        taskListTxt.text = "";
+        li_taskList = new();
+        tmp_taskListTxt = FindObjectOfType<EmptyTaskList>(true).GetComponent<TMP_Text>();
+        tmp_taskListTxt.text = "";
 
         // fill the task list with the starting tasks
-        foreach (Task task in startingTasks)
+        foreach (Task task in li_startingTasks)
             AddTask(task);
     }
 
     // removes the given task from the task list
     public void CompleteTask(Task task)
     {
-        if (!taskList.Contains(task)) return;
+        if (!li_taskList.Contains(task)) return;
         string text = "";
         switch (task)
         {
@@ -77,10 +77,10 @@ public class TaskManager : MonoBehaviour
                 text = "\nMop the laundry room floor";
                 break;
         }
-        int i = taskListTxt.text.IndexOf(text);
-        taskListTxt.text = taskListTxt.text.Remove(i, text.Length);
+        int i = tmp_taskListTxt.text.IndexOf(text);
+        tmp_taskListTxt.text = tmp_taskListTxt.text.Remove(i, text.Length);
 
-        taskList.Remove(task);
+        li_taskList.Remove(task);
 
         ghost.RemoveTask(task);
 
@@ -92,7 +92,7 @@ public class TaskManager : MonoBehaviour
         }
         
         // determines which task to give if the task list is now empty
-        if (taskList.Count == 0)
+        if (li_taskList.Count == 0)
         {
             if (task == Task.FindKey)
                 AddTask(Task.EscapeHouse);
@@ -110,39 +110,39 @@ public class TaskManager : MonoBehaviour
     // adds the given task to the task list
     public void AddTask(Task task)
     {
-        if (taskList.Contains(task)) return;
-        taskList.Add(task);
-        string text = "";
+        if (li_taskList.Contains(task)) return;
+        li_taskList.Add(task);
+        string str_text = "";
         switch (task)
         {
             case Task.CleanDishes:
-                text = "\nClean the dirty dishes";
+                str_text = "\nClean the dirty dishes";
                 break;
             case Task.PutAwayDishes:
-                text = "\nPut away the dishes on the counter";
+                str_text = "\nPut away the dishes on the counter";
                 break;
             case Task.CleanCobwebs:
-                text = "\nClean away the cobwebs in the foyer";
+                str_text = "\nClean away the cobwebs in the foyer";
                 break;
             case Task.CleanMirror:
-                text = "\nClean the bathroom mirror";
+                str_text = "\nClean the bathroom mirror";
                 break;
             case Task.ThrowOutBrokenDishes:
-                text = "\nThrow out the broken dishes";
+                str_text = "\nThrow out the broken dishes";
                 break;
             case Task.EscapeHouse:
-                text = "\nEscape the house";
+                str_text = "\nEscape the house";
                 break;
             case Task.FindKey:
-                text = "\nFind the front door key";
+                str_text = "\nFind the front door key";
                 break;
             case Task.LightFireplace:
-                text = "\nLight the fireplace";
+                str_text = "\nLight the fireplace";
                 break;
             case Task.MopFloor:
-                text = "\nMop the laundry room floor";
+                str_text = "\nMop the laundry room floor";
                 break;
         }
-        taskListTxt.text += text;
+        tmp_taskListTxt.text += str_text;
     }
 }

@@ -3,23 +3,23 @@ using UnityEngine;
 public class Exit : Interactable
 {
     [Tooltip("Put the unlock SFX here")]
-    public AudioClip unlockSFX;
-    AudioSource audioSource;
+    public AudioClip ac_unlock;
+    AudioSource as_source;
 
     private void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        as_source = GetComponent<AudioSource>();
     }
 
     // ends the game if the player is holding the key and has the escape house task
     public override void Interact()
     {
         if (GameManager.playerController.Go_heldObject == null ||
-            !GameManager.playerController.Go_heldObject.GetComponent<Pickupable>().frontDoorKey ||
-            !GameManager.taskManager.taskList.Contains(TaskManager.Task.EscapeHouse))
+            !GameManager.playerController.Go_heldObject.GetComponent<Pickupable>().bl_frontDoorKey ||
+            !GameManager.taskManager.li_taskList.Contains(TaskManager.Task.EscapeHouse))
             return;
 
-        audioSource.PlayOneShot(unlockSFX);
+        GameManager.soundManager.PlayClip(ac_unlock, as_source);
 
         FindObjectOfType<MenuManager>().ToEnd();
     }

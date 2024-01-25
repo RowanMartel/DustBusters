@@ -14,7 +14,7 @@ public class FloorMess : Interactable
     public override void Interact()
     {
         if (GameManager.playerController.Go_heldObject == null ||
-            !GameManager.playerController.Go_heldObject.GetComponent<Pickupable>().mop)
+            !GameManager.playerController.Go_heldObject.GetComponent<Pickupable>().bl_mop)
             return;
 
         if (bl_clean) return;
@@ -51,8 +51,8 @@ public class FloorMess : Interactable
     {
         if (!bl_clean ||
             bl_gameActive ||
-            GameManager.taskManager.taskList.Contains(TaskManager.Task.FindKey) ||
-            GameManager.taskManager.taskList.Contains(TaskManager.Task.EscapeHouse) ||
+            GameManager.taskManager.li_taskList.Contains(TaskManager.Task.FindKey) ||
+            GameManager.taskManager.li_taskList.Contains(TaskManager.Task.EscapeHouse) ||
             int_aggression < 2)
             return;
 

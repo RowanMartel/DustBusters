@@ -171,12 +171,12 @@ public class GhostBehavior : MonoBehaviour
             Pickupable pickup = tr_currentPatrolPoint.GetComponent<Pickupable>();
             if (pickup != null)
             {
-                if (pickup.hideable)
+                if (pickup.bl_hideable)
                 {
                     PickUpItem(pickup.gameObject);
                     ChooseHidingPlace();
                 }
-                else if (pickup.breakable)
+                else if (pickup.bl_breakable)
                 {
                     pickup.transform.LookAt(transform.position);
                     pickup.GetComponent<Rigidbody>().AddForce(pickup.transform.forward * flt_breakThrowForce, ForceMode.Impulse);
@@ -279,7 +279,7 @@ public class GhostBehavior : MonoBehaviour
                                 {
                                     if (pu_throwable != null)
                                     {
-                                        if (pu_throwable.canDamagePlayer)
+                                        if (pu_throwable.l_canDamagePlayer)
                                         {
                                             go_toThrow = go_throwable;
                                         }
@@ -289,9 +289,9 @@ public class GhostBehavior : MonoBehaviour
                                 {
                                     if (pu_throwable != null)
                                     {
-                                        if (pu_throwable.canDamagePlayer)
+                                        if (pu_throwable.l_canDamagePlayer)
                                         {
-                                            if (!pu_throwable.canDamagePlayer)
+                                            if (!pu_throwable.l_canDamagePlayer)
                                             {
                                                 go_toThrow = go_throwable;
                                             }
@@ -324,7 +324,7 @@ public class GhostBehavior : MonoBehaviour
         {
             if(Vector3.Distance(lightSwitch.transform.position, transform.position) <= flt_lightSwitchDist)
             {
-                if (lightSwitch.on)
+                if (lightSwitch.bl_on)
                 {
                     lightSwitch.Interact();
                     flt_curSwitchCooldown = flt_lightSwitchCooldown;
