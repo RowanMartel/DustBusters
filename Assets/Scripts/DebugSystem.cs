@@ -149,8 +149,7 @@ public class DebugSystem : MonoBehaviour
     void EnterDebug()
     {
         bl_inDebug = true;
-        MenuManager.instance.EnterDebug();
-        UnityEditorInternal.InternalEditorUtility.SetShowGizmos(true);
+        MenuManager.instance.EnterDebug()
     }
 
     //Exit Debug Mode
@@ -166,7 +165,6 @@ public class DebugSystem : MonoBehaviour
 
         bl_inDebug = false;
         MenuManager.instance.ExitDebug();
-        UnityEditorInternal.InternalEditorUtility.SetShowGizmos(true);
     }
 
 }
