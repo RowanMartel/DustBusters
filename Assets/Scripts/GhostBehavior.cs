@@ -374,8 +374,6 @@ public class GhostBehavior : MonoBehaviour
         l_tsk_currentTasks.Remove(tsk_task);
         l_pl_currentPoints.Remove(l_pl_currentPoints[int_index]);
 
-        Debug.Log(int_curIndex + " | " + int_index + " | " + l_tsk_currentTasks.Count);
-
         /*if (int_curIndex == int_index)
         {
             if (int_curIndex >= l_pl_currentPoints.Count)
