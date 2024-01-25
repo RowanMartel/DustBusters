@@ -13,7 +13,6 @@ public class DebugSystem : MonoBehaviour
     GhostBehavior gb_ghost;
     PlayerController pc_player;
     TaskManager tm_taskManager;
-    bool bl_inEndGame;
 
     // Start is called before the first frame update
     void Start()
