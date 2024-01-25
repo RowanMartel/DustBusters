@@ -78,6 +78,7 @@ public class MenuManager : MonoBehaviour
         if(screen != go_optionsScreen) go_lastScreen = screen;
     }
 
+    //Set all screens to inactive
     private void ClearScreens()
     {
         go_titleScreen.SetActive(false);
@@ -89,31 +90,37 @@ public class MenuManager : MonoBehaviour
         go_endScreen.SetActive(false);
     }
 
+    //Fade effect
     public void FadeIn()
     {
         LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 0f, 0.2f);
     }
 
+    //Fade effect
     public void FadeOut()
     {
         LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 0f, 0.2f);
     }
 
+    //Damage effect
     public void IncreaseDamageOverlay()
     {
         LeanTween.alpha(img_damageOverlay.GetComponent<RectTransform>(), img_damageOverlay.color.a + 0.33f, 0.2f);
     }
 
+    //Temp damage effect
     public void IncreaseDamageOverlayTemporarily()
     {
         LeanTween.alpha(img_damageOverlay.GetComponent<RectTransform>(), img_damageOverlay.color.a + 0.33f, 0.2f).setOnComplete(ReduceDamageOverlay);
     }
 
+    //Lower damage effect
     private void ReduceDamageOverlay()
     {
         LeanTween.alpha(img_damageOverlay.GetComponent<RectTransform>(), img_damageOverlay.color.a - 0.33f, 1f);
     }
 
+    //Shows death sequence
     public void ShowDeathSequence()
     {
         switch(int_deathSequence)
@@ -140,6 +147,7 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    //IDK
     public void ResetMenus()
     {
         Color tempcolor = Img_damageOverlay.color;
@@ -161,6 +169,7 @@ public class MenuManager : MonoBehaviour
     //     Time.timeScale = 0;
     // }
 
+    //Plays between Menu and Game scene?
     public void EnterGameSequence()
     {
         switch (int_enterSequence)
@@ -197,7 +206,6 @@ public class MenuManager : MonoBehaviour
     }
 
     //Go To Title Screen
-
     public void QuitToTitleSequence()
     {
         switch (int_quitToMenuSequence)
@@ -222,6 +230,7 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    //Go to previous screen
     public void BackButton()
     {
         SwitchScreen(go_lastScreen);
@@ -280,6 +289,7 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    //Debug screen management
     public void EnterDebug()
     {
         go_debugScreen.SetActive(true);
@@ -290,11 +300,13 @@ public class MenuManager : MonoBehaviour
         go_debugScreen.SetActive(false);
     }
 
+    //Volume management
     public void UpdateVolume()
     {
         Settings.flt_volume = sli_volume.value;
     }
 
+    //Mouse sensitivity management
     public void UpdateLookSensitivity()
     {
         Settings.flt_lookSensitivity = sli_lookSensitivity.value;
