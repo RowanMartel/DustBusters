@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Rendering;
 
 public class GhostBehavior : MonoBehaviour
 {
@@ -81,6 +82,8 @@ public class GhostBehavior : MonoBehaviour
     public int int_tasksToStage3;
     public List<TaskManager.Task> l_tsk_completedTasks;
 
+    public bool bl_frozen;
+
 
     // Start is called before the first frame update
     void Start()
@@ -116,13 +119,18 @@ public class GhostBehavior : MonoBehaviour
         flt_curSwitchCooldown = flt_lightSwitchCooldown;
         bl_hiding = false;
         a_ls_switches = FindObjectsByType<LightSwitch>(FindObjectsSortMode.InstanceID);
+        bl_frozen = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Light Interaction
-        if (int_curAggressionLevel < 4)
+        //Speed Determination
+        if (bl_frozen)
+        {
+            nav_agent.speed = 0;
+        }
+        else if (int_curAggressionLevel < 4)
         {
             if (l_go_lightSourcesEffecting.Count > 0)
             {
@@ -146,7 +154,10 @@ public class GhostBehavior : MonoBehaviour
         }
 
         //Move the held item
-        tr_heldItemSpinner.Rotate(Vector3.up * flt_spinSpeed);
+        if (!bl_frozen)
+        {
+            tr_heldItemSpinner.Rotate(Vector3.up * flt_spinSpeed);
+        }
         if(go_curHeldItem != null)
         {
             go_curHeldItem.transform.position = go_heldItemParent.transform.position;
@@ -170,12 +181,12 @@ public class GhostBehavior : MonoBehaviour
                     pickup.transform.LookAt(transform.position);
                     pickup.GetComponent<Rigidbody>().AddForce(pickup.transform.forward * flt_breakThrowForce, ForceMode.Impulse);
 
-                    int_curIndex++;
+                    /*int_curIndex++;
                     if (int_curIndex >= l_pl_currentPoints.Count)
                     {
                         int_curIndex = 0;
                     }
-                    SwitchToPoint(int_curIndex);
+                    SwitchToPoint(int_curIndex);*/
 
                 }
             }
@@ -190,12 +201,12 @@ public class GhostBehavior : MonoBehaviour
                     {
                         fireplace.UnLight();
                     }
-                    int_curIndex++;
+                    /*int_curIndex++;
                     if (int_curIndex >= l_pl_currentPoints.Count)
                     {
                         int_curIndex = 0;
                     }
-                    SwitchToPoint(int_curIndex);
+                    SwitchToPoint(int_curIndex);*/
                 }
                 else
                 {
@@ -208,12 +219,12 @@ public class GhostBehavior : MonoBehaviour
                             //Debug.Log("Attempting to dirty mirror");
                             mr_mirror.GhostDirty(int_curAggressionLevel);
                         }
-                        int_curIndex++;
+                        /*int_curIndex++;
                         if (int_curIndex >= l_pl_currentPoints.Count)
                         {
                             int_curIndex = 0;
                         }
-                        SwitchToPoint(int_curIndex);
+                        SwitchToPoint(int_curIndex);*/
                     }
                     else
                     {
@@ -226,12 +237,12 @@ public class GhostBehavior : MonoBehaviour
                                 //Debug.Log("Attempting to dirty floor");
                                 fm_mess.GhostDirty(int_curAggressionLevel);
                             }
-                            int_curIndex++;
+                            /*int_curIndex++;
                             if (int_curIndex >= l_pl_currentPoints.Count)
                             {
                                 int_curIndex = 0;
                             }
-                            SwitchToPoint(int_curIndex);
+                            SwitchToPoint(int_curIndex);*/
                         }
                     }
                 }

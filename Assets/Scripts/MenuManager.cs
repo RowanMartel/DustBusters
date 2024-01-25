@@ -246,6 +246,10 @@ public class MenuManager : MonoBehaviour
     {
         SwitchScreen(go_gameScreen);
         GameManager.playerController.TogglePlayerControl();
+        if (GameManager.ghost != null)
+        {
+            GameManager.ghost.bl_frozen = false;
+        }
     }
 
     private void Update()
@@ -258,11 +262,19 @@ public class MenuManager : MonoBehaviour
                 SwitchScreen(go_pauseScreen);
                 GameManager.playerController.TogglePlayerControl();
                 Time.timeScale = 0;
+                if(GameManager.ghost != null)
+                {
+                    GameManager.ghost.bl_frozen = true;
+                }
             }
             else if (go_pauseScreen.activeSelf)
             {
                 SwitchScreen(go_gameScreen);
                 GameManager.playerController.TogglePlayerControl();
+                if(GameManager.ghost != null)
+                {
+                    GameManager.ghost.bl_frozen = false;
+                }
                 //Time.timeScale = 1;
             }
         }

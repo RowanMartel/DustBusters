@@ -64,6 +64,10 @@ public class DebugSystem : MonoBehaviour
                 {
                     gb_ghost.int_curAggressionLevel = 4;
                 }
+                if (Input.GetKeyDown(KeyCode.G))
+                {
+                    gb_ghost.bl_frozen = !gb_ghost.bl_frozen;
+                }
 
                 //Make Ghost Visible
                 if (gb_ghost.GetComponent<MeshRenderer>().enabled == false)
