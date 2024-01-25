@@ -29,8 +29,10 @@ public class TaskManager : MonoBehaviour
     public GhostBehavior ghost;
     public TMP_Text taskListTxt;
 
-    private void Start()
+    public void ResetValues()
     {
+        ghost = GameManager.ghost;
+
         taskList = new();
         taskListTxt = FindObjectOfType<EmptyTaskList>(true).GetComponent<TMP_Text>();
         taskListTxt.text = "";

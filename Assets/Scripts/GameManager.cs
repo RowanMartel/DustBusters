@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,14 +9,34 @@ public class GameManager : MonoBehaviour
     public static GhostBehavior ghost;
     public static MenuManager menuManager;
     public static HealthSystem healthSystem;
+    public static SoundManager soundManager;
+
+    public static GameManager instance;
     private void Awake()
     {
+        //Singleton
+        if (instance == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            instance = this;
+        }
+        else Destroy(gameObject);
+
         gameManager = this;
-        menuManager = FindObjectOfType<MenuManager>();
         taskManager = GetComponent<TaskManager>();
+        soundManager = GetComponent<SoundManager>();
+        menuManager = FindObjectOfType<MenuManager>();
+
+        SceneManager.activeSceneChanged += OnGameStart;
+    }
+
+    public void OnGameStart(Scene oldScene, Scene newScene)
+    {
         playerController = FindObjectOfType<PlayerController>();
-        healthSystem = playerController.GetComponent<HealthSystem>();
+        Debug.Log(playerController);
+        healthSystem = playerController?.GetComponent<HealthSystem>();
         ghost = FindAnyObjectByType<GhostBehavior>();
+        taskManager.ResetValues();
     }
 
     public static void ResetGame()
