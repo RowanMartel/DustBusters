@@ -2294,8 +2294,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22c4e3cc477511849bc7d41bd16329c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cleaned: 0
-  cleanSFX: {fileID: 8300000, guid: 2e6031d11cd4be74b8b552f865cdac17, type: 3}
+  bl_cleaned: 0
+  cl_clean: {fileID: 0}
 --- !u!64 &132743104
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2756,8 +2756,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22c4e3cc477511849bc7d41bd16329c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cleaned: 0
-  cleanSFX: {fileID: 8300000, guid: 2e6031d11cd4be74b8b552f865cdac17, type: 3}
+  bl_cleaned: 0
+  cl_clean: {fileID: 0}
 --- !u!64 &259529880
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3018,7 +3018,6 @@ GameObject:
   m_Component:
   - component: {fileID: 321342092}
   - component: {fileID: 321342091}
-  - component: {fileID: 321342090}
   m_Layer: 0
   m_Name: MinimapCam
   m_TagString: MinimapCam
@@ -3026,14 +3025,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &321342090
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 321342089}
-  m_Enabled: 1
 --- !u!20 &321342091
 Camera:
   m_ObjectHideFlags: 0
@@ -3148,8 +3139,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22c4e3cc477511849bc7d41bd16329c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cleaned: 0
-  cleanSFX: {fileID: 8300000, guid: 2e6031d11cd4be74b8b552f865cdac17, type: 3}
+  bl_cleaned: 0
+  cl_clean: {fileID: 0}
 --- !u!64 &340316044
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4315,8 +4306,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22c4e3cc477511849bc7d41bd16329c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cleaned: 0
-  cleanSFX: {fileID: 8300000, guid: 2e6031d11cd4be74b8b552f865cdac17, type: 3}
+  bl_cleaned: 0
+  cl_clean: {fileID: 0}
 --- !u!64 &521819269
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -6253,11 +6244,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 657199375cd2c4442b2048faa7eb4e10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dishes:
+  li_dishes:
   - {fileID: 5283846850559011228}
   - {fileID: 7013351505931480339}
   - {fileID: 6113519202156502460}
-  splashSFX: {fileID: 0}
+  ac_splash: {fileID: 8300000, guid: cd101dd4538f4a94ba1d16fba3094820, type: 3}
 --- !u!65 &834723454
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8457,7 +8448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c5c798924cbbd74f93b7182d2a6fde3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
+  bl_pickupable: 0
   int_splats: 4
   bl_gameActive: 0
   l_floorSplat:
@@ -8512,7 +8503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db844cc0590d8364899cfb70e23a3a90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dishes: []
+  li_dishes: []
 --- !u!135 &1132496038
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -10897,7 +10888,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e2be5cc03fc9cd42a3dabe45d884e1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cobwebs: 4
+  int_cobwebs: 0
 --- !u!4 &1523150393
 Transform:
   m_ObjectHideFlags: 0
@@ -13247,16 +13238,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e496c40655db7642abd0d740c1011f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dishes:
+  li_dishes:
   - {fileID: 5283846850559011228}
   - {fileID: 7596015702639567628}
   - {fileID: 6712249534319718687}
   - {fileID: 6964190538614074275}
-  - {fileID: 7013351505931480339}
   - {fileID: 7579339928828112538}
+  - {fileID: 7013351505931480339}
+  - {fileID: 6113519202156502460}
   - {fileID: 8767093605126581191}
   - {fileID: 4344638726342877293}
-  - {fileID: 6113519202156502460}
 --- !u!65 &1720186310
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19986,16 +19977,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!114 &2357001627219020694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20040,7 +20031,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &2357001627219020697
 AudioSource:
   m_ObjectHideFlags: 0
@@ -20907,16 +20898,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!114 &2736425819500972058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20961,7 +20952,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &2736425819500972061
 AudioSource:
   m_ObjectHideFlags: 0
@@ -21866,16 +21857,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 1
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 1
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 10.33, y: 149.83, z: -53.82}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 1
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 1
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!54 &3139216088588928510
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -21969,7 +21960,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &3139216088588928515
 AudioSource:
   m_ObjectHideFlags: 0
@@ -24316,12 +24307,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b78cd69988076a44bb84e7b4cfeefb1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  on: 1
-  lights:
-  - {fileID: 1565862961}
+  bl_pickupable: 0
+  bl_on: 0
+  li_go_lights: []
   lightCollider: {fileID: 859116603}
-  rotated: 1
+  bl_rotated: 0
 --- !u!64 &4251636101794257707
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -24609,23 +24599,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c10fd92f79dd6a24db2e9aa9abc81ec0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 1
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 1
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
   inCupboard: 0
   inTrash: 0
-  broken: 0
+  bl_broken: 0
   brokenMesh: {fileID: 5788883922075242954, guid: 6d5b99b3174eb364992574db88070630, type: 3}
-  dirtyDish: 0
-  dirtyMat: {fileID: 2100000, guid: 65ae29c85e80c1846ac3e0b9b18b0833, type: 2}
-  breakingSFX: {fileID: 8300000, guid: 746957d4bb371a0468e4f3fd29479355, type: 3}
+  bl_dirtyDish: 0
+  mat_dirtyDish: {fileID: 0}
+  ac_break: {fileID: 8300000, guid: b9764528c2ee23f428280cf654cf6915, type: 3}
 --- !u!64 &4344638726342877294
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -24815,7 +24805,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &4344638726342877300
 AudioSource:
   m_ObjectHideFlags: 0
@@ -24970,16 +24960,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!64 &4382545896303923663
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -25073,7 +25063,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &4382545896303923668
 AudioSource:
   m_ObjectHideFlags: 0
@@ -25275,16 +25265,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 1
-  frontDoorKey: 0
-  hideable: 1
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 1
+  bl_frontDoorKey: 0
+  bl_hideable: 1
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!54 &4444900548904068656
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -25378,7 +25368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &4444900548904068661
 AudioSource:
   m_ObjectHideFlags: 0
@@ -25917,16 +25907,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!114 &4613578895516640661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25971,7 +25961,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &4613578895516640664
 AudioSource:
   m_ObjectHideFlags: 0
@@ -27047,16 +27037,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!54 &5102124640680157305
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -27150,7 +27140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &5102124640680157310
 AudioSource:
   m_ObjectHideFlags: 0
@@ -27417,12 +27407,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b78cd69988076a44bb84e7b4cfeefb1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  on: 1
-  lights:
-  - {fileID: 303322601}
+  bl_pickupable: 0
+  bl_on: 0
+  li_go_lights: []
   lightCollider: {fileID: 554759808}
-  rotated: 1
+  bl_rotated: 0
 --- !u!64 &5230498570265030098
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -27567,23 +27556,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c10fd92f79dd6a24db2e9aa9abc81ec0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 1
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 1
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
   inCupboard: 0
   inTrash: 0
-  broken: 0
+  bl_broken: 0
   brokenMesh: {fileID: 5788883922075242954, guid: 6d5b99b3174eb364992574db88070630, type: 3}
-  dirtyDish: 1
-  dirtyMat: {fileID: 2100000, guid: 65ae29c85e80c1846ac3e0b9b18b0833, type: 2}
-  breakingSFX: {fileID: 8300000, guid: 746957d4bb371a0468e4f3fd29479355, type: 3}
+  bl_dirtyDish: 1
+  mat_dirtyDish: {fileID: 2100000, guid: 65ae29c85e80c1846ac3e0b9b18b0833, type: 2}
+  ac_break: {fileID: 8300000, guid: b9764528c2ee23f428280cf654cf6915, type: 3}
 --- !u!54 &5283846850559011229
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -27929,23 +27918,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c10fd92f79dd6a24db2e9aa9abc81ec0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 1
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
   inCupboard: 0
   inTrash: 0
-  broken: 0
+  bl_broken: 0
   brokenMesh: {fileID: 5788883922075242954, guid: 6d5b99b3174eb364992574db88070630, type: 3}
-  dirtyDish: 0
-  dirtyMat: {fileID: 2100000, guid: 65ae29c85e80c1846ac3e0b9b18b0833, type: 2}
-  breakingSFX: {fileID: 8300000, guid: cca4e0b1bca658d4f9809edb514767bb, type: 3}
+  bl_dirtyDish: 0
+  mat_dirtyDish: {fileID: 0}
+  ac_break: {fileID: 8300000, guid: cca4e0b1bca658d4f9809edb514767bb, type: 3}
 --- !u!54 &5365863321921217098
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -28753,16 +28742,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!114 &5616781275367417386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28807,7 +28796,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &5616781275367417389
 AudioSource:
   m_ObjectHideFlags: 0
@@ -29164,16 +29153,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!64 &5711761618475945901
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -29267,7 +29256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &5711761618475945906
 AudioSource:
   m_ObjectHideFlags: 0
@@ -29671,7 +29660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &5801046731518843383
 AudioSource:
   m_ObjectHideFlags: 0
@@ -30893,16 +30882,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!114 &6081771099813192265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30947,7 +30936,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &6081771099813192268
 AudioSource:
   m_ObjectHideFlags: 0
@@ -31099,23 +31088,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c10fd92f79dd6a24db2e9aa9abc81ec0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 1
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 1
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
   inCupboard: 0
   inTrash: 0
-  broken: 0
+  bl_broken: 0
   brokenMesh: {fileID: 5788883922075242954, guid: 6d5b99b3174eb364992574db88070630, type: 3}
-  dirtyDish: 1
-  dirtyMat: {fileID: 2100000, guid: 65ae29c85e80c1846ac3e0b9b18b0833, type: 2}
-  breakingSFX: {fileID: 8300000, guid: b9764528c2ee23f428280cf654cf6915, type: 3}
+  bl_dirtyDish: 1
+  mat_dirtyDish: {fileID: 2100000, guid: 65ae29c85e80c1846ac3e0b9b18b0833, type: 2}
+  ac_break: {fileID: 8300000, guid: 492e6b63774e6bb4197fe399130ee5f6, type: 3}
 --- !u!64 &6113519202156502461
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -31305,7 +31294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &6113519202156502467
 AudioSource:
   m_ObjectHideFlags: 0
@@ -36925,16 +36914,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!114 &6443901130877091685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36979,7 +36968,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &6443901130877091688
 AudioSource:
   m_ObjectHideFlags: 0
@@ -37304,16 +37293,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!64 &6503186836186776930
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -37407,7 +37396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &6503186836186776935
 AudioSource:
   m_ObjectHideFlags: 0
@@ -37559,16 +37548,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!64 &6507751780609056550
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -37662,7 +37651,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &6507751780609056555
 AudioSource:
   m_ObjectHideFlags: 0
@@ -37826,16 +37815,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!54 &6515147267666425465
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -37929,7 +37918,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &6515147267666425470
 AudioSource:
   m_ObjectHideFlags: 0
@@ -38083,16 +38072,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 1
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 1
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!54 &6532655701150821418
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -38186,7 +38175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &6532655701150821423
 AudioSource:
   m_ObjectHideFlags: 0
@@ -38303,16 +38292,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!64 &6540563546250550338
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -38406,7 +38395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &6540563546250550343
 AudioSource:
   m_ObjectHideFlags: 0
@@ -38579,16 +38568,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 1
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 1
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 1
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 1
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!114 &6560032357001031045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38633,7 +38622,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &6560032357001031048
 AudioSource:
   m_ObjectHideFlags: 0
@@ -38853,16 +38842,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!114 &6575652414757461793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38907,7 +38896,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &6575652414757461796
 AudioSource:
   m_ObjectHideFlags: 0
@@ -39031,16 +39020,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!64 &6581398320141336022
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -39134,7 +39123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &6581398320141336027
 AudioSource:
   m_ObjectHideFlags: 0
@@ -39404,16 +39393,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!54 &6661356248601244089
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -39507,7 +39496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &6661356248601244094
 AudioSource:
   m_ObjectHideFlags: 0
@@ -39624,23 +39613,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c10fd92f79dd6a24db2e9aa9abc81ec0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 1
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
   inCupboard: 0
   inTrash: 0
-  broken: 0
+  bl_broken: 0
   brokenMesh: {fileID: 5788883922075242954, guid: 6d5b99b3174eb364992574db88070630, type: 3}
-  dirtyDish: 0
-  dirtyMat: {fileID: 2100000, guid: 65ae29c85e80c1846ac3e0b9b18b0833, type: 2}
-  breakingSFX: {fileID: 8300000, guid: 492e6b63774e6bb4197fe399130ee5f6, type: 3}
+  bl_dirtyDish: 0
+  mat_dirtyDish: {fileID: 0}
+  ac_break: {fileID: 8300000, guid: 492e6b63774e6bb4197fe399130ee5f6, type: 3}
 --- !u!54 &6668441635720947444
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -39945,16 +39934,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!64 &6689358829401984764
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -40048,7 +40037,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &6689358829401984769
 AudioSource:
   m_ObjectHideFlags: 0
@@ -40263,23 +40252,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c10fd92f79dd6a24db2e9aa9abc81ec0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 1
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 1
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
   inCupboard: 0
   inTrash: 0
-  broken: 0
+  bl_broken: 0
   brokenMesh: {fileID: 5788883922075242954, guid: 6d5b99b3174eb364992574db88070630, type: 3}
-  dirtyDish: 0
-  dirtyMat: {fileID: 2100000, guid: 65ae29c85e80c1846ac3e0b9b18b0833, type: 2}
-  breakingSFX: {fileID: 8300000, guid: cca4e0b1bca658d4f9809edb514767bb, type: 3}
+  bl_dirtyDish: 0
+  mat_dirtyDish: {fileID: 0}
+  ac_break: {fileID: 8300000, guid: 746957d4bb371a0468e4f3fd29479355, type: 3}
 --- !u!54 &6712249534319718688
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -40547,16 +40536,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!54 &6728694503867800428
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -40650,7 +40639,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &6728694503867800433
 AudioSource:
   m_ObjectHideFlags: 0
@@ -40780,13 +40769,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b78cd69988076a44bb84e7b4cfeefb1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  on: 1
-  lights:
-  - {fileID: 2074316169}
-  - {fileID: 826149703}
+  bl_pickupable: 0
+  bl_on: 0
+  li_go_lights: []
   lightCollider: {fileID: 1596419056}
-  rotated: 0
+  bl_rotated: 0
 --- !u!64 &6735311754308455077
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -40925,16 +40912,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!64 &6774935560256774720
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -41028,7 +41015,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &6774935560256774725
 AudioSource:
   m_ObjectHideFlags: 0
@@ -41158,12 +41145,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b78cd69988076a44bb84e7b4cfeefb1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  on: 1
-  lights:
-  - {fileID: 1756613440}
+  bl_pickupable: 0
+  bl_on: 0
+  li_go_lights: []
   lightCollider: {fileID: 77077814}
-  rotated: 1
+  bl_rotated: 0
 --- !u!64 &6810701836458270824
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -41339,16 +41325,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!64 &6891950083171621477
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -41442,7 +41428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &6891950083171621482
 AudioSource:
   m_ObjectHideFlags: 0
@@ -41633,7 +41619,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &6894072336278116475
 AudioSource:
   m_ObjectHideFlags: 0
@@ -41742,16 +41728,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb40c25d1c860594086bcfcf705013ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 1
-  hideable: 1
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 1
+  bl_hideable: 1
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!33 &6894366379968187624
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -41832,23 +41818,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c10fd92f79dd6a24db2e9aa9abc81ec0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 1
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
   inCupboard: 0
   inTrash: 0
-  broken: 0
+  bl_broken: 0
   brokenMesh: {fileID: 5788883922075242954, guid: 6d5b99b3174eb364992574db88070630, type: 3}
-  dirtyDish: 0
-  dirtyMat: {fileID: 2100000, guid: 65ae29c85e80c1846ac3e0b9b18b0833, type: 2}
-  breakingSFX: {fileID: 8300000, guid: 746957d4bb371a0468e4f3fd29479355, type: 3}
+  bl_dirtyDish: 0
+  mat_dirtyDish: {fileID: 0}
+  ac_break: {fileID: 8300000, guid: 746957d4bb371a0468e4f3fd29479355, type: 3}
 --- !u!54 &6938243570481243374
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -42160,23 +42146,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c10fd92f79dd6a24db2e9aa9abc81ec0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 1
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
   inCupboard: 0
   inTrash: 0
-  broken: 0
+  bl_broken: 0
   brokenMesh: {fileID: 5788883922075242954, guid: 6d5b99b3174eb364992574db88070630, type: 3}
-  dirtyDish: 0
-  dirtyMat: {fileID: 2100000, guid: 65ae29c85e80c1846ac3e0b9b18b0833, type: 2}
-  breakingSFX: {fileID: 8300000, guid: 746957d4bb371a0468e4f3fd29479355, type: 3}
+  bl_dirtyDish: 0
+  mat_dirtyDish: {fileID: 0}
+  ac_break: {fileID: 8300000, guid: 1641d61f43120c24b855c6229ff63d11, type: 3}
 --- !u!64 &6955985664563827737
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -42366,7 +42352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &6955985664563827743
 AudioSource:
   m_ObjectHideFlags: 0
@@ -42526,23 +42512,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c10fd92f79dd6a24db2e9aa9abc81ec0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 1
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 1
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
   inCupboard: 0
   inTrash: 0
-  broken: 0
+  bl_broken: 0
   brokenMesh: {fileID: 5788883922075242954, guid: 6d5b99b3174eb364992574db88070630, type: 3}
-  dirtyDish: 0
-  dirtyMat: {fileID: 2100000, guid: 65ae29c85e80c1846ac3e0b9b18b0833, type: 2}
-  breakingSFX: {fileID: 8300000, guid: 492e6b63774e6bb4197fe399130ee5f6, type: 3}
+  bl_dirtyDish: 0
+  mat_dirtyDish: {fileID: 0}
+  ac_break: {fileID: 8300000, guid: 1641d61f43120c24b855c6229ff63d11, type: 3}
 --- !u!64 &6964190538614074276
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -42763,23 +42749,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c10fd92f79dd6a24db2e9aa9abc81ec0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 1
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 1
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
   inCupboard: 0
   inTrash: 0
-  broken: 0
+  bl_broken: 0
   brokenMesh: {fileID: 5788883922075242954, guid: 6d5b99b3174eb364992574db88070630, type: 3}
-  dirtyDish: 1
-  dirtyMat: {fileID: 2100000, guid: 65ae29c85e80c1846ac3e0b9b18b0833, type: 2}
-  breakingSFX: {fileID: 8300000, guid: cca4e0b1bca658d4f9809edb514767bb, type: 3}
+  bl_dirtyDish: 1
+  mat_dirtyDish: {fileID: 2100000, guid: 65ae29c85e80c1846ac3e0b9b18b0833, type: 2}
+  ac_break: {fileID: 8300000, guid: cca4e0b1bca658d4f9809edb514767bb, type: 3}
 --- !u!64 &7013351505931480340
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -43127,7 +43113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &7039837950841230245
 AudioSource:
   m_ObjectHideFlags: 0
@@ -43278,7 +43264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e856683089efd5d4fbd73dc40530e392, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
+  bl_pickupable: 0
   int_splats: 4
   bl_gameActive: 0
   l_mirrorSplat:
@@ -43340,16 +43326,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!64 &7060786691122167640
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -43443,7 +43429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &7060786691122167645
 AudioSource:
   m_ObjectHideFlags: 0
@@ -43593,23 +43579,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c10fd92f79dd6a24db2e9aa9abc81ec0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 1
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
   inCupboard: 0
   inTrash: 0
-  broken: 0
+  bl_broken: 0
   brokenMesh: {fileID: 5788883922075242954, guid: 6d5b99b3174eb364992574db88070630, type: 3}
-  dirtyDish: 0
-  dirtyMat: {fileID: 2100000, guid: 65ae29c85e80c1846ac3e0b9b18b0833, type: 2}
-  breakingSFX: {fileID: 8300000, guid: b9764528c2ee23f428280cf654cf6915, type: 3}
+  bl_dirtyDish: 0
+  mat_dirtyDish: {fileID: 0}
+  ac_break: {fileID: 8300000, guid: 746957d4bb371a0468e4f3fd29479355, type: 3}
 --- !u!64 &7085311664727363645
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -43799,7 +43785,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &7085311664727363651
 AudioSource:
   m_ObjectHideFlags: 0
@@ -43923,16 +43909,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!54 &7097463873278676928
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -44026,7 +44012,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &7097463873278676933
 AudioSource:
   m_ObjectHideFlags: 0
@@ -44322,23 +44308,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c10fd92f79dd6a24db2e9aa9abc81ec0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 1
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
   inCupboard: 0
   inTrash: 0
-  broken: 1
+  bl_broken: 0
   brokenMesh: {fileID: 5788883922075242954, guid: 6d5b99b3174eb364992574db88070630, type: 3}
-  dirtyDish: 0
-  dirtyMat: {fileID: 2100000, guid: 65ae29c85e80c1846ac3e0b9b18b0833, type: 2}
-  breakingSFX: {fileID: 8300000, guid: b9764528c2ee23f428280cf654cf6915, type: 3}
+  bl_dirtyDish: 0
+  mat_dirtyDish: {fileID: 0}
+  ac_break: {fileID: 8300000, guid: 1641d61f43120c24b855c6229ff63d11, type: 3}
 --- !u!54 &7134463363133609586
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -44593,16 +44579,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!114 &7145014643749570135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44647,7 +44633,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &7145014643749570138
 AudioSource:
   m_ObjectHideFlags: 0
@@ -44937,16 +44923,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!54 &7291029850810527601
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -45040,7 +45026,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &7291029850810527606
 AudioSource:
   m_ObjectHideFlags: 0
@@ -45216,16 +45202,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!54 &7357584303222935209
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -45319,7 +45305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &7357584303222935214
 AudioSource:
   m_ObjectHideFlags: 0
@@ -45584,16 +45570,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!64 &7437255200435903542
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -45687,7 +45673,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &7437255200435903547
 AudioSource:
   m_ObjectHideFlags: 0
@@ -46002,16 +45988,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!114 &7469964428639200121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46056,7 +46042,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &7469964428639200124
 AudioSource:
   m_ObjectHideFlags: 0
@@ -46190,16 +46176,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!54 &7482306818355983646
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -46293,7 +46279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &7482306818355983651
 AudioSource:
   m_ObjectHideFlags: 0
@@ -46653,12 +46639,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b78cd69988076a44bb84e7b4cfeefb1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  on: 1
-  lights:
-  - {fileID: 1066042750}
+  bl_pickupable: 0
+  bl_on: 0
+  li_go_lights: []
   lightCollider: {fileID: 1689281160}
-  rotated: 0
+  bl_rotated: 0
 --- !u!64 &7539419130844866597
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -46819,23 +46804,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c10fd92f79dd6a24db2e9aa9abc81ec0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 1
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 1
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
   inCupboard: 0
   inTrash: 0
-  broken: 0
+  bl_broken: 0
   brokenMesh: {fileID: 5788883922075242954, guid: 6d5b99b3174eb364992574db88070630, type: 3}
-  dirtyDish: 0
-  dirtyMat: {fileID: 2100000, guid: 65ae29c85e80c1846ac3e0b9b18b0833, type: 2}
-  breakingSFX: {fileID: 8300000, guid: 1641d61f43120c24b855c6229ff63d11, type: 3}
+  bl_dirtyDish: 0
+  mat_dirtyDish: {fileID: 0}
+  ac_break: {fileID: 8300000, guid: 492e6b63774e6bb4197fe399130ee5f6, type: 3}
 --- !u!64 &7579339928828112539
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -47023,16 +47008,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!64 &7583343870733761402
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -47126,7 +47111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &7583343870733761407
 AudioSource:
   m_ObjectHideFlags: 0
@@ -47293,16 +47278,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!64 &7594901470554137785
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -47396,7 +47381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &7594901470554137790
 AudioSource:
   m_ObjectHideFlags: 0
@@ -47513,23 +47498,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c10fd92f79dd6a24db2e9aa9abc81ec0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 1
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 1
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
   inCupboard: 0
   inTrash: 0
-  broken: 0
+  bl_broken: 0
   brokenMesh: {fileID: 5788883922075242954, guid: 6d5b99b3174eb364992574db88070630, type: 3}
-  dirtyDish: 0
-  dirtyMat: {fileID: 2100000, guid: 65ae29c85e80c1846ac3e0b9b18b0833, type: 2}
-  breakingSFX: {fileID: 8300000, guid: 1641d61f43120c24b855c6229ff63d11, type: 3}
+  bl_dirtyDish: 0
+  mat_dirtyDish: {fileID: 0}
+  ac_break: {fileID: 8300000, guid: cca4e0b1bca658d4f9809edb514767bb, type: 3}
 --- !u!54 &7596015702639567629
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -48033,12 +48018,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b78cd69988076a44bb84e7b4cfeefb1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  on: 1
-  lights:
-  - {fileID: 43187688}
+  bl_pickupable: 0
+  bl_on: 0
+  li_go_lights: []
   lightCollider: {fileID: 899343939}
-  rotated: 0
+  bl_rotated: 0
 --- !u!64 &7662340737766661561
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -48226,16 +48210,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 1
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 1
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!114 &7705285387060527951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48280,7 +48264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &7705285387060527954
 AudioSource:
   m_ObjectHideFlags: 0
@@ -48446,16 +48430,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!54 &7711012634471349101
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -48549,7 +48533,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &7711012634471349106
 AudioSource:
   m_ObjectHideFlags: 0
@@ -48673,12 +48657,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b78cd69988076a44bb84e7b4cfeefb1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  on: 1
-  lights:
-  - {fileID: 1448665710}
+  bl_pickupable: 0
+  bl_on: 0
+  li_go_lights: []
   lightCollider: {fileID: 1535463518}
-  rotated: 1
+  bl_rotated: 0
 --- !u!64 &7740863958186284146
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -49106,16 +49089,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!64 &7918798635887061861
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -49209,7 +49192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &7918798635887061866
 AudioSource:
   m_ObjectHideFlags: 0
@@ -49452,16 +49435,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!64 &8034961529087632713
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -49550,12 +49533,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8034961529087632711}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &8034961529087632718
 AudioSource:
   m_ObjectHideFlags: 0
@@ -49563,7 +49546,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8034961529087632711}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
@@ -49690,23 +49673,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c10fd92f79dd6a24db2e9aa9abc81ec0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 1
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
   inCupboard: 0
   inTrash: 0
-  broken: 0
+  bl_broken: 0
   brokenMesh: {fileID: 5788883922075242954, guid: 6d5b99b3174eb364992574db88070630, type: 3}
-  dirtyDish: 0
-  dirtyMat: {fileID: 2100000, guid: 65ae29c85e80c1846ac3e0b9b18b0833, type: 2}
-  breakingSFX: {fileID: 8300000, guid: 1641d61f43120c24b855c6229ff63d11, type: 3}
+  bl_dirtyDish: 0
+  mat_dirtyDish: {fileID: 0}
+  ac_break: {fileID: 8300000, guid: 492e6b63774e6bb4197fe399130ee5f6, type: 3}
 --- !u!64 &8045949707836064055
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -49896,7 +49879,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &8045949707836064061
 AudioSource:
   m_ObjectHideFlags: 0
@@ -50156,16 +50139,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!114 &8105307658029426616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50210,7 +50193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &8105307658029426619
 AudioSource:
   m_ObjectHideFlags: 0
@@ -50372,16 +50355,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!54 &8136661845815263183
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -50475,7 +50458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &8136661845815263188
 AudioSource:
   m_ObjectHideFlags: 0
@@ -50658,16 +50641,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 1
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 1
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!114 &8146238831982495676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50712,7 +50695,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &8146238831982495679
 AudioSource:
   m_ObjectHideFlags: 0
@@ -50878,16 +50861,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!114 &8146633369057963331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50932,7 +50915,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &8146633369057963334
 AudioSource:
   m_ObjectHideFlags: 0
@@ -51082,16 +51065,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!64 &8170773749057990242
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -51185,7 +51168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &8170773749057990247
 AudioSource:
   m_ObjectHideFlags: 0
@@ -51319,16 +51302,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!64 &8171207701137329024
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -51422,7 +51405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &8171207701137329029
 AudioSource:
   m_ObjectHideFlags: 0
@@ -51556,16 +51539,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!64 &8183399460803121550
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -51659,7 +51642,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &8183399460803121555
 AudioSource:
   m_ObjectHideFlags: 0
@@ -52189,16 +52172,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!54 &8278828088963569916
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -52292,7 +52275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &8278828088963569921
 AudioSource:
   m_ObjectHideFlags: 0
@@ -52456,16 +52439,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!54 &8283442749712714225
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -52559,7 +52542,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &8283442749712714230
 AudioSource:
   m_ObjectHideFlags: 0
@@ -52758,13 +52741,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b78cd69988076a44bb84e7b4cfeefb1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  on: 1
-  lights:
-  - {fileID: 122592610}
-  - {fileID: 701429815}
+  bl_pickupable: 0
+  bl_on: 0
+  li_go_lights: []
   lightCollider: {fileID: 1268536422}
-  rotated: 1
+  bl_rotated: 0
 --- !u!64 &8292146444027152621
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -52842,16 +52823,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!54 &8303617308885625669
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -52945,7 +52926,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &8303617308885625674
 AudioSource:
   m_ObjectHideFlags: 0
@@ -53358,23 +53339,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c10fd92f79dd6a24db2e9aa9abc81ec0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 1
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
   inCupboard: 0
   inTrash: 0
-  broken: 0
+  bl_broken: 0
   brokenMesh: {fileID: 5788883922075242954, guid: 6d5b99b3174eb364992574db88070630, type: 3}
-  dirtyDish: 0
-  dirtyMat: {fileID: 2100000, guid: 65ae29c85e80c1846ac3e0b9b18b0833, type: 2}
-  breakingSFX: {fileID: 8300000, guid: 492e6b63774e6bb4197fe399130ee5f6, type: 3}
+  bl_dirtyDish: 0
+  mat_dirtyDish: {fileID: 0}
+  ac_break: {fileID: 8300000, guid: b9764528c2ee23f428280cf654cf6915, type: 3}
 --- !u!64 &8390897916404096527
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -53564,7 +53545,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &8390897916404096533
 AudioSource:
   m_ObjectHideFlags: 0
@@ -53715,16 +53696,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!54 &8448902808481529546
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -53818,7 +53799,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &8448902808481529551
 AudioSource:
   m_ObjectHideFlags: 0
@@ -54039,16 +54020,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!54 &8454370578864870615
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -54142,7 +54123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &8454370578864870620
 AudioSource:
   m_ObjectHideFlags: 0
@@ -54330,16 +54311,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!54 &8473463767920264835
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -54433,7 +54414,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &8473463767920264840
 AudioSource:
   m_ObjectHideFlags: 0
@@ -54599,16 +54580,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!114 &8480774765943942766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54653,7 +54634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &8480774765943942769
 AudioSource:
   m_ObjectHideFlags: 0
@@ -55299,16 +55280,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!64 &8667488947504932624
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -55402,7 +55383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &8667488947504932629
 AudioSource:
   m_ObjectHideFlags: 0
@@ -55565,23 +55546,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c10fd92f79dd6a24db2e9aa9abc81ec0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 1
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
   inCupboard: 0
   inTrash: 0
-  broken: 0
+  bl_broken: 0
   brokenMesh: {fileID: 5788883922075242954, guid: 6d5b99b3174eb364992574db88070630, type: 3}
-  dirtyDish: 0
-  dirtyMat: {fileID: 2100000, guid: 65ae29c85e80c1846ac3e0b9b18b0833, type: 2}
-  breakingSFX: {fileID: 8300000, guid: b9764528c2ee23f428280cf654cf6915, type: 3}
+  bl_dirtyDish: 0
+  mat_dirtyDish: {fileID: 0}
+  ac_break: {fileID: 8300000, guid: b9764528c2ee23f428280cf654cf6915, type: 3}
 --- !u!54 &8685920289249569260
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -55858,23 +55839,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c10fd92f79dd6a24db2e9aa9abc81ec0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 1
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 1
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
   inCupboard: 0
   inTrash: 0
-  broken: 0
+  bl_broken: 0
   brokenMesh: {fileID: 5788883922075242954, guid: 6d5b99b3174eb364992574db88070630, type: 3}
-  dirtyDish: 0
-  dirtyMat: {fileID: 2100000, guid: 65ae29c85e80c1846ac3e0b9b18b0833, type: 2}
-  breakingSFX: {fileID: 8300000, guid: cca4e0b1bca658d4f9809edb514767bb, type: 3}
+  bl_dirtyDish: 0
+  mat_dirtyDish: {fileID: 0}
+  ac_break: {fileID: 8300000, guid: 746957d4bb371a0468e4f3fd29479355, type: 3}
 --- !u!64 &8767093605126581192
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -56064,7 +56045,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &8767093605126581198
 AudioSource:
   m_ObjectHideFlags: 0
@@ -56196,16 +56177,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!54 &8768949443047826502
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -56299,7 +56280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &8768949443047826507
 AudioSource:
   m_ObjectHideFlags: 0
@@ -56515,16 +56496,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!64 &8781019236162295976
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -56618,7 +56599,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &8781019236162295981
 AudioSource:
   m_ObjectHideFlags: 0
@@ -57041,7 +57022,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &8829929997462148810
 AudioSource:
   m_ObjectHideFlags: 0
@@ -57158,16 +57139,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!64 &8845062411295088373
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -57261,7 +57242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &8845062411295088378
 AudioSource:
   m_ObjectHideFlags: 0
@@ -57413,16 +57394,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!64 &8870171093381285821
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -57516,7 +57497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &8870171093381285826
 AudioSource:
   m_ObjectHideFlags: 0
@@ -57751,16 +57732,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!64 &8901649465715623670
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -57854,7 +57835,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &8901649465715623675
 AudioSource:
   m_ObjectHideFlags: 0
@@ -57978,16 +57959,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 1
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 1
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!54 &8909926421397640206
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -58081,7 +58062,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &8909926421397640211
 AudioSource:
   m_ObjectHideFlags: 0
@@ -58387,8 +58368,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad16d2f1de119404ba6911491fa92563, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  unlockSFX: {fileID: 8300000, guid: b1e6620a35848464f8303b52841c57a9, type: 3}
+  bl_pickupable: 0
+  ac_unlock: {fileID: 0}
 --- !u!64 &8961999899745598199
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -58941,16 +58922,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 1
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 230, z: 180}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!64 &9075163442985052796
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -59044,7 +59025,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &9075163442985052801
 AudioSource:
   m_ObjectHideFlags: 0
@@ -59238,16 +59219,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!54 &9114401218930310206
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -59341,7 +59322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &9114401218930310211
 AudioSource:
   m_ObjectHideFlags: 0
@@ -59492,16 +59473,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!54 &9141963681170911947
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -59595,7 +59576,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &9141963681170911952
 AudioSource:
   m_ObjectHideFlags: 0
@@ -59747,16 +59728,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!64 &9142469278829475619
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -59850,7 +59831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &9142469278829475624
 AudioSource:
   m_ObjectHideFlags: 0
@@ -60084,13 +60065,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b78cd69988076a44bb84e7b4cfeefb1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  on: 1
-  lights:
-  - {fileID: 1700614954}
-  - {fileID: 704186950}
+  bl_pickupable: 0
+  bl_on: 0
+  li_go_lights: []
   lightCollider: {fileID: 56422782}
-  rotated: 1
+  bl_rotated: 0
 --- !u!64 &9168107021994542607
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -60325,16 +60304,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 0
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  l_canDamagePlayer: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!114 &9186140860053916519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60379,7 +60358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideSFX: {fileID: 8300000, guid: dce8aad39b0d0e34792515bebd14928a, type: 3}
+  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
 --- !u!82 &9186140860053916522
 AudioSource:
   m_ObjectHideFlags: 0
@@ -60695,9 +60674,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d58859cfb84adab4194d1106a21a5d67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  fireFX: {fileID: 6360420541525609926}
-  fireplaceSFX: {fileID: 8300000, guid: 345ca034a9bcaea408d46d3f28c22c05, type: 3}
+  bl_pickupable: 0
+  go_fireFX: {fileID: 0}
+  cl_fireplace: {fileID: 0}
   go_ember: {fileID: 6120562748104921027, guid: 8f0c373dff2279c4b91659efca38a944, type: 3}
   l_tr_emberSpawnPoints:
   - {fileID: 980621025}

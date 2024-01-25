@@ -80,10 +80,7 @@ public class PlayerController : MonoBehaviour
             go_heldObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
             go_heldObject.transform.rotation = transform.rotation;
 
-            go_heldObject.transform.Rotate(go_heldObject.GetComponent<Pickupable>().heldRotationMod);
-
-            //testing method of preventing pickupables from getting stuck in furniture on pickup
-            if (!go_heldObject.GetComponent<Collider>().enabled) go_heldObject.GetComponent<Collider>().enabled = true;
+            go_heldObject.transform.Rotate(go_heldObject.GetComponent<Pickupable>().v3_heldRotationMod);
         }
         else if(go_heldObject != null && en_state == State.inactive)
         {
@@ -97,7 +94,7 @@ public class PlayerController : MonoBehaviour
             go_heldObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
             go_heldObject.transform.rotation = transform.rotation;
 
-            go_heldObject.transform.Rotate(go_heldObject.GetComponent<Pickupable>().heldRotationMod);
+            go_heldObject.transform.Rotate(go_heldObject.GetComponent<Pickupable>().v3_heldRotationMod);
         }
 
         if (en_state == State.active)
@@ -233,9 +230,6 @@ public class PlayerController : MonoBehaviour
             {
                 go_heldObject = go_lookingAtObject;
                 Physics.IgnoreCollision(go_heldObject.GetComponent<Collider>(), GetComponent<Collider>());
-                
-                // testing method of preventing pickupables from getting stuck in furniture. Collider is re-enabled in FixedUpdate, once the object reaches the player's 'hand'
-                go_heldObject.GetComponent<Collider>().enabled = false;
 
                 go_heldObject.GetComponent<Rigidbody>().useGravity = false;
                 go_heldObject.GetComponent<Outline>().enabled = false;

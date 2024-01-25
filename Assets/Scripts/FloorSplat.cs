@@ -30,7 +30,7 @@ public class FloorSplat : MonoBehaviour
         if (bl_cleaned || !floorMess.bl_gameActive) return;
         int_dirtLevel--;
         ren.material.color = new Color(ren.material.color.r, ren.material.color.g, ren.material.color.g, ren.material.color.a - .2f);
-        as_clean.PlayOneShot(ac_clean);
+        GameManager.soundManager.PlayClip(ac_clean, as_clean);
         if (int_dirtLevel == 0)
         {
             bl_cleaned = true;

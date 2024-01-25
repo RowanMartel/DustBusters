@@ -23,7 +23,7 @@ public class HealthSystem : MonoBehaviour
         Pickupable pu_pickupable = collision.gameObject.GetComponent<Pickupable>();
         if (pu_pickupable == null) return;
 
-        if (pu_pickupable.canDamagePlayer)
+        if (pu_pickupable.l_canDamagePlayer)
         {
             int_playerHealth--;
             if (int_playerHealth <= 0)
