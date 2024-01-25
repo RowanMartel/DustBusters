@@ -201,6 +201,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void LookAt(Vector3 position)
+    {
+        go_cameraContainer.transform.LookAt(position);
+    }
+
     void DoPlayerReach()
     {
         if (go_heldPosition.transform.localPosition.z >= 1.0f && go_heldPosition.transform.localPosition.z <= 2.0f)
@@ -278,7 +283,6 @@ public class PlayerController : MonoBehaviour
             go_lookingAtObject.GetComponent<Interactable>().Interact();
         }
     }
-
     public void Die()
     {
         en_state = State.inactive;
