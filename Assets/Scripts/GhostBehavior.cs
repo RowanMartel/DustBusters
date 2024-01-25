@@ -374,16 +374,25 @@ public class GhostBehavior : MonoBehaviour
         l_tsk_currentTasks.Remove(tsk_task);
         l_pl_currentPoints.Remove(l_pl_currentPoints[int_index]);
 
-        //Debug.Log(int_curIndex + " | " + int_index + " | " + l_tsk_currentTasks.Count);
+        Debug.Log(int_curIndex + " | " + int_index + " | " + l_tsk_currentTasks.Count);
 
-        if (int_curIndex == int_index)
+        /*if (int_curIndex == int_index)
         {
             if (int_curIndex >= l_pl_currentPoints.Count)
             {
                 int_curIndex = 0;
             }
             SwitchToPoint(int_curIndex);
+        }*/
+
+        if(int_index < int_curIndex)
+        {
+            int_curIndex--;
+        }else if(int_curIndex >= l_tsk_currentTasks.Count)
+        {
+            int_curIndex = 0;
         }
+        SwitchToPoint(int_curIndex);
 
         //Set aggression level based on tasks completed
         if(l_tsk_completedTasks.Contains(tsk_task) == false)
