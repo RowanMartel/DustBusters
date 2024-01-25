@@ -12,8 +12,12 @@ public class MenuManager : MonoBehaviour
     public GameObject go_deathScreen;
     public GameObject go_startScreen;
     public GameObject go_endScreen;
-    protected GameObject go_lastScreen;
     public GameObject go_debugScreen;
+    public GameObject go_controlsScreen;
+
+    protected GameObject go_nextScreen;
+    protected GameObject go_lastScreen;
+    protected GameObject go_screenBuffer;
 
     //Singleton
     public static MenuManager instance;
@@ -35,6 +39,8 @@ public class MenuManager : MonoBehaviour
 
     protected GameObject go_OrientationNote;
     protected GameObject go_quitButton;
+
+    protected bool bl_paused = false;
     private void Awake()
     {
         img_damageOverlay = FindObjectOfType<DamageOverlay>(true).GetComponent<Image>();
@@ -64,6 +70,36 @@ public class MenuManager : MonoBehaviour
         }
 
         SwitchScreen(go_titleScreen);
+
+        go_screenBuffer = go_titleScreen;
+    }
+    
+    public void SwitchScreenFancy(GameObject screen)
+    {
+        go_nextScreen = screen;
+
+        if(screen == go_gameScreen) LeanTween.moveLocal(go_lastScreen, new Vector3(2000f, 0f, 0f), 0.75f).setEase(LeanTweenType.easeInSine).setOnComplete(SwitchToGame).setIgnoreTimeScale(true);
+        else LeanTween.moveLocal(go_lastScreen, new Vector3(2000f, 0f, 0f), 0.75f).setEase(LeanTweenType.easeInSine).setOnComplete(SwitchScreenTransition).setIgnoreTimeScale(true);
+        if (go_nextScreen == go_optionsScreen || go_nextScreen == go_controlsScreen) go_screenBuffer = go_lastScreen;
+    }
+
+    public void SwitchScreenTransition()
+    {
+        go_lastScreen.transform.localPosition = new Vector3(-2000f, 0f, 0f);
+
+        if (go_lastScreen == go_optionsScreen || go_lastScreen == go_controlsScreen) LeanTween.moveLocal(go_screenBuffer, new Vector3(0f, 0f, 0f), 0.75f).setEase(LeanTweenType.easeOutSine).setIgnoreTimeScale(true);
+        else LeanTween.moveLocal(go_nextScreen, new Vector3(0f, 0f, 0f), 0.75f).setEase(LeanTweenType.easeOutSine).setIgnoreTimeScale(true);
+
+        go_lastScreen = go_nextScreen;
+
+        Debug.Log(go_nextScreen.name);
+        Debug.Log(go_lastScreen.name);
+        Debug.Log(go_screenBuffer.name);
+    }
+
+    public void SwitchToGame()
+    {
+        go_gameScreen.SetActive(true);
     }
 
     //Switch the currently displayed screen to be the designated screen
@@ -75,19 +111,20 @@ public class MenuManager : MonoBehaviour
             Time.timeScale = 1;
 
         screen.SetActive(true);
-        if(screen != go_optionsScreen) go_lastScreen = screen;
+        if(screen != go_optionsScreen && screen != go_controlsScreen ) go_lastScreen = screen;
     }
 
     //Set all screens to inactive
     private void ClearScreens()
     {
         go_titleScreen.SetActive(false);
-        go_optionsScreen.SetActive(false);
+        // go_optionsScreen.SetActive(false);
         go_gameScreen.SetActive(false);
-        go_pauseScreen.SetActive(false);
+        // go_pauseScreen.SetActive(false);
         go_deathScreen.SetActive(false);
         go_startScreen.SetActive(false);
         go_endScreen.SetActive(false);
+        // go_controlsScreen.SetActive(false);
     }
 
     //Fade effect
@@ -217,7 +254,7 @@ public class MenuManager : MonoBehaviour
 
             case 1:
                 int_quitToMenuSequence++;
-                ClearScreens();
+                go_pauseScreen.transform.localPosition = new Vector3(-2000, 0, 0);
                 SceneManager.LoadScene("TitleScene");
                 LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 0, 1f).setOnComplete(QuitToTitleSequence).setIgnoreTimeScale(true);
                 break;
@@ -233,7 +270,7 @@ public class MenuManager : MonoBehaviour
     //Go to previous screen
     public void BackButton()
     {
-        SwitchScreen(go_lastScreen);
+        SwitchScreenFancy(go_screenBuffer);
     }
 
     //Go to End Scene
@@ -253,39 +290,40 @@ public class MenuManager : MonoBehaviour
     //Go to Gameplay from Pause
     public void Unpause()
     {
-        SwitchScreen(go_gameScreen);
+        SwitchScreenFancy(go_gameScreen);
         GameManager.playerController.TogglePlayerControl();
         if (GameManager.ghost != null)
         {
             GameManager.ghost.bl_frozen = false;
         }
+        bl_paused = false;
     }
 
-    private void Update()
+    public void TogglePause()
     {
         //Toggle Pause
-        if (Input.GetKeyDown(KeyCode.Escape))
+        
+        if (!bl_paused)
         {
-            if (go_gameScreen.activeSelf)
+            ClearScreens();
+            SwitchScreenFancy(go_pauseScreen);
+            GameManager.playerController.TogglePlayerControl();
+            Time.timeScale = 0;
+            if (GameManager.ghost != null)
             {
-                SwitchScreen(go_pauseScreen);
-                GameManager.playerController.TogglePlayerControl();
-                Time.timeScale = 0;
-                if(GameManager.ghost != null)
-                {
-                    GameManager.ghost.bl_frozen = true;
-                }
+                GameManager.ghost.bl_frozen = true;
             }
-            else if (go_pauseScreen.activeSelf)
+            bl_paused = true;
+        }
+        else if (bl_paused)
+        {
+            SwitchScreenFancy(go_gameScreen);
+            GameManager.playerController.TogglePlayerControl();
+            if (GameManager.ghost != null)
             {
-                SwitchScreen(go_gameScreen);
-                GameManager.playerController.TogglePlayerControl();
-                if(GameManager.ghost != null)
-                {
-                    GameManager.ghost.bl_frozen = false;
-                }
-                //Time.timeScale = 1;
+                GameManager.ghost.bl_frozen = false;
             }
+            bl_paused = false;
         }
     }
 
