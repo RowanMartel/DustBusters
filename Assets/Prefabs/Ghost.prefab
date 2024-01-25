@@ -135,7 +135,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9054187573627407241
 Transform:
   m_ObjectHideFlags: 0
@@ -678,6 +678,7 @@ MonoBehaviour:
   int_tasksToStage2: 2
   int_tasksToStage3: 4
   l_tsk_completedTasks: 
+  go_floatTrigger: {fileID: 5513713529297790404}
   bl_frozen: 0
 --- !u!82 &5198980086939035474
 AudioSource:
