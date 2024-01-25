@@ -12,8 +12,12 @@ public class MenuManager : MonoBehaviour
     public GameObject go_deathScreen;
     public GameObject go_startScreen;
     public GameObject go_endScreen;
-    protected GameObject go_lastScreen;
     public GameObject go_debugScreen;
+    public GameObject go_controlsScreen;
+
+    protected GameObject go_nextScreen;
+    protected GameObject go_lastScreen;
+    protected GameObject go_screenBuffer;
 
     //Singleton
     public static MenuManager instance;
@@ -35,6 +39,8 @@ public class MenuManager : MonoBehaviour
 
     protected GameObject go_OrientationNote;
     protected GameObject go_quitButton;
+
+
     private void Awake()
     {
         img_damageOverlay = FindObjectOfType<DamageOverlay>(true).GetComponent<Image>();
@@ -64,6 +70,27 @@ public class MenuManager : MonoBehaviour
         }
 
         SwitchScreen(go_titleScreen);
+
+        go_screenBuffer = go_titleScreen;
+    }
+    
+    public void SwitchScreenFancy(GameObject screen)
+    {
+        go_nextScreen = screen;
+
+        LeanTween.moveLocal(go_lastScreen, new Vector3(2000f, 0f, 0f), 1f).setEase(LeanTweenType.easeInSine).setOnComplete(SwitchScreenTransition).setIgnoreTimeScale(true);
+        if (go_nextScreen == go_optionsScreen || go_nextScreen == go_controlsScreen) go_screenBuffer = go_lastScreen;
+
+        
+    }
+
+    public void SwitchScreenTransition()
+    {
+        go_lastScreen.transform.localPosition = new Vector3(-2000f, 0f, 0f);
+        go_lastScreen = go_nextScreen;
+
+        if (go_lastScreen == go_optionsScreen || go_lastScreen == go_controlsScreen) LeanTween.moveLocal(go_nextScreen, new Vector3(0f, 0f, 0f), 1f).setEase(LeanTweenType.easeOutSine).setIgnoreTimeScale(true);
+        else LeanTween.moveLocal(go_screenBuffer, new Vector3(0f, 0f, 0f), 1f).setEase(LeanTweenType.easeOutSine).setIgnoreTimeScale(true);
     }
 
     //Switch the currently displayed screen to be the designated screen
@@ -75,7 +102,7 @@ public class MenuManager : MonoBehaviour
             Time.timeScale = 1;
 
         screen.SetActive(true);
-        if(screen != go_optionsScreen) go_lastScreen = screen;
+        if(screen != go_optionsScreen && screen != go_controlsScreen ) go_lastScreen = screen;
     }
 
     //Set all screens to inactive
@@ -88,6 +115,7 @@ public class MenuManager : MonoBehaviour
         go_deathScreen.SetActive(false);
         go_startScreen.SetActive(false);
         go_endScreen.SetActive(false);
+        // go_controlsScreen.SetActive(false);
     }
 
     //Fade effect
@@ -233,7 +261,7 @@ public class MenuManager : MonoBehaviour
     //Go to previous screen
     public void BackButton()
     {
-        SwitchScreen(go_lastScreen);
+        SwitchScreenFancy(go_screenBuffer);
     }
 
     //Go to End Scene
