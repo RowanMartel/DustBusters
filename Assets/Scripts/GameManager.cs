@@ -14,18 +14,18 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     private void Awake()
     {
+        taskManager = GetComponent<TaskManager>();
+        soundManager = GetComponent<SoundManager>();
+        menuManager = FindObjectOfType<MenuManager>();
+
         //Singleton
         if (instance == null)
         {
             DontDestroyOnLoad(gameObject);
             instance = this;
+            menuManager.FadeIn();
         }
         else Destroy(gameObject);
-
-        gameManager = this;
-        taskManager = GetComponent<TaskManager>();
-        soundManager = GetComponent<SoundManager>();
-        menuManager = FindObjectOfType<MenuManager>();
 
         SceneManager.activeSceneChanged += OnGameStart;
     }

@@ -31,7 +31,9 @@ public class MenuManager : MonoBehaviour
     public Image Img_damageOverlay { get { return img_damageOverlay; } set { img_damageOverlay = value; } }
 
     protected int int_enterSequence = 0;
+    protected int int_startSequence = 0;
     protected int int_deathSequence = 0;
+    protected int int_endSequence = 0;
     protected int int_quitToMenuSequence = 0;
     protected int int_clearScreenSequence = 0;
 
@@ -40,13 +42,16 @@ public class MenuManager : MonoBehaviour
 
     protected GameObject go_OrientationNote;
     protected GameObject go_quitButton;
+    protected GameObject go_startButton;
 
     protected bool bl_paused = false;
+    protected bool bl_allowPause = false;
     private void Awake()
     {
         img_damageOverlay = FindObjectOfType<DamageOverlay>(true).GetComponent<Image>();
         img_deathMessage = FindObjectOfType<DeathMessage>(true).GetComponent<Image>();
         go_quitButton = GameObject.Find("DeathScreenQuit");
+        go_startButton = GameObject.Find("StartScreenButton");
         img_deathScreen = GameObject.Find("DeathOverlay").GetComponent<Image>();
         img_fadeOverlay = GameObject.Find("FadeOverlay").GetComponent<Image>();
         go_OrientationNote = GameObject.Find("Note");
@@ -158,7 +163,7 @@ public class MenuManager : MonoBehaviour
     //Damage effect
     public void IncreaseDamageOverlay()
     {
-        LeanTween.alpha(img_damageOverlay.GetComponent<RectTransform>(), img_damageOverlay.color.a + 0.33f, 0.2f);
+        LeanTween.alpha(img_damageOverlay.GetComponent<RectTransform>(), img_damageOverlay.color.a + 0.33f, 0.2f).setIgnoreTimeScale(true);
     }
 
     //Temp damage effect
@@ -200,15 +205,18 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    //IDK
+    // When the player dies or quits to title, this will reset any menu-related objects to their original positions, and reset the alpha of overlays.
     public void ResetMenus()
     {
+        bl_allowPause = false;
+
         Color tempcolor = Img_damageOverlay.color;
         tempcolor.a = 0;
         Img_damageOverlay.color = tempcolor;
 
-        go_quitButton.transform.position = new Vector3(0f, -300, 0f);
-        go_OrientationNote.transform.position = new Vector3(0f, -500f, 0f);
+        go_quitButton.transform.localPosition = new Vector3(0f, -300, 0f);
+        go_startButton.transform.localPosition = new Vector3(0f, -300, 0f);
+        go_OrientationNote.transform.localPosition = new Vector3(0f, -500f, 0f);
     }
 
     //Enter the Start Scene
@@ -231,7 +239,6 @@ public class MenuManager : MonoBehaviour
                 int_enterSequence++;
                 LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 1, 1f).setOnComplete(EnterGameSequence).setIgnoreTimeScale(true);
                 break;
-
             case 1:
                 int_enterSequence++;
                 ClearScreens();
@@ -239,26 +246,42 @@ public class MenuManager : MonoBehaviour
                 LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 0, 1f).setOnComplete(EnterGameSequence).setIgnoreTimeScale(true);
                 break;
             case 2:
-                // Time.timeScale = 1;
+                int_enterSequence++;                
                 SwitchScreen(go_startScreen);
-                LeanTween.moveLocal(go_OrientationNote, new Vector3(0f, 25f, 0f), 1f).setEase(LeanTweenType.easeOutSine).setIgnoreTimeScale(true);
-                Cursor.lockState = CursorLockMode.Confined;
+                LeanTween.moveLocal(go_OrientationNote, new Vector3(0f, 25f, 0f), 0.5f).setEase(LeanTweenType.easeOutSine).setOnComplete(EnterGameSequence).setIgnoreTimeScale(true);
+                break;
+            case 3:
+                LeanTween.moveLocal(go_startButton, new Vector3(0f, -135f, 0f), 0.5f).setEase(LeanTweenType.easeInSine).setIgnoreTimeScale(true);
                 int_enterSequence = 0;
+                Cursor.lockState = CursorLockMode.Confined;
                 break;
         }
     }
 
     //Start Game
-    public void StartGame()
+    public void StartGameSequence()
     {
-        SwitchScreen(go_gameScreen);
-
-        Cursor.lockState = CursorLockMode.Locked;
-
-        GameManager.playerController.TogglePlayerControl();
+        switch (int_startSequence)
+        {
+            case 0:
+                int_startSequence++;
+                LeanTween.moveLocal(go_startButton, new Vector3(0f, -300f, 0f), 0.5f).setEase(LeanTweenType.easeInSine).setOnComplete(StartGameSequence).setIgnoreTimeScale(true);
+                break;
+            case 1:
+                int_startSequence++;
+                LeanTween.moveLocal(go_OrientationNote, new Vector3(0f, -500f, 0f), 0.5f).setEase(LeanTweenType.easeInSine).setOnComplete(StartGameSequence).setIgnoreTimeScale(true);
+                break;
+            case 2:
+                SwitchScreen(go_gameScreen);
+                Cursor.lockState = CursorLockMode.Locked;
+                GameManager.playerController.TogglePlayerControl();
+                bl_allowPause = true;
+                int_startSequence = 0;
+                break;
+        }
     }
 
-    //Go To Title Screen
+    //Go To Title Screen with fade transitions
     public void QuitToTitleSequence()
     {
         switch (int_quitToMenuSequence)
@@ -280,6 +303,7 @@ public class MenuManager : MonoBehaviour
                 // Time.timeScale = 1;
                 Cursor.lockState = CursorLockMode.Confined;
                 int_quitToMenuSequence = 0;
+                if (bl_paused) bl_paused = false;
                 break;
         }
     }
@@ -293,9 +317,24 @@ public class MenuManager : MonoBehaviour
     //Go to End Scene
     public void ToEnd()
     {
-        SceneManager.LoadScene(2);
-        SwitchScreen(go_endScreen);
-        Cursor.lockState = CursorLockMode.Confined;
+        switch (int_endSequence)
+        {
+            case 0:
+                int_endSequence++;
+                LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 1, 1f).setOnComplete(EnterGameSequence).setIgnoreTimeScale(true);
+                break;
+            case 1:
+                int_endSequence++;
+                ClearScreens();
+                SceneManager.LoadScene(2);
+                LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 0, 1f).setOnComplete(EnterGameSequence).setIgnoreTimeScale(true);
+                break;
+            case 2:
+                SwitchScreen(go_endScreen);
+                Cursor.lockState = CursorLockMode.Confined;
+                int_endSequence = 0;
+                break;
+        }
     }
 
     //Close the game
@@ -321,7 +360,7 @@ public class MenuManager : MonoBehaviour
     {
         //Toggle Pause
         
-        if (!bl_paused)
+        if (!bl_paused && bl_allowPause)
         {
             //ClearScreens();
             go_nextScreen = go_pauseScreen;
