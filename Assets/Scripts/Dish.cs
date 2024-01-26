@@ -8,34 +8,34 @@ public class Dish : Pickupable
     [HideInInspector] public bool inTrash;
 
     [Tooltip("Check if the dish starts broken")]
-    public bool broken;
+    public bool bl_broken;
 
     [Tooltip("Add broken mesh here")]
     public Mesh brokenMesh;
 
     [Tooltip("Check if object can be cleaned by placing it in the sink")]
-    public bool dirtyDish;
+    public bool bl_dirtyDish;
 
     [Tooltip("Add material here if dirtyDish is true")]
-    public Material dirtyMat;
+    public Material mat_dirtyDish;
 
     [Tooltip("Put the breaking SFX here")]
-    public AudioClip breakingSFX;
-    AudioSource audioSource;
+    public AudioClip ac_break;
+    AudioSource as_source;
 
     private void Start()
     {
-        pickupable = true;
-        meshRenderer = GetComponent<MeshRenderer>();
+        bl_pickupable = true;
+        ren_meshRenderer = GetComponent<MeshRenderer>();
         rb = GetComponent<Rigidbody>();
-        audioSource = GetComponent<AudioSource>();
+        as_source = GetComponent<AudioSource>();
 
-        baseMat = meshRenderer.material;
+        mat_base = ren_meshRenderer.material;
 
-        if (dirtyDish)
-            meshRenderer.material = dirtyMat;
+        if (bl_dirtyDish)
+            ren_meshRenderer.material = mat_dirtyDish;
 
-        if (broken) Break();
+        if (bl_broken) Break();
     }
 
     // calls break if the dish collides with anything too hard
@@ -48,8 +48,9 @@ public class Dish : Pickupable
     // changes the model and adjusts all tasks relating to this dish to either remove or add it as a requirement
     void Break()
     {
-        audioSource.PlayOneShot(breakingSFX);
+        GameManager.soundManager.PlayClip(ac_break, as_source);
         GetComponent<MeshFilter>().mesh = brokenMesh;
+        bl_broken = true;
 
         List<CleaningWater> waters = FindObjectsByType<CleaningWater>(FindObjectsSortMode.None).ToList();
         List<CupboardTrigger> cupboards = FindObjectsByType<CupboardTrigger>(FindObjectsSortMode.None).ToList();
@@ -57,29 +58,28 @@ public class Dish : Pickupable
 
         foreach(CleaningWater w in waters)
         {
-            w.dishes.Remove(this);
+            w.li_dishes.Remove(this);
             w.CheckIfComplete();
         }
         foreach(CupboardTrigger c in cupboards)
         {
-            c.dishes.Remove(this);
+            c.li_dishes.Remove(this);
             c.CheckIfComplete();
         }
         foreach(TrashCanTrigger t in trashes)
         {
-            t.dishes.Add(this);
+            t.li_dishes.Add(this);
             t.CheckIfComplete();
         }
 
-        //GameManager.ghost?.patrolPointsPerTask[GameManager.ghost.masterTaskList.IndexOf(TaskManager.Task.PutAwayDishes)].list.Remove(transform);
-        //GameManager.ghost?.currentPoints[GameManager.ghost.currentTasks.IndexOf(TaskManager.Task.PutAwayDishes)].list.Remove(transform);
+        GameManager.ghost.RemovePoint(transform);
     }
 
     // marks dish as clean and changes back to the clean material
     public void Clean()
     {
-        if (!dirtyDish) return;
-        dirtyDish = false;
-        meshRenderer.material = baseMat;
+        if (!bl_dirtyDish) return;
+        bl_dirtyDish = false;
+        ren_meshRenderer.material = mat_base;
     }
 }

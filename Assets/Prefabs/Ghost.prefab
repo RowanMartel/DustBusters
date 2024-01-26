@@ -25,13 +25,97 @@ Transform:
   m_GameObject: {fileID: 5249318149542838128}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.38, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6246258965457082384}
   m_Father: {fileID: 3277824746571262815}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5262972985030082317
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 229638373217841776}
+  - component: {fileID: 4164846945680612248}
+  m_Layer: 8
+  m_Name: MinimapSprite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &229638373217841776
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5262972985030082317}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3277824746571262815}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!212 &4164846945680612248
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5262972985030082317}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &5513713529297790404
 GameObject:
   m_ObjectHideFlags: 0
@@ -51,7 +135,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9054187573627407241
 Transform:
   m_ObjectHideFlags: 0
@@ -62,7 +146,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 7.5, y: 7.5, z: 7.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3277824746571262815}
@@ -95,7 +179,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ec689d85bd522a84db0accbe0cc65fd8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -160,6 +244,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6246258965457082384}
+  - component: {fileID: 8240498444976163619}
+  - component: {fileID: 7699440852616707001}
   m_Layer: 0
   m_Name: HeldItemParent
   m_TagString: Untagged
@@ -182,6 +268,56 @@ Transform:
   m_Children: []
   m_Father: {fileID: 717651196072784010}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &8240498444976163619
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7263785423210560717}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &7699440852616707001
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7263785423210560717}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: fc7d5976cac99ae4ca8c1dcbd41e1fe5, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &7813583447088648802
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,6 +356,7 @@ Transform:
   m_Children:
   - {fileID: 9054187573627407241}
   - {fileID: 717651196072784010}
+  - {fileID: 229638373217841776}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1171188374460215735
@@ -250,7 +387,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: eb9ec4909ce39f04984654f5abef0d06, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -361,27 +498,146 @@ MonoBehaviour:
   l_pl_currentPoints: []
   l_tsk_startTasks: 0000000002000000040000000500000003000000
   l_tsk_endGameTasks: 0600000007000000
-  l_tsk_masterTaskList: 0000000002000000040000000500000003000000010000000600000007000000
+  l_tsk_masterTaskList: 00000000020000000400000005000000030000000100000006000000070000000b000000090000000a000000
   l_pl_patrolPointsPerTask:
-  - list:
+  - listAggro1:
     - {fileID: 0}
-  - list:
+    listAggro2:
     - {fileID: 0}
-  - list:
+    listAggro3:
     - {fileID: 0}
-  - list:
     - {fileID: 0}
-  - list:
     - {fileID: 0}
-  - list:
     - {fileID: 0}
-  - list:
     - {fileID: 0}
-  - list:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    listAggro4:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - listAggro1:
+    - {fileID: 0}
+    listAggro2:
+    - {fileID: 0}
+    - {fileID: 0}
+    listAggro3:
+    - {fileID: 0}
+    - {fileID: 0}
+    listAggro4:
+    - {fileID: 0}
+    - {fileID: 0}
+  - listAggro1:
+    - {fileID: 0}
+    listAggro2:
+    - {fileID: 0}
+    listAggro3:
+    - {fileID: 0}
+    listAggro4:
+    - {fileID: 0}
+  - listAggro1:
+    - {fileID: 0}
+    listAggro2:
+    - {fileID: 0}
+    listAggro3:
+    - {fileID: 0}
+    listAggro4:
+    - {fileID: 0}
+  - listAggro1:
+    - {fileID: 0}
+    listAggro2:
+    - {fileID: 0}
+    - {fileID: 0}
+    listAggro3:
+    - {fileID: 0}
+    - {fileID: 0}
+    listAggro4:
+    - {fileID: 0}
+    - {fileID: 0}
+  - listAggro1:
+    - {fileID: 0}
+    listAggro2:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    listAggro3:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    listAggro4:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - listAggro1:
+    - {fileID: 0}
+    listAggro2:
+    - {fileID: 0}
+    listAggro3:
+    - {fileID: 0}
+    listAggro4:
+    - {fileID: 0}
+  - listAggro1:
+    - {fileID: 0}
+    listAggro2:
+    - {fileID: 0}
+    listAggro3:
+    - {fileID: 0}
+    listAggro4:
+    - {fileID: 0}
+  - listAggro1:
+    - {fileID: 0}
+    listAggro2:
+    - {fileID: 0}
+    listAggro3:
+    - {fileID: 0}
+    listAggro4:
+    - {fileID: 0}
+  - listAggro1:
+    - {fileID: 0}
+    listAggro2:
+    - {fileID: 0}
+    listAggro3:
+    - {fileID: 0}
+    listAggro4:
+    - {fileID: 0}
+  - listAggro1:
+    - {fileID: 0}
+    listAggro2:
+    - {fileID: 0}
+    listAggro3:
+    - {fileID: 0}
+    listAggro4:
     - {fileID: 0}
   tr_currentPatrolPoint: {fileID: 0}
   int_curIndex: 0
-  flt_distToSwitch: 5
+  go_curRegion: {fileID: 0}
+  flt_distToSwitch: 2
   go_player: {fileID: 0}
   flt_timeToThrow: 2
   flt_curTime: 0
@@ -392,14 +648,19 @@ MonoBehaviour:
   go_heldItemParent: {fileID: 7263785423210560717}
   tr_heldItemSpinner: {fileID: 717651196072784010}
   flt_spinSpeed: 0.5
-  a_tr_hidingPlaces:
+  a_hs_hidingPlaces:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   flt_breakThrowForce: 25
+  flt_douseFireplaceChance: 1
+  flt_dirtyMirrorChance: 1
+  flt_dirtyFloorChance: 1
   flt_baseSpeed: 4
+  flt_aggroSpeed: 6
   flt_slowedSpeed: 2
+  flt_aggroSlowedSpeed: 3
   l_go_lightSourcesEffecting: []
   a_ac_sounds:
   - {fileID: 8300000, guid: 1500e77b897976b4796db44ab0b32bef, type: 3}
@@ -412,7 +673,14 @@ MonoBehaviour:
   flt_sfxTime: 15
   flt_sfxTimeDeviationRange: 5
   flt_curSFXTime: 0
-  flt_lightSwitchDist: 5
+  flt_lightSwitchDist: 2.5
+  flt_curSwitchCooldown: 0
+  int_curAggressionLevel: 1
+  int_tasksToStage2: 2
+  int_tasksToStage3: 4
+  l_tsk_completedTasks: 
+  go_floatTrigger: {fileID: 5513713529297790404}
+  bl_frozen: 0
 --- !u!82 &5198980086939035474
 AudioSource:
   m_ObjectHideFlags: 0

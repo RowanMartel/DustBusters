@@ -2,230 +2,320 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    GameObject lookingAtObject;
-    public GameObject heldObject;
+    protected MenuManager menuManager;
 
-    GameObject midHold;
+    protected GameObject go_lookingAtObject;
+    protected GameObject go_heldPosition;
+    protected GameObject go_heldObject;
+    public GameObject Go_heldObject {  get { return go_heldObject; } }
+
+    protected GameObject go_cameraContainer;
+
+    protected Vector3 v3_heldPositionReset;
+
+    protected Rigidbody rb_player;
     public enum State
     {
         inactive,
         active
     }
 
-    public State state = State.inactive;
+    protected State en_state = State.inactive;
+    public State En_state { get { return en_state; } set { en_state = value; } }
 
-    public float walkSpeed = 2;
-    public float runSpeed;
-    bool isRunning = false;
-    bool jump = false;
-    public float jumpForce = 8f;
+    protected float flt_cameraVertical = 0;
+    protected float flt_playerRotate;
 
-    Rigidbody rb;
-    GameObject cameraContainer;
+    public Ray ray_playerView;
 
-    float cameraVertical = 0;
+    public bool bl_hasJumped = false;
+    public bool bl_isGrounded = true;
 
-    float playerForward;
-    float playerSideStep;
-    float playerRotate;
+    public LayerMask lm;
 
-    float speed;
-
-    public bool isGrounded = true;
-
-    public Ray playerView;
-
+    public GameObject go_curRegion;
 
     void Start()
     {
-        lookingAtObject = GameObject.Find("Floor");
-        midHold = GameObject.Find("MidHold");
+        menuManager = GameObject.Find("MenuManager").GetComponent<MenuManager>();
+
+        go_lookingAtObject = GameObject.Find("Floor");
+        go_heldPosition = GameObject.Find("HeldPosition");
+        v3_heldPositionReset = go_heldPosition.transform.localPosition;
 
         // Cursor.lockState = CursorLockMode.Locked;
 
-        rb = GetComponent<Rigidbody>();
-        cameraContainer = GameObject.Find("Player/CameraContainer");
+        rb_player = GetComponent<Rigidbody>();
+        go_cameraContainer = GameObject.Find("Player/CameraContainer");
     }
 
     // Update is called once per frame
     void Update()
     {
-        playerView = Camera.main.ScreenPointToRay(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2, 0));
-        RaycastHit hit;
-
-        if (Physics.Raycast(playerView, out hit, 5))
-        {
-            if(hit.collider.gameObject != lookingAtObject)
-            {
-                if (lookingAtObject != null && lookingAtObject.CompareTag("Interactable")) lookingAtObject.GetComponent<Outline>().enabled = false;
-
-                lookingAtObject = hit.collider.gameObject;
-
-                if(lookingAtObject.CompareTag("Interactable")) lookingAtObject.GetComponent<Outline>().enabled = true;
-            }
-        }
-        if (!Physics.Raycast(playerView, out hit, 3) && lookingAtObject != null)
-        {
-            if(lookingAtObject.CompareTag("Interactable")) lookingAtObject.GetComponent<Outline>().enabled = false;
-            lookingAtObject = null;
-        }
+        DoPlayerView();
 
         if (Input.GetKeyDown(KeyCode.E)) Interact();
 
-        if (state == State.active)
+        if (en_state == State.active)
         {
             MoveCamera();
 
-            if (Input.GetKeyDown(KeyCode.LeftShift)) isRunning = true;
-            if (Input.GetKeyUp(KeyCode.LeftShift)) isRunning = false;
+            // This allows the player to use the reach mechanic with their mousewheel to put props on hard to reach surfaces.
+            DoPlayerReach();
 
-            if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+            if (Input.GetKeyDown(KeyCode.Space) && bl_isGrounded)
             {
-                jump = true;
-                isGrounded = false;
+                bl_hasJumped = true;
+                bl_isGrounded = false;
             }
 
-            playerForward = Input.GetAxis("Vertical");
-            playerSideStep = Input.GetAxis("Horizontal");
-            playerRotate = Input.GetAxis("Mouse X");
-
-            transform.Rotate(0.0f, playerRotate, 0.0f);
+            if (Input.GetKeyDown(KeyCode.LeftShift)) LeanTween.moveLocalY(go_cameraContainer, 0f, 0.25f); // bl_isCrouching = true;
+            if (Input.GetKeyUp(KeyCode.LeftShift)) LeanTween.moveLocalY(go_cameraContainer, 0.5f, 0.25f); // bl_isCrouching = false;
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape)) menuManager.TogglePause();
     }
     void FixedUpdate()
     {
-        if (heldObject != null && state == State.active)
+        if (go_heldObject != null && en_state == State.active)
         {
-            Vector3 direction = heldObject.transform.position - midHold.transform.position;
+            Vector3 direction = go_heldObject.transform.position - go_heldPosition.transform.position;
             float distance = direction.magnitude;
             Vector3 force = direction.normalized;
 
-            if (distance > 0) heldObject.GetComponent<Rigidbody>().AddForce(-force * distance * 10, ForceMode.VelocityChange);
-            heldObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            heldObject.transform.rotation = transform.rotation;
+            if (distance > 0) go_heldObject.GetComponent<Rigidbody>().AddForce(-force * distance * 10, ForceMode.VelocityChange);
+            go_heldObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            go_heldObject.transform.rotation = transform.rotation;
 
-            heldObject.transform.Rotate(heldObject.GetComponent<Pickupable>().heldRotationMod);
+            go_heldObject.transform.Rotate(go_heldObject.GetComponent<Pickupable>().v3_heldRotationMod);
         }
-        else if(heldObject != null && state == State.inactive)
+        else if(go_heldObject != null && en_state == State.inactive)
         {
             Vector3 heldPosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1.5f));
-            Vector3 direction = heldObject.transform.position - heldPosition;
+            Vector3 direction = go_heldObject.transform.position - heldPosition;
             float distance = direction.magnitude;
             Vector3 force = direction.normalized;
 
-            if (distance > 0) heldObject.GetComponent<Rigidbody>().AddForce(-force * distance * 10, ForceMode.VelocityChange);
+            if (distance > 0) go_heldObject.GetComponent<Rigidbody>().AddForce(-force * distance * 10, ForceMode.VelocityChange);
 
-            heldObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            heldObject.transform.rotation = transform.rotation;
+            go_heldObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            go_heldObject.transform.rotation = transform.rotation;
 
-            heldObject.transform.Rotate(heldObject.GetComponent<Pickupable>().heldRotationMod);
+            go_heldObject.transform.Rotate(go_heldObject.GetComponent<Pickupable>().v3_heldRotationMod);
         }
 
-        if (state == State.active)
+        if (en_state == State.active)
         {
-            if (jump)
+            if (bl_hasJumped)
             {
-                rb.AddRelativeForce(Vector3.up * jumpForce, ForceMode.Impulse);
-                jump = false;
+                rb_player.AddRelativeForce(Vector3.up * Settings.int_playerJumpForce, ForceMode.Impulse);
+                bl_hasJumped = false;
+            }
+            if (!bl_isGrounded)
+            {
+                rb_player.AddForce(-Vector3.up * Settings.int_playerJumpForce);
             }
 
-            if (!isRunning) speed = walkSpeed;
-            if (isRunning) speed = runSpeed;
-
-            rb.AddForce(transform.forward * playerForward * speed);
-            rb.AddForce(transform.right * playerSideStep * speed);
+            DoPlayerMovement();
         }
     }
 
+    // This handles the player's ability to look up and down, and rotate the player.
     void MoveCamera()
     {
-        float camV = cameraVertical + Input.GetAxis("Mouse Y");
+        float camV = flt_cameraVertical + Input.GetAxis("Mouse Y");
 
-        cameraVertical = Mathf.Clamp(camV, -60f, 80f);
+        flt_cameraVertical = Mathf.Clamp(camV, -90f, 80f);
 
         float flipCamV = camV * -1;
 
-        cameraContainer.transform.localRotation = Quaternion.Euler(flipCamV, 0, 0);
+        go_cameraContainer.transform.localRotation = Quaternion.Euler(flipCamV, 0, 0);
+
+        flt_playerRotate = Input.GetAxis("Mouse X");
+
+        transform.Rotate(0.0f, flt_playerRotate * Settings.flt_lookSensitivity, 0.0f);
     }
 
+    public void LookAt(Vector3 position)
+    {
+        LeanTween.rotateLocal(go_cameraContainer, position, 0.25f);
+    }
+
+    // This handles the player's basic forward/backward/left/right movement, mapped to the WASD keys.
+    void DoPlayerMovement()
+    {
+        if (Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
+        {
+            rb_player.AddForce(transform.forward * Settings.int_playerSpeed);
+        }
+
+        if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
+        {
+            rb_player.AddForce(transform.forward * Settings.int_playerSpeed * 0.75f);
+            rb_player.AddForce(transform.right * Settings.int_playerSpeed * 0.75f);
+        }
+
+        if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))
+        {
+            rb_player.AddForce(transform.right * Settings.int_playerSpeed);
+        }
+
+        if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.S))
+        {
+            rb_player.AddForce(-transform.forward * Settings.int_playerSpeed * 0.75f);
+            rb_player.AddForce(transform.right * Settings.int_playerSpeed * 0.75f);
+        }
+
+        if (Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
+        {
+            rb_player.AddForce(-transform.forward * Settings.int_playerSpeed);
+        }
+
+        if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
+        {
+            rb_player.AddForce(-transform.forward * Settings.int_playerSpeed * 0.75f);
+            rb_player.AddForce(-transform.right * Settings.int_playerSpeed * 0.75f);
+        }
+
+        if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))
+        {
+            rb_player.AddForce(-transform.right * Settings.int_playerSpeed);
+        }
+
+        if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
+        {
+            rb_player.AddForce(transform.forward * Settings.int_playerSpeed * 0.75f);
+            rb_player.AddForce(-transform.right * Settings.int_playerSpeed * 0.75f);
+        }
+    }
+
+    // This handles the player's view at the crosshair and if pointed at an Interactable object, will activate the object's outline to indicate it can be interacted with.
+    void DoPlayerView()
+    {
+        ray_playerView = Camera.main.ScreenPointToRay(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2, 0));
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray_playerView, out hit, 5, lm))
+        {
+            if (hit.collider.gameObject != go_lookingAtObject)
+            {
+                if (go_lookingAtObject != null && go_lookingAtObject.CompareTag("Interactable")) go_lookingAtObject.GetComponent<Outline>().enabled = false;
+
+                go_lookingAtObject = hit.collider.gameObject;
+
+                if (go_lookingAtObject.CompareTag("Interactable")) go_lookingAtObject.GetComponent<Outline>().enabled = true;
+            }
+        }
+        if (!Physics.Raycast(ray_playerView, out hit, 3, lm) && go_lookingAtObject != null)
+        {
+            if (go_lookingAtObject.CompareTag("Interactable")) go_lookingAtObject.GetComponent<Outline>().enabled = false;
+            go_lookingAtObject = null;
+        }
+    }
+
+    void DoPlayerReach()
+    {
+        if (go_heldPosition.transform.localPosition.z >= 1.0f && go_heldPosition.transform.localPosition.z <= 2.0f)
+        {
+            go_heldPosition.transform.localPosition = new Vector3(go_heldPosition.transform.localPosition.x, go_heldPosition.transform.localPosition.y, go_heldPosition.transform.localPosition.z + Input.mouseScrollDelta.y * 0.1f);
+
+            if (go_heldPosition.transform.localPosition.z > 2) go_heldPosition.transform.localPosition = go_heldPosition.transform.localPosition = new Vector3(go_heldPosition.transform.localPosition.x, go_heldPosition.transform.localPosition.y, 2.0f);
+            if (go_heldPosition.transform.localPosition.z < 1) go_heldPosition.transform.localPosition = go_heldPosition.transform.localPosition = new Vector3(go_heldPosition.transform.localPosition.x, go_heldPosition.transform.localPosition.y, 1.0f);
+        }
+    }
+
+    // This handles the interactions between the player and the props and environment.
     void Interact()
     {
-        // Once I know more about the interaction system and what is needed from my side I can build this
-        if (heldObject == null && lookingAtObject != null && lookingAtObject.CompareTag("Interactable"))
+        go_heldPosition.transform.localPosition = v3_heldPositionReset;
+
+        if (go_heldObject == null && go_lookingAtObject != null && go_lookingAtObject.CompareTag("Interactable"))
         {
-            Pickupable pickupable = lookingAtObject.GetComponent<Pickupable>();
+            Pickupable pickupable = go_lookingAtObject.GetComponent<Pickupable>();
 
             if (pickupable != null)
             {
-                heldObject = lookingAtObject;
-                Physics.IgnoreCollision(heldObject.GetComponent<Collider>(), GetComponent<Collider>());
+                go_heldObject = go_lookingAtObject;
+                Physics.IgnoreCollision(go_heldObject.GetComponent<Collider>(), GetComponent<Collider>());
 
-                heldObject.GetComponent<Rigidbody>().useGravity = false;
-                heldObject.GetComponent<Outline>().enabled = false;
+                go_heldObject.GetComponent<Rigidbody>().useGravity = false;
+                go_heldObject.GetComponent<Outline>().enabled = false;
 
                 //heldObject.transform.position = midHold.transform.position;
 
                 int layerIgnoreRaycast = LayerMask.NameToLayer("Ignore Raycast");
-                heldObject.layer = layerIgnoreRaycast;
+                go_heldObject.layer = layerIgnoreRaycast;
+                if(go_heldObject == GameManager.ghost.go_curHeldItem)
+                {
+                    GameManager.ghost.GetRobbed();
+                }
             }
-            lookingAtObject.GetComponent<Interactable>().Interact();
+            go_lookingAtObject.GetComponent<Interactable>().Interact();
         }
-        else if(heldObject != null && (lookingAtObject == null || lookingAtObject.tag != "Interactable"))
+        else if(go_heldObject != null && (go_lookingAtObject == null || go_lookingAtObject.tag != "Interactable"))
         {
-            heldObject.layer = 0;
-            heldObject.GetComponent<Rigidbody>().useGravity = true;
-            Physics.IgnoreCollision(heldObject.GetComponent<Collider>(), GetComponent<Collider>(), false);
-            heldObject = null;
+            go_heldObject.layer = 0;
+            go_heldObject.GetComponent<Rigidbody>().useGravity = true;
+            Physics.IgnoreCollision(go_heldObject.GetComponent<Collider>(), GetComponent<Collider>(), false);
+            go_heldObject = null;
         }
-        else if (heldObject != null && lookingAtObject.CompareTag("Interactable"))
+        else if (go_heldObject != null && go_lookingAtObject.CompareTag("Interactable"))
         {
-            Pickupable pickupable = lookingAtObject.GetComponent<Pickupable>();
+            Pickupable pickupable = go_lookingAtObject.GetComponent<Pickupable>();
 
             if (pickupable != null)
             {
-                heldObject.layer = 0;
-                heldObject.GetComponent<Rigidbody>().useGravity = true;
-                Physics.IgnoreCollision(heldObject.GetComponent<Collider>(), GetComponent<Collider>(), false);
-                heldObject = null;
+                go_heldObject.layer = 0;
+                go_heldObject.GetComponent<Rigidbody>().useGravity = true;
+                Physics.IgnoreCollision(go_heldObject.GetComponent<Collider>(), GetComponent<Collider>(), false);
+                go_heldObject = null;
 
-                if (heldObject != null)
-                    Physics.IgnoreCollision(heldObject.GetComponent<Collider>(), GetComponent<Collider>(), false);
-                heldObject = lookingAtObject;
-                Physics.IgnoreCollision(heldObject.GetComponent<Collider>(), GetComponent<Collider>());
+                if (go_heldObject != null)
+                    Physics.IgnoreCollision(go_heldObject.GetComponent<Collider>(), GetComponent<Collider>(), false);
+                go_heldObject = go_lookingAtObject;
+                Physics.IgnoreCollision(go_heldObject.GetComponent<Collider>(), GetComponent<Collider>());
 
-                heldObject.GetComponent<Rigidbody>().useGravity = false;
-                heldObject.GetComponent<Outline>().enabled = false;
+                go_heldObject.GetComponent<Rigidbody>().useGravity = false;
+                go_heldObject.GetComponent<Outline>().enabled = false;
 
                 //heldObject.transform.position = midHold.transform.position;
 
                 int layerIgnoreRaycast = LayerMask.NameToLayer("Ignore Raycast");
-                heldObject.layer = layerIgnoreRaycast;
+                go_heldObject.layer = layerIgnoreRaycast;
+                if (go_heldObject == GameManager.ghost.go_curHeldItem)
+                {
+                    GameManager.ghost.GetRobbed();
+                }
             }
-            lookingAtObject.GetComponent<Interactable>().Interact();
+            go_lookingAtObject.GetComponent<Interactable>().Interact();
         }
     }
-
     public void Die()
     {
-        state = State.inactive;
+        en_state = State.inactive;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.tag == "Floor") isGrounded = true;
+        if (collision.gameObject.tag == "Floor") bl_isGrounded = true;
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if(collision.gameObject.tag == "Floor") bl_isGrounded = false;
     }
 
     public void TogglePlayerControl()
     {
-        switch(state)
+        switch(en_state)
         {
             case State.active:
-                state = State.inactive;
+                en_state = State.inactive;
                 Cursor.lockState = CursorLockMode.Confined;
                 break;
 
             case State.inactive:
-                state = State.active;
+                en_state = State.active;
                 Cursor.lockState = CursorLockMode.Locked;
                 break;
         }
