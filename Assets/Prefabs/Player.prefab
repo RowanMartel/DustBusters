@@ -15,9 +15,10 @@ GameObject:
   - component: {fileID: 1180455513968762944}
   - component: {fileID: 2924403984974301946}
   - component: {fileID: 1142164511881553153}
+  - component: {fileID: 1078535883998137096}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -129,6 +130,7 @@ MonoBehaviour:
   lm:
     serializedVersion: 2
     m_Bits: 123
+  go_curRegion: {fileID: 0}
 --- !u!54 &2924403984974301946
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -168,6 +170,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e12fa1469dd33943b3bfcd4c912b66f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &1078535883998137096
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3844044986079945532}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.25
+  m_Height: 1.8
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4525595826482971284
 GameObject:
   m_ObjectHideFlags: 0

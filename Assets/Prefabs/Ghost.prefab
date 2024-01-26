@@ -636,6 +636,7 @@ MonoBehaviour:
     - {fileID: 0}
   tr_currentPatrolPoint: {fileID: 0}
   int_curIndex: 0
+  go_curRegion: {fileID: 0}
   flt_distToSwitch: 2
   go_player: {fileID: 0}
   flt_timeToThrow: 2
@@ -647,7 +648,7 @@ MonoBehaviour:
   go_heldItemParent: {fileID: 7263785423210560717}
   tr_heldItemSpinner: {fileID: 717651196072784010}
   flt_spinSpeed: 0.5
-  a_tr_hidingPlaces:
+  a_hs_hidingPlaces:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -672,7 +673,7 @@ MonoBehaviour:
   flt_sfxTime: 15
   flt_sfxTimeDeviationRange: 5
   flt_curSFXTime: 0
-  flt_lightSwitchDist: 2
+  flt_lightSwitchDist: 2.5
   flt_curSwitchCooldown: 0
   int_curAggressionLevel: 1
   int_tasksToStage2: 2

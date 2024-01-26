@@ -32,6 +32,9 @@ public class PlayerController : MonoBehaviour
     public bool bl_isGrounded = true;
 
     public LayerMask lm;
+
+    public GameObject go_curRegion;
+
     void Start()
     {
         menuManager = GameObject.Find("MenuManager").GetComponent<MenuManager>();
