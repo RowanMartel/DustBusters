@@ -60,14 +60,4 @@ public class LightSwitch : Interactable
         }
     }
 
-<<<<<<< HEAD
-    private void Update()
-    {
-        if (bl_debug)
-        {
-            Debug.Log(int_playerTriggerCount);
-        }
-    }
-=======
->>>>>>> 3dd07a578daaf6c0191963e797d67a0506a775bb
 }
