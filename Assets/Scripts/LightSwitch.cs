@@ -39,12 +39,10 @@ public class LightSwitch : Interactable
     // rotates the lightswitch model 180 degrees and then toggles the lights
     void Toggle()
     {
-        //Causes problems for collisions. Swap mesh instead
-
-        //if (bl_rotated)
-        //    transform.Rotate(transform.right, 180, Space.Self);
-        //else
-        //    transform.Rotate(transform.forward, 180, Space.Self);
+        if (bl_rotated)
+            transform.Rotate(transform.right, 180, Space.Self);
+        else
+            transform.Rotate(transform.forward, 180, Space.Self);
 
         bl_on = !bl_on;
 
