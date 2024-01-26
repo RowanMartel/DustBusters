@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TestFloatObject : MonoBehaviour
+public class Floatable : MonoBehaviour
 {
     public bool bl_canFloat;
     public bool bl_isFloating;

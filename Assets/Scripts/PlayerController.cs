@@ -52,8 +52,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(bl_hasJumped + "|" + bl_isGrounded);
-
         DoPlayerView();
 
         if (Input.GetKeyDown(KeyCode.E)) Interact();
