@@ -16188,6 +16188,7 @@ GameObject:
   - component: {fileID: 5283846850559011231}
   - component: {fileID: 5283846850559011232}
   - component: {fileID: 5283846850559011233}
+  - component: {fileID: 5283846850559011234}
   m_Layer: 0
   m_Name: CounterBowlDirty
   m_TagString: Interactable
@@ -16430,6 +16431,7 @@ GameObject:
   - component: {fileID: 7013351505931480341}
   - component: {fileID: 7013351505931480342}
   - component: {fileID: 7013351505931480343}
+  - component: {fileID: 7013351505931480344}
   m_Layer: 0
   m_Name: CounterCupDirty
   m_TagString: Interactable
@@ -18546,6 +18548,7 @@ GameObject:
   - component: {fileID: 6712249534319718690}
   - component: {fileID: 6712249534319718691}
   - component: {fileID: 6712249534319718692}
+  - component: {fileID: 6712249534319718693}
   m_Layer: 0
   m_Name: CounterBowl
   m_TagString: Interactable
@@ -18788,6 +18791,7 @@ GameObject:
   - component: {fileID: 6938243570481243376}
   - component: {fileID: 6938243570481243377}
   - component: {fileID: 6938243570481243378}
+  - component: {fileID: 6938243570481243379}
   m_Layer: 0
   m_Name: bowl1
   m_TagString: Interactable
@@ -21834,6 +21838,7 @@ GameObject:
   - component: {fileID: 7596015702639567631}
   - component: {fileID: 7596015702639567632}
   - component: {fileID: 7596015702639567633}
+  - component: {fileID: 7596015702639567634}
   m_Layer: 0
   m_Name: CounterBowl
   m_TagString: Interactable
@@ -22416,6 +22421,7 @@ GameObject:
   - component: {fileID: 6668441635720947446}
   - component: {fileID: 6668441635720947447}
   - component: {fileID: 6668441635720947448}
+  - component: {fileID: 6668441635720947449}
   m_Layer: 0
   m_Name: bowl3
   m_TagString: Interactable
@@ -23211,6 +23217,7 @@ GameObject:
   - component: {fileID: 7134463363133609588}
   - component: {fileID: 7134463363133609589}
   - component: {fileID: 7134463363133609590}
+  - component: {fileID: 7134463363133609591}
   m_Layer: 0
   m_Name: Broken_plate
   m_TagString: Interactable
@@ -27754,6 +27761,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5283846850559011234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 750355258314016698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ac_collide: {fileID: 0}
 --- !u!1 &5292616040679977508
 GameObject:
   m_ObjectHideFlags: 0
@@ -27903,6 +27923,7 @@ GameObject:
   - component: {fileID: 5365863321921217100}
   - component: {fileID: 5365863321921217101}
   - component: {fileID: 5365863321921217102}
+  - component: {fileID: 5365863321921217103}
   m_Layer: 0
   m_Name: bowl
   m_TagString: Interactable
@@ -28116,6 +28137,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5365863321921217103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5365863321921217096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ac_collide: {fileID: 0}
 --- !u!4 &5422715898509574339
 Transform:
   m_ObjectHideFlags: 0
@@ -39811,6 +39845,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6668441635720947449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3388793605675190910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ac_collide: {fileID: 0}
 --- !u!23 &6676927978488955517
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -40450,6 +40497,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6712249534319718693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1787452283446885265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ac_collide: {fileID: 0}
 --- !u!33 &6714348201328382471
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -42016,6 +42076,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6938243570481243379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1923598176782839974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ac_collide: {fileID: 0}
 --- !u!23 &6945851679710039581
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -42470,6 +42543,7 @@ GameObject:
   - component: {fileID: 6964190538614074277}
   - component: {fileID: 6964190538614074278}
   - component: {fileID: 6964190538614074279}
+  - component: {fileID: 6964190538614074280}
   m_Layer: 0
   m_Name: CounterCup
   m_TagString: Interactable
@@ -42683,6 +42757,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6964190538614074280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6964190538614074273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ac_collide: {fileID: 0}
 --- !u!33 &6998215136042924672
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -42920,6 +43007,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7013351505931480344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896196004564589317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ac_collide: {fileID: 0}
 --- !u!4 &7029731076324573306
 Transform:
   m_ObjectHideFlags: 0
@@ -44506,6 +44606,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7134463363133609591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3700391672436948641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ac_collide: {fileID: 0}
 --- !u!33 &7137313479031506769
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -46762,6 +46875,7 @@ GameObject:
   - component: {fileID: 7579339928828112540}
   - component: {fileID: 7579339928828112541}
   - component: {fileID: 7579339928828112542}
+  - component: {fileID: 7579339928828112543}
   m_Layer: 0
   m_Name: CounterCup
   m_TagString: Interactable
@@ -46975,6 +47089,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7579339928828112543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7579339928828112536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ac_collide: {fileID: 0}
 --- !u!1 &7583343870733761400
 GameObject:
   m_ObjectHideFlags: 0
@@ -47696,6 +47823,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7596015702639567634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3130152878527635657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ac_collide: {fileID: 0}
 --- !u!33 &7610707789978779384
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -55531,6 +55671,7 @@ GameObject:
   - component: {fileID: 8685920289249569262}
   - component: {fileID: 8685920289249569263}
   - component: {fileID: 8685920289249569264}
+  - component: {fileID: 8685920289249569265}
   m_Layer: 0
   m_Name: bowl2
   m_TagString: Interactable
@@ -55744,6 +55885,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8685920289249569265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8685920289249569258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ac_collide: {fileID: 0}
 --- !u!4 &8717312887569728103
 Transform:
   m_ObjectHideFlags: 0

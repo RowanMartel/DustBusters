@@ -10,6 +10,8 @@ public class SoundManager : MonoBehaviour
 
     public void PlayClip(AudioClip ac_clip, AudioSource as_source)
     {
+        if (as_source.isPlaying) return;
+
         if (l_ac_curSFX.Contains(ac_clip)) return;
 
         Vector3 v3_sourcePos = as_source.transform.position;

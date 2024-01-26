@@ -32,8 +32,12 @@ public class GameManager : MonoBehaviour
 
     public void OnGameStart(Scene oldScene, Scene newScene)
     {
+        if (instance != this) return;
+
+        taskManager = GetComponent<TaskManager>();
+        soundManager = GetComponent<SoundManager>();
+        menuManager = FindObjectOfType<MenuManager>();
         playerController = FindObjectOfType<PlayerController>();
-        Debug.Log(playerController);
         healthSystem = playerController?.GetComponent<HealthSystem>();
         ghost = FindAnyObjectByType<GhostBehavior>();
         taskManager.ResetValues();
