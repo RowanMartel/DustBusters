@@ -59,5 +59,4 @@ public class LightSwitch : Interactable
             lightCollider.enabled = false;
         }
     }
-
 }
