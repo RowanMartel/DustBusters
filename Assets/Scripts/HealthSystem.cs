@@ -13,7 +13,7 @@ public class HealthSystem : MonoBehaviour
     {
         int_playerHealth = Settings.int_playerHealthMax;
         playerController = GetComponent<PlayerController>();
-        menuReference = GameObject.Find("Menu").GetComponent<MenuManager>();
+        menuReference = GameObject.Find("MenuManager").GetComponent<MenuManager>();
     }
 
     private void OnCollisionEnter(Collision collision)

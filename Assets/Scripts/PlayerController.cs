@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask lm;
     void Start()
     {
-        menuManager = GameObject.Find("Menu").GetComponent<MenuManager>();
+        menuManager = GameObject.Find("MenuManager").GetComponent<MenuManager>();
 
         go_lookingAtObject = GameObject.Find("Floor");
         go_heldPosition = GameObject.Find("HeldPosition");
