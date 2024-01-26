@@ -25,6 +25,7 @@ public class MirrorSplat : MonoBehaviour
         as_clean = GetComponent<AudioSource>();
     }
 
+    // cleans the splat a little whenever the mouse goes over it
     private void OnMouseExit()
     {
         if (bl_cleaned || !mirror.bl_gameActive) return;
@@ -38,6 +39,7 @@ public class MirrorSplat : MonoBehaviour
         }
     }
 
+    // makes the splat dirty again, possibly bloody
     public void ReDirty(bool bl_bloody = false)
     {
         if (bl_bloody) GetComponent<Renderer>().material = mat_bloody;

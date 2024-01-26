@@ -8,6 +8,7 @@ public class SoundManager : MonoBehaviour
 
     private IEnumerator coroutine;
 
+    // plays the given clip in the given source if it isn't already playing and if it's near the player
     public void PlayClip(AudioClip ac_clip, AudioSource as_source)
     {
         if (as_source.isPlaying) return;
@@ -26,6 +27,7 @@ public class SoundManager : MonoBehaviour
         StartCoroutine(coroutine);
     }
 
+    // removes the clip from the currently playing list after the duration of the clip has passed
     IEnumerator RemoveClip(float flt_waitTime, AudioClip cl)
     {
         yield return new WaitForSeconds(flt_waitTime);

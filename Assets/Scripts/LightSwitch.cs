@@ -11,10 +11,6 @@ public class LightSwitch : Interactable
     public Collider lightCollider;
     [Tooltip("Toggle if the model itself is rotated 90 degrees")]
     public bool bl_rotated;
-    [Tooltip("How many triggers is the player in?")]
-    public int int_playerTriggerCount = 0;
-    [Tooltip("Debug.Log?")]
-    public bool bl_debug;
     [Tooltip("What regions can the player see the light from?")]
     public GameObject[] a_go_regions;
 
@@ -40,33 +36,13 @@ public class LightSwitch : Interactable
         Toggle();
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        //Debug.Log("Enter " + gameObject.name + "|" + other.gameObject.name);
-        if(other.gameObject == GameManager.playerController.gameObject)
-        {
-            int_playerTriggerCount++;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        //Debug.Log("Exit " + gameObject.name + "|" + other.gameObject.name);
-        if (other.gameObject == GameManager.playerController.gameObject)
-        {
-            int_playerTriggerCount--;
-        }
-    }
-
     // rotates the lightswitch model 180 degrees and then toggles the lights
     void Toggle()
     {
-        //Causes problems for collisions. Swap mesh instead
-
-        //if (bl_rotated)
-        //    transform.Rotate(transform.right, 180, Space.Self);
-        //else
-        //    transform.Rotate(transform.forward, 180, Space.Self);
+        if (bl_rotated)
+            transform.Rotate(transform.right, 180, Space.Self);
+        else
+            transform.Rotate(transform.forward, 180, Space.Self);
 
         bl_on = !bl_on;
 
@@ -84,6 +60,7 @@ public class LightSwitch : Interactable
         }
     }
 
+<<<<<<< HEAD
     private void Update()
     {
         if (bl_debug)
@@ -91,5 +68,6 @@ public class LightSwitch : Interactable
             Debug.Log(int_playerTriggerCount);
         }
     }
-
+=======
+>>>>>>> 3dd07a578daaf6c0191963e797d67a0506a775bb
 }

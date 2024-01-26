@@ -39,6 +39,7 @@ public class TrashCanTrigger : MonoBehaviour
         GameManager.taskManager.AddTask(TaskManager.Task.ThrowOutBrokenDishes);
     }
 
+    // reassigns or completes the task
     public void CheckIfComplete()
     {
         foreach (Dish dish in li_dishes)

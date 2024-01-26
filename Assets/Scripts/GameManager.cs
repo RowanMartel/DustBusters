@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
         SceneManager.activeSceneChanged += OnGameStart;
     }
 
+    // assigns neccessary variables on scene change
     public void OnGameStart(Scene oldScene, Scene newScene)
     {
         if (instance != this) return;
