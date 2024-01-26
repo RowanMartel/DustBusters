@@ -47,6 +47,7 @@ public class FloorMess : Interactable
         }
     }
 
+    //Readd some mess
     public void GhostDirty(int int_aggression)
     {
         if (!bl_clean ||

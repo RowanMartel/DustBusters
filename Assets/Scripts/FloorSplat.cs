@@ -40,7 +40,7 @@ public class FloorSplat : MonoBehaviour
 
     public void ReDirty(bool bl_bloody = false)
     {
-        if (bl_bloody) GetComponent<Renderer>().material = mat_bloody;
+        //if (bl_bloody) GetComponent<Renderer>().material = mat_bloody;
 
         bl_cleaned = false;
         ren.material.color = new Color(ren.material.color.r, ren.material.color.g, ren.material.color.g, 1);
