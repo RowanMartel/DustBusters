@@ -608,7 +608,8 @@ public class GhostBehavior : MonoBehaviour
     public void ChooseHidingPlace()
     {
         if (go_curHeldItem == null) return;
-        pc_player.go_curRegion.GetComponent<NavMeshObstacle>().enabled = true;
+        if(int_curAggressionLevel < 3)
+            pc_player.go_curRegion.GetComponent<NavMeshObstacle>().enabled = true;
         do
         {
             bl_hiding = true;
@@ -617,7 +618,6 @@ public class GhostBehavior : MonoBehaviour
             nav_agent.SetDestination(hs_curHidingSpot.transform.position);
             tr_currentPatrolPoint = hs_curHidingSpot.transform;
         } while (hs_curHidingSpot.a_go_region.Contains<GameObject>(pc_player.go_curRegion));
-        //pc_player.go_curRegion.GetComponent<NavMeshObstacle>().enabled = false;
     }
 
     //Add light to light sources list
