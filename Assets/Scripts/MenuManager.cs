@@ -91,10 +91,6 @@ public class MenuManager : MonoBehaviour
         else LeanTween.moveLocal(go_nextScreen, new Vector3(0f, 0f, 0f), 0.75f).setEase(LeanTweenType.easeOutSine).setIgnoreTimeScale(true);
 
         go_lastScreen = go_nextScreen;
-
-        Debug.Log(go_nextScreen.name);
-        Debug.Log(go_lastScreen.name);
-        Debug.Log(go_screenBuffer.name);
     }
 
     public void SwitchToGame()
@@ -292,6 +288,7 @@ public class MenuManager : MonoBehaviour
     {
         SwitchScreenFancy(go_gameScreen);
         GameManager.playerController.TogglePlayerControl();
+        Time.timeScale = 1;
         if (GameManager.ghost != null)
         {
             GameManager.ghost.bl_frozen = false;
@@ -319,6 +316,7 @@ public class MenuManager : MonoBehaviour
         {
             SwitchScreenFancy(go_gameScreen);
             GameManager.playerController.TogglePlayerControl();
+            Time.timeScale = 1;
             if (GameManager.ghost != null)
             {
                 GameManager.ghost.bl_frozen = false;
