@@ -351,7 +351,6 @@ public class GhostBehavior : MonoBehaviour
     //Check if Lightswitch is nearby. Turn off if needed
     private void LightSwitchCheck()
     {
-        //Debug.Log("C");
         foreach (LightSwitch lightSwitch in a_ls_switches)
         {
             if(Vector3.Distance(lightSwitch.transform.position, transform.position) <= flt_lightSwitchDist)
@@ -360,12 +359,10 @@ public class GhostBehavior : MonoBehaviour
                 {
                     if (int_curAggressionLevel == 2 && lightSwitch.a_go_regions.Contains<GameObject>(pc_player.go_curRegion) == false)
                     {
-                        Debug.Log("A");
                         lightSwitch.Interact();
                         flt_curSwitchCooldown = flt_lightSwitchCooldown;
                     }else if (int_curAggressionLevel >= 3)
                     {
-                        Debug.Log("B");
                         lightSwitch.Interact();
                         flt_curSwitchCooldown = flt_lightSwitchCooldown;
                     }
