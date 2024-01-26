@@ -10,7 +10,7 @@ public class Settings : MonoBehaviour
     public const int int_playerJumpForce = 75;
     public const int int_SFXCullingDist = 5;
 
-    public const float flt_menuTransitionSpeed = 0.5f;
+    public const float flt_menuTransitionSpeed = 0.4f;
 
     // NON-CONSTANTS
     public static float flt_volume = 0.5f;
