@@ -78,17 +78,17 @@ public class MenuManager : MonoBehaviour
     {
         go_nextScreen = screen;
 
-        if(screen == go_gameScreen) LeanTween.moveLocal(go_lastScreen, new Vector3(2000f, 0f, 0f), 0.75f).setEase(LeanTweenType.easeInSine).setOnComplete(SwitchToGame).setIgnoreTimeScale(true);
-        else LeanTween.moveLocal(go_lastScreen, new Vector3(2000f, 0f, 0f), 0.75f).setEase(LeanTweenType.easeInSine).setOnComplete(SwitchScreenTransition).setIgnoreTimeScale(true);
+        if(screen == go_gameScreen) LeanTween.moveLocal(go_lastScreen, new Vector3(1000f, 0f, 0f), Settings.flt_menuTransitionSpeed).setEase(LeanTweenType.easeInSine).setOnComplete(SwitchToGame).setIgnoreTimeScale(true);
+        else LeanTween.moveLocal(go_lastScreen, new Vector3(2000f, 0f, 0f), Settings.flt_menuTransitionSpeed).setEase(LeanTweenType.easeInSine).setOnComplete(SwitchScreenTransition).setIgnoreTimeScale(true);
         if (go_nextScreen == go_optionsScreen || go_nextScreen == go_controlsScreen) go_screenBuffer = go_lastScreen;
     }
 
     public void SwitchScreenTransition()
     {
-        go_lastScreen.transform.localPosition = new Vector3(-2000f, 0f, 0f);
+        go_lastScreen.transform.localPosition = new Vector3(-1000f, 0f, 0f);
 
-        if (go_lastScreen == go_optionsScreen || go_lastScreen == go_controlsScreen) LeanTween.moveLocal(go_screenBuffer, new Vector3(0f, 0f, 0f), 0.75f).setEase(LeanTweenType.easeOutSine).setIgnoreTimeScale(true);
-        else LeanTween.moveLocal(go_nextScreen, new Vector3(0f, 0f, 0f), 0.75f).setEase(LeanTweenType.easeOutSine).setIgnoreTimeScale(true);
+        if (go_lastScreen == go_optionsScreen || go_lastScreen == go_controlsScreen) LeanTween.moveLocal(go_screenBuffer, new Vector3(0f, 0f, 0f), Settings.flt_menuTransitionSpeed).setEase(LeanTweenType.easeOutSine).setIgnoreTimeScale(true);
+        else LeanTween.moveLocal(go_nextScreen, new Vector3(0f, 0f, 0f), Settings.flt_menuTransitionSpeed).setEase(LeanTweenType.easeOutSine).setIgnoreTimeScale(true);
 
         go_lastScreen = go_nextScreen;
     }
@@ -250,13 +250,13 @@ public class MenuManager : MonoBehaviour
 
             case 1:
                 int_quitToMenuSequence++;
-                go_pauseScreen.transform.localPosition = new Vector3(-2000, 0, 0);
+                go_pauseScreen.transform.localPosition = new Vector3(-1000, 0, 0);
+                SwitchScreen(go_titleScreen);
                 SceneManager.LoadScene("TitleScene");
                 LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 0, 1f).setOnComplete(QuitToTitleSequence).setIgnoreTimeScale(true);
                 break;
             case 2:
                 // Time.timeScale = 1;
-                SwitchScreen(go_titleScreen);
                 Cursor.lockState = CursorLockMode.Confined;
                 int_quitToMenuSequence = 0;
                 break;
@@ -302,7 +302,7 @@ public class MenuManager : MonoBehaviour
         
         if (!bl_paused)
         {
-            ClearScreens();
+            //ClearScreens();
             SwitchScreenFancy(go_pauseScreen);
             GameManager.playerController.TogglePlayerControl();
             Time.timeScale = 0;
