@@ -47,6 +47,7 @@ public class Fireplace : Interactable
         GameManager.taskManager.AddTask(TaskManager.Task.LightFireplace);
     }
 
+    //Spawns Embers for ghost to use
     public void SpawnEmbers()
     {
         foreach (Transform tr in l_tr_emberSpawnPoints)

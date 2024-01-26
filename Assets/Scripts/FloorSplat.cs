@@ -25,6 +25,7 @@ public class FloorSplat : MonoBehaviour
         as_clean = GetComponent<AudioSource>();
     }
 
+    // cleans the splat a little whenever the mouse goes over it
     private void OnMouseExit()
     {
         if (bl_cleaned || !floorMess.bl_gameActive) return;
@@ -38,9 +39,10 @@ public class FloorSplat : MonoBehaviour
         }
     }
 
+    // makes the splat dirty again, possibly bloody
     public void ReDirty(bool bl_bloody = false)
     {
-        if (bl_bloody) GetComponent<Renderer>().material = mat_bloody;
+        //if (bl_bloody) GetComponent<Renderer>().material = mat_bloody;
 
         bl_cleaned = false;
         ren.material.color = new Color(ren.material.color.r, ren.material.color.g, ren.material.color.g, 1);

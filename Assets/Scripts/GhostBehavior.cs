@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
@@ -6,6 +7,9 @@ using UnityEngine.Rendering;
 
 public class GhostBehavior : MonoBehaviour
 {
+
+    PlayerController pc_player;
+
     //Variables that revolve around the Ghost's Navigation Abilities
     [Header("Navigation")]
     public NavMeshAgent nav_agent;
@@ -20,6 +24,7 @@ public class GhostBehavior : MonoBehaviour
     public List<pointList> l_pl_patrolPointsPerTask; //Patrol points matching the tasks from the task list
     public Transform tr_currentPatrolPoint;
     public int int_curIndex;
+    public GameObject go_curRegion;
 
     public float flt_distToSwitch;  //Distance between ghost and patrol point at the time of the switch
 
@@ -43,8 +48,9 @@ public class GhostBehavior : MonoBehaviour
 
     //Variables around interacting with items
     [Header("Task Item Interaction")]
-    bool bl_hiding;
-    public Transform[] a_tr_hidingPlaces;
+    public bool bl_hiding;
+    public HidingSpot[] a_hs_hidingPlaces;
+    HidingSpot hs_curHidingSpot;
     public float flt_breakThrowForce;
     public float flt_douseFireplaceChance;
     public float flt_dirtyMirrorChance;
@@ -89,6 +95,8 @@ public class GhostBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        pc_player = GameManager.playerController;
+
         //Set Current Tasks to be the starting tasks
         for (int i = 0; i < l_tsk_startTasks.Count; i++)
         {
@@ -127,11 +135,11 @@ public class GhostBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(go_floatTrigger.activeSelf == false && int_curAggressionLevel > 1)
+        if(go_floatTrigger.activeSelf == false && int_curAggressionLevel >= 3)
         {
             go_floatTrigger.SetActive(true);
         }
-        else if(go_floatTrigger.activeSelf == true && int_curAggressionLevel <= 1)
+        else if(go_floatTrigger.activeSelf == true && int_curAggressionLevel < 3)
         {
             go_floatTrigger.GetComponent<FloatTrigger>().CloseTrigger();
         }
@@ -180,7 +188,7 @@ public class GhostBehavior : MonoBehaviour
         {
             //Attempt to interact with patrol point
             Pickupable pickup = tr_currentPatrolPoint.GetComponent<Pickupable>();
-            if (pickup != null)
+            if (pickup != null && (int_curAggressionLevel >= 3 || go_curRegion != pc_player.go_curRegion))
             {
                 if (pickup.bl_hideable)
                 {
@@ -196,38 +204,41 @@ public class GhostBehavior : MonoBehaviour
             }
             else
             {
-                //Attempt to douse fireplace
-                Fireplace fireplace = tr_currentPatrolPoint.GetComponent<Fireplace>();
-                if(fireplace != null)
+                if (int_curAggressionLevel >= 3 || go_curRegion != pc_player.go_curRegion)
                 {
-                    int int_rand = Random.Range(0, 10);
-                    if(int_rand <= flt_douseFireplaceChance && int_curAggressionLevel >= 2)
-                    {
-                        fireplace.UnLight();
-                    }
-                }
-                else
-                {
-                    //Attempt to dirty mirror
-                    Mirror mr_mirror = tr_currentPatrolPoint.GetComponent<Mirror>();
-                    if(mr_mirror != null)
+                    //Attempt to douse fireplace
+                    Fireplace fireplace = tr_currentPatrolPoint.GetComponent<Fireplace>();
+                    if(fireplace != null)
                     {
                         int int_rand = Random.Range(0, 10);
-                        if (int_rand <= flt_dirtyMirrorChance && int_curAggressionLevel >= 2)
+                        if(int_rand <= flt_douseFireplaceChance && int_curAggressionLevel >= 2)
                         {
-                            mr_mirror.GhostDirty(int_curAggressionLevel);
+                            fireplace.UnLight();
                         }
                     }
                     else
                     {
-                        //Attempt to dirty floor
-                        FloorMess fm_mess = tr_currentPatrolPoint.GetComponent<FloorMess>();
-                        if (fm_mess != null)
+                        //Attempt to dirty mirror
+                        Mirror mr_mirror = tr_currentPatrolPoint.GetComponent<Mirror>();
+                        if(mr_mirror != null)
                         {
                             int int_rand = Random.Range(0, 10);
-                            if (int_rand <= flt_dirtyFloorChance && int_curAggressionLevel >= 2)
+                            if (int_rand <= flt_dirtyMirrorChance && int_curAggressionLevel >= 2)
                             {
-                                fm_mess.GhostDirty(int_curAggressionLevel);
+                                mr_mirror.GhostDirty(int_curAggressionLevel);
+                            }
+                        }
+                        else
+                        {
+                            //Attempt to dirty floor
+                            FloorMess fm_mess = tr_currentPatrolPoint.GetComponent<FloorMess>();
+                            if (fm_mess != null)
+                            {
+                                int int_rand = Random.Range(0, 10);
+                                if (int_rand <= flt_dirtyFloorChance && int_curAggressionLevel >= 2)
+                                {
+                                    fm_mess.GhostDirty(int_curAggressionLevel);
+                                }
                             }
                         }
                     }
@@ -320,6 +331,15 @@ public class GhostBehavior : MonoBehaviour
             }
         }
 
+        //Switch Hiding Spot if player enters that region
+        if (bl_hiding)
+        {
+            if (hs_curHidingSpot.a_go_region.Contains<GameObject>(pc_player.go_curRegion))
+            {
+                ChooseHidingPlace();
+            }
+        }
+
         //Play Audio
         flt_curSFXTime -= Time.deltaTime;
         if(flt_curSFXTime <= 0)
@@ -337,8 +357,15 @@ public class GhostBehavior : MonoBehaviour
             {
                 if (lightSwitch.bl_on)
                 {
-                    lightSwitch.Interact();
-                    flt_curSwitchCooldown = flt_lightSwitchCooldown;
+                    if (int_curAggressionLevel == 2 && lightSwitch.a_go_regions.Contains<GameObject>(pc_player.go_curRegion) == false)
+                    {
+                        lightSwitch.Interact();
+                        flt_curSwitchCooldown = flt_lightSwitchCooldown;
+                    }else if (int_curAggressionLevel >= 3)
+                    {
+                        lightSwitch.Interact();
+                        flt_curSwitchCooldown = flt_lightSwitchCooldown;
+                    }
                 }
             }
         }
@@ -536,7 +563,7 @@ public class GhostBehavior : MonoBehaviour
     //Set an item to be the current held item
     public void PickUpItem(GameObject go_item)
     {
-        if (GameManager.playerController.Go_heldObject != null && GameManager.playerController.Go_heldObject.name == go_item.name)
+        if (pc_player.Go_heldObject != null && pc_player.Go_heldObject.name == go_item.name)
         {
             int_curIndex++;
             if (int_curIndex >= l_pl_currentPoints.Count)
@@ -560,7 +587,11 @@ public class GhostBehavior : MonoBehaviour
     {
         go_curHeldItem.transform.parent = null;
         go_curHeldItem.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        if (bl_hiding) bl_hiding = false;
+        if (bl_hiding)
+        {
+            bl_hiding = false;
+            pc_player.go_curRegion.GetComponent<NavMeshObstacle>().enabled = false;
+        }
         go_curHeldItem = null;
     }
 
@@ -577,10 +608,16 @@ public class GhostBehavior : MonoBehaviour
     public void ChooseHidingPlace()
     {
         if (go_curHeldItem == null) return;
-        bl_hiding = true;
-        int rand = Random.Range(0, a_tr_hidingPlaces.Length);
-        nav_agent.SetDestination(a_tr_hidingPlaces[rand].position);
-        tr_currentPatrolPoint = a_tr_hidingPlaces[rand];
+        pc_player.go_curRegion.GetComponent<NavMeshObstacle>().enabled = true;
+        do
+        {
+            bl_hiding = true;
+            int rand = Random.Range(0, a_hs_hidingPlaces.Length);
+            hs_curHidingSpot = a_hs_hidingPlaces[rand];
+            nav_agent.SetDestination(hs_curHidingSpot.transform.position);
+            tr_currentPatrolPoint = hs_curHidingSpot.transform;
+        } while (hs_curHidingSpot.a_go_region.Contains<GameObject>(pc_player.go_curRegion));
+        //pc_player.go_curRegion.GetComponent<NavMeshObstacle>().enabled = false;
     }
 
     //Add light to light sources list
@@ -641,5 +678,4 @@ public class GhostBehavior : MonoBehaviour
         }
 
     }
-
 }

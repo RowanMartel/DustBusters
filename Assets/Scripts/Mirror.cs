@@ -48,6 +48,7 @@ public class Mirror : Interactable
         }
     }
 
+    // makes a splat dirty again and reassigns the task
     public void GhostDirty(int int_aggression)
     {
         if (!bl_clean ||

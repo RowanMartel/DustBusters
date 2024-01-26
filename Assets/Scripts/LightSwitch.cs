@@ -11,6 +11,8 @@ public class LightSwitch : Interactable
     public Collider lightCollider;
     [Tooltip("Toggle if the model itself is rotated 90 degrees")]
     public bool bl_rotated;
+    [Tooltip("What regions can the player see the light from?")]
+    public GameObject[] a_go_regions;
 
     // toggle all lights on or off at start
     private void Start()

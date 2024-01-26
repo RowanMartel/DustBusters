@@ -43,21 +43,4 @@ public class Pickupable : Interactable
 
     // does nothing
     public override void Interact(){}
-
-    /*public void PickUp()
-    {
-        rb.isKinematic = true;
-        held = true;
-        Debug.Log("A");
-        if(GameManager.ghost.go_curHeldItem == gameObject)
-        {
-            Debug.Log("B");
-            GameManager.ghost.GetRobbed();
-        }
-    }
-    public void Drop()
-    {
-        rb.isKinematic = false;
-        held = false;
-    }*/
 }
