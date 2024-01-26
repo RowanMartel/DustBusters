@@ -32,6 +32,7 @@ public class HealthSystem : MonoBehaviour
                 menuReference.ShowDeathSequence();
             }
             menuReference.IncreaseDamageOverlay();
+            Debug.Log("Increased Damage Overlay");
         }
         else
         {

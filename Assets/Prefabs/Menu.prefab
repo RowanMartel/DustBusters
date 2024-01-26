@@ -7250,7 +7250,7 @@ GameObject:
   - component: {fileID: 1172770310287945907}
   - component: {fileID: 2026716217984346585}
   m_Layer: 0
-  m_Name: Start
+  m_Name: StartScreenButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7273,7 +7273,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000061035156, y: -135}
+  m_AnchoredPosition: {x: 0.000061035156, y: -300}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7104912304396784150
@@ -7359,8 +7359,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2704807646000791781}
-        m_TargetAssemblyTypeName: RWMenu, Assembly-CSharp
-        m_MethodName: StartGame
+        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+        m_MethodName: StartGameSequence
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
