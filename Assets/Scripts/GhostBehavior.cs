@@ -200,6 +200,12 @@ public class GhostBehavior : MonoBehaviour
                     pickup.transform.LookAt(transform.position);
                     pickup.GetComponent<Rigidbody>().AddForce(pickup.transform.forward * flt_breakThrowForce, ForceMode.Impulse);
 
+                    int_curIndex++;
+                    if (int_curIndex >= l_pl_currentPoints.Count)
+                    {
+                        int_curIndex = 0;
+                    }
+                    SwitchToPoint(int_curIndex);
                 }
             }
             else
