@@ -139,6 +139,7 @@ public class MenuManager : MonoBehaviour
                 break;
 
                 case 1:
+                GameManager.playerController.TogglePlayerControl();
                 int_clearScreenSequence = 0;
 
                 go_optionsScreen.transform.localPosition = new Vector3(-750, 0f, 0f);
@@ -320,18 +321,21 @@ public class MenuManager : MonoBehaviour
         switch (int_endSequence)
         {
             case 0:
+                GameManager.playerController.TogglePlayerControl();
+                Time.timeScale = 0;
+
                 int_endSequence++;
-                LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 1, 1f).setOnComplete(EnterGameSequence).setIgnoreTimeScale(true);
+                LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 1, 1f).setOnComplete(ToEnd).setIgnoreTimeScale(true);
                 break;
             case 1:
                 int_endSequence++;
                 ClearScreens();
-                SceneManager.LoadScene(2);
-                LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 0, 1f).setOnComplete(EnterGameSequence).setIgnoreTimeScale(true);
+                SceneManager.LoadScene("EndScreen");
+                LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 0, 1f).setOnComplete(ToEnd).setIgnoreTimeScale(true);
                 break;
             case 2:
                 SwitchScreen(go_endScreen);
-                Cursor.lockState = CursorLockMode.Confined;
+                // Cursor.lockState = CursorLockMode.Confined;
                 int_endSequence = 0;
                 break;
         }
@@ -347,7 +351,6 @@ public class MenuManager : MonoBehaviour
     public void Unpause()
     {
         ClearScreenFancy();
-        GameManager.playerController.TogglePlayerControl();
         Time.timeScale = 1;
         if (GameManager.ghost != null)
         {
@@ -362,12 +365,12 @@ public class MenuManager : MonoBehaviour
         
         if (!bl_paused && bl_allowPause)
         {
+            GameManager.playerController.TogglePlayerControl();
             //ClearScreens();
             go_nextScreen = go_pauseScreen;
             SwitchScreenTransition();
 
             // SwitchScreenFancy(go_pauseScreen);
-            GameManager.playerController.TogglePlayerControl();
             Time.timeScale = 0;
             if (GameManager.ghost != null)
             {
