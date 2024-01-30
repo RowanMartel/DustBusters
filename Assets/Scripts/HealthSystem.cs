@@ -5,6 +5,7 @@ public class HealthSystem : MonoBehaviour
 {
     protected int int_playerHealth;
     public int Int_playerHealth { get { return int_playerHealth; } set { int_playerHealth = value; } }
+
     protected PlayerController playerController;
     protected MenuManager menuReference;
 
@@ -16,6 +17,7 @@ public class HealthSystem : MonoBehaviour
         menuReference = GameObject.Find("MenuManager").GetComponent<MenuManager>();
     }
 
+    // This handles all collisions with the player, determines if the Damage Overlay is called, and if int_playerHealth is affected
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.relativeVelocity.magnitude < 5) return;
