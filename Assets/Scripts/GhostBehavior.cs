@@ -350,7 +350,13 @@ public class GhostBehavior : MonoBehaviour
         flt_curSFXTime -= Time.deltaTime;
         if(flt_curSFXTime <= 0)
         {
-            PlaySound();
+            AudioClip ac_clip;
+            do
+            {
+                ac_clip = a_ac_sounds[Random.Range(0, a_ac_sounds.Length - 1)];
+            } while (ac_clip == ac_lastPlayed);
+            GameManager.soundManager.PlayClip(ac_clip, as_aSource);
+            ac_lastPlayed = ac_clip;
         }
     }
 
@@ -468,21 +474,6 @@ public class GhostBehavior : MonoBehaviour
                 
         }
 
-    }
-
-    //Play a random audio clip
-    public void PlaySound()
-    {
-        AudioClip ac_clip;
-        do
-        {
-            ac_clip = a_ac_sounds[Random.Range(0, a_ac_sounds.Length - 1)];
-        } while (ac_clip == ac_lastPlayed);
-
-        as_aSource.clip = ac_clip;
-        as_aSource.Play();
-        ac_lastPlayed = ac_clip;
-        flt_curSFXTime = flt_sfxTime + Random.Range(-flt_sfxTimeDeviationRange, flt_sfxTimeDeviationRange);
     }
 
     //Add task to current task list
