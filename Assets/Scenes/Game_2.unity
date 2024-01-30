@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 22102219}
   - component: {fileID: 22102221}
   - component: {fileID: 22102220}
+  - component: {fileID: 22102222}
   m_Layer: 0
   m_Name: SecondFloorHallCloset
   m_TagString: Untagged
@@ -189,6 +190,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.8471966, y: 4.2567577, z: 4.542432}
   m_Center: {x: 7.568554, y: 8.771813, z: -0.14303923}
+--- !u!208 &22102222
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 22102218}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.4235985, y: 2.128379, z: 2.271216}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 7.568554, y: 8.771813, z: -0.1430392}
+  m_TimeToStationary: 0.5
 --- !u!1 &107965228
 GameObject:
   m_ObjectHideFlags: 0
@@ -377,6 +394,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2029320467}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!1 &146523280
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 146523281}
+  m_Layer: 0
+  m_Name: MopFloor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &146523281
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146523280}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -19.51, y: 0, z: -5.04}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 684333665}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &147714274
 GameObject:
   m_ObjectHideFlags: 0
@@ -482,6 +530,7 @@ GameObject:
   - component: {fileID: 151300016}
   - component: {fileID: 151300018}
   - component: {fileID: 151300017}
+  - component: {fileID: 151300019}
   m_Layer: 0
   m_Name: KidsBedroom
   m_TagString: Untagged
@@ -537,6 +586,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 11.761354, y: 4.2567577, z: 10.252638}
   m_Center: {x: 12.00027, y: 8.771813, z: -7.4896564}
+--- !u!208 &151300019
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 151300015}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 5.880675, y: 2.128379, z: 5.12632}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 12.00027, y: 8.771813, z: -7.489656}
+  m_TimeToStationary: 0.5
 --- !u!1 &166421782
 GameObject:
   m_ObjectHideFlags: 0
@@ -697,6 +762,7 @@ GameObject:
   - component: {fileID: 251517225}
   - component: {fileID: 251517227}
   - component: {fileID: 251517226}
+  - component: {fileID: 251517228}
   m_Layer: 0
   m_Name: Kitchen and Living Room
   m_TagString: Untagged
@@ -752,6 +818,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 29.743336, y: 4.266019, z: 11.736176}
   m_Center: {x: 2.9908118, y: 4.542869, z: -6.771969}
+--- !u!208 &251517228
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 251517224}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 14.87167, y: 2.1330094, z: 5.86809}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 2.990812, y: 4.542869, z: -6.771969}
+  m_TimeToStationary: 0.5
 --- !u!1 &252261973
 GameObject:
   m_ObjectHideFlags: 0
@@ -763,6 +845,7 @@ GameObject:
   - component: {fileID: 252261974}
   - component: {fileID: 252261976}
   - component: {fileID: 252261975}
+  - component: {fileID: 252261977}
   m_Layer: 0
   m_Name: Foyer
   m_TagString: Untagged
@@ -818,6 +901,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 7.6957207, y: 4.266019, z: 5.715122}
   m_Center: {x: 3.7172718, y: 4.542869, z: 8.360502}
+--- !u!208 &252261977
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 252261973}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 3.8478606, y: 2.1330094, z: 2.857561}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 3.717272, y: 4.542869, z: 8.360502}
+  m_TimeToStationary: 0.5
 --- !u!1 &356724314
 GameObject:
   m_ObjectHideFlags: 0
@@ -829,6 +928,7 @@ GameObject:
   - component: {fileID: 356724315}
   - component: {fileID: 356724317}
   - component: {fileID: 356724316}
+  - component: {fileID: 356724318}
   m_Layer: 0
   m_Name: Dining Room
   m_TagString: Untagged
@@ -884,6 +984,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10.258514, y: 4.266019, z: 12.131454}
   m_Center: {x: 12.733223, y: 4.542869, z: 5.152336}
+--- !u!208 &356724318
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 356724314}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 5.129255, y: 2.1330094, z: 6.065725}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 12.73322, y: 4.542869, z: 5.152336}
+  m_TimeToStationary: 0.5
 --- !u!1 &360669695
 GameObject:
   m_ObjectHideFlags: 0
@@ -895,6 +1011,7 @@ GameObject:
   - component: {fileID: 360669696}
   - component: {fileID: 360669698}
   - component: {fileID: 360669697}
+  - component: {fileID: 360669699}
   m_Layer: 0
   m_Name: MasterBedroom
   m_TagString: Untagged
@@ -950,6 +1067,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 11.703555, y: 4.2567577, z: 13.492774}
   m_Center: {x: -6.0148187, y: 8.771813, z: 4.3321347}
+--- !u!208 &360669699
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 360669695}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 5.85178, y: 2.128379, z: 6.746385}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -6.014819, y: 8.771813, z: 4.332135}
+  m_TimeToStationary: 0.5
 --- !u!1 &387722200
 GameObject:
   m_ObjectHideFlags: 0
@@ -1232,98 +1365,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2029320467}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!1 &474337491
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 474337494}
-  - component: {fileID: 474337493}
-  - component: {fileID: 474337492}
-  m_Layer: 0
-  m_Name: Main Camera
-  m_TagString: MainCamera
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!81 &474337492
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 474337491}
-  m_Enabled: 1
---- !u!20 &474337493
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 474337491}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_Iso: 200
-  m_ShutterSpeed: 0.005
-  m_Aperture: 16
-  m_FocusDistance: 10
-  m_FocalLength: 50
-  m_BladeCount: 5
-  m_Curvature: {x: 2, y: 11}
-  m_BarrelClipping: 0.25
-  m_Anamorphism: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: -1
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
---- !u!4 &474337494
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 474337491}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &502061764
 GameObject:
   m_ObjectHideFlags: 0
@@ -1335,6 +1376,7 @@ GameObject:
   - component: {fileID: 502061765}
   - component: {fileID: 502061767}
   - component: {fileID: 502061766}
+  - component: {fileID: 502061768}
   m_Layer: 0
   m_Name: SecondHallBathroom
   m_TagString: Untagged
@@ -1390,6 +1432,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10.779885, y: 4.2567577, z: 7.014605}
   m_Center: {x: 0.72253466, y: 8.771813, z: -9.121644}
+--- !u!208 &502061768
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 502061764}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 5.389945, y: 2.128379, z: 3.5073025}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.7225347, y: 8.771813, z: -9.121644}
+  m_TimeToStationary: 0.5
 --- !u!1 &505624033
 GameObject:
   m_ObjectHideFlags: 0
@@ -1401,6 +1459,7 @@ GameObject:
   - component: {fileID: 505624034}
   - component: {fileID: 505624036}
   - component: {fileID: 505624035}
+  - component: {fileID: 505624037}
   m_Layer: 0
   m_Name: MasterWalkIn
   m_TagString: Untagged
@@ -1456,6 +1515,53 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 7.16671, y: 4.2567577, z: 4.29793}
   m_Center: {x: -8.283241, y: 8.771813, z: -4.5032988}
+--- !u!208 &505624037
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 505624033}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 3.583355, y: 2.128379, z: 2.148965}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -8.283241, y: 8.771813, z: -4.503299}
+  m_TimeToStationary: 0.5
+--- !u!1 &552298314
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 552298315}
+  m_Layer: 0
+  m_Name: CleanDishes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &552298315
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 552298314}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 11.969, y: 0, z: -8.407}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 684333665}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &588387257
 GameObject:
   m_ObjectHideFlags: 0
@@ -1467,6 +1573,7 @@ GameObject:
   - component: {fileID: 588387258}
   - component: {fileID: 588387260}
   - component: {fileID: 588387259}
+  - component: {fileID: 588387261}
   m_Layer: 0
   m_Name: Library
   m_TagString: Untagged
@@ -1522,6 +1629,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 11.751341, y: 4.266019, z: 12.068926}
   m_Center: {x: -6.0162153, y: 4.542869, z: 5.1836004}
+--- !u!208 &588387261
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 588387257}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 5.87567, y: 2.1330094, z: 6.034465}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -6.016215, y: 4.542869, z: 5.1836}
+  m_TimeToStationary: 0.5
 --- !u!1 &612495494
 GameObject:
   m_ObjectHideFlags: 0
@@ -1837,6 +1960,41 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2029320467}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!1 &684333664
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 684333665}
+  m_Layer: 0
+  m_Name: PlaceHolderTasks
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &684333665
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684333664}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.82, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 552298315}
+  - {fileID: 1477082930}
+  - {fileID: 146523281}
+  - {fileID: 1179020065}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &692826728
 GameObject:
   m_ObjectHideFlags: 0
@@ -1911,6 +2069,7 @@ GameObject:
   - component: {fileID: 710783863}
   - component: {fileID: 710783865}
   - component: {fileID: 710783864}
+  - component: {fileID: 710783866}
   m_Layer: 0
   m_Name: KidsCloset
   m_TagString: Untagged
@@ -1966,6 +2125,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4.541974, y: 4.2567577, z: 4.481661}
   m_Center: {x: 15.609961, y: 8.771813, z: -0.055278778}
+--- !u!208 &710783866
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 710783862}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 2.270987, y: 2.128379, z: 2.2408304}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 15.60996, y: 8.771813, z: -0.05527878}
+  m_TimeToStationary: 0.5
 --- !u!1 &762426308
 GameObject:
   m_ObjectHideFlags: 0
@@ -2071,6 +2246,7 @@ GameObject:
   - component: {fileID: 791661049}
   - component: {fileID: 791661051}
   - component: {fileID: 791661050}
+  - component: {fileID: 791661052}
   m_Layer: 0
   m_Name: CleaningCloset
   m_TagString: Untagged
@@ -2126,6 +2302,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.8965702, y: 4.266019, z: 5.917904}
   m_Center: {x: -19.433556, y: 4.542869, z: -3.7725582}
+--- !u!208 &791661052
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 791661048}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.448285, y: 2.1330094, z: 2.958952}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -19.43356, y: 4.542869, z: -3.772558}
+  m_TimeToStationary: 0.5
 --- !u!1 &814850707
 GameObject:
   m_ObjectHideFlags: 0
@@ -2419,6 +2611,7 @@ GameObject:
   - component: {fileID: 906184329}
   - component: {fileID: 906184331}
   - component: {fileID: 906184330}
+  - component: {fileID: 906184332}
   m_Layer: 0
   m_Name: MainHall
   m_TagString: Untagged
@@ -2474,6 +2667,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4.584553, y: 4.266019, z: 6.564028}
   m_Center: {x: 5.2728558, y: 4.542869, z: 2.2160482}
+--- !u!208 &906184332
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906184328}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 2.2922764, y: 2.1330094, z: 3.282014}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 5.272856, y: 4.542869, z: 2.216048}
+  m_TimeToStationary: 0.5
 --- !u!1 &1167610955
 GameObject:
   m_ObjectHideFlags: 0
@@ -2568,6 +2777,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2029320467}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!1 &1179020064
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1179020065}
+  m_Layer: 0
+  m_Name: CleanCobwebs
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1179020065
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179020064}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.202, y: 3.82, z: 2.872}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 684333665}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1188076901
 GameObject:
   m_ObjectHideFlags: 0
@@ -2579,6 +2819,7 @@ GameObject:
   - component: {fileID: 1188076902}
   - component: {fileID: 1188076904}
   - component: {fileID: 1188076903}
+  - component: {fileID: 1188076905}
   m_Layer: 0
   m_Name: Office
   m_TagString: Untagged
@@ -2634,6 +2875,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 6.243039, y: 4.2567577, z: 5.7921057}
   m_Center: {x: 3.018127, y: 8.771813, z: 8.251488}
+--- !u!208 &1188076905
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1188076901}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 3.1215196, y: 2.128379, z: 2.896053}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 3.018127, y: 8.771813, z: 8.251488}
+  m_TimeToStationary: 0.5
 --- !u!1 &1249943487
 GameObject:
   m_ObjectHideFlags: 0
@@ -2927,6 +3184,7 @@ GameObject:
   - component: {fileID: 1333493159}
   - component: {fileID: 1333493161}
   - component: {fileID: 1333493160}
+  - component: {fileID: 1333493162}
   m_Layer: 0
   m_Name: FirstFloorBathroom
   m_TagString: Untagged
@@ -2982,6 +3240,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 5.660965, y: 4.266019, z: 5.712287}
   m_Center: {x: -18.051357, y: 4.542869, z: -9.755907}
+--- !u!208 &1333493162
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1333493158}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 2.8304825, y: 2.1330094, z: 2.8561435}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -18.05136, y: 4.542869, z: -9.755907}
+  m_TimeToStationary: 0.5
 --- !u!1 &1393437633
 GameObject:
   m_ObjectHideFlags: 0
@@ -3087,6 +3361,7 @@ GameObject:
   - component: {fileID: 1446597392}
   - component: {fileID: 1446597394}
   - component: {fileID: 1446597393}
+  - component: {fileID: 1446597395}
   m_Layer: 0
   m_Name: TeenCloset
   m_TagString: Untagged
@@ -3142,6 +3417,53 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4.5872364, y: 4.2567577, z: 4.481661}
   m_Center: {x: 11.128964, y: 8.771813, z: -0.055278778}
+--- !u!208 &1446597395
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1446597391}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 2.293618, y: 2.128379, z: 2.2408304}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 11.12896, y: 8.771813, z: -0.05527878}
+  m_TimeToStationary: 0.5
+--- !u!1 &1477082929
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1477082930}
+  m_Layer: 0
+  m_Name: CleanMirror
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1477082930
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1477082929}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -17.166, y: 0, z: -9.584}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 684333665}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1539641743
 GameObject:
   m_ObjectHideFlags: 0
@@ -3247,6 +3569,7 @@ GameObject:
   - component: {fileID: 1549443259}
   - component: {fileID: 1549443261}
   - component: {fileID: 1549443260}
+  - component: {fileID: 1549443262}
   m_Layer: 0
   m_Name: MasterBathroom
   m_TagString: Untagged
@@ -3302,6 +3625,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 7.16671, y: 4.2567577, z: 6.0366025}
   m_Center: {x: -8.283241, y: 8.771813, z: -9.610645}
+--- !u!208 &1549443262
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549443258}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 3.583355, y: 2.128379, z: 3.018301}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -8.283241, y: 8.771813, z: -9.610645}
+  m_TimeToStationary: 0.5
 --- !u!1 &1625500754
 GameObject:
   m_ObjectHideFlags: 0
@@ -3314,6 +3653,7 @@ GameObject:
   - component: {fileID: 1625500758}
   - component: {fileID: 1625500757}
   - component: {fileID: 1625500756}
+  - component: {fileID: 1625500759}
   m_Layer: 0
   m_Name: ExtensionHall
   m_TagString: Untagged
@@ -3390,6 +3730,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.3170452, y: 4.266019, z: 11.736176}
   m_Center: {x: -13.510396, y: 4.542869, z: -6.771969}
+--- !u!208 &1625500759
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625500754}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.6585225, y: 2.1330094, z: 5.86809}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -13.5104, y: 4.542869, z: -6.771969}
+  m_TimeToStationary: 0.5
 --- !u!1 &1639690090
 GameObject:
   m_ObjectHideFlags: 0
@@ -3546,6 +3902,7 @@ GameObject:
   - component: {fileID: 1743294836}
   - component: {fileID: 1743294838}
   - component: {fileID: 1743294837}
+  - component: {fileID: 1743294839}
   m_Layer: 0
   m_Name: Stairs
   m_TagString: Untagged
@@ -3601,6 +3958,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.0686512, y: 8.490332, z: 6.564028}
   m_Center: {x: 1.4022536, y: 6.6550255, z: 2.2160482}
+--- !u!208 &1743294839
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1743294835}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.5343255, y: 4.245166, z: 3.282014}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 1.402254, y: 6.655025, z: 2.216048}
+  m_TimeToStationary: 0.5
 --- !u!1 &1782937181
 GameObject:
   m_ObjectHideFlags: 0
@@ -3612,6 +3985,7 @@ GameObject:
   - component: {fileID: 1782937182}
   - component: {fileID: 1782937184}
   - component: {fileID: 1782937183}
+  - component: {fileID: 1782937185}
   m_Layer: 0
   m_Name: TeenRoom
   m_TagString: Untagged
@@ -3667,6 +4041,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 11.761356, y: 4.2567577, z: 8.985287}
   m_Center: {x: 11.977636, y: 8.771813, z: 6.6548977}
+--- !u!208 &1782937185
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782937181}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 5.88068, y: 2.128379, z: 4.4926434}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 11.97764, y: 8.771813, z: 6.654898}
+  m_TimeToStationary: 0.5
 --- !u!1 &1787694113
 GameObject:
   m_ObjectHideFlags: 0
@@ -3962,6 +4352,7 @@ GameObject:
   - component: {fileID: 1857991538}
   - component: {fileID: 1857991537}
   - component: {fileID: 1857991536}
+  - component: {fileID: 1857991540}
   m_Layer: 0
   m_Name: SecondFloorHall
   m_TagString: Untagged
@@ -4059,6 +4450,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 7.6969724, y: 4.2255974, z: 3.277504}
   m_Center: {x: -0.8512714, y: 8.746967, z: -3.9951239}
+--- !u!208 &1857991540
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1857991534}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 3.16, y: 2.1127985, z: 5.055}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 2.82, y: 8.746967, z: 0.21}
+  m_TimeToStationary: 0.5
 --- !u!1001 &1925606548
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6127,6 +6534,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
+      propertyPath: l_tsk_startTasks.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
+      propertyPath: l_tsk_startTasks.Array.data[3]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
+      propertyPath: l_pl_patrolPointsPerTask.Array.data[1].listAggro1.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
+      propertyPath: l_pl_patrolPointsPerTask.Array.data[0].listAggro1.Array.data[0]
+      value: 
+      objectReference: {fileID: 552298315}
+    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
+      propertyPath: l_pl_patrolPointsPerTask.Array.data[1].listAggro1.Array.data[0]
+      value: 
+      objectReference: {fileID: 146523281}
+    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
+      propertyPath: l_pl_patrolPointsPerTask.Array.data[1].listAggro1.Array.data[1]
+      value: 
+      objectReference: {fileID: 146523281}
+    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
+      propertyPath: l_pl_patrolPointsPerTask.Array.data[2].listAggro1.Array.data[0]
+      value: 
+      objectReference: {fileID: 1179020065}
+    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
+      propertyPath: l_pl_patrolPointsPerTask.Array.data[4].listAggro1.Array.data[0]
+      value: 
+      objectReference: {fileID: 1477082930}
     - target: {fileID: 7813583447088648802, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
       propertyPath: m_Name
       value: Ghost
@@ -6140,7 +6579,6 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 474337494}
   - {fileID: 439717876}
   - {fileID: 1925606548}
   - {fileID: 2029320467}
@@ -6149,3 +6587,4 @@ SceneRoots:
   - {fileID: 692826730}
   - {fileID: 630044954}
   - {fileID: 1639690091}
+  - {fileID: 684333665}
