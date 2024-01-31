@@ -70,19 +70,6 @@ public class MenuManager : MonoBehaviour
 
         go_debugScreen.SetActive(false);
 
-        // Singleton - this should not be needed anymore as the MenuManager is part of the GameManager prefab, and GameManager is in charge of the Singleton
-
-        // if (instance == null)
-        // {
-        //     DontDestroyOnLoad(gameObject);
-        //     instance = this;
-        //     FadeIn();
-        // }
-        // else
-        // {
-        //     Destroy(gameObject);
-        // }
-
         SwitchScreen(go_titleScreen);
 
         go_screenBuffer = go_titleScreen;
@@ -131,13 +118,10 @@ public class MenuManager : MonoBehaviour
     private void ClearScreens()
     {
         go_titleScreen.SetActive(false);
-        // go_optionsScreen.SetActive(false);
         go_gameScreen.SetActive(false);
-        // go_pauseScreen.SetActive(false);
         go_deathScreen.SetActive(false);
         go_startScreen.SetActive(false);
         go_endScreen.SetActive(false);
-        // go_controlsScreen.SetActive(false);
     }
 
     // Clears screens like above, but uses LeanTween transition
@@ -150,7 +134,7 @@ public class MenuManager : MonoBehaviour
                 LeanTween.moveLocal(go_lastScreen, new Vector3(750f, 0f, 0f), Settings.flt_menuTransitionSpeed).setEase(LeanTweenType.easeInSine).setOnComplete(ClearScreenWithTransition).setIgnoreTimeScale(true);
                 break;
 
-                case 1:
+            case 1:
                 GameManager.playerController.TogglePlayerControl();
                 int_clearScreenSequence = 0;
 
@@ -191,7 +175,7 @@ public class MenuManager : MonoBehaviour
         LeanTween.alpha(img_damageOverlay.GetComponent<RectTransform>(), img_damageOverlay.color.a - 0.33f, 1f);
     }
 
-    //Shows death sequence
+    //Shows death sequence in animation stages
     public void ShowDeathSequence()
     {
         switch(int_deathSequence)
@@ -232,7 +216,7 @@ public class MenuManager : MonoBehaviour
         go_OrientationNote.transform.localPosition = new Vector3(0f, -500f, 0f);
     }
 
-    // This handles the transition from the TitleScreen scene to the Game scene and brings up the Orientation Note and Start buttons with LeanTween
+    // This handles the transition from the TitleScreen scene to the Game scene and brings up the Orientation Note and Start buttons with LeanTween in animation stages
     public void EnterGameSequence()
     {
         switch (int_enterSequence)
@@ -260,7 +244,7 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    // Once player clicks on the start button below the Orientation Note, this dismisses note and button, brings up the gameScreen, and enters play mode.
+    // Once player clicks on the start button below the Orientation Note, this dismisses note and button, brings up the gameScreen, and enters play mode. Uses animation stages
     public void StartGameSequence()
     {
         switch (int_startSequence)
@@ -283,7 +267,7 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    //Go To Title Screen with fade transitions
+    //Go To Title Screen with fade transitions in animation stages
     public void QuitToTitleSequence()
     {
         switch (int_quitToMenuSequence)
@@ -302,7 +286,6 @@ public class MenuManager : MonoBehaviour
                 LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 0, 1f).setOnComplete(QuitToTitleSequence).setIgnoreTimeScale(true);
                 break;
             case 2:
-                // Time.timeScale = 1;
                 Cursor.lockState = CursorLockMode.Confined;
                 int_quitToMenuSequence = 0;
                 if (bl_paused) bl_paused = false;
@@ -316,7 +299,7 @@ public class MenuManager : MonoBehaviour
         DissmissScreenAndCallNext(go_screenBuffer);
     }
 
-    //Go to End Scene with LeanTween transitions
+    //Go to End Scene with LeanTween transitions in animation stages
     public void ToEnd()
     {
         switch (int_endSequence)
@@ -336,7 +319,6 @@ public class MenuManager : MonoBehaviour
                 break;
             case 2:
                 SwitchScreen(go_endScreen);
-                // Cursor.lockState = CursorLockMode.Confined;
                 int_endSequence = 0;
                 break;
         }
@@ -366,11 +348,9 @@ public class MenuManager : MonoBehaviour
         if (!bl_paused && bl_allowPause)
         {
             GameManager.playerController.TogglePlayerControl();
-            //ClearScreens();
             go_nextScreen = go_pauseScreen;
             CallScreenWithTransition();
 
-            // SwitchScreenFancy(go_pauseScreen);
             Time.timeScale = 0;
             if (GameManager.ghost != null)
             {
