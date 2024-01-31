@@ -70,19 +70,6 @@ public class MenuManager : MonoBehaviour
 
         go_debugScreen.SetActive(false);
 
-        // Singleton - this should not be needed anymore as the MenuManager is part of the GameManager prefab, and GameManager is in charge of the Singleton
-
-        // if (instance == null)
-        // {
-        //     DontDestroyOnLoad(gameObject);
-        //     instance = this;
-        //     FadeIn();
-        // }
-        // else
-        // {
-        //     Destroy(gameObject);
-        // }
-
         SwitchScreen(go_titleScreen);
 
         go_screenBuffer = go_titleScreen;
@@ -133,13 +120,10 @@ public class MenuManager : MonoBehaviour
     private void ClearScreens()
     {
         go_titleScreen.SetActive(false);
-        // go_optionsScreen.SetActive(false);
         go_gameScreen.SetActive(false);
-        // go_pauseScreen.SetActive(false);
         go_deathScreen.SetActive(false);
         go_startScreen.SetActive(false);
         go_endScreen.SetActive(false);
-        // go_controlsScreen.SetActive(false);
     }
 
     // Clears screens like above, but uses LeanTween transition
@@ -194,7 +178,7 @@ public class MenuManager : MonoBehaviour
         LeanTween.alpha(img_damageOverlay.GetComponent<RectTransform>(), img_damageOverlay.color.a - 0.33f, 1f);
     }
 
-    //Shows death sequence
+    //Shows death sequence with animation in steps
     public void ShowDeathSequence()
     {
         switch(int_deathSequence)
@@ -235,7 +219,7 @@ public class MenuManager : MonoBehaviour
         go_OrientationNote.transform.localPosition = new Vector3(0f, -500f, 0f);
     }
 
-    // This handles the transition from the TitleScreen scene to the Game scene and brings up the Orientation Note and Start buttons with LeanTween
+    // This handles the transition from the TitleScreen scene to the Game scene and brings up the Orientation Note and Start buttons with LeanTween with animation in steps
     public void EnterGameSequence()
     {
         switch (int_enterSequence)
