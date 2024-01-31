@@ -612,7 +612,6 @@ GameObject:
   m_Component:
   - component: {fileID: 166421783}
   - component: {fileID: 166421785}
-  - component: {fileID: 166421784}
   m_Layer: 0
   m_Name: Floor1
   m_TagString: Untagged
@@ -635,14 +634,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 630044954}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!81 &166421784
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 166421782}
-  m_Enabled: 1
 --- !u!20 &166421785
 Camera:
   m_ObjectHideFlags: 0
@@ -6404,7 +6395,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2097532589}
   - component: {fileID: 2097532591}
-  - component: {fileID: 2097532590}
   m_Layer: 0
   m_Name: Floor2
   m_TagString: Untagged
@@ -6427,14 +6417,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 630044954}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!81 &2097532590
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2097532588}
-  m_Enabled: 1
 --- !u!20 &2097532591
 Camera:
   m_ObjectHideFlags: 0

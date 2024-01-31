@@ -250,10 +250,12 @@ public class PlayerController : MonoBehaviour
 
         if (go_heldObject == null && go_lookingAtObject != null && go_lookingAtObject.CompareTag("Interactable"))
         {
+            //Interact with an object while not holding anything
             Pickupable pickupable = go_lookingAtObject.GetComponent<Pickupable>();
 
             if (pickupable != null)
             {
+                //Pick up said object
                 go_heldObject = go_lookingAtObject;
                 Physics.IgnoreCollision(go_heldObject.GetComponent<Collider>(), GetComponent<Collider>());
 
@@ -271,6 +273,7 @@ public class PlayerController : MonoBehaviour
         }
         else if(go_heldObject != null && (go_lookingAtObject == null || go_lookingAtObject.tag != "Interactable"))
         {
+            //Drop held item
             go_heldObject.layer = 0;
             go_heldObject.GetComponent<Rigidbody>().useGravity = true;
             Physics.IgnoreCollision(go_heldObject.GetComponent<Collider>(), GetComponent<Collider>(), false);
@@ -278,15 +281,18 @@ public class PlayerController : MonoBehaviour
         }
         else if (go_heldObject != null && go_lookingAtObject.CompareTag("Interactable"))
         {
+            //Interact with object while holding another object
             Pickupable pickupable = go_lookingAtObject.GetComponent<Pickupable>();
 
             if (pickupable != null)
             {
+                //Drop old item
                 go_heldObject.layer = 0;
                 go_heldObject.GetComponent<Rigidbody>().useGravity = true;
                 Physics.IgnoreCollision(go_heldObject.GetComponent<Collider>(), GetComponent<Collider>(), false);
                 go_heldObject = null;
 
+                //Pick up new item
                 if (go_heldObject != null)
                     Physics.IgnoreCollision(go_heldObject.GetComponent<Collider>(), GetComponent<Collider>(), false);
                 go_heldObject = go_lookingAtObject;
@@ -294,8 +300,6 @@ public class PlayerController : MonoBehaviour
 
                 go_heldObject.GetComponent<Rigidbody>().useGravity = false;
                 go_heldObject.GetComponent<Outline>().enabled = false;
-
-                //heldObject.transform.position = midHold.transform.position;
 
                 int layerIgnoreRaycast = LayerMask.NameToLayer("Ignore Raycast");
                 go_heldObject.layer = layerIgnoreRaycast;
