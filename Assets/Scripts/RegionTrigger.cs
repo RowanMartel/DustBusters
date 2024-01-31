@@ -17,14 +17,14 @@ public class RegionTrigger : MonoBehaviour
         pc_player = GameManager.playerController;
     }
 
-
+    //Assigns current region to characters who enter the region
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             pc_player.go_curRegion = gameObject;
 
-            if (gb_ghost.bl_hiding && gb_ghost.go_curRegion != pc_player.go_curRegion)
+            if (gb_ghost.bl_hiding && gb_ghost.go_curRegion != pc_player.go_curRegion && gb_ghost.int_curAggressionLevel < 3)
             {
                 nav_obstacle.enabled = true;
             }
@@ -35,6 +35,7 @@ public class RegionTrigger : MonoBehaviour
         }
     }
 
+    //Turns off the nav mesh obstacle if needed
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player") && nav_obstacle.enabled)

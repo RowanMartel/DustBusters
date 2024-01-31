@@ -6,11 +6,11 @@ public class FloatTrigger : MonoBehaviour
     //The amount of force applied to floating object
     public float flt_floatForce;
 
-    List<TestFloatObject> objects = new List<TestFloatObject>();
+    List<Floatable> objects = new List<Floatable>();
 
     private void OnTriggerEnter(Collider cl_other)
     {
-        TestFloatObject obj = cl_other.GetComponent<TestFloatObject>();
+        Floatable obj = cl_other.GetComponent<Floatable>();
         if(obj != null)
         {
             objects.Add(obj);
@@ -21,7 +21,7 @@ public class FloatTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider cl_other)
     {
-        TestFloatObject obj = cl_other.GetComponent<TestFloatObject>();
+        Floatable obj = cl_other.GetComponent<Floatable>();
         if (obj != null)
         {
             objects.Remove(obj);
@@ -32,7 +32,7 @@ public class FloatTrigger : MonoBehaviour
 
     public void CloseTrigger()
     {
-        foreach(TestFloatObject obj in objects)
+        foreach(Floatable obj in objects)
         {
             obj.StopFloat();
             GameManager.ghost.l_go_throwables.Remove(obj.gameObject);

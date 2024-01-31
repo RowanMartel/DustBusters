@@ -200,6 +200,12 @@ public class GhostBehavior : MonoBehaviour
                     pickup.transform.LookAt(transform.position);
                     pickup.GetComponent<Rigidbody>().AddForce(pickup.transform.forward * flt_breakThrowForce, ForceMode.Impulse);
 
+                    int_curIndex++;
+                    if (int_curIndex >= l_pl_currentPoints.Count)
+                    {
+                        int_curIndex = 0;
+                    }
+                    SwitchToPoint(int_curIndex);
                 }
             }
             else
@@ -344,7 +350,13 @@ public class GhostBehavior : MonoBehaviour
         flt_curSFXTime -= Time.deltaTime;
         if(flt_curSFXTime <= 0)
         {
-            PlaySound();
+            AudioClip ac_clip;
+            do
+            {
+                ac_clip = a_ac_sounds[Random.Range(0, a_ac_sounds.Length - 1)];
+            } while (ac_clip == ac_lastPlayed);
+            GameManager.soundManager.PlayClip(ac_clip, as_aSource);
+            ac_lastPlayed = ac_clip;
         }
     }
 
@@ -462,21 +474,6 @@ public class GhostBehavior : MonoBehaviour
                 
         }
 
-    }
-
-    //Play a random audio clip
-    public void PlaySound()
-    {
-        AudioClip ac_clip;
-        do
-        {
-            ac_clip = a_ac_sounds[Random.Range(0, a_ac_sounds.Length - 1)];
-        } while (ac_clip == ac_lastPlayed);
-
-        as_aSource.clip = ac_clip;
-        as_aSource.Play();
-        ac_lastPlayed = ac_clip;
-        flt_curSFXTime = flt_sfxTime + Random.Range(-flt_sfxTimeDeviationRange, flt_sfxTimeDeviationRange);
     }
 
     //Add task to current task list
@@ -608,7 +605,8 @@ public class GhostBehavior : MonoBehaviour
     public void ChooseHidingPlace()
     {
         if (go_curHeldItem == null) return;
-        pc_player.go_curRegion.GetComponent<NavMeshObstacle>().enabled = true;
+        if(int_curAggressionLevel < 3)
+            pc_player.go_curRegion.GetComponent<NavMeshObstacle>().enabled = true;
         do
         {
             bl_hiding = true;
@@ -617,7 +615,6 @@ public class GhostBehavior : MonoBehaviour
             nav_agent.SetDestination(hs_curHidingSpot.transform.position);
             tr_currentPatrolPoint = hs_curHidingSpot.transform;
         } while (hs_curHidingSpot.a_go_region.Contains<GameObject>(pc_player.go_curRegion));
-        //pc_player.go_curRegion.GetComponent<NavMeshObstacle>().enabled = false;
     }
 
     //Add light to light sources list

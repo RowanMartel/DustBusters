@@ -42,6 +42,7 @@ public class FloorSplat : MonoBehaviour
     // makes the splat dirty again, possibly bloody
     public void ReDirty(bool bl_bloody = false)
     {
+        //To implement when we have bloody material
         //if (bl_bloody) GetComponent<Renderer>().material = mat_bloody;
 
         bl_cleaned = false;
