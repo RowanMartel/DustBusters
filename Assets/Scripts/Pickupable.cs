@@ -21,7 +21,7 @@ public class Pickupable : Interactable
     public bool bl_breakable;
 
     [Tooltip("Check if this object can damage the player")]
-    public bool l_canDamagePlayer;
+    public bool bl_canDamagePlayer;
 
     [Tooltip("Rotation applied when held")]
     public Vector3 v3_heldRotationMod;

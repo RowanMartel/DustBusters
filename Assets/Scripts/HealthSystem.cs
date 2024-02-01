@@ -29,7 +29,7 @@ public class HealthSystem : MonoBehaviour
         Pickupable pu_pickupable = collision.gameObject.GetComponent<Pickupable>();
         if (pu_pickupable == null) return;
 
-        if (pu_pickupable.l_canDamagePlayer)
+        if (pu_pickupable.bl_canDamagePlayer)
         {
             GameManager.soundManager.PlayClip(ac_hurtSharp, as_source);
 
