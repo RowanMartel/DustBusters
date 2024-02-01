@@ -200,6 +200,12 @@ public class GhostBehavior : MonoBehaviour
                     pickup.transform.LookAt(transform.position);
                     pickup.GetComponent<Rigidbody>().AddForce(pickup.transform.forward * flt_breakThrowForce, ForceMode.Impulse);
 
+                    int_curIndex++;
+                    if (int_curIndex >= l_pl_currentPoints.Count)
+                    {
+                        int_curIndex = 0;
+                    }
+                    SwitchToPoint(int_curIndex);
                 }
             }
             else
@@ -301,7 +307,7 @@ public class GhostBehavior : MonoBehaviour
                                 {
                                     if (pu_throwable != null)
                                     {
-                                        if (pu_throwable.l_canDamagePlayer)
+                                        if (pu_throwable.bl_canDamagePlayer)
                                         {
                                             go_toThrow = go_throwable;
                                         }
@@ -311,9 +317,9 @@ public class GhostBehavior : MonoBehaviour
                                 {
                                     if (pu_throwable != null)
                                     {
-                                        if (pu_throwable.l_canDamagePlayer)
+                                        if (pu_throwable.bl_canDamagePlayer)
                                         {
-                                            if (!pu_throwable.l_canDamagePlayer)
+                                            if (!pu_throwable.bl_canDamagePlayer)
                                             {
                                                 go_toThrow = go_throwable;
                                             }
@@ -344,7 +350,13 @@ public class GhostBehavior : MonoBehaviour
         flt_curSFXTime -= Time.deltaTime;
         if(flt_curSFXTime <= 0)
         {
-            PlaySound();
+            AudioClip ac_clip;
+            do
+            {
+                ac_clip = a_ac_sounds[Random.Range(0, a_ac_sounds.Length - 1)];
+            } while (ac_clip == ac_lastPlayed);
+            GameManager.soundManager.PlayClip(ac_clip, as_aSource);
+            ac_lastPlayed = ac_clip;
         }
     }
 
@@ -462,21 +474,6 @@ public class GhostBehavior : MonoBehaviour
                 
         }
 
-    }
-
-    //Play a random audio clip
-    public void PlaySound()
-    {
-        AudioClip ac_clip;
-        do
-        {
-            ac_clip = a_ac_sounds[Random.Range(0, a_ac_sounds.Length - 1)];
-        } while (ac_clip == ac_lastPlayed);
-
-        as_aSource.clip = ac_clip;
-        as_aSource.Play();
-        ac_lastPlayed = ac_clip;
-        flt_curSFXTime = flt_sfxTime + Random.Range(-flt_sfxTimeDeviationRange, flt_sfxTimeDeviationRange);
     }
 
     //Add task to current task list

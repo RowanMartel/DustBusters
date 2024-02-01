@@ -22,7 +22,7 @@ public class Fireplace : Interactable
     public override void Interact()
     {
         if (GameManager.playerController.Go_heldObject == null || !GameManager.playerController.Go_heldObject.GetComponent<Pickupable>().bl_lighter) return;
-
+        Debug.Log("Light");
         Light();
     }
 

@@ -120,10 +120,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6120562748104921027}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd9055b6186a70145a21a9bca25eb0ca, type: 3}
+  m_Script: {fileID: 11500000, guid: f6bc21f26c6eaba41be7fb924520ab77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bl_canFloat: 1
+  bl_canFloat: 0
   bl_isFloating: 0
 --- !u!114 &2137558348563701457
 MonoBehaviour:
@@ -137,16 +137,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405e26f90637d7f46a222fea240f73a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupable: 0
-  mop: 0
-  duster: 0
-  lighter: 0
-  frontDoorKey: 0
-  hideable: 0
-  breakable: 0
-  canDamagePlayer: 1
-  heldRotationMod: {x: 0, y: 0, z: 0}
-  held: 0
+  bl_pickupable: 0
+  bl_mop: 0
+  bl_duster: 0
+  bl_lighter: 0
+  bl_frontDoorKey: 0
+  bl_hideable: 0
+  bl_breakable: 0
+  bl_canDamagePlayer: 1
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  bl_held: 0
 --- !u!198 &3993851344143662834
 ParticleSystem:
   m_ObjectHideFlags: 0

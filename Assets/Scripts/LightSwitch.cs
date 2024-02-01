@@ -46,6 +46,9 @@ public class LightSwitch : Interactable
 
         bl_on = !bl_on;
 
+        AudioSource as_source = GetComponent<AudioSource>();
+        GameManager.soundManager.PlayClip(as_source.clip, as_source);
+
         if (bl_on)
         {
             foreach (GameObject light in li_go_lights)

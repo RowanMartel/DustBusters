@@ -4,16 +4,26 @@ public class PlayerController : MonoBehaviour
 {
     protected MenuManager menuManager;
 
+    // Audio related variables
+    AudioSource as_source;
+    public AudioClip ac_jump;
+    public AudioClip ac_land;
+
+    // GameObjects related to player's ability to hold props
     protected GameObject go_lookingAtObject;
     protected GameObject go_heldPosition;
     protected GameObject go_heldObject;
     public GameObject Go_heldObject {  get { return go_heldObject; } }
 
+    // Reference to the camera and ability to look around
     protected GameObject go_cameraContainer;
 
+    // Default position for where the player holds objects
     protected Vector3 v3_heldPositionReset;
 
     protected Rigidbody rb_player;
+
+    // State prevents the player from moving when in menus or doing chores
     public enum State
     {
         inactive,
@@ -23,11 +33,14 @@ public class PlayerController : MonoBehaviour
     protected State en_state = State.inactive;
     public State En_state { get { return en_state; } set { en_state = value; } }
 
+    // This handles player rotation and camera position
     protected float flt_cameraVertical = 0;
     protected float flt_playerRotate;
 
+    // This takes in what the player is looking at
     public Ray ray_playerView;
 
+    // Bools to track jumping
     public bool bl_hasJumped = false;
     public bool bl_isGrounded = true;
 
@@ -37,23 +50,27 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+
+        // Grabbing required references to objects and systems
         menuManager = GameObject.Find("MenuManager").GetComponent<MenuManager>();
 
         go_lookingAtObject = GameObject.Find("Floor");
         go_heldPosition = GameObject.Find("HeldPosition");
         v3_heldPositionReset = go_heldPosition.transform.localPosition;
 
-        // Cursor.lockState = CursorLockMode.Locked;
-
         rb_player = GetComponent<Rigidbody>();
         go_cameraContainer = GameObject.Find("Player/CameraContainer");
+
+        as_source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        // This calls the method to fire the raycast that tells us what the player is looking at
         DoPlayerView();
 
+        // Player's ability to interact
         if (Input.GetKeyDown(KeyCode.E)) Interact();
 
         if (en_state == State.active)
@@ -63,20 +80,25 @@ public class PlayerController : MonoBehaviour
             // This allows the player to use the reach mechanic with their mousewheel to put props on hard to reach surfaces.
             DoPlayerReach();
 
+            // Player Jump tracking
             if (Input.GetKeyDown(KeyCode.Space) && bl_isGrounded)
             {
                 bl_hasJumped = true;
                 bl_isGrounded = false;
+                GameManager.soundManager.PlayClip(ac_jump, as_source);
             }
 
+            // Handles Crouch
             if (Input.GetKeyDown(KeyCode.LeftShift)) LeanTween.moveLocalY(go_cameraContainer, 0f, 0.25f); // bl_isCrouching = true;
             if (Input.GetKeyUp(KeyCode.LeftShift)) LeanTween.moveLocalY(go_cameraContainer, 0.5f, 0.25f); // bl_isCrouching = false;
         }
 
+        // Toggles pause
         if (Input.GetKeyDown(KeyCode.Escape)) menuManager.TogglePause();
     }
     void FixedUpdate()
     {
+        // This handles a held objects position in front of player while player is active
         if (go_heldObject != null && en_state == State.active)
         {
             Vector3 direction = go_heldObject.transform.position - go_heldPosition.transform.position;
@@ -89,7 +111,9 @@ public class PlayerController : MonoBehaviour
 
             go_heldObject.transform.Rotate(go_heldObject.GetComponent<Pickupable>().v3_heldRotationMod);
         }
-        else if(go_heldObject != null && en_state == State.inactive)
+
+        // This handles a held objects position in front of player while player is inactive, used during chore activities
+        else if (go_heldObject != null && en_state == State.inactive)
         {
             Vector3 heldPosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1.5f));
             Vector3 direction = go_heldObject.transform.position - heldPosition;
@@ -104,6 +128,7 @@ public class PlayerController : MonoBehaviour
             go_heldObject.transform.Rotate(go_heldObject.GetComponent<Pickupable>().v3_heldRotationMod);
         }
 
+        // Player can only move and jump if in Active state
         if (en_state == State.active)
         {
             if (bl_hasJumped)
@@ -136,6 +161,7 @@ public class PlayerController : MonoBehaviour
         transform.Rotate(0.0f, flt_playerRotate * Settings.flt_lookSensitivity, 0.0f);
     }
 
+    // This forces the player to look at a particular point in world space, available for locking onto chores
     public void LookAt(Vector3 position)
     {
         LeanTween.rotateLocal(go_cameraContainer, position, 0.25f);
@@ -213,6 +239,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Handles the player's ability to extend where the held prop is positioned, like reaching out in front of them
     void DoPlayerReach()
     {
         if (go_heldPosition.transform.localPosition.z >= 1.0f && go_heldPosition.transform.localPosition.z <= 2.0f)
@@ -231,17 +258,17 @@ public class PlayerController : MonoBehaviour
 
         if (go_heldObject == null && go_lookingAtObject != null && go_lookingAtObject.CompareTag("Interactable"))
         {
+            //Interact with an object while not holding anything
             Pickupable pickupable = go_lookingAtObject.GetComponent<Pickupable>();
 
             if (pickupable != null)
             {
+                //Pick up said object
                 go_heldObject = go_lookingAtObject;
                 Physics.IgnoreCollision(go_heldObject.GetComponent<Collider>(), GetComponent<Collider>());
 
                 go_heldObject.GetComponent<Rigidbody>().useGravity = false;
                 go_heldObject.GetComponent<Outline>().enabled = false;
-
-                //heldObject.transform.position = midHold.transform.position;
 
                 int layerIgnoreRaycast = LayerMask.NameToLayer("Ignore Raycast");
                 go_heldObject.layer = layerIgnoreRaycast;
@@ -254,6 +281,7 @@ public class PlayerController : MonoBehaviour
         }
         else if(go_heldObject != null && (go_lookingAtObject == null || go_lookingAtObject.tag != "Interactable"))
         {
+            //Drop held item
             go_heldObject.layer = 0;
             go_heldObject.GetComponent<Rigidbody>().useGravity = true;
             Physics.IgnoreCollision(go_heldObject.GetComponent<Collider>(), GetComponent<Collider>(), false);
@@ -261,15 +289,18 @@ public class PlayerController : MonoBehaviour
         }
         else if (go_heldObject != null && go_lookingAtObject.CompareTag("Interactable"))
         {
+            //Interact with object while holding another object
             Pickupable pickupable = go_lookingAtObject.GetComponent<Pickupable>();
 
             if (pickupable != null)
             {
+                //Drop old item
                 go_heldObject.layer = 0;
                 go_heldObject.GetComponent<Rigidbody>().useGravity = true;
                 Physics.IgnoreCollision(go_heldObject.GetComponent<Collider>(), GetComponent<Collider>(), false);
                 go_heldObject = null;
 
+                //Pick up new item
                 if (go_heldObject != null)
                     Physics.IgnoreCollision(go_heldObject.GetComponent<Collider>(), GetComponent<Collider>(), false);
                 go_heldObject = go_lookingAtObject;
@@ -277,8 +308,6 @@ public class PlayerController : MonoBehaviour
 
                 go_heldObject.GetComponent<Rigidbody>().useGravity = false;
                 go_heldObject.GetComponent<Outline>().enabled = false;
-
-                //heldObject.transform.position = midHold.transform.position;
 
                 int layerIgnoreRaycast = LayerMask.NameToLayer("Ignore Raycast");
                 go_heldObject.layer = layerIgnoreRaycast;
@@ -290,14 +319,21 @@ public class PlayerController : MonoBehaviour
             go_lookingAtObject.GetComponent<Interactable>().Interact();
         }
     }
+
+    // Deactivates the player control in event of death
     public void Die()
     {
         en_state = State.inactive;
     }
 
+    // These reset the player's ability to jump when they hit the floor and prevents double jumping
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.tag == "Floor") bl_isGrounded = true;
+        if (collision.gameObject.tag == "Floor")
+        {
+            if (bl_isGrounded == false) GameManager.soundManager.PlayClip(ac_land, as_source);
+            bl_isGrounded = true;
+        }
     }
 
     private void OnCollisionExit(Collision collision)
@@ -305,6 +341,7 @@ public class PlayerController : MonoBehaviour
         if(collision.gameObject.tag == "Floor") bl_isGrounded = false;
     }
 
+    // This turns player control on and off and handles mouse confinement
     public void TogglePlayerControl()
     {
         switch(en_state)
