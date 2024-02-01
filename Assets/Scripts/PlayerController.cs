@@ -4,6 +4,11 @@ public class PlayerController : MonoBehaviour
 {
     protected MenuManager menuManager;
 
+    // Audio related variables
+    AudioSource as_source;
+    public AudioClip ac_jump;
+    public AudioClip ac_land;
+
     // GameObjects related to player's ability to hold props
     protected GameObject go_lookingAtObject;
     protected GameObject go_heldPosition;
@@ -55,6 +60,8 @@ public class PlayerController : MonoBehaviour
 
         rb_player = GetComponent<Rigidbody>();
         go_cameraContainer = GameObject.Find("Player/CameraContainer");
+
+        as_source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -78,6 +85,7 @@ public class PlayerController : MonoBehaviour
             {
                 bl_hasJumped = true;
                 bl_isGrounded = false;
+                GameManager.soundManager.PlayClip(ac_jump, as_source);
             }
 
             // Handles Crouch
@@ -321,7 +329,11 @@ public class PlayerController : MonoBehaviour
     // These reset the player's ability to jump when they hit the floor and prevents double jumping
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.tag == "Floor") bl_isGrounded = true;
+        if (collision.gameObject.tag == "Floor")
+        {
+            if (bl_isGrounded == false) GameManager.soundManager.PlayClip(ac_land, as_source);
+            bl_isGrounded = true;
+        }
     }
 
     private void OnCollisionExit(Collision collision)
