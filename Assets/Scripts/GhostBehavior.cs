@@ -307,7 +307,7 @@ public class GhostBehavior : MonoBehaviour
                                 {
                                     if (pu_throwable != null)
                                     {
-                                        if (pu_throwable.l_canDamagePlayer)
+                                        if (pu_throwable.bl_canDamagePlayer)
                                         {
                                             go_toThrow = go_throwable;
                                         }
@@ -317,9 +317,9 @@ public class GhostBehavior : MonoBehaviour
                                 {
                                     if (pu_throwable != null)
                                     {
-                                        if (pu_throwable.l_canDamagePlayer)
+                                        if (pu_throwable.bl_canDamagePlayer)
                                         {
-                                            if (!pu_throwable.l_canDamagePlayer)
+                                            if (!pu_throwable.bl_canDamagePlayer)
                                             {
                                                 go_toThrow = go_throwable;
                                             }
