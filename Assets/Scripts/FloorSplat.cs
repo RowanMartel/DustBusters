@@ -5,34 +5,48 @@ using UnityEngine.UI;
 public class FloorSplat : MonoBehaviour
 {
     [HideInInspector]
-    public bool cleaned;
-    int dirtLevel = 5;
+    public bool bl_cleaned;
+    int int_dirtLevel = 5;
 
-    Renderer renderer;
+    Renderer ren;
     FloorMess floorMess;
 
     [Tooltip("Put the mopping SFX here")]
-    public AudioClip cleanSFX;
-    AudioSource audioSource;
+    public AudioClip ac_clean;
+    AudioSource as_clean;
+
+    public Material mat_bloody;
 
     private void Start()
     {
         Physics.queriesHitTriggers = true;
         floorMess = transform.GetComponentInParent<FloorMess>();
-        renderer = GetComponent<Renderer>();
-        audioSource = GetComponent<AudioSource>();
+        ren = GetComponent<Renderer>();
+        as_clean = GetComponent<AudioSource>();
     }
 
+    // cleans the splat a little whenever the mouse goes over it
     private void OnMouseExit()
     {
-        if (cleaned || !floorMess.gameActive) return;
-        dirtLevel--;
-        renderer.material.color = new Color(renderer.material.color.r, renderer.material.color.g, renderer.material.color.g, renderer.material.color.a - .2f);
-        audioSource.PlayOneShot(cleanSFX);
-        if (dirtLevel == 0)
+        if (bl_cleaned || !floorMess.bl_gameActive) return;
+        int_dirtLevel--;
+        ren.material.color = new Color(ren.material.color.r, ren.material.color.g, ren.material.color.g, ren.material.color.a - .2f);
+        GameManager.soundManager.PlayClip(ac_clean, as_clean);
+        if (int_dirtLevel == 0)
         {
-            cleaned = true;
+            bl_cleaned = true;
             floorMess.CleanSplat();
         }
+    }
+
+    // makes the splat dirty again, possibly bloody
+    public void ReDirty(bool bl_bloody = false)
+    {
+        //To implement when we have bloody material
+        //if (bl_bloody) GetComponent<Renderer>().material = mat_bloody;
+
+        bl_cleaned = false;
+        ren.material.color = new Color(ren.material.color.r, ren.material.color.g, ren.material.color.g, 1);
+        int_dirtLevel = 5;
     }
 }

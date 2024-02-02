@@ -3,53 +3,48 @@ using UnityEngine.UI;
 
 public class HealthSystem : MonoBehaviour
 {
-    Image damageOverlay;
-    Image deathMessage;
-    public int health;
-    public PlayerController playerController;
+    protected int int_playerHealth;
+    public int Int_playerHealth { get { return int_playerHealth; } set { int_playerHealth = value; } }
 
-    RWMenu menuReference;
+    protected PlayerController playerController;
+    protected MenuManager menuReference;
+
+    public AudioClip ac_hurtSharp;
+    AudioSource as_source;
 
     // Start is called before the first frame update
     void Start()
     {
-        damageOverlay = FindObjectOfType<DamageOverlay>(true).GetComponent<Image>();
-        deathMessage = FindObjectOfType<DeathMessage>(true).GetComponent<Image>();
-        menuReference = GameObject.Find("Menu").GetComponent<RWMenu>();
+        int_playerHealth = Settings.int_playerHealthMax;
+        playerController = GetComponent<PlayerController>();
+        menuReference = GameObject.Find("MenuManager").GetComponent<MenuManager>();
+        as_source = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    // This handles all collisions with the player, determines if the Damage Overlay is called, and if int_playerHealth is affected
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.relativeVelocity.magnitude < 5) return;
 
-        Pickupable pickupable = collision.gameObject.GetComponent<Pickupable>();
-        if (pickupable == null) return;
+        Pickupable pu_pickupable = collision.gameObject.GetComponent<Pickupable>();
+        if (pu_pickupable == null) return;
 
-        if (pickupable.canDamagePlayer)
+        if (pu_pickupable.bl_canDamagePlayer)
         {
-            health--;
-            if (health <= 0)
+            GameManager.soundManager.PlayClip(ac_hurtSharp, as_source);
+
+            int_playerHealth--;
+            if (int_playerHealth <= 0)
             {
                 playerController.Die();
-                LeanTween.alpha(deathMessage.GetComponent<RectTransform>(), 1, 1f).setOnComplete(menuReference.ShowDeathScreen);
+                menuReference.ShowDeathSequence();
             }
-
-            LeanTween.alpha(damageOverlay.GetComponent<RectTransform>(), damageOverlay.color.a + 0.33f, 0.2f);         
+            menuReference.IncreaseDamageOverlay();
+            Debug.Log("Increased Damage Overlay");
         }
         else
         {
-            LeanTween.alpha(damageOverlay.GetComponent<RectTransform>(), damageOverlay.color.a + 0.33f, 0.2f).setOnComplete(ReduceDamageOverlay);
+            menuReference.IncreaseDamageOverlayTemporarily();
         }
-    }
-
-    private void ReduceDamageOverlay()
-    {
-        LeanTween.alpha(damageOverlay.GetComponent<RectTransform>(), damageOverlay.color.a - 0.33f, 1f);
     }
 }

@@ -4,13 +4,13 @@ using UnityEngine;
 public class CupboardTrigger : MonoBehaviour
 {
     [Tooltip("Put all the dish game objects here")]
-    public List<Dish> dishes;
+    public List<Dish> li_dishes;
 
     // counts the dish as being in the cupboard, then checks if complete
     private void OnTriggerEnter(Collider other)
     {
         Dish dish = other.GetComponent<Dish>();
-        if (!dish || dish.dirtyDish || dish.broken) return;
+        if (!dish || dish.bl_dirtyDish || dish.bl_broken) return;
 
         dish.inCupboard = true;
 
@@ -20,14 +20,14 @@ public class CupboardTrigger : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         Dish plate = other.GetComponent<Dish>();
-        if (!plate || plate.dirtyDish || plate.broken) return;
+        if (!plate || plate.bl_dirtyDish || plate.bl_broken) return;
 
         plate.inCupboard = false;
 
-        if (GameManager.taskManager.taskList.Contains(TaskManager.Task.PutAwayDishes) ||
-            GameManager.taskManager.taskList.Contains(TaskManager.Task.FindKey) ||
-            GameManager.taskManager.taskList.Contains(TaskManager.Task.EscapeHouse) ||
-            GameManager.taskManager.taskList.Contains(TaskManager.Task.CleanDishes))
+        if (GameManager.taskManager.li_taskList.Contains(TaskManager.Task.PutAwayDishes) ||
+            GameManager.taskManager.li_taskList.Contains(TaskManager.Task.FindKey) ||
+            GameManager.taskManager.li_taskList.Contains(TaskManager.Task.EscapeHouse) ||
+            GameManager.taskManager.li_taskList.Contains(TaskManager.Task.CleanDishes))
             return;
 
         GameManager.taskManager.AddTask(TaskManager.Task.PutAwayDishes);
@@ -36,8 +36,8 @@ public class CupboardTrigger : MonoBehaviour
     // checks if all the dishes in the dishes list are in the cupboard, then completes the task if so
     public void CheckIfComplete()
     {
-        if (!GameManager.taskManager.taskList.Contains(TaskManager.Task.PutAwayDishes)) return;
-        foreach (Dish dish in dishes)
+        if (!GameManager.taskManager.li_taskList.Contains(TaskManager.Task.PutAwayDishes)) return;
+        foreach (Dish dish in li_dishes)
             if (!dish.inCupboard) return;
 
         GameManager.taskManager.CompleteTask(TaskManager.Task.PutAwayDishes);

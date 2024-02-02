@@ -4,23 +4,23 @@ using UnityEngine;
 
 public class TrashCanTrigger : MonoBehaviour
 {
-    [HideInInspector] public List<Dish> dishes;
-    List<TrashCanTrigger> triggers;
+    [HideInInspector] public List<Dish> li_dishes;
+    List<TrashCanTrigger> li_triggers;
 
     private void Start()
     {
-        triggers = FindObjectsByType<TrashCanTrigger>(FindObjectsSortMode.None).ToList();
+        li_triggers = FindObjectsByType<TrashCanTrigger>(FindObjectsSortMode.None).ToList();
     }
 
     // marks the entering broken plate as being in the trash
     private void OnTriggerEnter(Collider other)
     {
         Dish plate = other.GetComponent<Dish>();
-        if (!plate || !plate.broken) return;
+        if (!plate || !plate.bl_broken) return;
 
         plate.inTrash = true;
 
-        foreach (TrashCanTrigger trigger in triggers)
+        foreach (TrashCanTrigger trigger in li_triggers)
             if (trigger != this) trigger.CheckIfComplete();
         CheckIfComplete();
     }
@@ -28,21 +28,32 @@ public class TrashCanTrigger : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         Dish plate = other.GetComponent<Dish>();
-        if (!plate || !plate.broken) return;
+        if (!plate || !plate.bl_broken) return;
 
         plate.inTrash = false;
 
-        if (GameManager.taskManager.taskList.Contains(TaskManager.Task.ThrowOutBrokenDishes) ||
-            GameManager.taskManager.taskList.Contains(TaskManager.Task.FindKey) ||
-            GameManager.taskManager.taskList.Contains(TaskManager.Task.EscapeHouse))
+        if (GameManager.taskManager.li_taskList.Contains(TaskManager.Task.ThrowOutBrokenDishes) ||
+            GameManager.taskManager.li_taskList.Contains(TaskManager.Task.FindKey) ||
+            GameManager.taskManager.li_taskList.Contains(TaskManager.Task.EscapeHouse))
             return;
         GameManager.taskManager.AddTask(TaskManager.Task.ThrowOutBrokenDishes);
     }
 
+    // reassigns or completes the task
     public void CheckIfComplete()
     {
-        foreach (Dish dish in dishes)
-            if (!dish.inTrash) return;
+        foreach (Dish dish in li_dishes)
+        {
+            if (!dish.inTrash)
+            {
+                if (GameManager.taskManager.li_taskList.Contains(TaskManager.Task.ThrowOutBrokenDishes) ||
+                    GameManager.taskManager.li_taskList.Contains(TaskManager.Task.FindKey) ||
+                    GameManager.taskManager.li_taskList.Contains(TaskManager.Task.EscapeHouse))
+                    return;
+                GameManager.taskManager.AddTask(TaskManager.Task.ThrowOutBrokenDishes);
+                return;
+            }
+        }
         GameManager.taskManager.CompleteTask(TaskManager.Task.ThrowOutBrokenDishes);
     }
 }

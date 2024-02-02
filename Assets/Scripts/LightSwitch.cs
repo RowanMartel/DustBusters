@@ -4,27 +4,29 @@ using UnityEngine;
 public class LightSwitch : Interactable
 {
     [Tooltip("Modify in inspector to determine starting state")]
-    public bool on;
+    public bool bl_on;
     [Tooltip("Add all lights this controls")]
-    public List<GameObject> lights;
+    public List<GameObject> li_go_lights;
     [Tooltip("The light collider this controls")]
     public Collider lightCollider;
     [Tooltip("Toggle if the model itself is rotated 90 degrees")]
-    public bool rotated;
+    public bool bl_rotated;
+    [Tooltip("What regions can the player see the light from?")]
+    public GameObject[] a_go_regions;
 
     // toggle all lights on or off at start
     private void Start()
     {
-        if (on)
+        if (bl_on)
         {
-            foreach (GameObject light in lights)
-                light.SetActive(true);
+            foreach (GameObject go_light in li_go_lights)
+                go_light.SetActive(true);
             lightCollider.enabled = true;
         }
         else
         {
-            foreach (GameObject light in lights)
-                light.SetActive(false);
+            foreach (GameObject go_light in li_go_lights)
+                go_light.SetActive(false);
             lightCollider.enabled = false;
         }
     }
@@ -37,22 +39,25 @@ public class LightSwitch : Interactable
     // rotates the lightswitch model 180 degrees and then toggles the lights
     void Toggle()
     {
-        if (rotated)
+        if (bl_rotated)
             transform.Rotate(transform.right, 180, Space.Self);
         else
             transform.Rotate(transform.forward, 180, Space.Self);
 
-        on = !on;
+        bl_on = !bl_on;
 
-        if (on)
+        AudioSource as_source = GetComponent<AudioSource>();
+        GameManager.soundManager.PlayClip(as_source.clip, as_source);
+
+        if (bl_on)
         {
-            foreach (GameObject light in lights)
+            foreach (GameObject light in li_go_lights)
                 light.SetActive(true);
             lightCollider.enabled = true;
         }
         else
         {
-            foreach (GameObject light in lights)
+            foreach (GameObject light in li_go_lights)
                 light.SetActive(false);
             lightCollider.enabled = false;
         }

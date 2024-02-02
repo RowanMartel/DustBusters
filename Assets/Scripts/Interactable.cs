@@ -2,7 +2,7 @@ using UnityEngine;
 
 public abstract class Interactable : MonoBehaviour
 {
-    [HideInInspector] public bool pickupable;
+    [HideInInspector] public bool bl_pickupable;
 
     public abstract void Interact();
 

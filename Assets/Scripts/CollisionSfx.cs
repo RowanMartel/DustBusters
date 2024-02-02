@@ -3,20 +3,19 @@ using UnityEngine;
 public class CollisionSfx : MonoBehaviour
 {
     [Tooltip("Attach the SFX this object makes when it collides with something")]
-    public AudioClip collideSFX;
-    AudioSource audioSource;
+    public AudioClip ac_collide;
+    AudioSource as_source;
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        as_source = GetComponent<AudioSource>();
     }
 
     // plays the collide sfx whenever the object collides with something
     private void OnCollisionEnter(Collision collision)
     {
-        if (audioSource == null || collideSFX == null) return;
+        if (as_source == null || ac_collide == null || collision.gameObject.CompareTag("Player")) return;
 
-        audioSource.Stop();
-        audioSource.PlayOneShot(collideSFX);
+        GameManager.soundManager.PlayClip(ac_collide, as_source);
     }
 }
