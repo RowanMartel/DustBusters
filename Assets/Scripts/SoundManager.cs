@@ -8,6 +8,8 @@ public class SoundManager : MonoBehaviour
 
     private IEnumerator coroutine;
 
+    public int int_attemptsToPickNewSound;
+
     // plays the given clip in the given source if it isn't already playing and if it's near the player
     public void PlayClip(AudioClip ac_clip, AudioSource as_source)
     {
@@ -19,6 +21,32 @@ public class SoundManager : MonoBehaviour
         if (Vector3.Distance(GameManager.playerController.transform.position, v3_sourcePos) >= Settings.int_SFXCullingDist)
             return;
         
+        l_ac_curSFX.Add(ac_clip);
+
+        as_source.PlayOneShot(ac_clip, Settings.flt_volume);
+
+        coroutine = RemoveClip(ac_clip.length, ac_clip);
+        StartCoroutine(coroutine);
+    }
+
+    public void PlayClip(AudioClip[] a_ac_clips, AudioSource as_source)
+    {
+        if (as_source.isPlaying) return;
+
+        AudioClip ac_clip;
+        int attempts = 0;
+        do
+        {
+            ac_clip = a_ac_clips[Random.Range(0, a_ac_clips.Length)];
+            attempts++;
+        }while(l_ac_curSFX.Contains(ac_clip) && attempts >= int_attemptsToPickNewSound);
+
+        if (l_ac_curSFX.Contains(ac_clip)) return;
+
+        Vector3 v3_sourcePos = as_source.transform.position;
+        if (Vector3.Distance(GameManager.playerController.transform.position, v3_sourcePos) >= Settings.int_SFXCullingDist)
+            return;
+
         l_ac_curSFX.Add(ac_clip);
 
         as_source.PlayOneShot(ac_clip, Settings.flt_volume);

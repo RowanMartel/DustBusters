@@ -350,13 +350,14 @@ public class GhostBehavior : MonoBehaviour
         flt_curSFXTime -= Time.deltaTime;
         if(flt_curSFXTime <= 0)
         {
-            AudioClip ac_clip;
+            /*AudioClip ac_clip;
             do
             {
                 ac_clip = a_ac_sounds[Random.Range(0, a_ac_sounds.Length - 1)];
-            } while (ac_clip == ac_lastPlayed);
-            GameManager.soundManager.PlayClip(ac_clip, as_aSource);
-            ac_lastPlayed = ac_clip;
+            } while (ac_clip == ac_lastPlayed);*/
+            GameManager.soundManager.PlayClip(a_ac_sounds, as_aSource);
+            //ac_lastPlayed = ac_clip;
+            flt_curSFXTime = flt_sfxTime + Random.Range(-flt_sfxTimeDeviationRange, flt_sfxTimeDeviationRange);
         }
     }
 
