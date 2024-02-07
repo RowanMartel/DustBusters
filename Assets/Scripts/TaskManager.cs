@@ -16,6 +16,7 @@ public class TaskManager : MonoBehaviour
         FindKey,
         EscapeHouse,
         ThrowOutBrokenDishes,
+        PutAwayBooks,
         GhostDirtyMirror,
         GhostDirtyFloor,
         GhostDouseFireplace
@@ -75,6 +76,9 @@ public class TaskManager : MonoBehaviour
                 break;
             case Task.MopFloor:
                 text = "\nMop the laundry room floor";
+                break;
+            case Task.PutAwayBooks:
+                text = "\nPut the books back on the shelf";
                 break;
         }
         int i = tmp_taskListTxt.text.IndexOf(text);
@@ -141,6 +145,9 @@ public class TaskManager : MonoBehaviour
                 break;
             case Task.MopFloor:
                 str_text = "\nMop the laundry room floor";
+                break;
+            case Task.PutAwayBooks:
+                str_text = "\nPut the books back on the shelf";
                 break;
         }
         tmp_taskListTxt.text += str_text;
