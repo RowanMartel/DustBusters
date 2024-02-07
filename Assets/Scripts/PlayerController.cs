@@ -110,6 +110,9 @@ public class PlayerController : MonoBehaviour
             go_heldObject.transform.rotation = transform.rotation;
 
             go_heldObject.transform.Rotate(go_heldObject.GetComponent<Pickupable>().v3_heldRotationMod);
+
+            // the held object's collider gets turned off in the Interact method, and gets turned back on here. Should prevent props from getting stuck in furniture on pickup.
+            if (go_heldObject.GetComponent<Collider>().enabled == false) go_heldObject.GetComponent<Collider>().enabled = true;
         }
 
         // This handles a held objects position in front of player while player is inactive, used during chore activities
@@ -266,6 +269,9 @@ public class PlayerController : MonoBehaviour
                 //Pick up said object
                 go_heldObject = go_lookingAtObject;
                 Physics.IgnoreCollision(go_heldObject.GetComponent<Collider>(), GetComponent<Collider>());
+
+                // Turning off the held object's collider and enabling it again in the FixedUpdate method. Should prevent props from getting stuck in furniture on pickup.
+                go_heldObject.GetComponent<Collider>().enabled = false;
 
                 go_heldObject.GetComponent<Rigidbody>().useGravity = false;
                 go_heldObject.GetComponent<Outline>().enabled = false;
