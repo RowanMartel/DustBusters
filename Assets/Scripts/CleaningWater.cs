@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class CleaningWater : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class CleaningWater : MonoBehaviour
     AudioSource as_source;
 
     List<CleaningWater> cleaningWaters;
+    public ParticleSystem splashEffect;
 
     private void Start()
     {
@@ -23,6 +25,7 @@ public class CleaningWater : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         GameManager.soundManager.PlayClip(ac_splash, as_source);
+        if(splashEffect != null) splashEffect.Play();
 
         Dish dish = other.GetComponent<Dish>();
         if (!dish || !dish.bl_dirtyDish) return;
