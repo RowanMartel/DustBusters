@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DrawerContents : MonoBehaviour
 {
-    // Start is called before the first frame update
+    //If the player adds or removes an object from a drawer, this will parent/unparent it
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag != "Interactable") return;
