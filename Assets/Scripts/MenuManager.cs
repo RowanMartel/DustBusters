@@ -309,7 +309,6 @@ public class MenuManager : MonoBehaviour
         switch (int_endSequence)
         {
             case 0:
-                GameManager.playerController.TogglePlayerControl();
                 Time.timeScale = 0;
 
                 int_endSequence++;
