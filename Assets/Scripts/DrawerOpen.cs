@@ -47,7 +47,6 @@ public class DrawerOpen : Interactable
         }
     }
 
-    // Update is called once per frame
 
     public override void Interact()
     {
