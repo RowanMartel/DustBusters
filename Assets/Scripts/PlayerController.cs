@@ -245,12 +245,12 @@ public class PlayerController : MonoBehaviour
     // Handles the player's ability to extend where the held prop is positioned, like reaching out in front of them
     void DoPlayerReach()
     {
-        if (go_heldPosition.transform.localPosition.z >= 1.0f && go_heldPosition.transform.localPosition.z <= 2.0f)
+        if (go_heldPosition.transform.localPosition.z >= 0.6f && go_heldPosition.transform.localPosition.z <= 2.0f)
         {
             go_heldPosition.transform.localPosition = new Vector3(go_heldPosition.transform.localPosition.x, go_heldPosition.transform.localPosition.y, go_heldPosition.transform.localPosition.z + Input.mouseScrollDelta.y * 0.1f);
 
             if (go_heldPosition.transform.localPosition.z > 2) go_heldPosition.transform.localPosition = go_heldPosition.transform.localPosition = new Vector3(go_heldPosition.transform.localPosition.x, go_heldPosition.transform.localPosition.y, 2.0f);
-            if (go_heldPosition.transform.localPosition.z < 1) go_heldPosition.transform.localPosition = go_heldPosition.transform.localPosition = new Vector3(go_heldPosition.transform.localPosition.x, go_heldPosition.transform.localPosition.y, 1.0f);
+            if (go_heldPosition.transform.localPosition.z < 0.6f) go_heldPosition.transform.localPosition = go_heldPosition.transform.localPosition = new Vector3(go_heldPosition.transform.localPosition.x, go_heldPosition.transform.localPosition.y, 0.6f);
         }
     }
 
