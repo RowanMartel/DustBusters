@@ -9,10 +9,13 @@ public class FuseBox : Interactable
 
     public GameObject go_lever;
 
+    LightSwitch[] a_ls_switches;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        a_ls_switches = FindObjectsByType<LightSwitch>(FindObjectsSortMode.None);
+        SetSwitches(true);
     }
 
     // Update is called once per frame
@@ -20,6 +23,7 @@ public class FuseBox : Interactable
     {
         
     }
+
     public override void Interact()
     {
         if(bl_isOn && bl_ready)
@@ -27,12 +31,24 @@ public class FuseBox : Interactable
             bl_ready = false;
             LeanTween.rotateLocal(go_lever, new Vector3(90, 0, 0), 0.8f).setEase(LeanTweenType.easeInQuint).setOnComplete(FuseBoxReady);
             bl_isOn = false;
+            GameManager.taskManager.AddTask(TaskManager.Task.ResetBreakerBox);
+            SetSwitches(false);
         }
         else if(!bl_isOn && bl_ready)
         {
             bl_ready = false;
             LeanTween.rotateLocal(go_lever, new Vector3(0, 0, 0), 0.8f).setEase(LeanTweenType.easeInQuint).setOnComplete(FuseBoxReady);
             bl_isOn = true;
+            GameManager.taskManager.CompleteTask(TaskManager.Task.ResetBreakerBox);
+            SetSwitches(true);
+        }
+    }
+
+    void SetSwitches(bool bl_fuseActive)
+    {
+        foreach (LightSwitch ls_switch in a_ls_switches)
+        {
+            ls_switch.SetFuseActive(bl_fuseActive);
         }
     }
 

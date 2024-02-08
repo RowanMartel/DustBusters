@@ -139,7 +139,7 @@ public class MenuManager : MonoBehaviour
                 LeanTween.moveLocal(go_lastScreen, new Vector3(750f, 0f, 0f), Settings.flt_menuTransitionSpeed).setEase(LeanTweenType.easeInSine).setOnComplete(ClearScreenWithTransition).setIgnoreTimeScale(true);
                 break;
 
-                case 1:
+            case 1:
                 if (!bl_allowPause) bl_allowPause = true;
                 GameManager.playerController.TogglePlayerControl();
                 int_clearScreenSequence = 0;
