@@ -5,6 +5,8 @@ using UnityEngine.VFX;
 
 public class CleaningWater : MonoBehaviour
 {
+    [Tooltip("Put the splash particle effect here (see splashEffect prefab)")]
+    public ParticleSystem splashEffect;
     [Tooltip("Put all the dirty dish game objects here")]
     public List<Dish> li_dishes;
 
@@ -13,7 +15,6 @@ public class CleaningWater : MonoBehaviour
     AudioSource as_source;
 
     List<CleaningWater> cleaningWaters;
-    public ParticleSystem splashEffect;
 
     private void Start()
     {

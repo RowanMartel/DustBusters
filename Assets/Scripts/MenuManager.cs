@@ -61,7 +61,6 @@ public class MenuManager : MonoBehaviour
         go_startButton = GameObject.Find("StartScreenButton");
         go_OrientationNote = GameObject.Find("Note");
         
-        
         sli_volume = GameObject.Find("VolumeSlider").GetComponent<Slider>();
         sli_lookSensitivity = GameObject.Find("LookSensitivitySlider").GetComponent<Slider>();
 
@@ -70,7 +69,10 @@ public class MenuManager : MonoBehaviour
 
         go_debugScreen.SetActive(false);
 
-        SwitchScreen(go_titleScreen);
+        Scene activeScene = SceneManager.GetActiveScene();
+
+        if (activeScene.name == "TitleScene") SwitchScreen(go_titleScreen);
+        else ClearScreens();
 
         go_screenBuffer = go_titleScreen;
     }

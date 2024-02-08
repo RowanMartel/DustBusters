@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -50,7 +51,6 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-
         // Grabbing required references to objects and systems
         menuManager = GameObject.Find("MenuManager").GetComponent<MenuManager>();
 
@@ -62,6 +62,9 @@ public class PlayerController : MonoBehaviour
         go_cameraContainer = GameObject.Find("Player/CameraContainer");
 
         as_source = GetComponent<AudioSource>();
+
+        Scene activeScene = SceneManager.GetActiveScene();
+        if (activeScene.name == "ChrisTestScene") TogglePlayerControl();
     }
 
     // Update is called once per frame
