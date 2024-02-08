@@ -318,10 +318,10 @@ public class MenuManager : MonoBehaviour
                 int_endSequence++;
                 ClearScreens();
                 SceneManager.LoadScene("EndScreen");
+                SwitchScreen(go_endScreen);
                 LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 0, 1f).setOnComplete(ToEnd).setIgnoreTimeScale(true);
                 break;
             case 2:
-                SwitchScreen(go_endScreen);
                 Cursor.lockState = CursorLockMode.Confined;
                 int_endSequence = 0;
                 break;
