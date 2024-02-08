@@ -17,17 +17,16 @@ public class Exit : Interactable
     // ends the game if the player is holding the key and has the escape house task
     public override void Interact()
     {
-        // if (GameManager.playerController.Go_heldObject == null ||
-        //     !GameManager.playerController.Go_heldObject.GetComponent<Pickupable>().bl_frontDoorKey ||
-        //     !GameManager.taskManager.li_taskList.Contains(TaskManager.Task.EscapeHouse))
-        //     return;
+        if (GameManager.playerController.Go_heldObject == null ||
+            !GameManager.playerController.Go_heldObject.GetComponent<Pickupable>().bl_frontDoorKey ||
+            !GameManager.taskManager.li_taskList.Contains(TaskManager.Task.EscapeHouse))
+            return;
 
         GameManager.soundManager.PlayClip(ac_unlock, as_source);
 
-        // FindObjectOfType<MenuManager>().ToEnd();
-
         GameManager.playerController.En_state = PlayerController.State.inactive;
-        LeanTween.rotateLocal(parent, new Vector3(parent.transform.rotation.x, parent.transform.rotation.y + 125, parent.transform.rotation.z), 3).setEase(LeanTweenType.easeOutSine).setOnComplete(GoToEnd);
+        Time.timeScale = 0;
+        LeanTween.rotateLocal(parent, new Vector3(parent.transform.rotation.x, parent.transform.rotation.y + 125, parent.transform.rotation.z), 3).setEase(LeanTweenType.easeOutSine).setOnComplete(GoToEnd).setIgnoreTimeScale(true);
     }
 
     private void GoToEnd()
