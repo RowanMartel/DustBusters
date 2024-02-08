@@ -39,6 +39,6 @@ public class FuseBox : Interactable
     protected void FuseBoxReady()
     {
         bl_ready = true;
-        if (bl_isOn) Debug.Log("Fuse Box ON");
+        if (bl_isOn) Debug.Log("Fuse Box ON"); // this is where we probably want to interact with the Task Manager, and turn on all active lights
     }
 }

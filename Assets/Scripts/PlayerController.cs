@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // This calls the method to fire the raycast that tells us what the player is looking at
-        DoPlayerView();
+        GetLookedAtObject();
 
         // Player's ability to interact
         if (Input.GetKeyDown(KeyCode.E)) Interact();
@@ -98,6 +98,21 @@ public class PlayerController : MonoBehaviour
 
         // Toggles pause
         if (Input.GetKeyDown(KeyCode.Escape)) menuManager.TogglePause();
+
+        // This forces the player to drop a prop if it gets too far away from them
+        if(go_heldObject != null)
+        {
+            Vector3 v3_propDirection = go_heldObject.transform.position - transform.position;
+            float flt_propDistance = v3_propDirection.magnitude;
+
+            if (flt_propDistance > 3f)
+            {
+                go_heldObject.layer = 0;
+                go_heldObject.GetComponent<Rigidbody>().useGravity = true;
+                Physics.IgnoreCollision(go_heldObject.GetComponent<Collider>(), GetComponent<Collider>(), false);
+                go_heldObject = null;
+            }
+        }
     }
     void FixedUpdate()
     {
@@ -222,7 +237,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // This handles the player's view at the crosshair and if pointed at an Interactable object, will activate the object's outline to indicate it can be interacted with.
-    void DoPlayerView()
+    void GetLookedAtObject()
     {
         ray_playerView = Camera.main.ScreenPointToRay(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2, 0));
         RaycastHit hit;

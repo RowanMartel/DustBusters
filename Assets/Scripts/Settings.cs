@@ -8,6 +8,7 @@ public class Settings : MonoBehaviour
     public const int int_playerHealthMax = 3;
     public const int int_playerSpeed = 250;
     public const int int_playerJumpForce = 75;
+
     public const int int_SFXCullingDist = 5;
 
     public const float flt_menuTransitionSpeed = 0.4f;
