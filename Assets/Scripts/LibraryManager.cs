@@ -30,6 +30,7 @@ public class LibraryManager : MonoBehaviour
             return;
 
         GameManager.taskManager.AddTask(TaskManager.Task.PutAwayBooks);
+        GameManager.ghost.AddTask(TaskManager.Task.PutAwayBooks);
     }
 
 }
