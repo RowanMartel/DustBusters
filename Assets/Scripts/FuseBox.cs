@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FuseBox : Interactable
 {
-    protected bool bl_isOn = true;
+    public bool bl_isOn = true;
     protected bool bl_ready = true;
 
     public GameObject go_lever;
@@ -15,13 +15,7 @@ public class FuseBox : Interactable
     void Start()
     {
         a_ls_switches = FindObjectsByType<LightSwitch>(FindObjectsSortMode.None);
-        SetSwitches(true);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        SetSwitchesOn();
     }
 
     public override void Interact()
@@ -29,27 +23,35 @@ public class FuseBox : Interactable
         if(bl_isOn && bl_ready)
         {
             bl_ready = false;
-            LeanTween.rotateLocal(go_lever, new Vector3(90, 0, 0), 0.8f).setEase(LeanTweenType.easeInQuint).setOnComplete(FuseBoxReady);
+            LeanTween.rotateLocal(go_lever, new Vector3(90, 0, 0), 0.8f).setEase(LeanTweenType.easeInQuint).setOnComplete(SetSwitchesOff);
             bl_isOn = false;
             GameManager.taskManager.AddTask(TaskManager.Task.ResetBreakerBox);
-            SetSwitches(false);
         }
         else if(!bl_isOn && bl_ready)
         {
             bl_ready = false;
-            LeanTween.rotateLocal(go_lever, new Vector3(0, 0, 0), 0.8f).setEase(LeanTweenType.easeInQuint).setOnComplete(FuseBoxReady);
+            LeanTween.rotateLocal(go_lever, new Vector3(0, 0, 0), 0.8f).setEase(LeanTweenType.easeInQuint).setOnComplete(SetSwitchesOn);
             bl_isOn = true;
             GameManager.taskManager.CompleteTask(TaskManager.Task.ResetBreakerBox);
-            SetSwitches(true);
         }
     }
 
-    void SetSwitches(bool bl_fuseActive)
+    void SetSwitchesOn()
     {
         foreach (LightSwitch ls_switch in a_ls_switches)
         {
-            ls_switch.SetFuseActive(bl_fuseActive);
+            ls_switch.SetFuseActive(true);
         }
+        FuseBoxReady();
+    }
+
+    void SetSwitchesOff()
+    {
+        foreach (LightSwitch ls_switch in a_ls_switches)
+        {
+            ls_switch.SetFuseActive(false);
+        }
+        FuseBoxReady();
     }
 
     protected void FuseBoxReady()
