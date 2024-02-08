@@ -44,19 +44,19 @@ public class DebugSystem : MonoBehaviour
                 //Set Ghost Aggression Levels
                 if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
                 {
-                    gb_ghost.int_curAggressionLevel = 1;
+                    gb_ghost.SetAggressionLevel(1);
                 }
                 if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
                 {
-                    gb_ghost.int_curAggressionLevel = 2;
+                    gb_ghost.SetAggressionLevel(2);
                 }
                 if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3))
                 {
-                    gb_ghost.int_curAggressionLevel = 3;
+                    gb_ghost.SetAggressionLevel(3);
                 }
                 if (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Keypad4))
                 {
-                    gb_ghost.int_curAggressionLevel = 4;
+                    gb_ghost.SetAggressionLevel(4);
                 }
 
                 //Freeze Ghost
@@ -86,7 +86,7 @@ public class DebugSystem : MonoBehaviour
 
                 //Update Text
                 tmp_leftText.text = "Debug Mode Enabled:\n-Press R to enter\n end game\n-Press G to freeze\n the ghost\n-Press 1-4 to set\n the ghost's aggro level\n-Player can jump: " + pc_player.bl_isGrounded + "\n-Player Current Region: " + pc_player.go_curRegion.name + "\n\nGhost Patrol Point:\n" + gb_ghost.tr_currentPatrolPoint.gameObject + "\n\nGhost Held Item: " + gb_ghost.go_curHeldItem;
-                tmp_rightText.text = "Ghost Aggro Level: " + gb_ghost.int_curAggressionLevel + "\n\nGhost Current Task:\n" + GetTaskString(gb_ghost.l_tsk_currentTasks[gb_ghost.int_curIndex]) + "\nGhost Task List:\n" + TaskListToString(gb_ghost.l_tsk_currentTasks) + "Ghost Current Region: " + gb_ghost.go_curRegion;
+                tmp_rightText.text = "Ghost Aggro Level: " + gb_ghost.int_curAggressionLevel + "\nGhost Current Task:\n" + GetTaskString(gb_ghost.l_tsk_currentTasks[gb_ghost.int_curIndex]) + "\nGhost Task List:\n" + TaskListToString(gb_ghost.l_tsk_currentTasks) + "Ghost Current Region: " + gb_ghost.go_curRegion;
             }
             else
             {
@@ -127,6 +127,10 @@ public class DebugSystem : MonoBehaviour
                 return "Dirty Floor";
             case TaskManager.Task.GhostDouseFireplace:
                 return "Douse Fireplace";
+            case TaskManager.Task.PutAwayBooks:
+                return "Put Away Books";
+            case TaskManager.Task.ResetBreakerBox:
+                return "Reset Breaker Box";
             default:
                 return "Error, Improper Task";
         }

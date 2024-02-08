@@ -156,20 +156,9 @@ public class GhostBehavior : MonoBehaviour
         switch (int_curAggressionLevel)
         {
             case 1:
-                //Deactivate Float Trigger if required
-                if (go_floatTrigger.activeSelf == true)
-                {
-                    go_floatTrigger.GetComponent<FloatTrigger>().CloseTrigger();
-                }
-
+                
                 break;
             case 2:
-                //Deactivate Float Trigger if required
-                if (go_floatTrigger.activeSelf == true)
-                {
-                    go_floatTrigger.GetComponent<FloatTrigger>().CloseTrigger();
-                }
-
                 //Check if near lightswitch and turn them off if needed
                 if (flt_curSwitchCooldown <= 0)
                 {
@@ -190,11 +179,6 @@ public class GhostBehavior : MonoBehaviour
 
                 break;
             case 3:
-                //Activate Float Trigger if required
-                if (go_floatTrigger.activeSelf == false)
-                {
-                    go_floatTrigger.SetActive(true);
-                }
 
                 //Check if near lightswitch and turn them off if needed
                 if (flt_curSwitchCooldown <= 0)
@@ -233,11 +217,6 @@ public class GhostBehavior : MonoBehaviour
                 break;
 
             case 4:
-                //Activate Float Trigger if required
-                if (go_floatTrigger.activeSelf == false)
-                {
-                    go_floatTrigger.SetActive(true);
-                }
 
                 //Check if near lightswitch and turn them off if needed
                 if (flt_curSwitchCooldown <= 0)
@@ -481,6 +460,16 @@ public class GhostBehavior : MonoBehaviour
             return;
         }
 
+        //Attempt to shut off fuse box
+        FuseBox fb_fuseBox = tr_currentPatrolPoint.GetComponent<FuseBox>();
+        if (fb_fuseBox != null)
+        {
+            if (fb_fuseBox.bl_isOn)
+            {
+                fb_fuseBox.Interact();
+            }
+        }
+
         //Attempt to hide item
         HidingSpot hs_spot = tr_currentPatrolPoint.GetComponent<HidingSpot>();
         if(hs_spot != null)
@@ -573,13 +562,13 @@ public class GhostBehavior : MonoBehaviour
                 case 1:
                     if (l_tsk_completedTasks.Count >= int_tasksToStage2)
                     {
-                        int_curAggressionLevel = 2;
+                        SetAggressionLevel(2);
                     }
                     break;
                 case 2:
                     if (l_tsk_completedTasks.Count >= int_tasksToStage3)
                     {
-                        int_curAggressionLevel = 3;
+                        SetAggressionLevel(3);
                     }
                     break;
                 case 3:
@@ -768,6 +757,43 @@ public class GhostBehavior : MonoBehaviour
             int_curIndex = 0;
         }
         SwitchToPoint(int_curIndex);
+    }
+
+    public void SetAggressionLevel(int int_newAggroLevel)
+    {
+        int_curAggressionLevel = int_newAggroLevel;
+        switch(int_curAggressionLevel)
+        {
+            case 1:
+                //Deactivate Float Trigger if required
+                if (go_floatTrigger.activeSelf == true)
+                {
+                    go_floatTrigger.GetComponent<FloatTrigger>().CloseTrigger();
+                }
+                break;
+            case 2:
+                //Deactivate Float Trigger if required
+                if (go_floatTrigger.activeSelf == true)
+                {
+                    go_floatTrigger.GetComponent<FloatTrigger>().CloseTrigger();
+                }
+                break;
+            case 3:
+                //Activate Float Trigger if required
+                if (go_floatTrigger.activeSelf == false)
+                {
+                    go_floatTrigger.SetActive(true);
+                }
+                AddTask(TaskManager.Task.ResetBreakerBox);
+                break;
+            case 4:
+                //Activate Float Trigger if required
+                if (go_floatTrigger.activeSelf == false)
+                {
+                    go_floatTrigger.SetActive(true);
+                }
+                break;
+        }
     }
 
     //Allows a list of lists to be filled in the inspector
