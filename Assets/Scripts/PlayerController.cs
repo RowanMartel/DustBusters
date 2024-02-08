@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -50,7 +51,6 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-
         // Grabbing required references to objects and systems
         menuManager = GameObject.Find("MenuManager").GetComponent<MenuManager>();
 
@@ -62,13 +62,16 @@ public class PlayerController : MonoBehaviour
         go_cameraContainer = GameObject.Find("Player/CameraContainer");
 
         as_source = GetComponent<AudioSource>();
+
+        Scene activeScene = SceneManager.GetActiveScene();
+        if (activeScene.name == "ChrisTestScene") TogglePlayerControl();
     }
 
     // Update is called once per frame
     void Update()
     {
         // This calls the method to fire the raycast that tells us what the player is looking at
-        DoPlayerView();
+        GetLookedAtObject();
 
         // Player's ability to interact
         if (Input.GetKeyDown(KeyCode.E)) Interact();
@@ -95,6 +98,21 @@ public class PlayerController : MonoBehaviour
 
         // Toggles pause
         if (Input.GetKeyDown(KeyCode.Escape)) menuManager.TogglePause();
+
+        // This forces the player to drop a prop if it gets too far away from them
+        if(go_heldObject != null)
+        {
+            Vector3 v3_propDirection = go_heldObject.transform.position - transform.position;
+            float flt_propDistance = v3_propDirection.magnitude;
+
+            if (flt_propDistance > 3f)
+            {
+                go_heldObject.layer = 0;
+                go_heldObject.GetComponent<Rigidbody>().useGravity = true;
+                Physics.IgnoreCollision(go_heldObject.GetComponent<Collider>(), GetComponent<Collider>(), false);
+                go_heldObject = null;
+            }
+        }
     }
     void FixedUpdate()
     {
@@ -219,7 +237,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // This handles the player's view at the crosshair and if pointed at an Interactable object, will activate the object's outline to indicate it can be interacted with.
-    void DoPlayerView()
+    void GetLookedAtObject()
     {
         ray_playerView = Camera.main.ScreenPointToRay(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2, 0));
         RaycastHit hit;
@@ -245,12 +263,12 @@ public class PlayerController : MonoBehaviour
     // Handles the player's ability to extend where the held prop is positioned, like reaching out in front of them
     void DoPlayerReach()
     {
-        if (go_heldPosition.transform.localPosition.z >= 1.0f && go_heldPosition.transform.localPosition.z <= 2.0f)
+        if (go_heldPosition.transform.localPosition.z >= 0.6f && go_heldPosition.transform.localPosition.z <= 2.0f)
         {
             go_heldPosition.transform.localPosition = new Vector3(go_heldPosition.transform.localPosition.x, go_heldPosition.transform.localPosition.y, go_heldPosition.transform.localPosition.z + Input.mouseScrollDelta.y * 0.1f);
 
             if (go_heldPosition.transform.localPosition.z > 2) go_heldPosition.transform.localPosition = go_heldPosition.transform.localPosition = new Vector3(go_heldPosition.transform.localPosition.x, go_heldPosition.transform.localPosition.y, 2.0f);
-            if (go_heldPosition.transform.localPosition.z < 1) go_heldPosition.transform.localPosition = go_heldPosition.transform.localPosition = new Vector3(go_heldPosition.transform.localPosition.x, go_heldPosition.transform.localPosition.y, 1.0f);
+            if (go_heldPosition.transform.localPosition.z < 0.6f) go_heldPosition.transform.localPosition = go_heldPosition.transform.localPosition = new Vector3(go_heldPosition.transform.localPosition.x, go_heldPosition.transform.localPosition.y, 0.6f);
         }
     }
 

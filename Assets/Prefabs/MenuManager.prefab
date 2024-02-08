@@ -645,7 +645,7 @@ RectTransform:
   m_GameObject: {fileID: 505943005859480904}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4696, y: 0.4696, z: 0.4696}
+  m_LocalScale: {x: 0.35752994, y: 0.35752994, z: 0.35752994}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6795657861202740891}
@@ -676,10 +676,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2914,7 +2914,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 769428235, guid: a3140b26f63ffd64f998f2d469ea4c52, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f746a6230ced23a4381679b1b1fff90c, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2923,7 +2923,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 0.6
+  m_PixelsPerUnitMultiplier: 1
 --- !u!114 &7373768230989174874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3409,8 +3409,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294913562
-  m_fontColor: {r: 0.10196079, g: 0.18039216, b: 1, a: 1}
+    rgba: 4280295456
+  m_fontColor: {r: 0.1254902, g: 0.1254902, b: 0.1254902, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -5481,7 +5481,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 769428235, guid: a3140b26f63ffd64f998f2d469ea4c52, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f746a6230ced23a4381679b1b1fff90c, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5490,7 +5490,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 0.6
+  m_PixelsPerUnitMultiplier: 1
 --- !u!114 &8878322273406648178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6464,9 +6464,10 @@ MonoBehaviour:
     Chris S:
     programmer and UI designer
 
-    Chris C: object artist
+    Chris C: Sound Designer, Artist
 
-    Dylan: 2d artist'
+    Dylan: 2d
+    artist'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 29b6072ec06f2474786d788d653b03b5, type: 2}
   m_sharedMaterial: {fileID: 3675071337328644447, guid: 29b6072ec06f2474786d788d653b03b5, type: 2}
@@ -6602,7 +6603,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 769428235, guid: a3140b26f63ffd64f998f2d469ea4c52, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f746a6230ced23a4381679b1b1fff90c, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6611,7 +6612,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 0.6
+  m_PixelsPerUnitMultiplier: 1
 --- !u!114 &8742535580055989155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6969,6 +6970,7 @@ MonoBehaviour:
   go_endScreen: {fileID: 1679767963453221598}
   go_debugScreen: {fileID: 3060102955518323861}
   go_controlsScreen: {fileID: 1976622195079596191}
+  bl_allowPause: 0
 --- !u!1 &6005561435743212738
 GameObject:
   m_ObjectHideFlags: 0
@@ -8518,7 +8520,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 769428235, guid: a3140b26f63ffd64f998f2d469ea4c52, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f746a6230ced23a4381679b1b1fff90c, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8527,7 +8529,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 0.6
+  m_PixelsPerUnitMultiplier: 1
 --- !u!114 &6607137325787785978
 MonoBehaviour:
   m_ObjectHideFlags: 0

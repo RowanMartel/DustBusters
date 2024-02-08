@@ -13,6 +13,8 @@ public class LightSwitch : Interactable
     public bool bl_rotated;
     [Tooltip("What regions can the player see the light from?")]
     public GameObject[] a_go_regions;
+    [Tooltip("Depicts whether the fusebox is supplying power to the switch")]
+    public bool bl_fuseActive;
 
     // toggle all lights on or off at start
     private void Start()
@@ -36,6 +38,24 @@ public class LightSwitch : Interactable
         Toggle();
     }
 
+    public void SetFuseActive(bool bl_turningOn)
+    {
+        bl_fuseActive = bl_turningOn;
+
+        if (bl_fuseActive && bl_on)
+        {
+            foreach (GameObject light in li_go_lights)
+                light.SetActive(true);
+            lightCollider.enabled = true;
+
+            return;
+        }
+
+        foreach (GameObject light in li_go_lights)
+            light.SetActive(false);
+        lightCollider.enabled = false;
+    }
+
     // rotates the lightswitch model 180 degrees and then toggles the lights
     void Toggle()
     {
@@ -49,7 +69,7 @@ public class LightSwitch : Interactable
         AudioSource as_source = GetComponent<AudioSource>();
         GameManager.soundManager.PlayClip(as_source.clip, as_source);
 
-        if (bl_on)
+        if (bl_on && bl_fuseActive)
         {
             foreach (GameObject light in li_go_lights)
                 light.SetActive(true);

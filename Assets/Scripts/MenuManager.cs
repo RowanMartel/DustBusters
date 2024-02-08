@@ -49,7 +49,7 @@ public class MenuManager : MonoBehaviour
 
     // Bools related to the Pause system
     protected bool bl_paused = false;
-    protected bool bl_allowPause = false;
+    public bool bl_allowPause = false;
     private void Awake()
     {
         img_damageOverlay = FindObjectOfType<DamageOverlay>(true).GetComponent<Image>();
@@ -61,7 +61,6 @@ public class MenuManager : MonoBehaviour
         go_startButton = GameObject.Find("StartScreenButton");
         go_OrientationNote = GameObject.Find("Note");
         
-        
         sli_volume = GameObject.Find("VolumeSlider").GetComponent<Slider>();
         sli_lookSensitivity = GameObject.Find("LookSensitivitySlider").GetComponent<Slider>();
 
@@ -70,7 +69,10 @@ public class MenuManager : MonoBehaviour
 
         go_debugScreen.SetActive(false);
 
-        SwitchScreen(go_titleScreen);
+        Scene activeScene = SceneManager.GetActiveScene();
+
+        if (activeScene.name == "TitleScene") SwitchScreen(go_titleScreen);
+        else ClearScreens();
 
         go_screenBuffer = go_titleScreen;
     }
@@ -81,7 +83,8 @@ public class MenuManager : MonoBehaviour
         go_lastScreen.transform.localPosition = new Vector3(-750, 0f, 0f);
 
         if (go_lastScreen == go_optionsScreen || go_lastScreen == go_controlsScreen) LeanTween.moveLocal(go_screenBuffer, new Vector3(0f, 0f, 0f), Settings.flt_menuTransitionSpeed).setEase(LeanTweenType.easeOutSine).setIgnoreTimeScale(true);
-        else if(go_nextScreen == go_pauseScreen) LeanTween.moveLocal(go_nextScreen, new Vector3(0f, 0f, 0f), Settings.flt_menuTransitionSpeed).setEase(LeanTweenType.easeOutSine).setOnComplete(AllowPause).setIgnoreTimeScale(true);
+        
+        if(go_nextScreen == go_pauseScreen) LeanTween.moveLocal(go_nextScreen, new Vector3(0f, 0f, 0f), Settings.flt_menuTransitionSpeed).setEase(LeanTweenType.easeOutSine).setOnComplete(AllowPause).setIgnoreTimeScale(true);
         else LeanTween.moveLocal(go_nextScreen, new Vector3(0f, 0f, 0f), Settings.flt_menuTransitionSpeed).setEase(LeanTweenType.easeOutSine).setIgnoreTimeScale(true);
 
         go_lastScreen = go_nextScreen;
@@ -136,7 +139,7 @@ public class MenuManager : MonoBehaviour
                 LeanTween.moveLocal(go_lastScreen, new Vector3(750f, 0f, 0f), Settings.flt_menuTransitionSpeed).setEase(LeanTweenType.easeInSine).setOnComplete(ClearScreenWithTransition).setIgnoreTimeScale(true);
                 break;
 
-                case 1:
+            case 1:
                 if (!bl_allowPause) bl_allowPause = true;
                 GameManager.playerController.TogglePlayerControl();
                 int_clearScreenSequence = 0;
@@ -309,8 +312,6 @@ public class MenuManager : MonoBehaviour
         switch (int_endSequence)
         {
             case 0:
-                Time.timeScale = 0;
-
                 int_endSequence++;
                 LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 1, 1f).setOnComplete(ToEnd).setIgnoreTimeScale(true);
                 break;
@@ -318,11 +319,11 @@ public class MenuManager : MonoBehaviour
                 int_endSequence++;
                 ClearScreens();
                 SceneManager.LoadScene("EndScreen");
+                SwitchScreen(go_endScreen);
                 LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 0, 1f).setOnComplete(ToEnd).setIgnoreTimeScale(true);
                 break;
             case 2:
-                SwitchScreen(go_endScreen);
-                // Cursor.lockState = CursorLockMode.Confined;
+                Cursor.lockState = CursorLockMode.Confined;
                 int_endSequence = 0;
                 break;
         }
@@ -353,8 +354,10 @@ public class MenuManager : MonoBehaviour
 
     // Toggles the pause state
     public void TogglePause()
-    {        
-        if (!bl_paused && bl_allowPause)
+    {
+        if (!bl_allowPause) return;
+
+        if (!bl_paused)
         {
             bl_allowPause = false;
 
@@ -371,7 +374,7 @@ public class MenuManager : MonoBehaviour
             }
             bl_paused = true;
         }
-        else if (bl_paused && bl_allowPause)
+        else if (bl_paused)
         {
             Unpause();
         }
