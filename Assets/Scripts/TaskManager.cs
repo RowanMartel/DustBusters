@@ -17,6 +17,7 @@ public class TaskManager : MonoBehaviour
         EscapeHouse,
         ThrowOutBrokenDishes,
         PutAwayBooks,
+        ResetBreakerBox,
         GhostDirtyMirror,
         GhostDirtyFloor,
         GhostDouseFireplace
@@ -79,6 +80,9 @@ public class TaskManager : MonoBehaviour
                 break;
             case Task.PutAwayBooks:
                 text = "\nPut the books back on the shelf";
+                break;
+            case Task.ResetBreakerBox:
+                text = "\nReset the breaker box";
                 break;
         }
         int i = tmp_taskListTxt.text.IndexOf(text);
@@ -148,6 +152,9 @@ public class TaskManager : MonoBehaviour
                 break;
             case Task.PutAwayBooks:
                 str_text = "\nPut the books back on the shelf";
+                break;
+            case Task.ResetBreakerBox:
+                str_text = "\nReset the breaker box";
                 break;
         }
         tmp_taskListTxt.text += str_text;
