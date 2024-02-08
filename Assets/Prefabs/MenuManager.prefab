@@ -675,11 +675,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 08dbe537d734df9468fb1cb6264e38d8, type: 2}
+  m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -6970,6 +6970,7 @@ MonoBehaviour:
   go_endScreen: {fileID: 1679767963453221598}
   go_debugScreen: {fileID: 3060102955518323861}
   go_controlsScreen: {fileID: 1976622195079596191}
+  bl_allowPause: 0
 --- !u!1 &6005561435743212738
 GameObject:
   m_ObjectHideFlags: 0
