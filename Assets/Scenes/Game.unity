@@ -3027,6 +3027,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2c1c856aff57ef448843fd763d22a20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  l_go_curContents: []
 --- !u!1 &259529876
 GameObject:
   m_ObjectHideFlags: 0
@@ -36033,7 +36034,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &5224957528759927458
 GameObject:
   m_ObjectHideFlags: 0
@@ -45490,7 +45491,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6360420541525609927
 Transform:
   m_ObjectHideFlags: 0
@@ -70446,7 +70447,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bl_pickupable: 0
-  go_fireFX: {fileID: 6360420541525609926}
+  go_fireFX: {fileID: 5154732301743233114}
+  ps_fire: {fileID: 6360420541276214707}
+  ps_smoke: {fileID: 1270049647}
+  flt_fireEmissionRate: 10
+  flt_smokeEmissionRate: 10
   cl_fireplace: {fileID: 8300000, guid: 345ca034a9bcaea408d46d3f28c22c05, type: 3}
   go_ember: {fileID: 6120562748104921027, guid: 8f0c373dff2279c4b91659efca38a944, type: 3}
   l_tr_emberSpawnPoints:

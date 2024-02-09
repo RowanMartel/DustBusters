@@ -69,7 +69,8 @@ public class DebugSystem : MonoBehaviour
                 if (gb_ghost.GetComponent<MeshRenderer>().enabled == false)
                 {
                     gb_ghost.GetComponent<MeshRenderer>().enabled = true;
-                    gb_ghost.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = true;
+                    //gb_ghost.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = true;
+                    gb_ghost.go_floatTrigger.GetComponent<MeshRenderer>().enabled = true;
                     gb_ghost.go_heldItemParent.GetComponent<MeshRenderer>().enabled = true;
                 }
 

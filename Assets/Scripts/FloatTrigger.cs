@@ -10,6 +10,7 @@ public class FloatTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider cl_other)
     {
+        //Make a floatable object that enters the trigger begin floating, and become throwable as an attack.
         Floatable obj = cl_other.GetComponent<Floatable>();
         if(obj != null)
         {
@@ -21,6 +22,7 @@ public class FloatTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider cl_other)
     {
+        //Make a floataoble object that leaves the trigger stop floating, and no longer be useable to attack.
         Floatable obj = cl_other.GetComponent<Floatable>();
         if (obj != null)
         {
@@ -32,6 +34,7 @@ public class FloatTrigger : MonoBehaviour
 
     public void CloseTrigger()
     {
+        //Stop all floating objects and turn off the trigger.
         foreach(Floatable obj in objects)
         {
             obj.StopFloat();
