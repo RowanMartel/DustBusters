@@ -46,6 +46,8 @@ public class GhostBehavior : MonoBehaviour
     public GameObject go_heldItemParent;
     public Transform tr_heldItemSpinner;
     public float flt_spinSpeed;
+    public float flt_heldItemWobble;
+    bool bl_wobbleUp;
 
     //Variables around interacting with items
     [Header("Task Item Interaction")]
@@ -146,11 +148,17 @@ public class GhostBehavior : MonoBehaviour
         //Move the held item parent around the ghost.
         if (!bl_frozen)
         {
-            tr_heldItemSpinner.Rotate(Vector3.up * flt_spinSpeed);
-        }
-        if (go_curHeldItem != null)
-        {
-            //go_curHeldItem.transform.position = go_heldItemParent.transform.position;
+            if (bl_wobbleUp)
+            {
+                tr_heldItemSpinner.Rotate((Vector3.up * flt_spinSpeed * Time.deltaTime) + (Vector3.right * flt_heldItemWobble * Time.deltaTime));
+                if (tr_heldItemSpinner.rotation.x >= flt_heldItemWobble) bl_wobbleUp = false;
+            }
+            else
+            {
+
+                tr_heldItemSpinner.Rotate((Vector3.up * flt_spinSpeed * Time.deltaTime) + (Vector3.right * -flt_heldItemWobble * Time.deltaTime));
+                if (tr_heldItemSpinner.rotation.x <= -flt_heldItemWobble) bl_wobbleUp = false;
+            }
         }
 
         //The below is aggression level dependent
@@ -286,6 +294,7 @@ public class GhostBehavior : MonoBehaviour
         
     }
 
+    //Returns true if the player is in range and can be hit with a raycast from the ghost
     bool CanSeePlayer()
     {
         RaycastHit hit;
@@ -299,12 +308,14 @@ public class GhostBehavior : MonoBehaviour
     //Set the ghost's speed in accordance with it's aggression level and whether it's in light
     void SetGhostSpeed()
     {
+        //Frozen from pause or debug
         if (bl_frozen)
         {
             nav_agent.speed = 0;
             return;
         }
 
+        //Normal aggression
         if (int_curAggressionLevel < 4)
         {
             if (l_go_lightSourcesEffecting.Count > 0)
@@ -318,6 +329,7 @@ public class GhostBehavior : MonoBehaviour
             return;
         }
 
+        //Max aggression
         if(int_curAggressionLevel == 4)
         {
             if (l_go_lightSourcesEffecting.Count > 0)
@@ -332,14 +344,14 @@ public class GhostBehavior : MonoBehaviour
         }
     }
 
-
+    //Throw an object at a target
     void ThrowObjectAt(GameObject go_toThrow, Vector3 v3_pos)
     {
         go_toThrow.transform.LookAt(v3_pos);
         go_toThrow.GetComponent<Rigidbody>().AddForce(go_toThrow.transform.forward * flt_attackThrowForce, ForceMode.Impulse);
     }
 
-
+    //Pick an object from among the objects in the float trigger.
     GameObject ChooseObjectToThrow()
     {
         GameObject go_toThrow = l_go_throwables[0];
@@ -375,10 +387,12 @@ public class GhostBehavior : MonoBehaviour
         return go_toThrow;
     }
 
+    //Perform current task
     void PerformTask()
     {
 
         if (int_curAggressionLevel < 3 && go_curRegion == pc_player.go_curRegion) return;
+        
         //Attempt to interact with patrol point
         Pickupable pickup = tr_currentPatrolPoint.GetComponent<Pickupable>();
         if (pickup != null)
@@ -485,8 +499,10 @@ public class GhostBehavior : MonoBehaviour
             {
                 if (lightSwitch.bl_on)
                 {
+                    //Only turn off if high enough aggression
                     if (int_curAggressionLevel == 2 && lightSwitch.a_go_regions.Contains<GameObject>(pc_player.go_curRegion) == false)
                     {
+                        //Only turn off if not in same room
                         lightSwitch.Interact();
                         flt_curSwitchCooldown = flt_lightSwitchCooldown;
                     }else if (int_curAggressionLevel >= 3)
@@ -681,6 +697,7 @@ public class GhostBehavior : MonoBehaviour
             return;
         }
 
+        //Go to next task if the player is holding the target item
         if (pc_player.Go_heldObject != null && pc_player.Go_heldObject.name == go_item.name)
         {
             int_curIndex++;
@@ -692,6 +709,7 @@ public class GhostBehavior : MonoBehaviour
             return;
         }
 
+        //Stop object from floating
         if(go_item.GetComponent<Floatable>() != null)
         {
             l_go_throwables.Remove(go_item);

@@ -12,7 +12,7 @@ GameObject:
   m_Layer: 2
   m_Name: HeldItemSpinner
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -249,7 +249,7 @@ GameObject:
   m_Layer: 2
   m_Name: HeldItemParent
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -350,7 +350,7 @@ Transform:
   m_GameObject: {fileID: 7813583447088648802}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.7324281, y: 1.7, z: -3.816402}
+  m_LocalPosition: {x: 0, y: 1.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -704,7 +704,8 @@ MonoBehaviour:
   go_curHeldItem: {fileID: 0}
   go_heldItemParent: {fileID: 7263785423210560717}
   tr_heldItemSpinner: {fileID: 717651196072784010}
-  flt_spinSpeed: 0.5
+  flt_spinSpeed: 180
+  flt_heldItemWobble: 60
   bl_hiding: 0
   a_hs_hidingPlaces:
   - {fileID: 0}

@@ -39,9 +39,11 @@ public class Fireplace : Interactable
     // complete the light fireplace task and start the vfx and sfx
     public void Light()
     {
+        //Activate light and audio
         go_fireFX.SetActive(true);
         as_source.Play();
 
+        //Activate particles
         ps_fire.Play();
         ps_fire.Clear();
         ps_smoke.Play();
@@ -55,9 +57,11 @@ public class Fireplace : Interactable
     // stop the vfx and sfx, and re-grant the light fireplace task
     public void UnLight()
     {
+        //Stop light and audio
         go_fireFX.SetActive(false);
         as_source.Stop();
 
+        //Stop particles
         ps_fire.Stop();
         ps_fire.Clear();
         ps_smoke.Stop();

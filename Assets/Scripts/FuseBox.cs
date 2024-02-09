@@ -56,9 +56,4 @@ public class FuseBox : Interactable
         }
         bl_ready = true;
     }
-
-    /*protected void FuseBoxReady()
-    {
-        bl_ready = true;
-    }*/
 }
