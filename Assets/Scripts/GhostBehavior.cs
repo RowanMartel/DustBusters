@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
+using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Rendering;
@@ -123,7 +124,7 @@ public class GhostBehavior : MonoBehaviour
             l_pl_currentPoints.Add(pl_pList);
         }
 
-        //Set all variables to default
+        //Initialize
         SwitchToPoint(0);
         flt_curTime = flt_timeToThrow;
         flt_curSFXTime = flt_sfxTime;
@@ -149,7 +150,7 @@ public class GhostBehavior : MonoBehaviour
         }
         if (go_curHeldItem != null)
         {
-            go_curHeldItem.transform.position = go_heldItemParent.transform.position;
+            //go_curHeldItem.transform.position = go_heldItemParent.transform.position;
         }
 
         //The below is aggression level dependent
@@ -200,7 +201,6 @@ public class GhostBehavior : MonoBehaviour
 
                         //Get player according to aggro
                         GameObject go_toThrow = ChooseObjectToThrow();
-
                         //Throw object
                         ThrowObjectAt(go_toThrow, go_player.transform.position);
                     }
@@ -377,18 +377,16 @@ public class GhostBehavior : MonoBehaviour
 
     void PerformTask()
     {
-        //Attempt to interact with patrol point
-        Pickupable pickup = tr_currentPatrolPoint.GetComponent<Pickupable>();
 
         if (int_curAggressionLevel < 3 && go_curRegion == pc_player.go_curRegion) return;
-
+        //Attempt to interact with patrol point
+        Pickupable pickup = tr_currentPatrolPoint.GetComponent<Pickupable>();
         if (pickup != null)
         {
             if (pickup.bl_hideable)
             {
                 PickUpItem(pickup.gameObject);
                 ChooseHidingPlace();
-                Debug.Log("AA");
                 return;
             }
             
@@ -402,7 +400,6 @@ public class GhostBehavior : MonoBehaviour
                     {
                         pickup.transform.LookAt(transform.position);
                         pickup.GetComponent<Rigidbody>().AddForce(pickup.transform.forward * flt_breakThrowForce, ForceMode.Impulse);
-                        Debug.Log("Throw Dish");
                     }
                     return;
                 }
@@ -414,7 +411,6 @@ public class GhostBehavior : MonoBehaviour
                     {
                         pickup.transform.LookAt(transform.position);
                         pickup.GetComponent<Rigidbody>().AddForce(pickup.transform.forward * flt_breakThrowForce, ForceMode.Impulse);
-                        Debug.Log("Throw Book");
                     }
                     return;
                 }
@@ -468,6 +464,7 @@ public class GhostBehavior : MonoBehaviour
             {
                 fb_fuseBox.Interact();
             }
+            return;
         }
 
         //Attempt to hide item
@@ -475,8 +472,8 @@ public class GhostBehavior : MonoBehaviour
         if(hs_spot != null)
         {
             PlaceItem(hs_spot.transform.position);
+            return;
         }
-
     }
 
     //Check if Lightswitch is nearby. Turn off if needed
@@ -679,6 +676,11 @@ public class GhostBehavior : MonoBehaviour
     //Set an item to be the current held item
     public void PickUpItem(GameObject go_item)
     {
+        if (go_item.GetComponent<Pickupable>() == null)
+        {
+            return;
+        }
+
         if (pc_player.Go_heldObject != null && pc_player.Go_heldObject.name == go_item.name)
         {
             int_curIndex++;
@@ -690,11 +692,19 @@ public class GhostBehavior : MonoBehaviour
             return;
         }
 
+        if(go_item.GetComponent<Floatable>() != null)
+        {
+            l_go_throwables.Remove(go_item);
+            go_item.GetComponent<Floatable>().StopFloat();
+        }
+
         if (go_curHeldItem != null)
             DropItem();
 
         go_item.transform.parent = go_heldItemParent.transform;
         go_item.transform.localPosition = Vector3.zero;
+        go_item.GetComponent<Rigidbody>().useGravity = false;
+        go_item.GetComponent<Rigidbody>().isKinematic = true;
         go_curHeldItem = go_item;
     }
 
@@ -703,6 +713,8 @@ public class GhostBehavior : MonoBehaviour
     {
         go_curHeldItem.transform.parent = null;
         go_curHeldItem.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        go_curHeldItem.GetComponent<Rigidbody>().useGravity = true;
+        go_curHeldItem.GetComponent<Rigidbody>().isKinematic = false;
         if (bl_hiding)
         {
             bl_hiding = false;
@@ -796,7 +808,6 @@ public class GhostBehavior : MonoBehaviour
         }
 
         SwitchToPoint(int_curIndex);
-
     }
 
     //Allows a list of lists to be filled in the inspector
