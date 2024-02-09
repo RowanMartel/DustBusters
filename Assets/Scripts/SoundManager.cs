@@ -29,6 +29,7 @@ public class SoundManager : MonoBehaviour
         StartCoroutine(coroutine);
     }
 
+    //Picks a random clip from a list of clips, then plays that clip with the other PlayClip method
     public void PlayClip(AudioClip[] a_ac_clips, AudioSource as_source)
     {
         if (as_source.isPlaying) return;
@@ -41,18 +42,7 @@ public class SoundManager : MonoBehaviour
             attempts++;
         }while(l_ac_curSFX.Contains(ac_clip) && attempts >= int_attemptsToPickNewSound);
 
-        if (l_ac_curSFX.Contains(ac_clip)) return;
-
-        Vector3 v3_sourcePos = as_source.transform.position;
-        if (Vector3.Distance(GameManager.playerController.transform.position, v3_sourcePos) >= Settings.int_SFXCullingDist)
-            return;
-
-        l_ac_curSFX.Add(ac_clip);
-
-        as_source.PlayOneShot(ac_clip, Settings.flt_volume);
-
-        coroutine = RemoveClip(ac_clip.length, ac_clip);
-        StartCoroutine(coroutine);
+        PlayClip(ac_clip, as_source);
     }
 
     // removes the clip from the currently playing list after the duration of the clip has passed

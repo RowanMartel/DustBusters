@@ -55,6 +55,7 @@ public class DrawerOpen : Interactable
 
     void Toggle()
     {
+        //Open drawer
         if (!bl_open && bl_ready)
         {
 
@@ -63,6 +64,7 @@ public class DrawerOpen : Interactable
             bl_open = true;
         }
 
+        //Close drawer
         if (bl_open && bl_ready)
         {
             bl_ready = false;

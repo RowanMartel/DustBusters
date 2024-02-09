@@ -1,10 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor;
-using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Rendering;
 
 public class GhostBehavior : MonoBehaviour
 {
@@ -33,7 +30,7 @@ public class GhostBehavior : MonoBehaviour
     [Header("Attack")]
     public GameObject go_player; //The player's GameObject
     public float flt_timeToThrow;
-    public float flt_curTime;
+    public float flt_curTimeBetweenThrows;
     public List<GameObject> l_go_throwables; //List of objects the ghost is currently floating
     public float flt_attackThrowForce;
 
@@ -46,6 +43,8 @@ public class GhostBehavior : MonoBehaviour
     public GameObject go_heldItemParent;
     public Transform tr_heldItemSpinner;
     public float flt_spinSpeed;
+    public float flt_heldItemWobble;
+    bool bl_wobbleUp;
 
     //Variables around interacting with items
     [Header("Task Item Interaction")]
@@ -94,6 +93,15 @@ public class GhostBehavior : MonoBehaviour
 
     public bool bl_frozen;
 
+    //Image easter egg
+    [Header("Image Easter Egg")]
+    public List<EasterEggPicture> l_eep_pictures;
+    public float flt_distToImg;
+    public float flt_timeBetweenImgChecks;
+    public float flt_curTimeTweenImgChecks;
+    [Tooltip("percentage")]
+    public float flt_chanceToChangeImg;
+
 
     // Start is called before the first frame update
     void Start()
@@ -126,9 +134,10 @@ public class GhostBehavior : MonoBehaviour
 
         //Initialize
         SwitchToPoint(0);
-        flt_curTime = flt_timeToThrow;
+        flt_curTimeBetweenThrows = flt_timeToThrow;
         flt_curSFXTime = flt_sfxTime;
         flt_curSwitchCooldown = flt_lightSwitchCooldown;
+        flt_curTimeTweenImgChecks = flt_timeBetweenImgChecks;
         bl_hiding = false;
         a_ls_switches = FindObjectsByType<LightSwitch>(FindObjectsSortMode.InstanceID);
         bl_frozen = false;
@@ -146,11 +155,39 @@ public class GhostBehavior : MonoBehaviour
         //Move the held item parent around the ghost.
         if (!bl_frozen)
         {
-            tr_heldItemSpinner.Rotate(Vector3.up * flt_spinSpeed);
+            if (bl_wobbleUp)
+            {
+                tr_heldItemSpinner.Rotate((Vector3.up * flt_spinSpeed * Time.deltaTime) + (Vector3.right * flt_heldItemWobble * Time.deltaTime));
+                if (tr_heldItemSpinner.rotation.x >= flt_heldItemWobble) bl_wobbleUp = false;
+            }
+            else
+            {
+
+                tr_heldItemSpinner.Rotate((Vector3.up * flt_spinSpeed * Time.deltaTime) + (Vector3.right * -flt_heldItemWobble * Time.deltaTime));
+                if (tr_heldItemSpinner.rotation.x <= -flt_heldItemWobble) bl_wobbleUp = false;
+            }
         }
-        if (go_curHeldItem != null)
+
+        //Image easter egg
+        if (flt_curTimeTweenImgChecks <= 0)
         {
-            //go_curHeldItem.transform.position = go_heldItemParent.transform.position;
+            foreach (EasterEggPicture eep_picture in l_eep_pictures)
+            {
+                if (Vector3.Distance(eep_picture.transform.position, transform.position) <= flt_distToImg)
+                {
+                    float flt_imgAttempt = Random.Range(0f, 100f);
+                    Debug.Log(flt_imgAttempt);
+                    if (flt_imgAttempt <= flt_chanceToChangeImg)
+                    {
+                        eep_picture.Switch();
+                        flt_curTimeTweenImgChecks = flt_timeBetweenImgChecks;
+                    }
+                }
+            }
+        }
+        else
+        {
+            flt_curTimeTweenImgChecks -= Time.deltaTime;
         }
 
         //The below is aggression level dependent
@@ -194,10 +231,10 @@ public class GhostBehavior : MonoBehaviour
                 //Attack player if player is visible and done cooldown
                 if (CanSeePlayer() && l_go_throwables.Count > 0)
                 {
-                    flt_curTime -= Time.deltaTime;
-                    if (flt_curTime <= 0)
+                    flt_curTimeBetweenThrows -= Time.deltaTime;
+                    if (flt_curTimeBetweenThrows <= 0)
                     {
-                        flt_curTime = flt_timeToThrow;
+                        flt_curTimeBetweenThrows = flt_timeToThrow;
 
                         //Get player according to aggro
                         GameObject go_toThrow = ChooseObjectToThrow();
@@ -231,10 +268,10 @@ public class GhostBehavior : MonoBehaviour
                 //Attack player if player is visible and done cooldown
                 if (CanSeePlayer() && l_go_throwables.Count > 0)
                 {
-                    flt_curTime -= Time.deltaTime;
-                    if (flt_curTime <= 0)
+                    flt_curTimeBetweenThrows -= Time.deltaTime;
+                    if (flt_curTimeBetweenThrows <= 0)
                     {
-                        flt_curTime = flt_timeToThrow;
+                        flt_curTimeBetweenThrows = flt_timeToThrow;
 
                         //Get player according to aggro
                         GameObject go_toThrow = ChooseObjectToThrow();
@@ -286,6 +323,7 @@ public class GhostBehavior : MonoBehaviour
         
     }
 
+    //Returns true if the player is in range and can be hit with a raycast from the ghost
     bool CanSeePlayer()
     {
         RaycastHit hit;
@@ -299,12 +337,14 @@ public class GhostBehavior : MonoBehaviour
     //Set the ghost's speed in accordance with it's aggression level and whether it's in light
     void SetGhostSpeed()
     {
+        //Frozen from pause or debug
         if (bl_frozen)
         {
             nav_agent.speed = 0;
             return;
         }
 
+        //Normal aggression
         if (int_curAggressionLevel < 4)
         {
             if (l_go_lightSourcesEffecting.Count > 0)
@@ -318,6 +358,7 @@ public class GhostBehavior : MonoBehaviour
             return;
         }
 
+        //Max aggression
         if(int_curAggressionLevel == 4)
         {
             if (l_go_lightSourcesEffecting.Count > 0)
@@ -332,14 +373,14 @@ public class GhostBehavior : MonoBehaviour
         }
     }
 
-
+    //Throw an object at a target
     void ThrowObjectAt(GameObject go_toThrow, Vector3 v3_pos)
     {
         go_toThrow.transform.LookAt(v3_pos);
         go_toThrow.GetComponent<Rigidbody>().AddForce(go_toThrow.transform.forward * flt_attackThrowForce, ForceMode.Impulse);
     }
 
-
+    //Pick an object from among the objects in the float trigger.
     GameObject ChooseObjectToThrow()
     {
         GameObject go_toThrow = l_go_throwables[0];
@@ -375,10 +416,12 @@ public class GhostBehavior : MonoBehaviour
         return go_toThrow;
     }
 
+    //Perform current task
     void PerformTask()
     {
 
         if (int_curAggressionLevel < 3 && go_curRegion == pc_player.go_curRegion) return;
+        
         //Attempt to interact with patrol point
         Pickupable pickup = tr_currentPatrolPoint.GetComponent<Pickupable>();
         if (pickup != null)
@@ -485,8 +528,10 @@ public class GhostBehavior : MonoBehaviour
             {
                 if (lightSwitch.bl_on)
                 {
+                    //Only turn off if high enough aggression
                     if (int_curAggressionLevel == 2 && lightSwitch.a_go_regions.Contains<GameObject>(pc_player.go_curRegion) == false)
                     {
+                        //Only turn off if not in same room
                         lightSwitch.Interact();
                         flt_curSwitchCooldown = flt_lightSwitchCooldown;
                     }else if (int_curAggressionLevel >= 3)
@@ -681,6 +726,7 @@ public class GhostBehavior : MonoBehaviour
             return;
         }
 
+        //Go to next task if the player is holding the target item
         if (pc_player.Go_heldObject != null && pc_player.Go_heldObject.name == go_item.name)
         {
             int_curIndex++;
@@ -692,6 +738,7 @@ public class GhostBehavior : MonoBehaviour
             return;
         }
 
+        //Stop object from floating
         if(go_item.GetComponent<Floatable>() != null)
         {
             l_go_throwables.Remove(go_item);
