@@ -1,10 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor;
-using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Rendering;
 
 public class GhostBehavior : MonoBehaviour
 {
@@ -33,7 +30,7 @@ public class GhostBehavior : MonoBehaviour
     [Header("Attack")]
     public GameObject go_player; //The player's GameObject
     public float flt_timeToThrow;
-    public float flt_curTime;
+    public float flt_curTimeBetweenThrows;
     public List<GameObject> l_go_throwables; //List of objects the ghost is currently floating
     public float flt_attackThrowForce;
 
@@ -96,6 +93,13 @@ public class GhostBehavior : MonoBehaviour
 
     public bool bl_frozen;
 
+    //Image easter egg
+    [Header("Image Easter Egg")]
+    public List<EasterEggPicture> l_eep_pictures;
+    public float flt_distToImg;
+    [Tooltip("percentage")]
+    public float flt_chanceToChangeImg;
+
 
     // Start is called before the first frame update
     void Start()
@@ -128,7 +132,7 @@ public class GhostBehavior : MonoBehaviour
 
         //Initialize
         SwitchToPoint(0);
-        flt_curTime = flt_timeToThrow;
+        flt_curTimeBetweenThrows = flt_timeToThrow;
         flt_curSFXTime = flt_sfxTime;
         flt_curSwitchCooldown = flt_lightSwitchCooldown;
         bl_hiding = false;
@@ -158,6 +162,21 @@ public class GhostBehavior : MonoBehaviour
 
                 tr_heldItemSpinner.Rotate((Vector3.up * flt_spinSpeed * Time.deltaTime) + (Vector3.right * -flt_heldItemWobble * Time.deltaTime));
                 if (tr_heldItemSpinner.rotation.x <= -flt_heldItemWobble) bl_wobbleUp = false;
+            }
+        }
+
+        //Image easter egg
+        foreach(EasterEggPicture eep_picture in l_eep_pictures)
+        {
+            if(Vector3.Distance(eep_picture.transform.position, transform.position) <= flt_distToImg)
+            {
+                float flt_imgAttempt = Random.Range(0, 100);
+                if(flt_imgAttempt <= flt_chanceToChangeImg)
+                {
+                    eep_picture.Switch();
+                }
+
+                //eep_picture.Switch();
             }
         }
 
@@ -202,10 +221,10 @@ public class GhostBehavior : MonoBehaviour
                 //Attack player if player is visible and done cooldown
                 if (CanSeePlayer() && l_go_throwables.Count > 0)
                 {
-                    flt_curTime -= Time.deltaTime;
-                    if (flt_curTime <= 0)
+                    flt_curTimeBetweenThrows -= Time.deltaTime;
+                    if (flt_curTimeBetweenThrows <= 0)
                     {
-                        flt_curTime = flt_timeToThrow;
+                        flt_curTimeBetweenThrows = flt_timeToThrow;
 
                         //Get player according to aggro
                         GameObject go_toThrow = ChooseObjectToThrow();
@@ -239,10 +258,10 @@ public class GhostBehavior : MonoBehaviour
                 //Attack player if player is visible and done cooldown
                 if (CanSeePlayer() && l_go_throwables.Count > 0)
                 {
-                    flt_curTime -= Time.deltaTime;
-                    if (flt_curTime <= 0)
+                    flt_curTimeBetweenThrows -= Time.deltaTime;
+                    if (flt_curTimeBetweenThrows <= 0)
                     {
-                        flt_curTime = flt_timeToThrow;
+                        flt_curTimeBetweenThrows = flt_timeToThrow;
 
                         //Get player according to aggro
                         GameObject go_toThrow = ChooseObjectToThrow();
