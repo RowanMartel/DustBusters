@@ -794,6 +794,9 @@ public class GhostBehavior : MonoBehaviour
                 }
                 break;
         }
+
+        SwitchToPoint(int_curIndex);
+
     }
 
     //Allows a list of lists to be filled in the inspector
