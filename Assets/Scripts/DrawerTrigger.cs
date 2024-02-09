@@ -15,7 +15,7 @@ public class DrawerContents : MonoBehaviour
         l_go_curContents.Add(other.gameObject);
     }
 
-    //This was causing issues with the Float Trigger
+    //This was causing issues with the Float Trigger. I've made adjustments
     private void OnTriggerExit(Collider other)
     {
         if (!l_go_curContents.Contains(other.gameObject)) return;
