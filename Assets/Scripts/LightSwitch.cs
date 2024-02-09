@@ -38,10 +38,12 @@ public class LightSwitch : Interactable
         Toggle();
     }
 
+    //Lets the lightswitch know whether it should have power
     public void SetFuseActive(bool bl_turningOn)
     {
         bl_fuseActive = bl_turningOn;
 
+        //Turns on light if the fuse and the switch are on.
         if (bl_fuseActive && bl_on)
         {
             foreach (GameObject light in li_go_lights)
@@ -51,6 +53,7 @@ public class LightSwitch : Interactable
             return;
         }
 
+        //Otherwise turn the light off
         foreach (GameObject light in li_go_lights)
             light.SetActive(false);
         lightCollider.enabled = false;
@@ -71,12 +74,14 @@ public class LightSwitch : Interactable
 
         if (bl_on && bl_fuseActive)
         {
+            //Turns the lights on if both the fuse and the switch are on
             foreach (GameObject light in li_go_lights)
                 light.SetActive(true);
             lightCollider.enabled = true;
         }
         else
         {
+            //Otherwise turn the lights off
             foreach (GameObject light in li_go_lights)
                 light.SetActive(false);
             lightCollider.enabled = false;

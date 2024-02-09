@@ -20,6 +20,7 @@ public class FuseBox : Interactable
 
     public override void Interact()
     {
+        //Pulls the lever and tells the switches and task manager know the state
         if(bl_isOn && bl_ready)
         {
             bl_ready = false;
@@ -36,27 +37,28 @@ public class FuseBox : Interactable
         }
     }
 
+    //Lets all switches know they should have power
     void SetSwitchesOn()
     {
         foreach (LightSwitch ls_switch in a_ls_switches)
         {
             ls_switch.SetFuseActive(true);
         }
-        FuseBoxReady();
+        bl_ready = true;
     }
 
+    //Lets all switches know they shouldn't have power
     void SetSwitchesOff()
     {
         foreach (LightSwitch ls_switch in a_ls_switches)
         {
             ls_switch.SetFuseActive(false);
         }
-        FuseBoxReady();
+        bl_ready = true;
     }
 
-    protected void FuseBoxReady()
+    /*protected void FuseBoxReady()
     {
         bl_ready = true;
-        if (bl_isOn) Debug.Log("Fuse Box ON"); // this is where we probably want to interact with the Task Manager, and turn on all active lights
-    }
+    }*/
 }
