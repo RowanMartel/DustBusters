@@ -757,7 +757,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   flt_distToImg: 5
-  flt_chanceToChangeImg: 1
+  flt_timeBetweenImgChecks: 10
+  flt_curTimeTweenImgChecks: 0
+  flt_chanceToChangeImg: 25
 --- !u!82 &5198980086939035474
 AudioSource:
   m_ObjectHideFlags: 0

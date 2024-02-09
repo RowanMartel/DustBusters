@@ -97,6 +97,8 @@ public class GhostBehavior : MonoBehaviour
     [Header("Image Easter Egg")]
     public List<EasterEggPicture> l_eep_pictures;
     public float flt_distToImg;
+    public float flt_timeBetweenImgChecks;
+    public float flt_curTimeTweenImgChecks;
     [Tooltip("percentage")]
     public float flt_chanceToChangeImg;
 
@@ -135,6 +137,7 @@ public class GhostBehavior : MonoBehaviour
         flt_curTimeBetweenThrows = flt_timeToThrow;
         flt_curSFXTime = flt_sfxTime;
         flt_curSwitchCooldown = flt_lightSwitchCooldown;
+        flt_curTimeTweenImgChecks = flt_timeBetweenImgChecks;
         bl_hiding = false;
         a_ls_switches = FindObjectsByType<LightSwitch>(FindObjectsSortMode.InstanceID);
         bl_frozen = false;
@@ -166,18 +169,25 @@ public class GhostBehavior : MonoBehaviour
         }
 
         //Image easter egg
-        foreach(EasterEggPicture eep_picture in l_eep_pictures)
+        if (flt_curTimeTweenImgChecks <= 0)
         {
-            if(Vector3.Distance(eep_picture.transform.position, transform.position) <= flt_distToImg)
+            foreach (EasterEggPicture eep_picture in l_eep_pictures)
             {
-                float flt_imgAttempt = Random.Range(0, 100);
-                if(flt_imgAttempt <= flt_chanceToChangeImg)
+                if (Vector3.Distance(eep_picture.transform.position, transform.position) <= flt_distToImg)
                 {
-                    eep_picture.Switch();
+                    float flt_imgAttempt = Random.Range(0f, 100f);
+                    Debug.Log(flt_imgAttempt);
+                    if (flt_imgAttempt <= flt_chanceToChangeImg)
+                    {
+                        eep_picture.Switch();
+                        flt_curTimeTweenImgChecks = flt_timeBetweenImgChecks;
+                    }
                 }
-
-                //eep_picture.Switch();
             }
+        }
+        else
+        {
+            flt_curTimeTweenImgChecks -= Time.deltaTime;
         }
 
         //The below is aggression level dependent
