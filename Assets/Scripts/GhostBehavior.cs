@@ -102,7 +102,6 @@ public class GhostBehavior : MonoBehaviour
     [Tooltip("percentage")]
     public float flt_chanceToChangeImg;
 
-
     // Start is called before the first frame update
     void Start()
     {
