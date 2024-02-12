@@ -26,6 +26,9 @@ public class Pickupable : Interactable
     [Tooltip("Rotation applied when held")]
     public Vector3 v3_heldRotationMod;
 
+    [Tooltip("Position applied when held")]
+    public Vector3 v3_heldPositionMod;
+
     protected Rigidbody rb;
     [HideInInspector] public bool bl_held;
     protected MeshRenderer ren_meshRenderer;
