@@ -13,21 +13,42 @@ public class TVStatic : MonoBehaviour
 
     public List<float> l_flt_chancePerAggro;
 
-    /*private void Start()
+    public bool bl_powered;
+    public bool bl_on;
+
+    private void Start()
     {
-        
-    }*/
+        bl_powered = true;
+        Activate();
+    }
+
+    public void Refresh()
+    {
+        if(bl_powered == false || bl_on == false)
+        {
+            as_staticAudio.Pause();
+            go_staticScreen.SetActive(false);
+            return;
+        }
+
+        if (bl_on)
+        {
+            as_staticAudio.Play();
+            go_staticScreen.SetActive(true);
+        }
+
+    }
 
     public void Activate()
     {
-        as_staticAudio.Play();
-        go_staticScreen.SetActive(true);
+        bl_on = true;
+        Refresh();
     }
 
     public void Deactivate()
     {
-        as_staticAudio.Stop();
-        go_staticScreen.SetActive(false);
+        bl_on = false;
+        Refresh();
     }
 
     private void OnTriggerEnter(Collider other)

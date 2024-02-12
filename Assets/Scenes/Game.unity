@@ -10241,6 +10241,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: FuseBox
       objectReference: {fileID: 0}
+    - target: {fileID: 8414230116382852304, guid: 09af6003ef82db946b50f55d1b247e1a, type: 3}
+      propertyPath: flt_flickerDelay
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414230116382852304, guid: 09af6003ef82db946b50f55d1b247e1a, type: 3}
+      propertyPath: flt_timeTweenFlicker
+      value: 0.05
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10251,6 +10259,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6712638405472448550, guid: 09af6003ef82db946b50f55d1b247e1a, type: 3}
   m_PrefabInstance: {fileID: 1028376988}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1028376990 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8414230116382852304, guid: 09af6003ef82db946b50f55d1b247e1a, type: 3}
+  m_PrefabInstance: {fileID: 1028376988}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09a1e554e89aa5b4189c668809f40e9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1052150427
 GameObject:
   m_ObjectHideFlags: 0
@@ -10532,6 +10551,8 @@ MonoBehaviour:
   - 10
   - 30
   - 0
+  bl_powered: 0
+  bl_on: 0
 --- !u!65 &1077070181
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20969,6 +20990,14 @@ PrefabInstance:
       propertyPath: go_player
       value: 
       objectReference: {fileID: 2052196313}
+    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
+      propertyPath: fb_fuseBox
+      value: 
+      objectReference: {fileID: 1028376990}
+    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
+      propertyPath: flt_distToFlickerFuseBox
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
       propertyPath: l_eep_pictures.Array.data[0]
       value: 
@@ -66844,7 +66873,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
