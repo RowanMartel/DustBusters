@@ -4354,6 +4354,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 1
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 0
   bl_canDamagePlayer: 0
@@ -10240,6 +10241,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: FuseBox
       objectReference: {fileID: 0}
+    - target: {fileID: 8414230116382852304, guid: 09af6003ef82db946b50f55d1b247e1a, type: 3}
+      propertyPath: flt_flickerDelay
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414230116382852304, guid: 09af6003ef82db946b50f55d1b247e1a, type: 3}
+      propertyPath: flt_timeTweenFlicker
+      value: 0.05
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10250,6 +10259,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6712638405472448550, guid: 09af6003ef82db946b50f55d1b247e1a, type: 3}
   m_PrefabInstance: {fileID: 1028376988}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1028376990 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8414230116382852304, guid: 09af6003ef82db946b50f55d1b247e1a, type: 3}
+  m_PrefabInstance: {fileID: 1028376988}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09a1e554e89aa5b4189c668809f40e9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1052150427
 GameObject:
   m_ObjectHideFlags: 0
@@ -10476,6 +10496,134 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &1077070178
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1077070179}
+  - component: {fileID: 1077070183}
+  - component: {fileID: 1077070182}
+  - component: {fileID: 1077070181}
+  - component: {fileID: 1077070180}
+  m_Layer: 0
+  m_Name: TVStaticTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1077070179
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1077070178}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -224, y: 106.2, z: 0}
+  m_LocalScale: {x: 500, y: 300, z: 500}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8717312887569728103}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1077070180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1077070178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cf43579f9e384341b7463d663ed0d1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  as_staticAudio: {fileID: 8717312887569728105}
+  go_staticScreen: {fileID: 1276805735}
+  sh_shader: {fileID: 0}
+  l_flt_chancePerAggro:
+  - 100
+  - 10
+  - 30
+  - 0
+  bl_powered: 0
+  bl_on: 0
+--- !u!65 &1077070181
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1077070178}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1077070182
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1077070178}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: fc7d5976cac99ae4ca8c1dcbd41e1fe5, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1077070183
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1077070178}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1107568901
 GameObject:
   m_ObjectHideFlags: 0
@@ -17116,6 +17264,113 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a18f6b155353db74bb2d516638b0de55, type: 3}
+--- !u!1 &1276805735
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1276805736}
+  - component: {fileID: 1276805739}
+  - component: {fileID: 1276805738}
+  - component: {fileID: 1276805737}
+  m_Layer: 0
+  m_Name: Static
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1276805736
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1276805735}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -0.85, y: 98.2, z: 0}
+  m_LocalScale: {x: 14.461, y: 10, z: 24.007}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1905373075}
+  m_Father: {fileID: 8717312887569728103}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!64 &1276805737
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1276805735}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &1276805738
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1276805735}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: b76a49274f468dd409d4499f841ab3f8, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1276805739
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1276805735}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1276925241
 GameObject:
   m_ObjectHideFlags: 0
@@ -17866,6 +18121,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 0
   bl_canDamagePlayer: 0
@@ -20735,6 +20991,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2052196313}
     - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
+      propertyPath: fb_fuseBox
+      value: 
+      objectReference: {fileID: 1028376990}
+    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
+      propertyPath: flt_distToFlickerFuseBox
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
       propertyPath: l_eep_pictures.Array.data[0]
       value: 
       objectReference: {fileID: 2793436535324748977}
@@ -22018,6 +22282,100 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 1195327843548746685, guid: 0dcb2c138e876c44eb1bfebfda29f380, type: 3}
+--- !u!1 &1905373074
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1905373075}
+  - component: {fileID: 1905373076}
+  m_Layer: 0
+  m_Name: TVLight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1905373075
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1905373074}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 1.85, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1276805736}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!108 &1905373076
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1905373074}
+  m_Enabled: 1
+  serializedVersion: 10
+  m_Type: 2
+  m_Shape: 0
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1
+  m_Range: 7.5
+  m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 1
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.074999996
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 0
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!43 &1922243862
 Mesh:
   m_ObjectHideFlags: 0
@@ -29395,6 +29753,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 0
   bl_canDamagePlayer: 0
@@ -30319,6 +30678,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 0
   bl_canDamagePlayer: 0
@@ -31310,6 +31670,7 @@ MonoBehaviour:
   bl_duster: 1
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 1
   bl_breakable: 0
   bl_canDamagePlayer: 0
@@ -31568,6 +31929,7 @@ GameObject:
   - component: {fileID: 2649733879609195802}
   - component: {fileID: 1259169856605398971}
   - component: {fileID: 8717312887569728104}
+  - component: {fileID: 8717312887569728105}
   m_Layer: 0
   m_Name: TV
   m_TagString: Untagged
@@ -34213,6 +34575,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 1
   bl_canDamagePlayer: 0
@@ -34575,6 +34938,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 0
   bl_canDamagePlayer: 0
@@ -34882,6 +35246,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 1
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 1
   bl_breakable: 0
   bl_canDamagePlayer: 0
@@ -35525,6 +35890,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 0
   bl_canDamagePlayer: 0
@@ -36658,6 +37024,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 0
   bl_canDamagePlayer: 0
@@ -37278,6 +37645,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 1
   bl_canDamagePlayer: 0
@@ -37655,6 +38023,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 1
   bl_canDamagePlayer: 0
@@ -38494,6 +38863,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 0
   bl_canDamagePlayer: 0
@@ -38907,6 +39277,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 1
   bl_canDamagePlayer: 0
@@ -40647,6 +41018,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 0
   bl_canDamagePlayer: 0
@@ -40854,6 +41226,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 1
   bl_canDamagePlayer: 0
@@ -46675,6 +47048,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 0
   bl_canDamagePlayer: 0
@@ -47056,6 +47430,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 1
   bl_canDamagePlayer: 0
@@ -47325,6 +47700,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 1
   bl_canDamagePlayer: 0
@@ -47606,6 +47982,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 0
   bl_canDamagePlayer: 0
@@ -47864,6 +48241,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 0
   bl_canDamagePlayer: 1
@@ -48085,6 +48463,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 1
   bl_canDamagePlayer: 0
@@ -48375,6 +48754,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 1
   bl_breakable: 0
   bl_canDamagePlayer: 0
@@ -48650,6 +49030,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 0
   bl_canDamagePlayer: 0
@@ -48829,6 +49210,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 1
   bl_canDamagePlayer: 0
@@ -49201,6 +49583,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 0
   bl_canDamagePlayer: 0
@@ -49422,6 +49805,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 1
   bl_canDamagePlayer: 0
@@ -49757,6 +50141,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 1
   bl_canDamagePlayer: 0
@@ -50089,6 +50474,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 1
   bl_canDamagePlayer: 0
@@ -50387,6 +50773,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 0
   bl_canDamagePlayer: 0
@@ -50826,6 +51213,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 0
   bl_canDamagePlayer: 0
@@ -51341,6 +51729,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 1
   bl_canDamagePlayer: 0
@@ -51758,6 +52147,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 1
+  bl_remote: 0
   bl_hideable: 1
   bl_breakable: 0
   bl_canDamagePlayer: 0
@@ -51849,6 +52239,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 1
   bl_canDamagePlayer: 0
@@ -52191,6 +52582,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 1
   bl_canDamagePlayer: 0
@@ -52559,6 +52951,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 1
   bl_canDamagePlayer: 0
@@ -52810,6 +53203,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 1
   bl_canDamagePlayer: 0
@@ -53399,6 +53793,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 1
   bl_canDamagePlayer: 0
@@ -53666,6 +54061,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 1
   bl_canDamagePlayer: 0
@@ -53997,6 +54393,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 0
   bl_canDamagePlayer: 0
@@ -54397,6 +54794,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 1
   bl_canDamagePlayer: 0
@@ -54682,6 +55080,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 0
   bl_canDamagePlayer: 0
@@ -55027,6 +55426,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 0
   bl_canDamagePlayer: 0
@@ -55307,6 +55707,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 0
   bl_canDamagePlayer: 0
@@ -55677,6 +56078,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 1
   bl_canDamagePlayer: 0
@@ -56109,6 +56511,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 0
   bl_canDamagePlayer: 0
@@ -56298,6 +56701,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 0
   bl_canDamagePlayer: 0
@@ -57028,6 +57432,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 1
   bl_canDamagePlayer: 0
@@ -57246,6 +57651,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 0
   bl_canDamagePlayer: 0
@@ -57517,6 +57923,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 1
   bl_canDamagePlayer: 0
@@ -57751,6 +58158,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 1
   bl_canDamagePlayer: 0
@@ -58578,6 +58986,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 0
   bl_canDamagePlayer: 1
@@ -58799,6 +59208,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 0
   bl_canDamagePlayer: 0
@@ -59560,6 +59970,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 1
   bl_canDamagePlayer: 0
@@ -59920,6 +60331,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 0
   bl_canDamagePlayer: 0
@@ -60159,6 +60571,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 1
   bl_canDamagePlayer: 0
@@ -60626,6 +61039,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 0
   bl_canDamagePlayer: 0
@@ -60843,6 +61257,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 0
   bl_canDamagePlayer: 0
@@ -61130,6 +61545,7 @@ MonoBehaviour:
   bl_duster: 1
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 0
   bl_canDamagePlayer: 0
@@ -61351,6 +61767,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 0
   bl_canDamagePlayer: 0
@@ -61557,6 +61974,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 1
   bl_canDamagePlayer: 0
@@ -61809,6 +62227,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 1
   bl_canDamagePlayer: 0
@@ -62061,6 +62480,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 1
   bl_canDamagePlayer: 0
@@ -62708,6 +63128,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 0
   bl_canDamagePlayer: 0
@@ -62976,6 +63397,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 0
   bl_canDamagePlayer: 0
@@ -63465,6 +63887,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 0
   bl_canDamagePlayer: 0
@@ -63982,6 +64405,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 1
   bl_canDamagePlayer: 0
@@ -64340,6 +64764,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 0
   bl_canDamagePlayer: 0
@@ -64665,6 +65090,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 1
   bl_hideable: 0
   bl_breakable: 0
   bl_canDamagePlayer: 0
@@ -64893,6 +65319,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 0
   bl_canDamagePlayer: 0
@@ -65163,6 +65590,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 0
   bl_canDamagePlayer: 0
@@ -65864,6 +66292,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 1
   bl_canDamagePlayer: 0
@@ -66145,6 +66574,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 1
   bl_canDamagePlayer: 0
@@ -66360,7 +66790,9 @@ Transform:
   m_LocalPosition: {x: 3.7630181, y: 1.0574297, z: -4.3593593}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1276805736}
+  - {fileID: 1077070179}
   m_Father: {fileID: 543450651949189771}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!64 &8717312887569728104
@@ -66385,6 +66817,102 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 7240493346068470835, guid: 6d5b99b3174eb364992574db88070630, type: 3}
+--- !u!82 &8717312887569728105
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3239839238065393378}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 8955c455156eca145a0dc04b63f23c5d, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!23 &8731273161905741695
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -66452,6 +66980,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 1
   bl_canDamagePlayer: 0
@@ -66791,6 +67320,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 0
   bl_canDamagePlayer: 0
@@ -67111,6 +67641,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 1
   bl_canDamagePlayer: 0
@@ -67766,6 +68297,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 1
   bl_canDamagePlayer: 0
@@ -68035,6 +68567,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 1
   bl_canDamagePlayer: 0
@@ -68387,6 +68920,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 0
   bl_canDamagePlayer: 0
@@ -68615,6 +69149,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 0
   bl_canDamagePlayer: 1
@@ -69579,6 +70114,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 0
   bl_canDamagePlayer: 0
@@ -69877,6 +70413,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 0
   bl_canDamagePlayer: 0
@@ -70132,6 +70669,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 0
   bl_canDamagePlayer: 0
@@ -70388,6 +70926,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 1
   bl_canDamagePlayer: 0
@@ -71079,6 +71618,7 @@ MonoBehaviour:
   bl_duster: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
+  bl_remote: 0
   bl_hideable: 0
   bl_breakable: 0
   bl_canDamagePlayer: 0
