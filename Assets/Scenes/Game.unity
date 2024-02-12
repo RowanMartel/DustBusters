@@ -6871,6 +6871,77 @@ Transform:
   - {fileID: 1016188717}
   m_Father: {fileID: 1785694687}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &710792431
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 834723452}
+    m_Modifications:
+    - target: {fileID: 4285966125841405716, guid: 24ba42a3031504d4d9cb49fbaf29b576, type: 3}
+      propertyPath: m_Name
+      value: bloodSplashEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 6008158554514969006, guid: 24ba42a3031504d4d9cb49fbaf29b576, type: 3}
+      propertyPath: m_Name
+      value: bloodSplash
+      objectReference: {fileID: 0}
+    - target: {fileID: 7822133134579345694, guid: 24ba42a3031504d4d9cb49fbaf29b576, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7822133134579345694, guid: 24ba42a3031504d4d9cb49fbaf29b576, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7822133134579345694, guid: 24ba42a3031504d4d9cb49fbaf29b576, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7822133134579345694, guid: 24ba42a3031504d4d9cb49fbaf29b576, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7822133134579345694, guid: 24ba42a3031504d4d9cb49fbaf29b576, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7822133134579345694, guid: 24ba42a3031504d4d9cb49fbaf29b576, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7822133134579345694, guid: 24ba42a3031504d4d9cb49fbaf29b576, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7822133134579345694, guid: 24ba42a3031504d4d9cb49fbaf29b576, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7822133134579345694, guid: 24ba42a3031504d4d9cb49fbaf29b576, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7822133134579345694, guid: 24ba42a3031504d4d9cb49fbaf29b576, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 24ba42a3031504d4d9cb49fbaf29b576, type: 3}
+--- !u!4 &710792432 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7822133134579345694, guid: 24ba42a3031504d4d9cb49fbaf29b576, type: 3}
+  m_PrefabInstance: {fileID: 710792431}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &710792433 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5932850110837800983, guid: 24ba42a3031504d4d9cb49fbaf29b576, type: 3}
+  m_PrefabInstance: {fileID: 710792431}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &716730999
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6882,6 +6953,10 @@ PrefabInstance:
     - target: {fileID: 6008158554514969006, guid: d0e3e01be8338244e8ed931d950787c9, type: 3}
       propertyPath: m_Name
       value: splashEffectPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 6008158554514969006, guid: d0e3e01be8338244e8ed931d950787c9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7822133134579345694, guid: d0e3e01be8338244e8ed931d950787c9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8113,6 +8188,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 716731000}
+  - {fileID: 710792432}
   m_Father: {fileID: 295595091063885859}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &834723453
@@ -8128,11 +8204,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   splashEffect: {fileID: 716731001}
+  bloodSplash: {fileID: 710792433}
   li_dishes:
   - {fileID: 5283846850559011228}
   - {fileID: 7013351505931480339}
   - {fileID: 6113519202156502460}
   ac_splash: {fileID: 8300000, guid: cd101dd4538f4a94ba1d16fba3094820, type: 3}
+  mat_cleanWater: {fileID: 2100000, guid: f9ab56629ed8bd44cb067bcb432e60d5, type: 2}
+  mat_bloodyWater: {fileID: 2100000, guid: 97bd455acbf9b3b4b882ea52abee8afb, type: 2}
 --- !u!65 &834723454
 BoxCollider:
   m_ObjectHideFlags: 0

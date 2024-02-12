@@ -7,6 +7,7 @@ public class CleaningWater : MonoBehaviour
 {
     [Tooltip("Put the splash particle effect here (see splashEffect prefab)")]
     public ParticleSystem splashEffect;
+    public ParticleSystem bloodSplash;
     [Tooltip("Put all the dirty dish game objects here")]
     public List<Dish> li_dishes;
 
@@ -14,19 +15,35 @@ public class CleaningWater : MonoBehaviour
     public AudioClip ac_splash;
     AudioSource as_source;
 
+    bool bl_bloody;
+
     List<CleaningWater> cleaningWaters;
+
+    public Material mat_cleanWater;
+    public Material mat_bloodyWater;
 
     private void Start()
     {
         as_source = GetComponent<AudioSource>();
         cleaningWaters = FindObjectsByType<CleaningWater>(FindObjectsSortMode.None).ToList();
+        bl_bloody = false;
     }
 
     // if other is a dirty dish, clean it, then check if complete in all instances of this script
     private void OnTriggerEnter(Collider other)
     {
         GameManager.soundManager.PlayClip(ac_splash, as_source);
-        if(splashEffect != null) splashEffect.Play();
+        if (splashEffect != null)
+        {
+            if (bl_bloody)
+            {
+                bloodSplash.Play();
+            }
+            else
+            {
+                splashEffect.Play();
+            }
+        }
 
         Dish dish = other.GetComponent<Dish>();
         if (!dish || !dish.bl_dirtyDish) return;
@@ -36,6 +53,12 @@ public class CleaningWater : MonoBehaviour
         foreach (CleaningWater water in cleaningWaters)
             if (water != this) water.CheckIfComplete();
         CheckIfComplete();
+    }
+
+    public void TurnBloody()
+    {
+        bl_bloody = true;
+        GetComponent<Renderer>().material = mat_bloodyWater;
     }
 
     // checks if all the dishes in the dishes list are clean, and ends the task if so

@@ -534,7 +534,6 @@ public class GhostBehavior : MonoBehaviour
     {
         if(Vector3.Distance(fb_fuseBox.transform.position, transform.position) <= flt_distToFlickerFuseBox)
         {
-            Debug.Log("AAA");
             fb_fuseBox.Flicker();
         }
     }
@@ -864,6 +863,13 @@ public class GhostBehavior : MonoBehaviour
                     go_floatTrigger.SetActive(true);
                 }
                 AddTask(TaskManager.Task.ResetBreakerBox);
+
+                //Turn Water Bloody
+                foreach (CleaningWater cleaningWater in FindObjectsByType<CleaningWater>(FindObjectsSortMode.None))
+                {
+                    cleaningWater.TurnBloody();
+                }
+
                 break;
             case 4:
                 //Activate Float Trigger if required
