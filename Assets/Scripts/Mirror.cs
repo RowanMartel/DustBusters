@@ -11,6 +11,10 @@ public class Mirror : Interactable
     public List<MirrorSplat> l_mirrorSplat;
     public MirrorSplat bloodText;
 
+    public List<float> l_flt_chanceForSpookByAggro;
+    public List<GameObject> l_go_spookyThingByAggro;
+    public Transform tr_spawnSpooky;
+
     // toggles the mirror cleaning minigame if the player is holding the right object
     public override void Interact()
     {
@@ -45,6 +49,16 @@ public class Mirror : Interactable
             GameManager.playerController.En_state = PlayerController.State.active;
             bl_gameActive = false;
             bl_clean = true;
+
+            //Spooky Encounter
+            int int_aggro = GameManager.ghost.int_curAggressionLevel - 1;
+            float flt_rand = Random.Range(0, 100);
+            if(flt_rand <= l_flt_chanceForSpookByAggro[int_aggro])
+            {
+                GameObject go_spooky = Instantiate(l_go_spookyThingByAggro[int_aggro]);
+                go_spooky.transform.position = tr_spawnSpooky.position;
+            }
+
         }
     }
 
