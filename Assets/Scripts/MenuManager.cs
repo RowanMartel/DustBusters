@@ -216,6 +216,8 @@ public class MenuManager : MonoBehaviour
         Color tempcolor = Img_damageOverlay.color;
         tempcolor.a = 0;
         Img_damageOverlay.color = tempcolor;
+        img_deathScreen.color = tempcolor;
+        img_deathMessage.color = tempcolor;
 
         go_quitButton.transform.localPosition = new Vector3(0f, -300, 0f);
         go_startButton.transform.localPosition = new Vector3(0f, -300, 0f);

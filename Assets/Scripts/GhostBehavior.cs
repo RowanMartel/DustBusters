@@ -102,6 +102,9 @@ public class GhostBehavior : MonoBehaviour
     [Tooltip("percentage")]
     public float flt_chanceToChangeImg;
 
+    [Header("Spooky Stuff")]
+    public float flt_distToFlickerFuseBox;
+    public FuseBox fb_fuseBox;
 
     // Start is called before the first frame update
     void Start()
@@ -194,9 +197,16 @@ public class GhostBehavior : MonoBehaviour
         switch (int_curAggressionLevel)
         {
             case 1:
-                
+
+                //Check if flicker fuse box
+                FuseBoxCheck();
+
                 break;
             case 2:
+
+                //Check if flicker fuse box
+                FuseBoxCheck();
+
                 //Check if near lightswitch and turn them off if needed
                 if (flt_curSwitchCooldown <= 0)
                 {
@@ -516,6 +526,15 @@ public class GhostBehavior : MonoBehaviour
         {
             PlaceItem(hs_spot.transform.position);
             return;
+        }
+    }
+
+    //Check if FuseBox is nearby. Flicker if needed
+    private void FuseBoxCheck()
+    {
+        if(Vector3.Distance(fb_fuseBox.transform.position, transform.position) <= flt_distToFlickerFuseBox)
+        {
+            fb_fuseBox.Flicker();
         }
     }
 
@@ -844,6 +863,13 @@ public class GhostBehavior : MonoBehaviour
                     go_floatTrigger.SetActive(true);
                 }
                 AddTask(TaskManager.Task.ResetBreakerBox);
+
+                //Turn Water Bloody
+                foreach (CleaningWater cleaningWater in FindObjectsByType<CleaningWater>(FindObjectsSortMode.None))
+                {
+                    cleaningWater.TurnBloody();
+                }
+
                 break;
             case 4:
                 //Activate Float Trigger if required

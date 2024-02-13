@@ -119,7 +119,7 @@ public class PlayerController : MonoBehaviour
         // This handles a held objects position in front of player while player is active
         if (go_heldObject != null && en_state == State.active)
         {
-            Vector3 direction = go_heldObject.transform.position - go_heldPosition.transform.position;
+            Vector3 direction = go_heldObject.transform.position - (go_heldPosition.transform.position + go_heldObject.GetComponent<Pickupable>().v3_heldPositionMod);
             float distance = direction.magnitude;
             Vector3 force = direction.normalized;
 
@@ -300,7 +300,14 @@ public class PlayerController : MonoBehaviour
                 {
                     GameManager.ghost.GetRobbed();
                 }
+
+                if (pickupable.bl_remote)
+                {
+                    FindAnyObjectByType<TVStatic>().Deactivate();
+                }
+
             }
+
             go_lookingAtObject.GetComponent<Interactable>().Interact();
         }
         else if(go_heldObject != null && (go_lookingAtObject == null || go_lookingAtObject.tag != "Interactable"))

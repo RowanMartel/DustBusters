@@ -99,7 +99,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bl_pickupable: 0
+  bl_isOn: 1
   go_lever: {fileID: 1783072078958697840}
+  flt_timeTweenFlicker: 0.1
+  int_maxFlickerTimes: 3
+  int_minFlickerTimes: 1
 --- !u!114 &76741398646152553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,7 +250,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4386521810564789810}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 9.442, y: 0.822, z: 8.7592325}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
@@ -254,4 +258,4 @@ Transform:
   - {fileID: 6712638405472448550}
   - {fileID: 8211751098411504097}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
