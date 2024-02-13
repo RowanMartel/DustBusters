@@ -3885,7 +3885,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 6143
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 2d48959a9a48d9d4eabb7fe462491f60, type: 2}
   m_TargetDisplay: 1
@@ -28777,6 +28777,63 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &1971834836315804304
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4459739891172271219, guid: 6b9a1df0d42ed5f4d964c01b62d53397, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.556
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459739891172271219, guid: 6b9a1df0d42ed5f4d964c01b62d53397, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459739891172271219, guid: 6b9a1df0d42ed5f4d964c01b62d53397, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -17.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459739891172271219, guid: 6b9a1df0d42ed5f4d964c01b62d53397, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459739891172271219, guid: 6b9a1df0d42ed5f4d964c01b62d53397, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459739891172271219, guid: 6b9a1df0d42ed5f4d964c01b62d53397, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459739891172271219, guid: 6b9a1df0d42ed5f4d964c01b62d53397, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459739891172271219, guid: 6b9a1df0d42ed5f4d964c01b62d53397, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459739891172271219, guid: 6b9a1df0d42ed5f4d964c01b62d53397, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459739891172271219, guid: 6b9a1df0d42ed5f4d964c01b62d53397, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4796898250900799202, guid: 6b9a1df0d42ed5f4d964c01b62d53397, type: 3}
+      propertyPath: m_Name
+      value: teddy bear
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6b9a1df0d42ed5f4d964c01b62d53397, type: 3}
 --- !u!4 &1983383177029756087
 Transform:
   m_ObjectHideFlags: 0
@@ -72166,3 +72223,4 @@ SceneRoots:
   - {fileID: 470900761}
   - {fileID: 496232661}
   - {fileID: 62964021}
+  - {fileID: 1971834836315804304}

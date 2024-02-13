@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DebugSystem : MonoBehaviour
 {
@@ -14,6 +15,24 @@ public class DebugSystem : MonoBehaviour
     PlayerController pc_player;
     TaskManager tm_taskManager;
     TVStatic tv_televisionTrigger;
+
+    GameObject[] a_go_cams;
+
+    private void Start()
+    {
+        SceneManager.sceneLoaded += SetCams;
+    }
+
+    void SetCams(Scene scene, LoadSceneMode mode)
+    {
+        a_go_cams = GameObject.FindGameObjectsWithTag("MinimapCam");
+
+        foreach (GameObject go_cam in a_go_cams)
+        {
+            go_cam.gameObject.SetActive(false);
+        }
+    }
+
 
     // Update is called once per frame
     void LateUpdate()
@@ -40,6 +59,8 @@ public class DebugSystem : MonoBehaviour
                 pc_player = GameManager.playerController;
                 tm_taskManager = GameManager.taskManager;
                 tv_televisionTrigger = FindAnyObjectByType<TVStatic>();
+
+                ActivateCams(true);
             }
             if(gb_ghost != null)
             {
@@ -154,9 +175,18 @@ public class DebugSystem : MonoBehaviour
         return str_taskList;
     }
 
+    void ActivateCams(bool bl_camSetting)
+    {
+        foreach (GameObject go_cam in a_go_cams)
+        {
+            go_cam.gameObject.SetActive(bl_camSetting);
+        }
+    }
+
     //Enter Debug Mode
     void EnterDebug()
     {
+        ActivateCams(true);
         bl_inDebug = true;
         GameManager.menuManager.EnterDebug();
     }
@@ -164,8 +194,9 @@ public class DebugSystem : MonoBehaviour
     //Exit Debug Mode
     void ExitDebug()
     {
+        ActivateCams(false);
         //Turn Off MeshRenderers If Appropriate
-        if(gb_ghost != null)
+        if (gb_ghost != null)
         {
             gb_ghost.GetComponent<MeshRenderer>().enabled = false;
             gb_ghost.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
