@@ -119,13 +119,15 @@ public class PlayerController : MonoBehaviour
         // This handles a held objects position in front of player while player is active
         if (go_heldObject != null && en_state == State.active)
         {
-            Vector3 direction = go_heldObject.transform.position - (go_heldPosition.transform.position + go_heldObject.GetComponent<Pickupable>().v3_heldPositionMod);
+            Vector3 v3_modifiedHeldPosition = go_heldPosition.transform.TransformPoint(go_heldPosition.transform.localPosition.x + go_heldObject.GetComponent<Pickupable>().v3_heldPositionMod.x, go_heldPosition.transform.localPosition.y - 0.5f + go_heldObject.GetComponent<Pickupable>().v3_heldPositionMod.y, go_heldPosition.transform.localPosition.z - 1 + go_heldObject.GetComponent<Pickupable>().v3_heldPositionMod.z);
+
+            Vector3 direction = go_heldObject.transform.position - v3_modifiedHeldPosition;
             float distance = direction.magnitude;
             Vector3 force = direction.normalized;
 
             if (distance > 0) go_heldObject.GetComponent<Rigidbody>().AddForce(-force * distance * 10, ForceMode.VelocityChange);
             go_heldObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            go_heldObject.transform.rotation = transform.rotation;
+            go_heldObject.transform.rotation = go_heldPosition.transform.rotation;
 
             go_heldObject.transform.Rotate(go_heldObject.GetComponent<Pickupable>().v3_heldRotationMod);
 
@@ -263,12 +265,12 @@ public class PlayerController : MonoBehaviour
     // Handles the player's ability to extend where the held prop is positioned, like reaching out in front of them
     void DoPlayerReach()
     {
-        if (go_heldPosition.transform.localPosition.z >= 0.6f && go_heldPosition.transform.localPosition.z <= 2.0f)
+        if (go_heldPosition.transform.localPosition.z >= 0.8f && go_heldPosition.transform.localPosition.z <= 1.6f)
         {
             go_heldPosition.transform.localPosition = new Vector3(go_heldPosition.transform.localPosition.x, go_heldPosition.transform.localPosition.y, go_heldPosition.transform.localPosition.z + Input.mouseScrollDelta.y * 0.1f);
 
-            if (go_heldPosition.transform.localPosition.z > 2) go_heldPosition.transform.localPosition = go_heldPosition.transform.localPosition = new Vector3(go_heldPosition.transform.localPosition.x, go_heldPosition.transform.localPosition.y, 2.0f);
-            if (go_heldPosition.transform.localPosition.z < 0.6f) go_heldPosition.transform.localPosition = go_heldPosition.transform.localPosition = new Vector3(go_heldPosition.transform.localPosition.x, go_heldPosition.transform.localPosition.y, 0.6f);
+            if (go_heldPosition.transform.localPosition.z > 1.6f) go_heldPosition.transform.localPosition = new Vector3(go_heldPosition.transform.localPosition.x, go_heldPosition.transform.localPosition.y, 1.6f);
+            if (go_heldPosition.transform.localPosition.z < 0.8f) go_heldPosition.transform.localPosition = new Vector3(go_heldPosition.transform.localPosition.x, go_heldPosition.transform.localPosition.y, 0.8f);
         }
     }
 

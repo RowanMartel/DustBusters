@@ -179,7 +179,6 @@ public class GhostBehavior : MonoBehaviour
                 if (Vector3.Distance(eep_picture.transform.position, transform.position) <= flt_distToImg)
                 {
                     float flt_imgAttempt = Random.Range(0f, 100f);
-                    Debug.Log(flt_imgAttempt);
                     if (flt_imgAttempt <= flt_chanceToChangeImg)
                     {
                         eep_picture.Switch();

@@ -3885,7 +3885,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 6143
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 2d48959a9a48d9d4eabb7fe462491f60, type: 2}
   m_TargetDisplay: 1
@@ -4132,6 +4132,37 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &360569628
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 360569629}
+  m_Layer: 0
+  m_Name: SpookyTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &360569629
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 360569628}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.081749916, z: -0.000000009753487}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7048760086169430727}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &387192111
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7546,7 +7577,7 @@ ReflectionProbe:
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 255
+    m_Bits: 4351
   m_IntensityMultiplier: 1
   m_BlendDistance: 1
   m_HDR: 1
@@ -8910,6 +8941,9 @@ MonoBehaviour:
   - {fileID: 1225709229}
   - {fileID: 2110804002}
   bloodText: {fileID: 0}
+  l_flt_chanceForSpookByAggro: []
+  l_go_spookyThingByAggro: []
+  tr_spawnSpooky: {fileID: 0}
 --- !u!64 &885115309
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -10626,7 +10660,7 @@ MonoBehaviour:
   go_staticScreen: {fileID: 1276805735}
   sh_shader: {fileID: 0}
   l_flt_chancePerAggro:
-  - 100
+  - 10
   - 10
   - 30
   - 0
@@ -28743,6 +28777,63 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &1971834836315804304
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4459739891172271219, guid: 6b9a1df0d42ed5f4d964c01b62d53397, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.556
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459739891172271219, guid: 6b9a1df0d42ed5f4d964c01b62d53397, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459739891172271219, guid: 6b9a1df0d42ed5f4d964c01b62d53397, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -17.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459739891172271219, guid: 6b9a1df0d42ed5f4d964c01b62d53397, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459739891172271219, guid: 6b9a1df0d42ed5f4d964c01b62d53397, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459739891172271219, guid: 6b9a1df0d42ed5f4d964c01b62d53397, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459739891172271219, guid: 6b9a1df0d42ed5f4d964c01b62d53397, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459739891172271219, guid: 6b9a1df0d42ed5f4d964c01b62d53397, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459739891172271219, guid: 6b9a1df0d42ed5f4d964c01b62d53397, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459739891172271219, guid: 6b9a1df0d42ed5f4d964c01b62d53397, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4796898250900799202, guid: 6b9a1df0d42ed5f4d964c01b62d53397, type: 3}
+      propertyPath: m_Name
+      value: teddy bear
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6b9a1df0d42ed5f4d964c01b62d53397, type: 3}
 --- !u!4 &1983383177029756087
 Transform:
   m_ObjectHideFlags: 0
@@ -53769,6 +53860,7 @@ Transform:
   - {fileID: 2126539138}
   - {fileID: 1150439450}
   - {fileID: 727230754}
+  - {fileID: 360569629}
   m_Father: {fileID: 543450651949189771}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!64 &7048760086169430728
@@ -53814,6 +53906,17 @@ MonoBehaviour:
   - {fileID: 1150439452}
   - {fileID: 727230756}
   bloodText: {fileID: 0}
+  l_flt_chanceForSpookByAggro:
+  - 20
+  - 20
+  - 60
+  - 60
+  l_go_spookyThingByAggro:
+  - {fileID: 2311904872776881757, guid: 2803575f24e03ca4f8948d6d1ecaa882, type: 3}
+  - {fileID: 2311904872776881757, guid: 2803575f24e03ca4f8948d6d1ecaa882, type: 3}
+  - {fileID: 2856823131281717404, guid: 32bb79c9a8eb1be48aac3246a2601ec0, type: 3}
+  - {fileID: 2856823131281717404, guid: 32bb79c9a8eb1be48aac3246a2601ec0, type: 3}
+  tr_spawnSpooky: {fileID: 360569629}
 --- !u!114 &7048760086169430730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72120,3 +72223,4 @@ SceneRoots:
   - {fileID: 470900761}
   - {fileID: 496232661}
   - {fileID: 62964021}
+  - {fileID: 1971834836315804304}
