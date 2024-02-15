@@ -101,7 +101,8 @@ MonoBehaviour:
   bl_pickupable: 0
   bl_isOn: 1
   go_lever: {fileID: 1783072078958697840}
-  flt_timeTweenFlicker: 0.1
+  flt_timeTweenFlicker: 0.05
+  flt_flickerDelay: 5
   int_maxFlickerTimes: 3
   int_minFlickerTimes: 1
 --- !u!114 &76741398646152553
