@@ -186,10 +186,10 @@ public class GhostBehavior : MonoBehaviour
                     if (flt_imgAttempt <= flt_chanceToChangeImg)
                     {
                         eep_picture.Switch();
-                        flt_curTimeTweenImgChecks = flt_timeBetweenImgChecks;
                     }
                 }
             }
+            flt_curTimeTweenImgChecks = flt_timeBetweenImgChecks;
         }
         else
         {
