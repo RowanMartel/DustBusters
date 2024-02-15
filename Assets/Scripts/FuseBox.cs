@@ -104,7 +104,7 @@ public class FuseBox : Interactable
     //Start Flicker
     public void Flicker()
     {
-        if (flt_curFlickerDelay > 0) return;
+        if (flt_curFlickerDelay > 0 || !bl_isOn) return;
         int_timesToFlicker = Random.Range(int_minFlickerTimes, int_maxFlickerTimes);
         flt_curFlickerTime = flt_timeTweenFlicker;
         flt_curFlickerDelay = flt_flickerDelay;
