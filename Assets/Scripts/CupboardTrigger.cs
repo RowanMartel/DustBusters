@@ -16,6 +16,7 @@ public class CupboardTrigger : MonoBehaviour
 
         CheckIfComplete();
     }
+
     // counts the dish as no longer in the cupboard and grants the task again
     private void OnTriggerExit(Collider other)
     {

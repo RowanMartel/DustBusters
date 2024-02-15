@@ -175,6 +175,7 @@ public class DebugSystem : MonoBehaviour
         return str_taskList;
     }
 
+    //Set minimap cameras to active or inactive
     void ActivateCams(bool bl_camSetting)
     {
         foreach (GameObject go_cam in a_go_cams)
