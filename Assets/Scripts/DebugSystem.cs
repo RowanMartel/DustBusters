@@ -20,6 +20,7 @@ public class DebugSystem : MonoBehaviour
 
     private void Start()
     {
+        a_go_cams = GameObject.FindGameObjectsWithTag("MinimapCam");
         SceneManager.sceneLoaded += SetCams;
     }
 

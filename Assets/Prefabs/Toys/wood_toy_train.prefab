@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4611627009247911554}
   - component: {fileID: 8479392808012194804}
   - component: {fileID: 683823494505351163}
+  - component: {fileID: 1906611400114604117}
   m_Layer: 0
   m_Name: wood_toy_train
   m_TagString: Interactable
@@ -30,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2612208633568387266}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 13.278436, y: -2.9556828, z: -0.40827703}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
@@ -155,7 +156,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 1
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -179,3 +180,17 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &1906611400114604117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2612208633568387266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6bc21f26c6eaba41be7fb924520ab77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bl_canFloat: 0
+  bl_isFloating: 0

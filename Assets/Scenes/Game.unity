@@ -4387,7 +4387,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -18361,7 +18361,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -21233,10 +21233,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1028376990}
     - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
-      propertyPath: flt_distToFlickerFuseBox
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
       propertyPath: l_eep_pictures.Array.data[0]
       value: 
       objectReference: {fileID: 2793436535324748977}
@@ -21752,6 +21748,70 @@ PrefabInstance:
       propertyPath: l_pl_patrolPointsPerTask.Array.data[12].listAggro4.Array.data[0]
       value: 
       objectReference: {fileID: 1028376989}
+    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
+      propertyPath: l_pl_patrolPointsPerTask.Array.data[13].listAggro1.Array.data[0]
+      value: 
+      objectReference: {fileID: 8703608060222592506}
+    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
+      propertyPath: l_pl_patrolPointsPerTask.Array.data[13].listAggro2.Array.data[0]
+      value: 
+      objectReference: {fileID: 1971834836315804306}
+    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
+      propertyPath: l_pl_patrolPointsPerTask.Array.data[13].listAggro2.Array.data[1]
+      value: 
+      objectReference: {fileID: 8210876276762654447}
+    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
+      propertyPath: l_pl_patrolPointsPerTask.Array.data[13].listAggro2.Array.data[2]
+      value: 
+      objectReference: {fileID: 1189580976793537580}
+    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
+      propertyPath: l_pl_patrolPointsPerTask.Array.data[13].listAggro2.Array.data[3]
+      value: 
+      objectReference: {fileID: 7218733770213140958}
+    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
+      propertyPath: l_pl_patrolPointsPerTask.Array.data[13].listAggro2.Array.data[4]
+      value: 
+      objectReference: {fileID: 7212921036891726608}
+    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
+      propertyPath: l_pl_patrolPointsPerTask.Array.data[13].listAggro3.Array.data[0]
+      value: 
+      objectReference: {fileID: 1971834836315804306}
+    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
+      propertyPath: l_pl_patrolPointsPerTask.Array.data[13].listAggro3.Array.data[1]
+      value: 
+      objectReference: {fileID: 8210876276762654447}
+    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
+      propertyPath: l_pl_patrolPointsPerTask.Array.data[13].listAggro3.Array.data[2]
+      value: 
+      objectReference: {fileID: 1189580976793537580}
+    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
+      propertyPath: l_pl_patrolPointsPerTask.Array.data[13].listAggro3.Array.data[3]
+      value: 
+      objectReference: {fileID: 7218733770213140958}
+    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
+      propertyPath: l_pl_patrolPointsPerTask.Array.data[13].listAggro3.Array.data[4]
+      value: 
+      objectReference: {fileID: 7212921036891726608}
+    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
+      propertyPath: l_pl_patrolPointsPerTask.Array.data[13].listAggro4.Array.data[0]
+      value: 
+      objectReference: {fileID: 1971834836315804306}
+    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
+      propertyPath: l_pl_patrolPointsPerTask.Array.data[13].listAggro4.Array.data[1]
+      value: 
+      objectReference: {fileID: 8210876276762654447}
+    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
+      propertyPath: l_pl_patrolPointsPerTask.Array.data[13].listAggro4.Array.data[2]
+      value: 
+      objectReference: {fileID: 1189580976793537580}
+    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
+      propertyPath: l_pl_patrolPointsPerTask.Array.data[13].listAggro4.Array.data[3]
+      value: 
+      objectReference: {fileID: 7218733770213140958}
+    - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
+      propertyPath: l_pl_patrolPointsPerTask.Array.data[13].listAggro4.Array.data[4]
+      value: 
+      objectReference: {fileID: 7212921036891726608}
     - target: {fileID: 6789743469464714939, guid: 64bb0de781b3cc146abcd18df6169854, type: 3}
       propertyPath: l_pl_patrolPointsPerTask.Array.data[11].listAggro2.Array.data[10]
       value: 
@@ -27034,6 +27094,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ed6a9411a0616e46bf7f75070436518, type: 3}
+--- !u!4 &1189580976793537580 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7032079663826196799, guid: 3ed6a9411a0616e46bf7f75070436518, type: 3}
+  m_PrefabInstance: {fileID: 1189580976793537579}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1195141408327777057
 GameObject:
   m_ObjectHideFlags: 0
@@ -28987,18 +29052,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4459739891172271219, guid: 6b9a1df0d42ed5f4d964c01b62d53397, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.005
-      objectReference: {fileID: 0}
-    - target: {fileID: 4459739891172271219, guid: 6b9a1df0d42ed5f4d964c01b62d53397, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.005
-      objectReference: {fileID: 0}
-    - target: {fileID: 4459739891172271219, guid: 6b9a1df0d42ed5f4d964c01b62d53397, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.005
-      objectReference: {fileID: 0}
-    - target: {fileID: 4459739891172271219, guid: 6b9a1df0d42ed5f4d964c01b62d53397, type: 3}
       propertyPath: m_LocalPosition.x
       value: 13.397
       objectReference: {fileID: 0}
@@ -29058,6 +29111,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d94736a0187a733449c1873e51972ff8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1971834836315804306 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4459739891172271219, guid: 6b9a1df0d42ed5f4d964c01b62d53397, type: 3}
+  m_PrefabInstance: {fileID: 1971834836315804304}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1983383177029756087
 Transform:
   m_ObjectHideFlags: 0
@@ -30149,7 +30207,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -31074,7 +31132,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -32085,7 +32143,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 1
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -35048,7 +35106,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 1
+  bl_toThrow: 1
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -35411,7 +35469,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -35719,7 +35777,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 1
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -36363,7 +36421,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -37497,7 +37555,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -38118,7 +38176,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 1
+  bl_toThrow: 1
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -38496,7 +38554,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 1
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -39336,7 +39394,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -39750,7 +39808,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 1
+  bl_toThrow: 1
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -41491,7 +41549,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -41699,7 +41757,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 1
+  bl_toThrow: 1
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -47521,7 +47579,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -47903,7 +47961,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 1
+  bl_toThrow: 1
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -48173,7 +48231,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 1
+  bl_toThrow: 1
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -48455,7 +48513,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -48714,7 +48772,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 1
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -48936,7 +48994,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 1
+  bl_toThrow: 1
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -49227,7 +49285,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 1
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -49503,7 +49561,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -49683,7 +49741,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 1
+  bl_toThrow: 1
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -50056,7 +50114,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -50278,7 +50336,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 1
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -50614,7 +50672,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 1
+  bl_toThrow: 1
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -50947,7 +51005,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 1
+  bl_toThrow: 1
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -51246,7 +51304,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -51686,7 +51744,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -52221,7 +52279,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 1
+  bl_toThrow: 1
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -52639,7 +52697,7 @@ MonoBehaviour:
   bl_frontDoorKey: 1
   bl_remote: 0
   bl_hideable: 1
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -52731,7 +52789,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 1
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -53074,7 +53132,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 1
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -53443,7 +53501,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 1
+  bl_toThrow: 1
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -53695,7 +53753,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 1
+  bl_toThrow: 1
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -54297,7 +54355,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 1
+  bl_toThrow: 1
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -54565,7 +54623,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 1
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -54897,7 +54955,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -55298,7 +55356,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 1
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -55584,7 +55642,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -55834,6 +55892,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d94736a0187a733449c1873e51972ff8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &7212921036891726608 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2587739584116260816, guid: 9b8131fe7ea055a489455fab05c5188b, type: 3}
+  m_PrefabInstance: {fileID: 7212921036891726606}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7218733770213140956
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55902,6 +55965,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d94736a0187a733449c1873e51972ff8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &7218733770213140958 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1690950294153386030, guid: e12448762819ba54993224607613c3d2, type: 3}
+  m_PrefabInstance: {fileID: 7218733770213140956}
+  m_PrefabAsset: {fileID: 0}
 --- !u!23 &7276351401296474794
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -56130,7 +56198,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -56411,7 +56479,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -56782,7 +56850,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 1
+  bl_toThrow: 1
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -57215,7 +57283,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -57405,7 +57473,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -58136,7 +58204,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 1
+  bl_toThrow: 1
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -58355,7 +58423,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -58627,7 +58695,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 1
+  bl_toThrow: 1
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -58862,7 +58930,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 1
+  bl_toThrow: 1
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -59690,7 +59758,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 1
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -59912,7 +59980,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -60674,7 +60742,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 1
+  bl_toThrow: 1
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -61050,7 +61118,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -61290,7 +61358,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 1
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -61758,7 +61826,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -61976,7 +62044,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -62264,7 +62332,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -62486,7 +62554,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -62693,7 +62761,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 1
+  bl_toThrow: 1
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -62946,7 +63014,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 1
+  bl_toThrow: 1
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -63199,7 +63267,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 1
+  bl_toThrow: 1
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -63761,6 +63829,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d94736a0187a733449c1873e51972ff8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &8210876276762654447 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4264008779630886194, guid: 75de34d6b3e9ddc428445cb06e8218f3, type: 3}
+  m_PrefabInstance: {fileID: 8210876276762654445}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8236229044977596572
 Transform:
   m_ObjectHideFlags: 0
@@ -63915,7 +63988,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -64184,7 +64257,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -64674,7 +64747,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -65208,7 +65281,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 1
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -65567,7 +65640,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -65893,7 +65966,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 1
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -66122,7 +66195,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -66393,7 +66466,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -67095,7 +67168,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 1
+  bl_toThrow: 1
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -67377,7 +67450,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 1
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -67800,7 +67873,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 1
+  bl_toThrow: 1
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -68140,7 +68213,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -68461,7 +68534,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 1
+  bl_toThrow: 1
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -69117,7 +69190,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 1
+  bl_toThrow: 1
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -69387,7 +69460,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 1
+  bl_toThrow: 1
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -69740,7 +69813,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -69969,7 +70042,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 1
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -70934,7 +71007,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 125, z: 0}
   v3_heldPositionMod: {x: 0, y: -0.25, z: 0}
@@ -71233,7 +71306,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -71489,7 +71562,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -71746,7 +71819,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 1
+  bl_toThrow: 1
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
@@ -72468,7 +72541,7 @@ MonoBehaviour:
   bl_frontDoorKey: 0
   bl_remote: 0
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}

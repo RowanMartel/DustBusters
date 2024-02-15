@@ -496,9 +496,9 @@ MonoBehaviour:
   nav_agent: {fileID: 6990169330593324436}
   l_tsk_currentTasks: 
   l_pl_currentPoints: []
-  l_tsk_startTasks: 000000000200000004000000050000000300000009000000
+  l_tsk_startTasks: 0000000002000000040000000500000003000000090000000e000000
   l_tsk_endGameTasks: 06000000070000000a000000
-  l_tsk_masterTaskList: 00000000020000000400000005000000030000000100000006000000070000000d0000000b0000000c000000090000000a000000
+  l_tsk_masterTaskList: 00000000020000000400000005000000030000000100000006000000070000000d0000000b0000000c000000090000000a0000000e000000
   l_pl_patrolPointsPerTask:
   - listAggro1:
     - {fileID: 0}
@@ -699,6 +699,26 @@ MonoBehaviour:
     - {fileID: 0}
     listAggro4:
     - {fileID: 0}
+  - listAggro1:
+    - {fileID: 0}
+    listAggro2:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    listAggro3:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    listAggro4:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
   tr_currentPatrolPoint: {fileID: 0}
   int_curIndex: 0
   go_curRegion: {fileID: 0}
@@ -726,6 +746,7 @@ MonoBehaviour:
   flt_dirtyFloorChance: 1
   flt_throwBookChance: 4
   flt_throwDishChance: 4
+  flt_throwToyChance: 4
   flt_baseSpeed: 4
   flt_aggroSpeed: 6
   flt_slowedSpeed: 2
@@ -760,7 +781,7 @@ MonoBehaviour:
   flt_timeBetweenImgChecks: 10
   flt_curTimeTweenImgChecks: 0
   flt_chanceToChangeImg: 25
-  flt_distToFlickerFuseBox: 3
+  flt_distToFlickerFuseBox: 5
   fb_fuseBox: {fileID: 0}
 --- !u!82 &5198980086939035474
 AudioSource:
