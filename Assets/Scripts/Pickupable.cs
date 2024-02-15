@@ -20,8 +20,8 @@ public class Pickupable : Interactable
     [Tooltip("Check if the ghost wants to hide this")]
     public bool bl_hideable;
 
-    [Tooltip("Check if the ghost wants to break this")]
-    public bool bl_breakable;
+    [Tooltip("Check if the ghost wants to throw this")]
+    public bool bl_toThrow;
 
     [Tooltip("Check if this object can damage the player")]
     public bool bl_canDamagePlayer;

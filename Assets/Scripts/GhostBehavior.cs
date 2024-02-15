@@ -57,6 +57,7 @@ public class GhostBehavior : MonoBehaviour
     public float flt_dirtyFloorChance;
     public float flt_throwBookChance;
     public float flt_throwDishChance;
+    public float flt_throwToyChance;
 
     //Variables around interacting with Light
     [Header("Light Interaction")]
@@ -435,6 +436,7 @@ public class GhostBehavior : MonoBehaviour
         Pickupable pickup = tr_currentPatrolPoint.GetComponent<Pickupable>();
         if (pickup != null)
         {
+            Debug.Log(pickup.name);
             if (pickup.bl_hideable)
             {
                 PickUpItem(pickup.gameObject);
@@ -442,7 +444,7 @@ public class GhostBehavior : MonoBehaviour
                 return;
             }
             
-            if (pickup.bl_breakable)
+            if (pickup.bl_toThrow)
             {
 
                 if (pickup.gameObject.GetComponent<Dish>() != null)
@@ -466,6 +468,18 @@ public class GhostBehavior : MonoBehaviour
                     }
                     return;
                 }
+
+                if(pickup.gameObject.GetComponent<Toy>() != null)
+                {
+                    int int_rand = Random.Range(0, 10);
+                    if (int_rand <= flt_throwToyChance)
+                    {
+                        pickup.transform.LookAt(transform.position);
+                        pickup.GetComponent<Rigidbody>().AddForce(pickup.transform.forward * flt_breakThrowForce, ForceMode.Impulse);
+                    }
+                    return;
+                }
+
             }
 
             return;

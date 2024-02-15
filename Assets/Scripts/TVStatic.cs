@@ -19,9 +19,9 @@ public class TVStatic : MonoBehaviour
     private void Start()
     {
         bl_powered = true;
-        Activate();
     }
 
+    //Checks if the tv is set to on and has power, and sets the static accordingly
     public void Refresh()
     {
         if(bl_powered == false || bl_on == false)
@@ -39,18 +39,21 @@ public class TVStatic : MonoBehaviour
 
     }
 
+    //Sets the tv to on then refreshes
     public void Activate()
     {
         bl_on = true;
         Refresh();
     }
 
+    //Sets the tv to off then refreshes
     public void Deactivate()
     {
         bl_on = false;
         Refresh();
     }
 
+    //Has a chance to Activate when ghost enters collider
     private void OnTriggerEnter(Collider other)
     {
         GhostBehavior gb_ghost = other.gameObject.GetComponent<GhostBehavior>();

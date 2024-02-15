@@ -33,6 +33,8 @@ public class CleaningWater : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         GameManager.soundManager.PlayClip(ac_splash, as_source);
+        
+        //Plays the appropriate splash effect
         if (splashEffect != null)
         {
             if (bl_bloody)
@@ -55,6 +57,7 @@ public class CleaningWater : MonoBehaviour
         CheckIfComplete();
     }
 
+    //Turns the sink bloody
     public void TurnBloody()
     {
         bl_bloody = true;

@@ -20,7 +20,8 @@ public class TaskManager : MonoBehaviour
         ResetBreakerBox,
         GhostDirtyMirror,
         GhostDirtyFloor,
-        GhostDouseFireplace
+        GhostDouseFireplace,
+        PutAwayToys
     }
 
     // list of tasks the player starts with, set in inspector
@@ -86,6 +87,9 @@ public class TaskManager : MonoBehaviour
                 break;
             case Task.ResetBreakerBox:
                 text = "\nReset the breaker box";
+                break;
+            case Task.PutAwayToys:
+                text = "\nPut away the toys";
                 break;
         }
         int i = tmp_taskListTxt.text.IndexOf(text);
@@ -162,6 +166,9 @@ public class TaskManager : MonoBehaviour
                 break;
             case Task.ResetBreakerBox:
                 str_text = "\nReset the breaker box";
+                break;
+            case Task.PutAwayToys:
+                str_text = "\nPut away the toys";
                 break;
         }
 

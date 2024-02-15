@@ -34,11 +34,7 @@ public class FuseBox : Interactable
 
     public void Update()
     {
-        if(flt_curFlickerDelay > 0)
-        {
-            flt_curFlickerDelay -= Time.deltaTime;
-        }
-
+        //Perform Flicker when appropriate
         if(int_timesToFlicker > 0)
         {
             flt_curFlickerTime -= Time.deltaTime;
@@ -47,11 +43,13 @@ public class FuseBox : Interactable
                 flt_curFlickerTime = flt_timeTweenFlicker;
                 if (bl_isOn)
                 {
+                    //Turn power off
                     bl_isOn = false;
                     SetSwitchesOff();
                 }
                 else
                 {
+                    //Turn power on
                     bl_isOn = true;
                     SetSwitchesOn();
                     int_timesToFlicker--;
@@ -103,6 +101,7 @@ public class FuseBox : Interactable
         bl_ready = true;
     }
 
+    //Start Flicker
     public void Flicker()
     {
         if (flt_curFlickerDelay > 0) return;

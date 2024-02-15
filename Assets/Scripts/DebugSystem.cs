@@ -20,6 +20,7 @@ public class DebugSystem : MonoBehaviour
 
     private void Start()
     {
+        a_go_cams = GameObject.FindGameObjectsWithTag("MinimapCam");
         SceneManager.sceneLoaded += SetCams;
     }
 
@@ -175,6 +176,7 @@ public class DebugSystem : MonoBehaviour
         return str_taskList;
     }
 
+    //Set minimap cameras to active or inactive
     void ActivateCams(bool bl_camSetting)
     {
         foreach (GameObject go_cam in a_go_cams)
