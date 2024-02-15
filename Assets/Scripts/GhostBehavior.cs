@@ -55,8 +55,11 @@ public class GhostBehavior : MonoBehaviour
     public float flt_douseFireplaceChance;
     public float flt_dirtyMirrorChance;
     public float flt_dirtyFloorChance;
+    [Tooltip("out of 10")]
     public float flt_throwBookChance;
+    [Tooltip("out of 10")]
     public float flt_throwDishChance;
+    [Tooltip("out of 10")]
     public float flt_throwToyChance;
 
     //Variables around interacting with Light
