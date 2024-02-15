@@ -28,6 +28,7 @@ public class TaskManager : MonoBehaviour
     public List<Task> li_startingTasks;
     // dynamic list of the player's current tasks
     [HideInInspector] public List<Task> li_taskList;
+    [HideInInspector] public List<Task> li_tsk_completedTaskList;
 
     public GhostBehavior ghost;
     public TMP_Text tmp_taskListTxt;
@@ -45,10 +46,12 @@ public class TaskManager : MonoBehaviour
             AddTask(task);
     }
 
-    // removes the given task from the task list
+    // removes the given task from the task list and adds a strikethrough for the displayed list
     public void CompleteTask(Task task)
     {
         if (!li_taskList.Contains(task)) return;
+        if (li_tsk_completedTaskList.Contains(task)) return;
+
         string text = "";
         switch (task)
         {
@@ -92,7 +95,11 @@ public class TaskManager : MonoBehaviour
         int i = tmp_taskListTxt.text.IndexOf(text);
         tmp_taskListTxt.text = tmp_taskListTxt.text.Remove(i, text.Length);
 
+        //Adds a strikethrough to a completed task
+        tmp_taskListTxt.text = tmp_taskListTxt.text.Insert(i, "<s>" + text + "</s>");
+
         li_taskList.Remove(task);
+        li_tsk_completedTaskList.Add(task);
 
         ghost.RemoveTask(task);
 
@@ -164,6 +171,24 @@ public class TaskManager : MonoBehaviour
                 str_text = "\nPut away the toys";
                 break;
         }
-        tmp_taskListTxt.text += str_text;
+
+        if (li_tsk_completedTaskList.Contains(task))
+        {
+            //Remove strikethrough from an uncompleted task
+            string str_strikethroughText = "<s>" + str_text + "</s>";
+
+            int i = tmp_taskListTxt.text.IndexOf(str_strikethroughText);
+
+            tmp_taskListTxt.text = tmp_taskListTxt.text.Remove(i, str_strikethroughText.Length);
+
+            tmp_taskListTxt.text = tmp_taskListTxt.text.Insert(i, str_text);
+
+            li_tsk_completedTaskList.Remove(task);
+        }
+        else
+        {
+            tmp_taskListTxt.text += str_text;
+        }
+
     }
 }
