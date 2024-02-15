@@ -14,6 +14,7 @@ public class ToyChestTrigger : MonoBehaviour
         tm_taskManager = GameManager.taskManager;
     }
 
+    //Makes the toy in the box and checks if the task is complete
     private void OnTriggerEnter(Collider other)
     {
         Toy toy = other.GetComponent<Toy>();
@@ -24,13 +25,13 @@ public class ToyChestTrigger : MonoBehaviour
         }
     }
 
+    //Makes the toy not in the box and reassign the task as needed
     private void OnTriggerExit(Collider other)
     {
         Toy toy = other.GetComponent<Toy>();
         if(toy != null)
         {
             toy.bl_inBox = false;
-            //if (!tm_taskManager.li_taskList.Contains(TaskManager.Task.PutAwayToys)) tm_taskManager.AddTask(TaskManager.Task.PutAwayToys);
 
             if (tm_taskManager.li_taskList.Contains(TaskManager.Task.PutAwayToys) ||
                 tm_taskManager.li_taskList.Contains(TaskManager.Task.FindKey) ||
@@ -40,6 +41,7 @@ public class ToyChestTrigger : MonoBehaviour
         }
     }
 
+    //Completes the task if all toys are in the box
     public void CheckIfComplete()
     {
         if (!tm_taskManager.li_taskList.Contains(TaskManager.Task.PutAwayToys)) return;
