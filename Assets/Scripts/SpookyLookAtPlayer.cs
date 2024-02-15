@@ -23,7 +23,7 @@ public class SpookyLookAtPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(ren_renderer.isVisible);
+        //Debug.Log(ren_renderer.isVisible);
         if (!ren_renderer.isVisible)
         {
             transform.LookAt(go_player.transform.position);
