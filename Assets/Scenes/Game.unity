@@ -7715,6 +7715,7 @@ GameObject:
   - component: {fileID: 739689078}
   - component: {fileID: 739689077}
   - component: {fileID: 739689075}
+  - component: {fileID: 739689079}
   m_Layer: 0
   m_Name: ReflectiveSurface
   m_TagString: Untagged
@@ -7748,8 +7749,8 @@ ReflectionProbe:
   serializedVersion: 2
   m_Type: 0
   m_Mode: 1
-  m_RefreshMode: 1
-  m_TimeSlicingMode: 0
+  m_RefreshMode: 2
+  m_TimeSlicingMode: 1
   m_Resolution: 2048
   m_UpdateFrequency: 0
   m_BoxSize: {x: 8.84847, y: 7.116618, z: 10.269386}
@@ -7766,7 +7767,7 @@ ReflectionProbe:
   m_BlendDistance: 1
   m_HDR: 1
   m_BoxProjection: 0
-  m_RenderDynamicObjects: 0
+  m_RenderDynamicObjects: 1
   m_UseOcclusionCulling: 1
   m_Importance: 1
   m_CustomBakedTexture: {fileID: 0}
@@ -7820,6 +7821,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 739689073}
   m_Mesh: {fileID: 5618640176408522257, guid: 8840f0b052b15fb4ab533907c6f1cf1c, type: 3}
+--- !u!114 &739689079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 739689073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14a4e01beb276f84d8bc43d07433635b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &777639572
 GameObject:
   m_ObjectHideFlags: 0
