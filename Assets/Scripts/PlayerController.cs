@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     protected GameObject go_lookingAtObject;
     protected GameObject go_heldPosition;
     protected GameObject go_heldObject;
+    public float flt_heldObjDistFromWall;
+
     public GameObject Go_heldObject {  get { return go_heldObject; } }
 
     // Reference to the camera and ability to look around
@@ -23,6 +25,7 @@ public class PlayerController : MonoBehaviour
     protected Vector3 v3_heldPositionReset;
 
     protected Rigidbody rb_player;
+
 
     // State prevents the player from moving when in menus or doing chores
     public enum State
@@ -119,7 +122,20 @@ public class PlayerController : MonoBehaviour
         // This handles a held objects position in front of player while player is active
         if (go_heldObject != null && en_state == State.active)
         {
+
             Vector3 v3_modifiedHeldPosition = go_heldPosition.transform.TransformPoint(go_heldPosition.transform.localPosition.x + go_heldObject.GetComponent<Pickupable>().v3_heldPositionMod.x, go_heldPosition.transform.localPosition.y - 0.5f + go_heldObject.GetComponent<Pickupable>().v3_heldPositionMod.y, go_heldPosition.transform.localPosition.z - 1 + go_heldObject.GetComponent<Pickupable>().v3_heldPositionMod.z);
+
+            RaycastHit hit;
+            Debug.DrawRay(go_cameraContainer.transform.position, v3_modifiedHeldPosition - go_cameraContainer.transform.position, Color.red);
+            if(Physics.Raycast(go_cameraContainer.transform.position, v3_modifiedHeldPosition - go_cameraContainer.transform.position, out hit, Vector3.Distance(go_cameraContainer.transform.position, v3_modifiedHeldPosition)))
+            {
+                if (hit.collider != null)
+                {
+                    Debug.Log(hit.collider.gameObject.name);
+                    v3_modifiedHeldPosition = hit.point - ((hit.point - go_cameraContainer.transform.position) * flt_heldObjDistFromWall);
+                }
+            }
+
 
             Vector3 direction = go_heldObject.transform.position - v3_modifiedHeldPosition;
             float distance = direction.magnitude;

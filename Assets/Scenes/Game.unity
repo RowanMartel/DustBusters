@@ -572,7 +572,7 @@ GameObject:
   - component: {fileID: 56422784}
   - component: {fileID: 56422782}
   - component: {fileID: 56422783}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bathroom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1194,7 +1194,7 @@ GameObject:
   - component: {fileID: 77077816}
   - component: {fileID: 77077814}
   - component: {fileID: 77077815}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bedroom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2572,7 +2572,7 @@ GameObject:
   - component: {fileID: 168219772}
   - component: {fileID: 168219771}
   - component: {fileID: 168219773}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Foyer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3017,7 +3017,7 @@ GameObject:
   - component: {fileID: 238681722}
   - component: {fileID: 238681719}
   - component: {fileID: 238681721}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Hallway
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3414,7 +3414,7 @@ GameObject:
   - component: {fileID: 300225047}
   - component: {fileID: 300225046}
   - component: {fileID: 300225045}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6467,7 +6467,7 @@ GameObject:
   - component: {fileID: 554759810}
   - component: {fileID: 554759808}
   - component: {fileID: 554759809}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Foyer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6830,6 +6830,10 @@ PrefabInstance:
       propertyPath: go_curRegion
       value: 
       objectReference: {fileID: 168219769}
+    - target: {fileID: 1180455513968762944, guid: a137a69c917120245957388d6d524c2d, type: 3}
+      propertyPath: flt_heldObjDistFromWall
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 3044325781436062001, guid: a137a69c917120245957388d6d524c2d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 13.866859
@@ -7825,7 +7829,7 @@ GameObject:
   - component: {fileID: 777639577}
   - component: {fileID: 777639574}
   - component: {fileID: 777639576}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bedroom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8681,7 +8685,7 @@ GameObject:
   - component: {fileID: 859116605}
   - component: {fileID: 859116603}
   - component: {fileID: 859116604}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: LivingRoomLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9242,7 +9246,7 @@ GameObject:
   - component: {fileID: 899343941}
   - component: {fileID: 899343939}
   - component: {fileID: 899343940}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: LivingRoomRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11916,7 +11920,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1216518871}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: RegionTriggers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12408,7 +12412,7 @@ GameObject:
   - component: {fileID: 1258618907}
   - component: {fileID: 1258618906}
   - component: {fileID: 1258618908}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Living Room
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12494,7 +12498,7 @@ GameObject:
   - component: {fileID: 1268536424}
   - component: {fileID: 1268536422}
   - component: {fileID: 1268536423}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Hallway
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17984,7 +17988,7 @@ GameObject:
   - component: {fileID: 1295980170}
   - component: {fileID: 1295980169}
   - component: {fileID: 1295980171}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bathroom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19809,7 +19813,7 @@ GameObject:
   - component: {fileID: 1535463520}
   - component: {fileID: 1535463518}
   - component: {fileID: 1535463519}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: KitchenUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20341,7 +20345,7 @@ GameObject:
   - component: {fileID: 1596419057}
   - component: {fileID: 1596419056}
   - component: {fileID: 1596419055}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: KitchenDown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21288,7 +21292,7 @@ GameObject:
   - component: {fileID: 1689281162}
   - component: {fileID: 1689281160}
   - component: {fileID: 1689281161}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: LaundryRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22932,7 +22936,7 @@ GameObject:
   - component: {fileID: 1848931411}
   - component: {fileID: 1848931410}
   - component: {fileID: 1848931412}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Kitchen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23601,6 +23605,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1317816416573584460, guid: e358265ff73bed943b247369e44e3e7d, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3629909874708296409, guid: e358265ff73bed943b247369e44e3e7d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 13.717
@@ -29083,6 +29091,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 543450651949189771}
     m_Modifications:
+    - target: {fileID: 1358796399432732580, guid: 9c638ad2417dcd34492bf21b744eff7f, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2911125536581585198, guid: 9c638ad2417dcd34492bf21b744eff7f, type: 3}
       propertyPath: m_Volume
       value: 0.5

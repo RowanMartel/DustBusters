@@ -439,7 +439,7 @@ public class GhostBehavior : MonoBehaviour
         Pickupable pickup = tr_currentPatrolPoint.GetComponent<Pickupable>();
         if (pickup != null)
         {
-            Debug.Log(pickup.name);
+            //Debug.Log(pickup.name);
             if (pickup.bl_hideable)
             {
                 PickUpItem(pickup.gameObject);
