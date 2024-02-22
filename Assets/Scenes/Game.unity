@@ -2696,7 +2696,7 @@ ReflectionProbe:
   m_BoxSize: {x: 10, y: 10, z: 10}
   m_BoxOffset: {x: 0, y: 0, z: 0}
   m_NearClip: 0.3
-  m_FarClip: 1000
+  m_FarClip: 30
   m_ShadowDistance: 100
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
@@ -3607,7 +3607,7 @@ ReflectionProbe:
   m_BoxSize: {x: 10, y: 10, z: 10}
   m_BoxOffset: {x: 0, y: 0, z: 0}
   m_NearClip: 0.3
-  m_FarClip: 1000
+  m_FarClip: 30
   m_ShadowDistance: 100
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
@@ -7750,12 +7750,12 @@ ReflectionProbe:
   m_Mode: 1
   m_RefreshMode: 1
   m_TimeSlicingMode: 0
-  m_Resolution: 512
+  m_Resolution: 2048
   m_UpdateFrequency: 0
-  m_BoxSize: {x: 10, y: 10, z: 10}
-  m_BoxOffset: {x: 0, y: 0, z: 0}
+  m_BoxSize: {x: 8.84847, y: 7.116618, z: 10.269386}
+  m_BoxOffset: {x: -0.57576513, y: -1.4416909, z: 5.134693}
   m_NearClip: 0.3
-  m_FarClip: 1000
+  m_FarClip: 30
   m_ShadowDistance: 100
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
@@ -18148,7 +18148,7 @@ ReflectionProbe:
   m_BoxSize: {x: 10, y: 10, z: 10}
   m_BoxOffset: {x: 0, y: 0, z: 0}
   m_NearClip: 0.3
-  m_FarClip: 1000
+  m_FarClip: 30
   m_ShadowDistance: 100
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
@@ -52944,7 +52944,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb40c25d1c860594086bcfcf705013ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bl_pickupable: 0
+  bl_pickupable: 1
   bl_mop: 0
   bl_duster: 0
   bl_lighter: 0
@@ -52953,7 +52953,7 @@ MonoBehaviour:
   bl_hideable: 1
   bl_toThrow: 0
   bl_canDamagePlayer: 0
-  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  v3_heldRotationMod: {x: 58.3, y: 0.4, z: 97.09}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
 --- !u!33 &6894366379968187624
