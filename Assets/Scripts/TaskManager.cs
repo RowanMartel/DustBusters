@@ -41,6 +41,8 @@ public class TaskManager : MonoBehaviour
         tmp_taskListTxt = FindObjectOfType<EmptyTaskList>(true).GetComponent<TMP_Text>();
         tmp_taskListTxt.text = "";
 
+        li_tsk_completedTaskList.Clear();
+
         // fill the task list with the starting tasks
         foreach (Task task in li_startingTasks)
             AddTask(task);
