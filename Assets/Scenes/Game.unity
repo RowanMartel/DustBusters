@@ -6831,8 +6831,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 168219769}
     - target: {fileID: 1180455513968762944, guid: a137a69c917120245957388d6d524c2d, type: 3}
+      propertyPath: flt_sphereCastRad
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180455513968762944, guid: a137a69c917120245957388d6d524c2d, type: 3}
       propertyPath: flt_heldObjDistFromWall
-      value: 0.25
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 3044325781436062001, guid: a137a69c917120245957388d6d524c2d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -37301,13 +37305,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7437255200435903540}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.66581655, y: 0, z: 0, w: 0.7461155}
+  m_LocalRotation: {x: -0.7489558, y: 0, z: 0, w: 0.66262007}
   m_LocalPosition: {x: -9.135, y: 0.092, z: 1.2178669}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 543450651949189771}
-  m_LocalEulerAnglesHint: {x: 83.49, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -97, y: 0, z: 0}
 --- !u!33 &4821019297850981590
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -54985,13 +54989,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6303773002771668913}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.026, y: 0.178, z: 1.8449217}
+  m_LocalRotation: {x: -1, y: 0, z: 0, w: 0}
+  m_LocalPosition: {x: -8.925, y: 0.09699991, z: 2.2335467}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 543450651949189771}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!1 &7085311664727363643
 GameObject:
   m_ObjectHideFlags: 0
@@ -57266,7 +57270,7 @@ MonoBehaviour:
   bl_hideable: 0
   bl_toThrow: 1
   bl_canDamagePlayer: 0
-  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  v3_heldRotationMod: {x: -97, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
 --- !u!64 &7437255200435903542
@@ -63683,7 +63687,7 @@ MonoBehaviour:
   bl_hideable: 0
   bl_toThrow: 1
   bl_canDamagePlayer: 0
-  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  v3_heldRotationMod: {x: -73.66, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
 --- !u!64 &8183399460803121550
@@ -71925,7 +71929,7 @@ MonoBehaviour:
   bl_hideable: 0
   bl_toThrow: 1
   bl_canDamagePlayer: 0
-  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  v3_heldRotationMod: {x: -180, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
 --- !u!64 &9142469278829475619

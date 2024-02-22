@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class Book : MonoBehaviour
 {
-    [HideInInspector] public bool bl_onShelf;
+    public bool bl_onShelf;
 }
