@@ -7,6 +7,8 @@ public class MirrorUpdate : MonoBehaviour
 {
     ReflectionProbe probe;
 
+    Renderer rend;
+
     int frameTimer;
 
     void Start()
@@ -16,17 +18,21 @@ public class MirrorUpdate : MonoBehaviour
         probe.timeSlicingMode = UnityEngine.Rendering.ReflectionProbeTimeSlicingMode.NoTimeSlicing;
         probe.hdr = true;
 
+        rend = GetComponent<Renderer>();
+
         frameTimer = 0;
     }
 
     void Update()
     {
-        frameTimer++;
-        if (frameTimer >= 6)
+        if (rend.isVisible)
         {
-            frameTimer = 0;
-            probe.RenderProbe();
-            //HDAdditionalReflectionDataExtensions.RequestRenderNextUpdate(probe);
+            frameTimer++;
+            if (frameTimer >= 6)
+            {
+                frameTimer = 0;
+                probe.RenderProbe();
+            }
         }
     }
 }
