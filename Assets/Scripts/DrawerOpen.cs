@@ -16,7 +16,9 @@ public class DrawerOpen : Interactable
     public Direction en_openDirection;
     public float fl_openAmount;
     protected bool bl_open = false;
+    public bool Bl_open { get { return bl_open; } }
     protected bool bl_ready = true;
+    public bool Bl_ready { get { return bl_ready; } }
 
     protected Vector3 v3_openPosition;
     protected Vector3 v3_closedPosition;

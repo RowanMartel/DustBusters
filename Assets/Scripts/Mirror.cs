@@ -6,7 +6,7 @@ public class Mirror : Interactable
     [Tooltip("Put the amount of splats the player needs to clean here")]
     public int int_splats;
     [HideInInspector] public bool bl_gameActive = false;
-    bool bl_clean = false;
+    public bool bl_clean = false;
 
     public List<MirrorSplat> l_mirrorSplat;
     public MirrorSplat bloodText;

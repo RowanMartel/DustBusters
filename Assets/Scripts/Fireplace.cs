@@ -14,7 +14,7 @@ public class Fireplace : Interactable
     AudioSource as_source;
     public GameObject go_ember;
     public List<Transform> l_tr_emberSpawnPoints;
-    bool bl_lit;
+    public bool bl_lit;
 
     private void Start()
     {
