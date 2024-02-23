@@ -503,16 +503,6 @@ public class MenuManager : MonoBehaviour
                 }
                 else st_tooltipMessage = "Complete your task list before you leave";
             }
-
-            if (go_lookingAtObject.GetComponent<TVStatic>() != null)
-            {
-                if (go_lookingAtObject.GetComponent<TVStatic>().bl_on)
-                {
-                    if (go_heldObject == null || go_heldObject.GetComponent<Pickupable>().bl_frontDoorKey == false) st_tooltipMessage = "Find the key to leave";
-                    else st_tooltipMessage = "Press \"E\" to leave house";
-                }
-                else st_tooltipMessage = "Complete your task list before you leave";
-            }
         }
 
         if(st_tooltipMessage != null)
