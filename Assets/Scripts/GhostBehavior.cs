@@ -61,6 +61,9 @@ public class GhostBehavior : MonoBehaviour
     public float flt_throwDishChance;
     [Tooltip("out of 10")]
     public float flt_throwToyChance;
+    [Tooltip("Seconds")]
+    public float flt_keyTakeCooldown;
+    float flt_curKeyCooldown;
 
     //Variables around interacting with Light
     [Header("Light Interaction")]
@@ -149,11 +152,17 @@ public class GhostBehavior : MonoBehaviour
         a_ls_switches = FindObjectsByType<LightSwitch>(FindObjectsSortMode.InstanceID);
         bl_frozen = false;
         go_floatTrigger.SetActive(false);
+        flt_curKeyCooldown = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if(flt_curKeyCooldown > 0)
+        {
+            flt_curKeyCooldown -= Time.deltaTime;
+        }
 
         //The below happens for all aggression levels
 
@@ -439,6 +448,18 @@ public class GhostBehavior : MonoBehaviour
         Pickupable pickup = tr_currentPatrolPoint.GetComponent<Pickupable>();
         if (pickup != null)
         {
+
+            if(pickup.bl_frontDoorKey)
+            {
+                if(flt_curKeyCooldown <= 0)
+                {
+                    PickUpItem(pickup.gameObject);
+                    ChooseHidingPlace();
+                    flt_curKeyCooldown = flt_keyTakeCooldown;
+                }
+                return;
+            }
+
             //Debug.Log(pickup.name);
             if (pickup.bl_hideable)
             {
