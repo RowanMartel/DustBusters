@@ -431,7 +431,11 @@ public class MenuManager : MonoBehaviour
         img_tooltipBackground.gameObject.SetActive(true);
         tmp_tooltipText.gameObject.SetActive(true);
 
-        if (bl_lookingAtObjectIsInteractable && go_lookingAtObject.GetComponent<Pickupable>() != null) st_tooltipMessage = "Press \"E\" to pick up " + go_lookingAtObject.name;
+        if (bl_lookingAtObjectIsInteractable && go_lookingAtObject.GetComponent<Pickupable>() != null)
+        {
+            if (go_lookingAtObject.GetComponent<Pickupable>().bl_doorKnob) st_tooltipMessage = "Press \"E\" to grab handle";
+            else st_tooltipMessage = "Press \"E\" to pick up " + go_lookingAtObject.name;
+        }
 
         if (go_heldObject != null)
         {
@@ -462,7 +466,7 @@ public class MenuManager : MonoBehaviour
                 }
             }
 
-            if (go_lookingAtObject.GetComponent<Mirror>() != null)
+            if (go_lookingAtObject.GetComponent<Mirror>() != null && go_lookingAtObject.GetComponent<Mirror>().bl_gameActive == false)
             {
                 if (go_lookingAtObject.GetComponent<Mirror>().bl_clean == false)
                 {
@@ -473,7 +477,7 @@ public class MenuManager : MonoBehaviour
 
             if (go_lookingAtObject.GetComponent<FloorMess>() != null)
             {
-                if (go_lookingAtObject.GetComponent<FloorMess>().bl_clean == false)
+                if (go_lookingAtObject.GetComponent<FloorMess>().bl_clean == false && go_lookingAtObject.GetComponent<FloorMess>().bl_gameActive == false)
                 {
                     if (go_heldObject == null || go_heldObject.GetComponent<Pickupable>().bl_mop == false) st_tooltipMessage = "Broom required to clean";
                     else st_tooltipMessage = "Press \"E\" to clean";
