@@ -12,7 +12,7 @@ GameObject:
   m_Layer: 2
   m_Name: HeldItemSpinner
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -249,7 +249,7 @@ GameObject:
   m_Layer: 2
   m_Name: HeldItemParent
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -334,7 +334,7 @@ GameObject:
   - component: {fileID: 6990169330593324436}
   - component: {fileID: 6789743469464714939}
   - component: {fileID: 5198980086939035474}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Ghost
   m_TagString: Ghost
   m_Icon: {fileID: 0}
@@ -350,7 +350,7 @@ Transform:
   m_GameObject: {fileID: 7813583447088648802}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.7324281, y: 1.7, z: -3.816402}
+  m_LocalPosition: {x: 0, y: 1.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -496,9 +496,9 @@ MonoBehaviour:
   nav_agent: {fileID: 6990169330593324436}
   l_tsk_currentTasks: 
   l_pl_currentPoints: []
-  l_tsk_startTasks: 0000000002000000040000000500000003000000
-  l_tsk_endGameTasks: 0600000007000000
-  l_tsk_masterTaskList: 00000000020000000400000005000000030000000100000006000000070000000b000000090000000a000000
+  l_tsk_startTasks: 0000000002000000040000000500000003000000090000000e000000
+  l_tsk_endGameTasks: 06000000070000000a000000
+  l_tsk_masterTaskList: 00000000020000000400000005000000030000000100000006000000070000000d0000000b0000000c000000090000000a0000000e000000
   l_pl_patrolPointsPerTask:
   - listAggro1:
     - {fileID: 0}
@@ -528,76 +528,6 @@ MonoBehaviour:
     - {fileID: 0}
     listAggro2:
     - {fileID: 0}
-    - {fileID: 0}
-    listAggro3:
-    - {fileID: 0}
-    - {fileID: 0}
-    listAggro4:
-    - {fileID: 0}
-    - {fileID: 0}
-  - listAggro1:
-    - {fileID: 0}
-    listAggro2:
-    - {fileID: 0}
-    listAggro3:
-    - {fileID: 0}
-    listAggro4:
-    - {fileID: 0}
-  - listAggro1:
-    - {fileID: 0}
-    listAggro2:
-    - {fileID: 0}
-    listAggro3:
-    - {fileID: 0}
-    listAggro4:
-    - {fileID: 0}
-  - listAggro1:
-    - {fileID: 0}
-    listAggro2:
-    - {fileID: 0}
-    - {fileID: 0}
-    listAggro3:
-    - {fileID: 0}
-    - {fileID: 0}
-    listAggro4:
-    - {fileID: 0}
-    - {fileID: 0}
-  - listAggro1:
-    - {fileID: 0}
-    listAggro2:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    listAggro3:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    listAggro4:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-  - listAggro1:
-    - {fileID: 0}
-    listAggro2:
-    - {fileID: 0}
     listAggro3:
     - {fileID: 0}
     listAggro4:
@@ -630,9 +560,164 @@ MonoBehaviour:
     - {fileID: 0}
     listAggro2:
     - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    listAggro3:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    listAggro4:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - listAggro1:
+    - {fileID: 0}
+    listAggro2:
+    - {fileID: 0}
     listAggro3:
     - {fileID: 0}
     listAggro4:
+    - {fileID: 0}
+  - listAggro1:
+    - {fileID: 0}
+    listAggro2:
+    - {fileID: 0}
+    listAggro3:
+    - {fileID: 0}
+    listAggro4:
+    - {fileID: 0}
+  - listAggro1:
+    - {fileID: 0}
+    listAggro2:
+    - {fileID: 0}
+    listAggro3:
+    - {fileID: 0}
+    listAggro4:
+    - {fileID: 0}
+  - listAggro1:
+    - {fileID: 0}
+    listAggro2:
+    - {fileID: 0}
+    listAggro3:
+    - {fileID: 0}
+    listAggro4:
+    - {fileID: 0}
+  - listAggro1:
+    - {fileID: 0}
+    listAggro2:
+    - {fileID: 0}
+    listAggro3:
+    - {fileID: 0}
+    listAggro4:
+    - {fileID: 0}
+  - listAggro1:
+    - {fileID: 0}
+    - {fileID: 0}
+    listAggro2:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    listAggro3:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    listAggro4:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+  - listAggro1:
+    - {fileID: 0}
+    listAggro2:
+    - {fileID: 0}
+    listAggro3:
+    - {fileID: 0}
+    listAggro4:
+    - {fileID: 0}
+  - listAggro1:
+    - {fileID: 0}
+    listAggro2:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    listAggro3:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    listAggro4:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
     - {fileID: 0}
   tr_currentPatrolPoint: {fileID: 0}
   int_curIndex: 0
@@ -640,14 +725,15 @@ MonoBehaviour:
   flt_distToSwitch: 2
   go_player: {fileID: 0}
   flt_timeToThrow: 2
-  flt_curTime: 0
+  flt_curTimeBetweenThrows: 0
   l_go_throwables: []
   flt_attackThrowForce: 50
   flt_sightRange: 10
   go_curHeldItem: {fileID: 0}
   go_heldItemParent: {fileID: 7263785423210560717}
   tr_heldItemSpinner: {fileID: 717651196072784010}
-  flt_spinSpeed: 0.5
+  flt_spinSpeed: 180
+  flt_heldItemWobble: 60
   bl_hiding: 0
   a_hs_hidingPlaces:
   - {fileID: 0}
@@ -658,6 +744,9 @@ MonoBehaviour:
   flt_douseFireplaceChance: 1
   flt_dirtyMirrorChance: 1
   flt_dirtyFloorChance: 1
+  flt_throwBookChance: 4
+  flt_throwDishChance: 4
+  flt_throwToyChance: 4
   flt_baseSpeed: 4
   flt_aggroSpeed: 6
   flt_slowedSpeed: 2
@@ -682,6 +771,18 @@ MonoBehaviour:
   l_tsk_completedTasks: 
   go_floatTrigger: {fileID: 5513713529297790404}
   bl_frozen: 0
+  l_eep_pictures:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  flt_distToImg: 5
+  flt_timeBetweenImgChecks: 10
+  flt_curTimeTweenImgChecks: 0
+  flt_chanceToChangeImg: 25
+  flt_distToFlickerFuseBox: 5
+  fb_fuseBox: {fileID: 0}
 --- !u!82 &5198980086939035474
 AudioSource:
   m_ObjectHideFlags: 0

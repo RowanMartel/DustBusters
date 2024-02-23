@@ -14,17 +14,26 @@ public class Pickupable : Interactable
     [Tooltip("Check if object can be used to unlock the front door")]
     public bool bl_frontDoorKey;
 
+    [Tooltip("Check if object can be used to turn off the TV")]
+    public bool bl_remote;
+
+    [Tooltip("Check if object is a doorknob")]
+    public bool bl_doorKnob;
+
     [Tooltip("Check if the ghost wants to hide this")]
     public bool bl_hideable;
 
-    [Tooltip("Check if the ghost wants to break this")]
-    public bool bl_breakable;
+    [Tooltip("Check if the ghost wants to throw this")]
+    public bool bl_toThrow;
 
     [Tooltip("Check if this object can damage the player")]
     public bool bl_canDamagePlayer;
 
     [Tooltip("Rotation applied when held")]
     public Vector3 v3_heldRotationMod;
+
+    [Tooltip("Position applied when held")]
+    public Vector3 v3_heldPositionMod;
 
     protected Rigidbody rb;
     [HideInInspector] public bool bl_held;

@@ -8,6 +8,8 @@ public class SoundManager : MonoBehaviour
 
     private IEnumerator coroutine;
 
+    public int int_attemptsToPickNewSound;
+
     // plays the given clip in the given source if it isn't already playing and if it's near the player
     public void PlayClip(AudioClip ac_clip, AudioSource as_source)
     {
@@ -25,6 +27,22 @@ public class SoundManager : MonoBehaviour
 
         coroutine = RemoveClip(ac_clip.length, ac_clip);
         StartCoroutine(coroutine);
+    }
+
+    //Picks a random clip from a list of clips, then plays that clip with the other PlayClip method
+    public void PlayClip(AudioClip[] a_ac_clips, AudioSource as_source)
+    {
+        if (as_source.isPlaying) return;
+
+        AudioClip ac_clip;
+        int attempts = 0;
+        do
+        {
+            ac_clip = a_ac_clips[Random.Range(0, a_ac_clips.Length)];
+            attempts++;
+        }while(l_ac_curSFX.Contains(ac_clip) && attempts >= int_attemptsToPickNewSound);
+
+        PlayClip(ac_clip, as_source);
     }
 
     // removes the clip from the currently playing list after the duration of the clip has passed

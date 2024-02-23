@@ -66,13 +66,11 @@ public class Floatable : MonoBehaviour
         if (bl_downBob)
         {
             bl_downBob = false;
-            //rb.velocity = Vector3.zero;
             rb.AddForce(Vector3.up * flt_bobForce);
         }
         else
         {
             bl_downBob = true;
-            //rb.velocity = Vector3.zero;
             rb.AddForce(Vector3.down * flt_bobForce);
         }
     }

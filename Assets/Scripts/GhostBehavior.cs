@@ -1,9 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Rendering;
 
 public class GhostBehavior : MonoBehaviour
 {
@@ -32,7 +30,7 @@ public class GhostBehavior : MonoBehaviour
     [Header("Attack")]
     public GameObject go_player; //The player's GameObject
     public float flt_timeToThrow;
-    public float flt_curTime;
+    public float flt_curTimeBetweenThrows;
     public List<GameObject> l_go_throwables; //List of objects the ghost is currently floating
     public float flt_attackThrowForce;
 
@@ -45,6 +43,8 @@ public class GhostBehavior : MonoBehaviour
     public GameObject go_heldItemParent;
     public Transform tr_heldItemSpinner;
     public float flt_spinSpeed;
+    public float flt_heldItemWobble;
+    bool bl_wobbleUp;
 
     //Variables around interacting with items
     [Header("Task Item Interaction")]
@@ -55,6 +55,12 @@ public class GhostBehavior : MonoBehaviour
     public float flt_douseFireplaceChance;
     public float flt_dirtyMirrorChance;
     public float flt_dirtyFloorChance;
+    [Tooltip("out of 10")]
+    public float flt_throwBookChance;
+    [Tooltip("out of 10")]
+    public float flt_throwDishChance;
+    [Tooltip("out of 10")]
+    public float flt_throwToyChance;
 
     //Variables around interacting with Light
     [Header("Light Interaction")]
@@ -91,6 +97,18 @@ public class GhostBehavior : MonoBehaviour
 
     public bool bl_frozen;
 
+    //Image easter egg
+    [Header("Image Easter Egg")]
+    public List<EasterEggPicture> l_eep_pictures;
+    public float flt_distToImg;
+    public float flt_timeBetweenImgChecks;
+    public float flt_curTimeTweenImgChecks;
+    [Tooltip("percentage")]
+    public float flt_chanceToChangeImg;
+
+    [Header("Spooky Stuff")]
+    public float flt_distToFlickerFuseBox;
+    public FuseBox fb_fuseBox;
 
     // Start is called before the first frame update
     void Start()
@@ -121,11 +139,12 @@ public class GhostBehavior : MonoBehaviour
             l_pl_currentPoints.Add(pl_pList);
         }
 
-        //Set all variables to default
+        //Initialize
         SwitchToPoint(0);
-        flt_curTime = flt_timeToThrow;
+        flt_curTimeBetweenThrows = flt_timeToThrow;
         flt_curSFXTime = flt_sfxTime;
         flt_curSwitchCooldown = flt_lightSwitchCooldown;
+        flt_curTimeTweenImgChecks = flt_timeBetweenImgChecks;
         bl_hiding = false;
         a_ls_switches = FindObjectsByType<LightSwitch>(FindObjectsSortMode.InstanceID);
         bl_frozen = false;
@@ -135,205 +154,173 @@ public class GhostBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(go_floatTrigger.activeSelf == false && int_curAggressionLevel >= 3)
-        {
-            go_floatTrigger.SetActive(true);
-        }
-        else if(go_floatTrigger.activeSelf == true && int_curAggressionLevel < 3)
-        {
-            go_floatTrigger.GetComponent<FloatTrigger>().CloseTrigger();
-        }
 
-        //Speed Determination
-        if (bl_frozen)
+        //The below happens for all aggression levels
+
+        SetGhostSpeed();
+
+        //Move the held item parent around the ghost.
+        if (!bl_frozen)
         {
-            nav_agent.speed = 0;
-        }
-        else if (int_curAggressionLevel < 4)
-        {
-            if (l_go_lightSourcesEffecting.Count > 0)
+            if (bl_wobbleUp)
             {
-                nav_agent.speed = flt_slowedSpeed;
+                tr_heldItemSpinner.Rotate((Vector3.up * flt_spinSpeed * Time.deltaTime) + (Vector3.right * flt_heldItemWobble * Time.deltaTime));
+                if (tr_heldItemSpinner.rotation.x >= flt_heldItemWobble) bl_wobbleUp = false;
             }
             else
             {
-                nav_agent.speed = flt_baseSpeed;
+
+                tr_heldItemSpinner.Rotate((Vector3.up * flt_spinSpeed * Time.deltaTime) + (Vector3.right * -flt_heldItemWobble * Time.deltaTime));
+                if (tr_heldItemSpinner.rotation.x <= -flt_heldItemWobble) bl_wobbleUp = false;
             }
+        }
+
+        //Image easter egg
+        if (flt_curTimeTweenImgChecks <= 0)
+        {
+            foreach (EasterEggPicture eep_picture in l_eep_pictures)
+            {
+                if (Vector3.Distance(eep_picture.transform.position, transform.position) <= flt_distToImg)
+                {
+                    float flt_imgAttempt = Random.Range(0f, 100f);
+                    if (flt_imgAttempt <= flt_chanceToChangeImg)
+                    {
+                        eep_picture.Switch();
+                    }
+                }
+            }
+            flt_curTimeTweenImgChecks = flt_timeBetweenImgChecks;
         }
         else
         {
-            if (l_go_lightSourcesEffecting.Count > 0)
-            {
-                nav_agent.speed = flt_aggroSlowedSpeed;
-            }
-            else
-            {
-                nav_agent.speed = flt_aggroSpeed;
-            }
+            flt_curTimeTweenImgChecks -= Time.deltaTime;
         }
 
-        //Move the held item
-        if (!bl_frozen)
+        //The below is aggression level dependent
+        switch (int_curAggressionLevel)
         {
-            tr_heldItemSpinner.Rotate(Vector3.up * flt_spinSpeed);
-        }
-        if(go_curHeldItem != null)
-        {
-            go_curHeldItem.transform.position = go_heldItemParent.transform.position;
+            case 1:
+
+                //Check if flicker fuse box
+                FuseBoxCheck();
+
+                break;
+            case 2:
+
+                //Check if flicker fuse box
+                FuseBoxCheck();
+
+                //Check if near lightswitch and turn them off if needed
+                if (flt_curSwitchCooldown <= 0)
+                {
+                    LightSwitchCheck();
+                }
+                else
+                {
+                    flt_curSwitchCooldown -= Time.deltaTime;
+                }
+
+                //Play Audio
+                flt_curSFXTime -= Time.deltaTime;
+                if (flt_curSFXTime <= 0)
+                {
+                    GameManager.soundManager.PlayClip(a_ac_sounds, as_aSource);
+                    flt_curSFXTime = flt_sfxTime + Random.Range(-flt_sfxTimeDeviationRange, flt_sfxTimeDeviationRange);
+                }
+
+                break;
+            case 3:
+
+                //Check if near lightswitch and turn them off if needed
+                if (flt_curSwitchCooldown <= 0)
+                {
+                    LightSwitchCheck();
+                }
+                else
+                {
+                    flt_curSwitchCooldown -= Time.deltaTime;
+                }
+
+                //Attack player if player is visible and done cooldown
+                if (CanSeePlayer() && l_go_throwables.Count > 0)
+                {
+                    flt_curTimeBetweenThrows -= Time.deltaTime;
+                    if (flt_curTimeBetweenThrows <= 0)
+                    {
+                        flt_curTimeBetweenThrows = flt_timeToThrow;
+
+                        //Get player according to aggro
+                        GameObject go_toThrow = ChooseObjectToThrow();
+                        //Throw object
+                        ThrowObjectAt(go_toThrow, go_player.transform.position);
+                    }
+                }
+
+                //Play Audio
+                flt_curSFXTime -= Time.deltaTime;
+                if (flt_curSFXTime <= 0)
+                {
+                    GameManager.soundManager.PlayClip(a_ac_sounds, as_aSource);
+                    flt_curSFXTime = flt_sfxTime + Random.Range(-flt_sfxTimeDeviationRange, flt_sfxTimeDeviationRange);
+                }
+
+                break;
+
+            case 4:
+
+                //Check if near lightswitch and turn them off if needed
+                if (flt_curSwitchCooldown <= 0)
+                {
+                    LightSwitchCheck();
+                }
+                else
+                {
+                    flt_curSwitchCooldown -= Time.deltaTime;
+                }
+
+                //Attack player if player is visible and done cooldown
+                if (CanSeePlayer() && l_go_throwables.Count > 0)
+                {
+                    flt_curTimeBetweenThrows -= Time.deltaTime;
+                    if (flt_curTimeBetweenThrows <= 0)
+                    {
+                        flt_curTimeBetweenThrows = flt_timeToThrow;
+
+                        //Get player according to aggro
+                        GameObject go_toThrow = ChooseObjectToThrow();
+
+                        //Throw object
+                        ThrowObjectAt(go_toThrow, go_player.transform.position);
+                    }
+                }
+
+                //Play Audio
+                flt_curSFXTime -= Time.deltaTime;
+                if (flt_curSFXTime <= 0)
+                {
+                    GameManager.soundManager.PlayClip(a_ac_sounds, as_aSource);
+                    flt_curSFXTime = flt_sfxTime + Random.Range(-flt_sfxTimeDeviationRange, flt_sfxTimeDeviationRange);
+                }
+
+                break;
         }
 
-        //Travel to current patrol point
+        //The below happens during all aggression levels
+
+        //Travel to current patrol point and perform task
         nav_agent.SetDestination(tr_currentPatrolPoint.position);
         if(flt_distToSwitch > Vector3.Distance(transform.position, tr_currentPatrolPoint.position))
         {
-            //Attempt to interact with patrol point
-            Pickupable pickup = tr_currentPatrolPoint.GetComponent<Pickupable>();
-            if (pickup != null && (int_curAggressionLevel >= 3 || go_curRegion != pc_player.go_curRegion))
+            PerformTask();
+
+            if (!bl_hiding)
             {
-                if (pickup.bl_hideable)
+                int_curIndex++;
+                if (int_curIndex >= l_pl_currentPoints.Count)
                 {
-                    PickUpItem(pickup.gameObject);
-                    ChooseHidingPlace();
+                    int_curIndex = 0;
                 }
-                else if (pickup.bl_breakable)
-                {
-                    pickup.transform.LookAt(transform.position);
-                    pickup.GetComponent<Rigidbody>().AddForce(pickup.transform.forward * flt_breakThrowForce, ForceMode.Impulse);
-
-                    int_curIndex++;
-                    if (int_curIndex >= l_pl_currentPoints.Count)
-                    {
-                        int_curIndex = 0;
-                    }
-                    SwitchToPoint(int_curIndex);
-                }
-            }
-            else
-            {
-                if (int_curAggressionLevel >= 3 || go_curRegion != pc_player.go_curRegion)
-                {
-                    //Attempt to douse fireplace
-                    Fireplace fireplace = tr_currentPatrolPoint.GetComponent<Fireplace>();
-                    if(fireplace != null)
-                    {
-                        int int_rand = Random.Range(0, 10);
-                        if(int_rand <= flt_douseFireplaceChance && int_curAggressionLevel >= 2)
-                        {
-                            fireplace.UnLight();
-                        }
-                    }
-                    else
-                    {
-                        //Attempt to dirty mirror
-                        Mirror mr_mirror = tr_currentPatrolPoint.GetComponent<Mirror>();
-                        if(mr_mirror != null)
-                        {
-                            int int_rand = Random.Range(0, 10);
-                            if (int_rand <= flt_dirtyMirrorChance && int_curAggressionLevel >= 2)
-                            {
-                                mr_mirror.GhostDirty(int_curAggressionLevel);
-                            }
-                        }
-                        else
-                        {
-                            //Attempt to dirty floor
-                            FloorMess fm_mess = tr_currentPatrolPoint.GetComponent<FloorMess>();
-                            if (fm_mess != null)
-                            {
-                                int int_rand = Random.Range(0, 10);
-                                if (int_rand <= flt_dirtyFloorChance && int_curAggressionLevel >= 2)
-                                {
-                                    fm_mess.GhostDirty(int_curAggressionLevel);
-                                }
-                            }
-                        }
-                    }
-                }
-
-                //Start next patrol point
-                if (bl_hiding)
-                {
-                    PlaceItem(tr_currentPatrolPoint.position);
-                    bl_hiding = false;
-                }
-                else if (go_curHeldItem != null)
-                    ChooseHidingPlace();
-                else
-                {
-                    int_curIndex++;
-                    if (int_curIndex >= l_pl_currentPoints.Count)
-                    {
-                        int_curIndex = 0;
-                    }
-                    SwitchToPoint(int_curIndex);
-                }
-            }
-        }
-
-        if(int_curAggressionLevel >= 2)
-        {
-            //Check if near lightswitch and turn them off if needed
-            if (flt_curSwitchCooldown <= 0)
-            {
-                LightSwitchCheck();
-            }
-            else
-            {
-                flt_curSwitchCooldown -= Time.deltaTime;
-            }
-        }
-
-        if (int_curAggressionLevel >= 3)
-        {
-            //Attack player if player is visible and done cooldown
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, go_player.transform.position - transform.position, out hit, flt_sightRange))
-            {
-                if (hit.collider.gameObject == go_player)
-                {
-                    if (l_go_throwables.Count > 0)
-                    {
-                        flt_curTime -= Time.deltaTime;
-                        if (flt_curTime <= 0)
-                        {
-                            flt_curTime = flt_timeToThrow;
-                            GameObject go_toThrow = l_go_throwables[0];
-
-                            foreach (GameObject go_throwable in l_go_throwables)
-                            {
-                                //Prioritize damaging or nondamaging objects depending on aggression level
-                                Pickupable pu_throwable = go_throwable.GetComponent<Pickupable>();
-                                if (int_curAggressionLevel >= 4)
-                                {
-                                    if (pu_throwable != null)
-                                    {
-                                        if (pu_throwable.bl_canDamagePlayer)
-                                        {
-                                            go_toThrow = go_throwable;
-                                        }
-                                    }
-                                }
-                                else
-                                {
-                                    if (pu_throwable != null)
-                                    {
-                                        if (pu_throwable.bl_canDamagePlayer)
-                                        {
-                                            if (!pu_throwable.bl_canDamagePlayer)
-                                            {
-                                                go_toThrow = go_throwable;
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-
-                            //Throw object
-                            go_toThrow.transform.LookAt(go_player.transform.position);
-                            go_toThrow.GetComponent<Rigidbody>().AddForce(go_toThrow.transform.forward * flt_attackThrowForce, ForceMode.Impulse);
-                        }
-                    }
-                }
+                SwitchToPoint(int_curIndex);
             }
         }
 
@@ -346,17 +333,224 @@ public class GhostBehavior : MonoBehaviour
             }
         }
 
-        //Play Audio
-        flt_curSFXTime -= Time.deltaTime;
-        if(flt_curSFXTime <= 0)
+        
+    }
+
+    //Returns true if the player is in range and can be hit with a raycast from the ghost
+    bool CanSeePlayer()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, go_player.transform.position - transform.position, out hit, flt_sightRange))
         {
-            AudioClip ac_clip;
-            do
+            if (hit.collider.gameObject == go_player) return true;
+        }
+        return false;
+    }
+
+    //Set the ghost's speed in accordance with it's aggression level and whether it's in light
+    void SetGhostSpeed()
+    {
+        //Frozen from pause or debug
+        if (bl_frozen)
+        {
+            nav_agent.speed = 0;
+            return;
+        }
+
+        //Normal aggression
+        if (int_curAggressionLevel < 4)
+        {
+            if (l_go_lightSourcesEffecting.Count > 0)
             {
-                ac_clip = a_ac_sounds[Random.Range(0, a_ac_sounds.Length - 1)];
-            } while (ac_clip == ac_lastPlayed);
-            GameManager.soundManager.PlayClip(ac_clip, as_aSource);
-            ac_lastPlayed = ac_clip;
+                nav_agent.speed = flt_slowedSpeed;
+            }
+            else
+            {
+                nav_agent.speed = flt_baseSpeed;
+            }
+            return;
+        }
+
+        //Max aggression
+        if(int_curAggressionLevel == 4)
+        {
+            if (l_go_lightSourcesEffecting.Count > 0)
+            {
+                nav_agent.speed = flt_aggroSlowedSpeed;
+            }
+            else
+            {
+                nav_agent.speed = flt_aggroSpeed;
+            }
+            return;
+        }
+    }
+
+    //Throw an object at a target
+    void ThrowObjectAt(GameObject go_toThrow, Vector3 v3_pos)
+    {
+        go_toThrow.transform.LookAt(v3_pos);
+        go_toThrow.GetComponent<Rigidbody>().AddForce(go_toThrow.transform.forward * flt_attackThrowForce, ForceMode.Impulse);
+    }
+
+    //Pick an object from among the objects in the float trigger.
+    GameObject ChooseObjectToThrow()
+    {
+        GameObject go_toThrow = l_go_throwables[0];
+
+        foreach (GameObject go_throwable in l_go_throwables)
+        {
+            //Prioritize damaging or nondamaging objects depending on aggression level
+            Pickupable pu_throwable = go_throwable.GetComponent<Pickupable>();
+            if (int_curAggressionLevel >= 4)
+            {
+                if (pu_throwable != null)
+                {
+                    if (pu_throwable.bl_canDamagePlayer)
+                    {
+                        go_toThrow = go_throwable;
+                    }
+                }
+            }
+            else
+            {
+                if (pu_throwable != null)
+                {
+                    if (pu_throwable.bl_canDamagePlayer)
+                    {
+                        if (!pu_throwable.bl_canDamagePlayer)
+                        {
+                            go_toThrow = go_throwable;
+                        }
+                    }
+                }
+            }
+        }
+        return go_toThrow;
+    }
+
+    //Perform current task
+    void PerformTask()
+    {
+
+        if (int_curAggressionLevel < 3 && go_curRegion == pc_player.go_curRegion) return;
+        
+        //Attempt to interact with patrol point
+        Pickupable pickup = tr_currentPatrolPoint.GetComponent<Pickupable>();
+        if (pickup != null)
+        {
+            //Debug.Log(pickup.name);
+            if (pickup.bl_hideable)
+            {
+                PickUpItem(pickup.gameObject);
+                ChooseHidingPlace();
+                return;
+            }
+            
+            if (pickup.bl_toThrow)
+            {
+
+                if (pickup.gameObject.GetComponent<Dish>() != null)
+                {
+                    int int_rand = Random.Range(0, 10);
+                    if (int_rand <= flt_throwDishChance)
+                    {
+                        pickup.transform.LookAt(transform.position);
+                        pickup.GetComponent<Rigidbody>().AddForce(pickup.transform.forward * flt_breakThrowForce, ForceMode.Impulse);
+                    }
+                    return;
+                }
+
+                if (pickup.gameObject.GetComponent<Book>() != null)
+                {
+                    int int_rand = Random.Range(0, 10);
+                    if (int_rand <= flt_throwBookChance)
+                    {
+                        pickup.transform.LookAt(transform.position);
+                        pickup.GetComponent<Rigidbody>().AddForce(pickup.transform.forward * flt_breakThrowForce, ForceMode.Impulse);
+                    }
+                    return;
+                }
+
+                if(pickup.gameObject.GetComponent<Toy>() != null)
+                {
+                    int int_rand = Random.Range(0, 10);
+                    if (int_rand <= flt_throwToyChance)
+                    {
+                        pickup.transform.LookAt(transform.position);
+                        pickup.GetComponent<Rigidbody>().AddForce(pickup.transform.forward * flt_breakThrowForce, ForceMode.Impulse);
+                    }
+                    return;
+                }
+
+            }
+
+            return;
+
+        }
+
+        //Attempt to douse fireplace
+        Fireplace fireplace = tr_currentPatrolPoint.GetComponent<Fireplace>();
+        if (fireplace != null)
+        {
+            int int_rand = Random.Range(0, 10);
+            if (int_rand <= flt_douseFireplaceChance && int_curAggressionLevel >= 2)
+            {
+                fireplace.UnLight();
+            }
+            return;
+        }
+
+        //Attempt to dirty mirror
+        Mirror mr_mirror = tr_currentPatrolPoint.GetComponent<Mirror>();
+        if (mr_mirror != null)
+        {
+            int int_rand = Random.Range(0, 10);
+            if (int_rand <= flt_dirtyMirrorChance && int_curAggressionLevel >= 2)
+            {
+                mr_mirror.GhostDirty(int_curAggressionLevel);
+            }
+            return;
+        }
+
+        //Attempt to dirty floor
+        FloorMess fm_mess = tr_currentPatrolPoint.GetComponent<FloorMess>();
+        if (fm_mess != null)
+        {
+            int int_rand = Random.Range(0, 10);
+            if (int_rand <= flt_dirtyFloorChance && int_curAggressionLevel >= 2)
+            {
+                fm_mess.GhostDirty(int_curAggressionLevel);
+            }
+            return;
+        }
+
+        //Attempt to shut off fuse box
+        FuseBox fb_fuseBox = tr_currentPatrolPoint.GetComponent<FuseBox>();
+        if (fb_fuseBox != null)
+        {
+            if (fb_fuseBox.bl_isOn)
+            {
+                fb_fuseBox.Interact();
+            }
+            return;
+        }
+
+        //Attempt to hide item
+        HidingSpot hs_spot = tr_currentPatrolPoint.GetComponent<HidingSpot>();
+        if(hs_spot != null)
+        {
+            PlaceItem(hs_spot.transform.position);
+            return;
+        }
+    }
+
+    //Check if FuseBox is nearby. Flicker if needed
+    private void FuseBoxCheck()
+    {
+        if(Vector3.Distance(fb_fuseBox.transform.position, transform.position) <= flt_distToFlickerFuseBox)
+        {
+            fb_fuseBox.Flicker();
         }
     }
 
@@ -369,8 +563,10 @@ public class GhostBehavior : MonoBehaviour
             {
                 if (lightSwitch.bl_on)
                 {
+                    //Only turn off if high enough aggression
                     if (int_curAggressionLevel == 2 && lightSwitch.a_go_regions.Contains<GameObject>(pc_player.go_curRegion) == false)
                     {
+                        //Only turn off if not in same room
                         lightSwitch.Interact();
                         flt_curSwitchCooldown = flt_lightSwitchCooldown;
                     }else if (int_curAggressionLevel >= 3)
@@ -443,13 +639,13 @@ public class GhostBehavior : MonoBehaviour
                 case 1:
                     if (l_tsk_completedTasks.Count >= int_tasksToStage2)
                     {
-                        int_curAggressionLevel = 2;
+                        SetAggressionLevel(2);
                     }
                     break;
                 case 2:
                     if (l_tsk_completedTasks.Count >= int_tasksToStage3)
                     {
-                        int_curAggressionLevel = 3;
+                        SetAggressionLevel(3);
                     }
                     break;
                 case 3:
@@ -560,6 +756,12 @@ public class GhostBehavior : MonoBehaviour
     //Set an item to be the current held item
     public void PickUpItem(GameObject go_item)
     {
+        if (go_item.GetComponent<Pickupable>() == null)
+        {
+            return;
+        }
+
+        //Go to next task if the player is holding the target item
         if (pc_player.Go_heldObject != null && pc_player.Go_heldObject.name == go_item.name)
         {
             int_curIndex++;
@@ -571,11 +773,20 @@ public class GhostBehavior : MonoBehaviour
             return;
         }
 
+        //Stop object from floating
+        if(go_item.GetComponent<Floatable>() != null)
+        {
+            l_go_throwables.Remove(go_item);
+            go_item.GetComponent<Floatable>().StopFloat();
+        }
+
         if (go_curHeldItem != null)
             DropItem();
 
         go_item.transform.parent = go_heldItemParent.transform;
         go_item.transform.localPosition = Vector3.zero;
+        go_item.GetComponent<Rigidbody>().useGravity = false;
+        go_item.GetComponent<Rigidbody>().isKinematic = true;
         go_curHeldItem = go_item;
     }
 
@@ -584,6 +795,8 @@ public class GhostBehavior : MonoBehaviour
     {
         go_curHeldItem.transform.parent = null;
         go_curHeldItem.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        go_curHeldItem.GetComponent<Rigidbody>().useGravity = true;
+        go_curHeldItem.GetComponent<Rigidbody>().isKinematic = false;
         if (bl_hiding)
         {
             bl_hiding = false;
@@ -637,6 +850,52 @@ public class GhostBehavior : MonoBehaviour
         {
             int_curIndex = 0;
         }
+        SwitchToPoint(int_curIndex);
+    }
+
+    public void SetAggressionLevel(int int_newAggroLevel)
+    {
+        int_curAggressionLevel = int_newAggroLevel;
+        switch(int_curAggressionLevel)
+        {
+            case 1:
+                //Deactivate Float Trigger if required
+                if (go_floatTrigger.activeSelf == true)
+                {
+                    go_floatTrigger.GetComponent<FloatTrigger>().CloseTrigger();
+                }
+                break;
+            case 2:
+                //Deactivate Float Trigger if required
+                if (go_floatTrigger.activeSelf == true)
+                {
+                    go_floatTrigger.GetComponent<FloatTrigger>().CloseTrigger();
+                }
+                break;
+            case 3:
+                //Activate Float Trigger if required
+                if (go_floatTrigger.activeSelf == false)
+                {
+                    go_floatTrigger.SetActive(true);
+                }
+                AddTask(TaskManager.Task.ResetBreakerBox);
+
+                //Turn Water Bloody
+                foreach (CleaningWater cleaningWater in FindObjectsByType<CleaningWater>(FindObjectsSortMode.None))
+                {
+                    cleaningWater.TurnBloody();
+                }
+
+                break;
+            case 4:
+                //Activate Float Trigger if required
+                if (go_floatTrigger.activeSelf == false)
+                {
+                    go_floatTrigger.SetActive(true);
+                }
+                break;
+        }
+
         SwitchToPoint(int_curIndex);
     }
 

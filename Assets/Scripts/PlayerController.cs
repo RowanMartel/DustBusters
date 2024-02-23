@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class PlayerController : MonoBehaviour
     protected GameObject go_lookingAtObject;
     protected GameObject go_heldPosition;
     protected GameObject go_heldObject;
+    public float flt_heldObjDistFromWall;
+
     public GameObject Go_heldObject {  get { return go_heldObject; } }
 
     // Reference to the camera and ability to look around
@@ -22,6 +25,7 @@ public class PlayerController : MonoBehaviour
     protected Vector3 v3_heldPositionReset;
 
     protected Rigidbody rb_player;
+
 
     // State prevents the player from moving when in menus or doing chores
     public enum State
@@ -50,7 +54,6 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-
         // Grabbing required references to objects and systems
         menuManager = GameObject.Find("MenuManager").GetComponent<MenuManager>();
 
@@ -62,13 +65,16 @@ public class PlayerController : MonoBehaviour
         go_cameraContainer = GameObject.Find("Player/CameraContainer");
 
         as_source = GetComponent<AudioSource>();
+
+        Scene activeScene = SceneManager.GetActiveScene();
+        if (activeScene.name == "ChrisTestScene") TogglePlayerControl();
     }
 
     // Update is called once per frame
     void Update()
     {
         // This calls the method to fire the raycast that tells us what the player is looking at
-        DoPlayerView();
+        GetLookedAtObject();
 
         // Player's ability to interact
         if (Input.GetKeyDown(KeyCode.E)) Interact();
@@ -95,21 +101,54 @@ public class PlayerController : MonoBehaviour
 
         // Toggles pause
         if (Input.GetKeyDown(KeyCode.Escape)) menuManager.TogglePause();
+
+        // This forces the player to drop a prop if it gets too far away from them
+        if(go_heldObject != null)
+        {
+            Vector3 v3_propDirection = go_heldObject.transform.position - transform.position;
+            float flt_propDistance = v3_propDirection.magnitude;
+
+            if (flt_propDistance > 3f)
+            {
+                go_heldObject.layer = 0;
+                go_heldObject.GetComponent<Rigidbody>().useGravity = true;
+                Physics.IgnoreCollision(go_heldObject.GetComponent<Collider>(), GetComponent<Collider>(), false);
+                go_heldObject = null;
+            }
+        }
     }
     void FixedUpdate()
     {
         // This handles a held objects position in front of player while player is active
         if (go_heldObject != null && en_state == State.active)
         {
-            Vector3 direction = go_heldObject.transform.position - go_heldPosition.transform.position;
+
+            Vector3 v3_modifiedHeldPosition = go_heldPosition.transform.TransformPoint(go_heldPosition.transform.localPosition.x + go_heldObject.GetComponent<Pickupable>().v3_heldPositionMod.x, go_heldPosition.transform.localPosition.y - 0.5f + go_heldObject.GetComponent<Pickupable>().v3_heldPositionMod.y, go_heldPosition.transform.localPosition.z - 1 + go_heldObject.GetComponent<Pickupable>().v3_heldPositionMod.z);
+
+            RaycastHit hit;
+            Debug.DrawRay(go_cameraContainer.transform.position, v3_modifiedHeldPosition - go_cameraContainer.transform.position, Color.red);
+            if(Physics.Raycast(go_cameraContainer.transform.position, v3_modifiedHeldPosition - go_cameraContainer.transform.position, out hit, Vector3.Distance(go_cameraContainer.transform.position, v3_modifiedHeldPosition)))
+            {
+                if (hit.collider != null)
+                {
+                    Debug.Log(hit.collider.gameObject.name);
+                    v3_modifiedHeldPosition = hit.point - ((hit.point - go_cameraContainer.transform.position) * flt_heldObjDistFromWall);
+                }
+            }
+
+
+            Vector3 direction = go_heldObject.transform.position - v3_modifiedHeldPosition;
             float distance = direction.magnitude;
             Vector3 force = direction.normalized;
 
             if (distance > 0) go_heldObject.GetComponent<Rigidbody>().AddForce(-force * distance * 10, ForceMode.VelocityChange);
             go_heldObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            go_heldObject.transform.rotation = transform.rotation;
+            go_heldObject.transform.rotation = go_heldPosition.transform.rotation;
 
             go_heldObject.transform.Rotate(go_heldObject.GetComponent<Pickupable>().v3_heldRotationMod);
+
+            // the held object's collider gets turned off in the Interact method, and gets turned back on here. Should prevent props from getting stuck in furniture on pickup.
+            if (go_heldObject.GetComponent<Collider>().enabled == false) go_heldObject.GetComponent<Collider>().enabled = true;
         }
 
         // This handles a held objects position in front of player while player is inactive, used during chore activities
@@ -216,7 +255,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // This handles the player's view at the crosshair and if pointed at an Interactable object, will activate the object's outline to indicate it can be interacted with.
-    void DoPlayerView()
+    void GetLookedAtObject()
     {
         ray_playerView = Camera.main.ScreenPointToRay(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2, 0));
         RaycastHit hit;
@@ -237,17 +276,20 @@ public class PlayerController : MonoBehaviour
             if (go_lookingAtObject.CompareTag("Interactable")) go_lookingAtObject.GetComponent<Outline>().enabled = false;
             go_lookingAtObject = null;
         }
+
+        // Testing Tooltip
+        menuManager.UpdateTooltip(go_lookingAtObject, go_heldObject);
     }
 
     // Handles the player's ability to extend where the held prop is positioned, like reaching out in front of them
     void DoPlayerReach()
     {
-        if (go_heldPosition.transform.localPosition.z >= 1.0f && go_heldPosition.transform.localPosition.z <= 2.0f)
+        if (go_heldPosition.transform.localPosition.z >= 0.8f && go_heldPosition.transform.localPosition.z <= 1.6f)
         {
             go_heldPosition.transform.localPosition = new Vector3(go_heldPosition.transform.localPosition.x, go_heldPosition.transform.localPosition.y, go_heldPosition.transform.localPosition.z + Input.mouseScrollDelta.y * 0.1f);
 
-            if (go_heldPosition.transform.localPosition.z > 2) go_heldPosition.transform.localPosition = go_heldPosition.transform.localPosition = new Vector3(go_heldPosition.transform.localPosition.x, go_heldPosition.transform.localPosition.y, 2.0f);
-            if (go_heldPosition.transform.localPosition.z < 1) go_heldPosition.transform.localPosition = go_heldPosition.transform.localPosition = new Vector3(go_heldPosition.transform.localPosition.x, go_heldPosition.transform.localPosition.y, 1.0f);
+            if (go_heldPosition.transform.localPosition.z > 1.6f) go_heldPosition.transform.localPosition = new Vector3(go_heldPosition.transform.localPosition.x, go_heldPosition.transform.localPosition.y, 1.6f);
+            if (go_heldPosition.transform.localPosition.z < 0.8f) go_heldPosition.transform.localPosition = new Vector3(go_heldPosition.transform.localPosition.x, go_heldPosition.transform.localPosition.y, 0.8f);
         }
     }
 
@@ -267,6 +309,9 @@ public class PlayerController : MonoBehaviour
                 go_heldObject = go_lookingAtObject;
                 Physics.IgnoreCollision(go_heldObject.GetComponent<Collider>(), GetComponent<Collider>());
 
+                // Turning off the held object's collider and enabling it again in the FixedUpdate method. Should prevent props from getting stuck in furniture on pickup.
+                go_heldObject.GetComponent<Collider>().enabled = false;
+
                 go_heldObject.GetComponent<Rigidbody>().useGravity = false;
                 go_heldObject.GetComponent<Outline>().enabled = false;
 
@@ -276,7 +321,14 @@ public class PlayerController : MonoBehaviour
                 {
                     GameManager.ghost.GetRobbed();
                 }
+
+                if (pickupable.bl_remote)
+                {
+                    FindAnyObjectByType<TVStatic>().Deactivate();
+                }
+
             }
+
             go_lookingAtObject.GetComponent<Interactable>().Interact();
         }
         else if(go_heldObject != null && (go_lookingAtObject == null || go_lookingAtObject.tag != "Interactable"))

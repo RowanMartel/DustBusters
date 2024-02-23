@@ -6,8 +6,11 @@ public class Exit : Interactable
     public AudioClip ac_unlock;
     AudioSource as_source;
 
+    protected GameObject parent;
+
     private void Start()
     {
+        parent = transform.parent.gameObject;
         as_source = GetComponent<AudioSource>();
     }
 
@@ -21,6 +24,13 @@ public class Exit : Interactable
 
         GameManager.soundManager.PlayClip(ac_unlock, as_source);
 
+        GameManager.playerController.En_state = PlayerController.State.inactive;
+        Time.timeScale = 0;
+        LeanTween.rotateLocal(parent, new Vector3(parent.transform.rotation.x, parent.transform.rotation.y + 125, parent.transform.rotation.z), 3).setEase(LeanTweenType.easeOutSine).setOnComplete(GoToEnd).setIgnoreTimeScale(true);
+    }
+
+    private void GoToEnd()
+    {
         FindObjectOfType<MenuManager>().ToEnd();
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DebugSystem : MonoBehaviour
 {
@@ -13,6 +14,26 @@ public class DebugSystem : MonoBehaviour
     GhostBehavior gb_ghost;
     PlayerController pc_player;
     TaskManager tm_taskManager;
+    TVStatic tv_televisionTrigger;
+
+    GameObject[] a_go_cams;
+
+    private void Start()
+    {
+        a_go_cams = GameObject.FindGameObjectsWithTag("MinimapCam");
+        SceneManager.sceneLoaded += SetCams;
+    }
+
+    void SetCams(Scene scene, LoadSceneMode mode)
+    {
+        a_go_cams = GameObject.FindGameObjectsWithTag("MinimapCam");
+
+        foreach (GameObject go_cam in a_go_cams)
+        {
+            go_cam.gameObject.SetActive(false);
+        }
+    }
+
 
     // Update is called once per frame
     void LateUpdate()
@@ -38,25 +59,28 @@ public class DebugSystem : MonoBehaviour
                 gb_ghost = GameManager.ghost;
                 pc_player = GameManager.playerController;
                 tm_taskManager = GameManager.taskManager;
+                tv_televisionTrigger = FindAnyObjectByType<TVStatic>();
+
+                ActivateCams(true);
             }
             if(gb_ghost != null)
             {
                 //Set Ghost Aggression Levels
                 if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
                 {
-                    gb_ghost.int_curAggressionLevel = 1;
+                    gb_ghost.SetAggressionLevel(1);
                 }
                 if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
                 {
-                    gb_ghost.int_curAggressionLevel = 2;
+                    gb_ghost.SetAggressionLevel(2);
                 }
                 if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3))
                 {
-                    gb_ghost.int_curAggressionLevel = 3;
+                    gb_ghost.SetAggressionLevel(3);
                 }
                 if (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Keypad4))
                 {
-                    gb_ghost.int_curAggressionLevel = 4;
+                    gb_ghost.SetAggressionLevel(4);
                 }
 
                 //Freeze Ghost
@@ -65,12 +89,15 @@ public class DebugSystem : MonoBehaviour
                     gb_ghost.bl_frozen = !gb_ghost.bl_frozen;
                 }
 
-                //Make Ghost Visible
+                //Make Debug Visible
                 if (gb_ghost.GetComponent<MeshRenderer>().enabled == false)
                 {
+                    //Ghost
                     gb_ghost.GetComponent<MeshRenderer>().enabled = true;
-                    gb_ghost.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = true;
+                    gb_ghost.go_floatTrigger.GetComponent<MeshRenderer>().enabled = true;
                     gb_ghost.go_heldItemParent.GetComponent<MeshRenderer>().enabled = true;
+                    //TV
+                    tv_televisionTrigger.GetComponent<MeshRenderer>().enabled = true;
                 }
 
                 //Skip to End Game
@@ -86,7 +113,7 @@ public class DebugSystem : MonoBehaviour
 
                 //Update Text
                 tmp_leftText.text = "Debug Mode Enabled:\n-Press R to enter\n end game\n-Press G to freeze\n the ghost\n-Press 1-4 to set\n the ghost's aggro level\n-Player can jump: " + pc_player.bl_isGrounded + "\n-Player Current Region: " + pc_player.go_curRegion.name + "\n\nGhost Patrol Point:\n" + gb_ghost.tr_currentPatrolPoint.gameObject + "\n\nGhost Held Item: " + gb_ghost.go_curHeldItem;
-                tmp_rightText.text = "Ghost Aggro Level: " + gb_ghost.int_curAggressionLevel + "\n\nGhost Current Task:\n" + GetTaskString(gb_ghost.l_tsk_currentTasks[gb_ghost.int_curIndex]) + "\nGhost Task List:\n" + TaskListToString(gb_ghost.l_tsk_currentTasks) + "Ghost Current Region: " + gb_ghost.go_curRegion;
+                tmp_rightText.text = "Ghost Aggro Level: " + gb_ghost.int_curAggressionLevel + "\nGhost Current Task:\n" + GetTaskString(gb_ghost.l_tsk_currentTasks[gb_ghost.int_curIndex]) + "\nGhost Task List:\n" + TaskListToString(gb_ghost.l_tsk_currentTasks) + "Ghost Current Region: " + gb_ghost.go_curRegion;
             }
             else
             {
@@ -127,6 +154,10 @@ public class DebugSystem : MonoBehaviour
                 return "Dirty Floor";
             case TaskManager.Task.GhostDouseFireplace:
                 return "Douse Fireplace";
+            case TaskManager.Task.PutAwayBooks:
+                return "Put Away Books";
+            case TaskManager.Task.ResetBreakerBox:
+                return "Reset Breaker Box";
             default:
                 return "Error, Improper Task";
         }
@@ -145,9 +176,19 @@ public class DebugSystem : MonoBehaviour
         return str_taskList;
     }
 
+    //Set minimap cameras to active or inactive
+    void ActivateCams(bool bl_camSetting)
+    {
+        foreach (GameObject go_cam in a_go_cams)
+        {
+            go_cam.gameObject.SetActive(bl_camSetting);
+        }
+    }
+
     //Enter Debug Mode
     void EnterDebug()
     {
+        ActivateCams(true);
         bl_inDebug = true;
         GameManager.menuManager.EnterDebug();
     }
@@ -155,12 +196,15 @@ public class DebugSystem : MonoBehaviour
     //Exit Debug Mode
     void ExitDebug()
     {
+        ActivateCams(false);
         //Turn Off MeshRenderers If Appropriate
-        if(gb_ghost != null)
+        if (gb_ghost != null)
         {
             gb_ghost.GetComponent<MeshRenderer>().enabled = false;
             gb_ghost.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
             gb_ghost.go_heldItemParent.GetComponent<MeshRenderer>().enabled = false;
+
+            tv_televisionTrigger.GetComponent<MeshRenderer>().enabled = false;
         }
 
         bl_inDebug = false;

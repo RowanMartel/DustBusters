@@ -8,8 +8,11 @@ public class Cobweb : MonoBehaviour
     MeshRenderer ren;
 
     [Tooltip("Put the dusting SFX here")]
-    public AudioClip cl_clean;
+    public AudioClip ac_clean;
     AudioSource as_source;
+
+    public GameObject go_dustParticles;
+    public Color clr_dustColor;
 
     private void Start()
     {
@@ -24,7 +27,12 @@ public class Cobweb : MonoBehaviour
         Pickupable pickupable = other.GetComponent<Pickupable>();
         if (!pickupable || !pickupable.bl_duster || bl_cleaned) return;
 
-        GameManager.soundManager.PlayClip(cl_clean, as_source);
+        GameManager.soundManager.PlayClip(ac_clean, as_source);
+
+        //Dust particle effect
+        GameObject go_dust = Instantiate(go_dustParticles, transform);
+        go_dust.GetComponent<ParticleSystem>().startColor = clr_dustColor;
+
         ren.enabled = false;
         bl_cleaned = true;
         cobwebs.CleanWeb();

@@ -16,15 +16,19 @@ public class TaskManager : MonoBehaviour
         FindKey,
         EscapeHouse,
         ThrowOutBrokenDishes,
+        PutAwayBooks,
+        ResetBreakerBox,
         GhostDirtyMirror,
         GhostDirtyFloor,
-        GhostDouseFireplace
+        GhostDouseFireplace,
+        PutAwayToys
     }
 
     // list of tasks the player starts with, set in inspector
     public List<Task> li_startingTasks;
     // dynamic list of the player's current tasks
     [HideInInspector] public List<Task> li_taskList;
+    [HideInInspector] public List<Task> li_tsk_completedTaskList;
 
     public GhostBehavior ghost;
     public TMP_Text tmp_taskListTxt;
@@ -37,15 +41,19 @@ public class TaskManager : MonoBehaviour
         tmp_taskListTxt = FindObjectOfType<EmptyTaskList>(true).GetComponent<TMP_Text>();
         tmp_taskListTxt.text = "";
 
+        li_tsk_completedTaskList.Clear();
+
         // fill the task list with the starting tasks
         foreach (Task task in li_startingTasks)
             AddTask(task);
     }
 
-    // removes the given task from the task list
+    // removes the given task from the task list and adds a strikethrough for the displayed list
     public void CompleteTask(Task task)
     {
         if (!li_taskList.Contains(task)) return;
+        if (li_tsk_completedTaskList.Contains(task)) return;
+
         string text = "";
         switch (task)
         {
@@ -76,11 +84,24 @@ public class TaskManager : MonoBehaviour
             case Task.MopFloor:
                 text = "\nMop the laundry room floor";
                 break;
+            case Task.PutAwayBooks:
+                text = "\nPut the books back on the shelf";
+                break;
+            case Task.ResetBreakerBox:
+                text = "\nReset the breaker box";
+                break;
+            case Task.PutAwayToys:
+                text = "\nPut away the toys";
+                break;
         }
         int i = tmp_taskListTxt.text.IndexOf(text);
         tmp_taskListTxt.text = tmp_taskListTxt.text.Remove(i, text.Length);
 
+        //Adds a strikethrough to a completed task
+        tmp_taskListTxt.text = tmp_taskListTxt.text.Insert(i, "<s>" + text + "</s>");
+
         li_taskList.Remove(task);
+        li_tsk_completedTaskList.Add(task);
 
         ghost.RemoveTask(task);
 
@@ -142,7 +163,34 @@ public class TaskManager : MonoBehaviour
             case Task.MopFloor:
                 str_text = "\nMop the laundry room floor";
                 break;
+            case Task.PutAwayBooks:
+                str_text = "\nPut the books back on the shelf";
+                break;
+            case Task.ResetBreakerBox:
+                str_text = "\nReset the breaker box";
+                break;
+            case Task.PutAwayToys:
+                str_text = "\nPut away the toys";
+                break;
         }
-        tmp_taskListTxt.text += str_text;
+
+        if (li_tsk_completedTaskList.Contains(task))
+        {
+            //Remove strikethrough from an uncompleted task
+            string str_strikethroughText = "<s>" + str_text + "</s>";
+
+            int i = tmp_taskListTxt.text.IndexOf(str_strikethroughText);
+
+            tmp_taskListTxt.text = tmp_taskListTxt.text.Remove(i, str_strikethroughText.Length);
+
+            tmp_taskListTxt.text = tmp_taskListTxt.text.Insert(i, str_text);
+
+            li_tsk_completedTaskList.Remove(task);
+        }
+        else
+        {
+            tmp_taskListTxt.text += str_text;
+        }
+
     }
 }
