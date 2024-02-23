@@ -276,6 +276,9 @@ public class PlayerController : MonoBehaviour
             if (go_lookingAtObject.CompareTag("Interactable")) go_lookingAtObject.GetComponent<Outline>().enabled = false;
             go_lookingAtObject = null;
         }
+
+        // Testing Tooltip
+        menuManager.UpdateTooltip(go_lookingAtObject, go_heldObject);
     }
 
     // Handles the player's ability to extend where the held prop is positioned, like reaching out in front of them

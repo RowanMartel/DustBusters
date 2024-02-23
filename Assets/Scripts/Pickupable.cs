@@ -17,6 +17,9 @@ public class Pickupable : Interactable
     [Tooltip("Check if object can be used to turn off the TV")]
     public bool bl_remote;
 
+    [Tooltip("Check if object is a doorknob")]
+    public bool bl_doorKnob;
+
     [Tooltip("Check if the ghost wants to hide this")]
     public bool bl_hideable;
 

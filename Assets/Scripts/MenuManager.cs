@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -28,6 +29,10 @@ public class MenuManager : MonoBehaviour
     protected Image img_deathScreen;
     protected Image img_damageOverlay;
     protected Image img_fadeOverlay;
+
+    //Tooltip Elements
+    protected Image img_tooltipBackground;
+    protected TextMeshProUGUI tmp_tooltipText;
     public Image Img_damageOverlay { get { return img_damageOverlay; } set { img_damageOverlay = value; } }
 
     // These ints keep track of the transitions between screens and scenes. For example, EnterGameSequence() uses it to iterate through its switch statement to perform transitions with LeanTween.
@@ -56,7 +61,10 @@ public class MenuManager : MonoBehaviour
         img_deathMessage = FindObjectOfType<DeathMessage>(true).GetComponent<Image>();
         img_deathScreen = GameObject.Find("DeathOverlay").GetComponent<Image>();
         img_fadeOverlay = GameObject.Find("FadeOverlay").GetComponent<Image>();
-        
+
+        img_tooltipBackground = GameObject.Find("ToolTipBackground").GetComponent<Image>();
+        tmp_tooltipText = GameObject.Find("ToolTipText").GetComponent<TextMeshProUGUI>();
+
         go_quitButton = GameObject.Find("DeathScreenQuit");
         go_startButton = GameObject.Find("StartScreenButton");
         go_OrientationNote = GameObject.Find("Note");
@@ -408,5 +416,108 @@ public class MenuManager : MonoBehaviour
     public void UpdateLookSensitivity()
     {
         Settings.flt_lookSensitivity = sli_lookSensitivity.value;
+    }
+
+    public void UpdateTooltip(GameObject go_lookingAtObject, GameObject go_heldObject)
+    {
+        bool bl_lookingAtObjectIsInteractable = false;
+        string st_tooltipMessage = null;
+
+        if (go_lookingAtObject != null)
+        {
+            if (go_lookingAtObject.GetComponent<Interactable>() != null || go_lookingAtObject.GetComponent<Cobweb>() != null) bl_lookingAtObjectIsInteractable = true;
+        }
+
+        img_tooltipBackground.gameObject.SetActive(true);
+        tmp_tooltipText.gameObject.SetActive(true);
+
+        if (bl_lookingAtObjectIsInteractable && go_lookingAtObject.GetComponent<Pickupable>() != null)
+        {
+            if (go_lookingAtObject.GetComponent<Pickupable>().bl_doorKnob) st_tooltipMessage = "Press \"E\" to grab handle";
+            else st_tooltipMessage = "Press \"E\" to pick up " + go_lookingAtObject.name;
+        }
+
+        if (go_heldObject != null)
+        {
+            if (go_heldObject.GetComponent<Dish>() != null)
+            {
+                bool bl_goesInCupboard = FindObjectOfType<CupboardTrigger>().li_dishes.Contains(go_heldObject.GetComponent<Dish>());
+
+                if (go_heldObject.GetComponent<Dish>().bl_dirtyDish) st_tooltipMessage = "Dunk this in the sink to clean";
+                if (go_heldObject.GetComponent<Dish>().bl_broken) st_tooltipMessage = "Put this in the trash";
+                if (go_heldObject.GetComponent<Dish>().bl_dirtyDish == false && bl_goesInCupboard) st_tooltipMessage = "Put this in the cupboard";
+            }
+        }
+
+        // If the object the player is looking at is interactable, but not pickupable:
+
+        if (bl_lookingAtObjectIsInteractable && go_lookingAtObject.GetComponent<Pickupable>() == null)
+        {
+            if (go_lookingAtObject.GetComponent<LightSwitch>() != null) st_tooltipMessage = "Press \"E\" to toggle switch";
+
+            if (go_lookingAtObject.GetComponent<FuseBox>() != null) st_tooltipMessage = "Press \"E\" to toggle breaker";
+
+            if (go_lookingAtObject.GetComponent<Cobweb>() != null)
+            {
+                if(go_lookingAtObject.GetComponent<Cobweb>().bl_cleaned == false)
+                {
+                    if (go_heldObject == null || go_heldObject.GetComponent<Pickupable>().bl_duster == false) st_tooltipMessage = "Duster required to clean";
+                    else st_tooltipMessage = "Touch with duster";
+                }
+            }
+
+            if (go_lookingAtObject.GetComponent<Mirror>() != null && go_lookingAtObject.GetComponent<Mirror>().bl_gameActive == false)
+            {
+                if (go_lookingAtObject.GetComponent<Mirror>().bl_clean == false)
+                {
+                    if (go_heldObject == null || go_heldObject.GetComponent<Pickupable>().bl_duster == false) st_tooltipMessage = "Duster required to clean";
+                    else st_tooltipMessage = "Press \"E\" to clean";
+                }
+            }
+
+            if (go_lookingAtObject.GetComponent<FloorMess>() != null)
+            {
+                if (go_lookingAtObject.GetComponent<FloorMess>().bl_clean == false && go_lookingAtObject.GetComponent<FloorMess>().bl_gameActive == false)
+                {
+                    if (go_heldObject == null || go_heldObject.GetComponent<Pickupable>().bl_mop == false) st_tooltipMessage = "Broom required to clean";
+                    else st_tooltipMessage = "Press \"E\" to clean";
+                }
+            }
+
+            if (go_lookingAtObject.GetComponent<Fireplace>() != null)
+            {
+                if (go_lookingAtObject.GetComponent<Fireplace>().bl_lit == false)
+                {
+                    if (go_heldObject == null || go_heldObject.GetComponent<Pickupable>().bl_lighter == false) st_tooltipMessage = "Lighter required to light";
+                    else st_tooltipMessage = "Press \"E\" to light fireplace";
+                }
+            }
+
+            if (go_lookingAtObject.GetComponent<DrawerOpen>() != null)
+            {
+                if (go_lookingAtObject.GetComponent<DrawerOpen>().Bl_ready == true && go_lookingAtObject.GetComponent<DrawerOpen>().Bl_open == false) st_tooltipMessage = "Press \"E\" to open drawer";
+            }
+
+            if (go_lookingAtObject.GetComponent<Exit>() != null)
+            {
+                if (GameManager.taskManager.li_taskList.Contains(TaskManager.Task.EscapeHouse))
+                {
+                    if (go_heldObject == null || go_heldObject.GetComponent<Pickupable>().bl_frontDoorKey == false) st_tooltipMessage = "Find the key to leave";
+                    else st_tooltipMessage = "Press \"E\" to leave house";
+                }
+                else st_tooltipMessage = "Complete your task list before you leave";
+            }
+        }
+
+        if(st_tooltipMessage != null)
+        {
+            tmp_tooltipText.text = st_tooltipMessage;
+            img_tooltipBackground.rectTransform.sizeDelta = new Vector2(tmp_tooltipText.text.Length * 8, img_tooltipBackground.rectTransform.sizeDelta.y);
+        }
+        else
+        {
+            img_tooltipBackground.gameObject.SetActive(false);
+            tmp_tooltipText.gameObject.SetActive(false);
+        }
     }
 }

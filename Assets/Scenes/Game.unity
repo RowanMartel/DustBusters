@@ -2422,7 +2422,7 @@ GameObject:
   - component: {fileID: 132743104}
   - component: {fileID: 132743103}
   - component: {fileID: 132743102}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Plane (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3313,7 +3313,7 @@ GameObject:
   - component: {fileID: 259529880}
   - component: {fileID: 259529879}
   - component: {fileID: 259529878}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Plane (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4122,6 +4122,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 1
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -4257,7 +4258,7 @@ GameObject:
   - component: {fileID: 340316044}
   - component: {fileID: 340316043}
   - component: {fileID: 340316047}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Plane (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4537,6 +4538,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 1
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -4912,6 +4914,7 @@ MonoBehaviour:
   bl_lighter: 1
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -6277,7 +6280,7 @@ GameObject:
   - component: {fileID: 521819269}
   - component: {fileID: 521819268}
   - component: {fileID: 521819267}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Plane (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9401,6 +9404,7 @@ MonoBehaviour:
   bl_pickupable: 0
   int_splats: 4
   bl_gameActive: 0
+  bl_clean: 0
   l_mirrorSplat:
   - {fileID: 1961497546}
   - {fileID: 489284062}
@@ -11042,6 +11046,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 1
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -11640,6 +11645,7 @@ MonoBehaviour:
   bl_pickupable: 0
   int_splats: 4
   bl_gameActive: 0
+  bl_clean: 0
   l_floorSplat:
   - {fileID: 1276925244}
   - {fileID: 520574442}
@@ -18940,6 +18946,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -21078,6 +21085,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 1
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -23499,6 +23507,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 1
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -31344,6 +31353,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -32261,6 +32271,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -32417,7 +32428,7 @@ Transform:
   m_GameObject: {fileID: 8170773749057990240}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.258, y: 0.041, z: 3.6286893}
+  m_LocalPosition: {x: -9.148001, y: 0.041, z: 3.2105467}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -33261,6 +33272,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 1
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -36145,6 +36157,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 1
   bl_canDamagePlayer: 0
@@ -36508,6 +36521,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -37231,6 +37245,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -38341,6 +38356,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -38962,6 +38978,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 1
   bl_canDamagePlayer: 0
@@ -39340,6 +39357,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -40182,6 +40200,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -40596,6 +40615,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 1
   bl_canDamagePlayer: 0
@@ -41290,6 +41310,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 1
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -42361,6 +42382,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -42570,6 +42592,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 1
   bl_canDamagePlayer: 0
@@ -48392,6 +48415,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -48774,6 +48798,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 1
   bl_canDamagePlayer: 0
@@ -49044,6 +49069,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 1
   bl_canDamagePlayer: 0
@@ -49326,6 +49352,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -49585,6 +49612,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 1
@@ -49807,6 +49835,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 1
   bl_canDamagePlayer: 0
@@ -50098,6 +50127,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 1
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -50374,6 +50404,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -50554,6 +50585,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 1
   bl_canDamagePlayer: 0
@@ -50927,6 +50959,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -51149,6 +51182,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -51485,6 +51519,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 1
   bl_canDamagePlayer: 0
@@ -51818,6 +51853,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 1
   bl_canDamagePlayer: 0
@@ -52117,6 +52153,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -52557,6 +52594,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -53073,6 +53111,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 1
   bl_canDamagePlayer: 0
@@ -53491,6 +53530,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 1
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 1
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -53598,6 +53638,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -53941,6 +53982,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -54310,6 +54352,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 1
   bl_canDamagePlayer: 0
@@ -54562,6 +54605,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 1
   bl_canDamagePlayer: 0
@@ -55088,6 +55132,7 @@ MonoBehaviour:
   bl_pickupable: 0
   int_splats: 4
   bl_gameActive: 0
+  bl_clean: 0
   l_mirrorSplat:
   - {fileID: 443339846}
   - {fileID: 2126539140}
@@ -55164,6 +55209,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 1
   bl_canDamagePlayer: 0
@@ -55432,6 +55478,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -55764,6 +55811,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -56165,6 +56213,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -56451,6 +56500,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -56943,6 +56993,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -57224,6 +57275,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -57595,6 +57647,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 1
   bl_canDamagePlayer: 0
@@ -58028,6 +58081,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -58218,6 +58272,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -58949,6 +59004,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 1
   bl_canDamagePlayer: 0
@@ -59168,6 +59224,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -59440,6 +59497,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 1
   bl_canDamagePlayer: 0
@@ -59675,6 +59733,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 1
   bl_canDamagePlayer: 0
@@ -60503,6 +60562,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 1
@@ -60725,6 +60785,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -61487,6 +61548,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 1
   bl_canDamagePlayer: 0
@@ -61848,6 +61910,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -62088,6 +62151,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -62556,6 +62620,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -62774,6 +62839,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -63062,6 +63128,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -63284,6 +63351,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -63491,6 +63559,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 1
   bl_canDamagePlayer: 0
@@ -63744,6 +63813,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 1
   bl_canDamagePlayer: 0
@@ -63997,6 +64067,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 1
   bl_canDamagePlayer: 0
@@ -64718,6 +64789,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -64987,6 +65059,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -65477,6 +65550,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -65995,6 +66069,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -66354,6 +66429,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -66680,6 +66756,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 1
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -66909,6 +66986,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -67180,6 +67258,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -67924,6 +68003,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 1
   bl_canDamagePlayer: 0
@@ -68206,6 +68286,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -68487,6 +68568,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 1
   bl_canDamagePlayer: 0
@@ -68827,6 +68909,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -69148,6 +69231,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 1
   bl_canDamagePlayer: 0
@@ -69804,6 +69888,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 1
   bl_canDamagePlayer: 0
@@ -70074,6 +70159,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 1
   bl_canDamagePlayer: 0
@@ -70427,6 +70513,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -70656,6 +70743,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 1
@@ -71698,6 +71786,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -71954,6 +72043,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -72211,6 +72301,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 1
   bl_canDamagePlayer: 0
@@ -72903,6 +72994,7 @@ MonoBehaviour:
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
@@ -73281,6 +73373,7 @@ MonoBehaviour:
   - {fileID: 980621025}
   - {fileID: 1511433232}
   - {fileID: 1728961083}
+  bl_lit: 0
 --- !u!114 &9217313398706954548
 MonoBehaviour:
   m_ObjectHideFlags: 0
