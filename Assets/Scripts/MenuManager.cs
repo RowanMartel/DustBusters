@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.tvOS;
 using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
@@ -446,6 +447,27 @@ public class MenuManager : MonoBehaviour
                 if (go_heldObject.GetComponent<Dish>().bl_dirtyDish) st_tooltipMessage = "Dunk this in the sink to clean";
                 if (go_heldObject.GetComponent<Dish>().bl_broken) st_tooltipMessage = "Put this in the trash";
                 if (go_heldObject.GetComponent<Dish>().bl_dirtyDish == false && bl_goesInCupboard) st_tooltipMessage = "Put this in the cupboard";
+            }
+
+            if (go_heldObject.GetComponent<Book>() != null)
+            {
+                bool bl_goesOnShelf = FindObjectOfType<LibraryManager>().l_books.Contains(go_heldObject.GetComponent<Book>());
+
+                if (bl_goesOnShelf) st_tooltipMessage = "Put this on the bookshelf";
+            }
+
+            if (go_heldObject.GetComponent<Toy>() != null)
+            {
+                bool bl_goesInToybox = FindObjectOfType<ToyChestTrigger>().li_toys.Contains(go_heldObject.GetComponent<Toy>());
+
+                if (bl_goesInToybox) st_tooltipMessage = "Put this in the toy chest";
+            }
+
+            if (go_heldObject.GetComponent<Pickupable>().bl_remote)
+            {
+                bool bl_tvOn = FindObjectOfType<TVStatic>().bl_on;
+
+                if (bl_tvOn) st_tooltipMessage = "Turn off the TV";
             }
         }
 

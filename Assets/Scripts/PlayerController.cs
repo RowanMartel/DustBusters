@@ -321,12 +321,6 @@ public class PlayerController : MonoBehaviour
                 {
                     GameManager.ghost.GetRobbed();
                 }
-
-                if (pickupable.bl_remote)
-                {
-                    FindAnyObjectByType<TVStatic>().Deactivate();
-                }
-
             }
 
             go_lookingAtObject.GetComponent<Interactable>().Interact();

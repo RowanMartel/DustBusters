@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TVStatic : MonoBehaviour
+public class TVStatic : Interactable
 {
 
     public AudioSource as_staticAudio;
@@ -10,8 +10,6 @@ public class TVStatic : MonoBehaviour
     public GameObject go_staticScreen;
 
     public Shader sh_shader;
-
-    public List<float> l_flt_chancePerAggro;
 
     public bool bl_powered;
     public bool bl_on;
@@ -53,19 +51,9 @@ public class TVStatic : MonoBehaviour
         Refresh();
     }
 
-    //Has a chance to Activate when ghost enters collider
-    private void OnTriggerEnter(Collider other)
+    public override void Interact()
     {
-        GhostBehavior gb_ghost = other.gameObject.GetComponent<GhostBehavior>();
-        if(gb_ghost != null)
-        {
-            float flt_chance = Random.Range(0f, 100f);
-            if(flt_chance <= l_flt_chancePerAggro[gb_ghost.int_curAggressionLevel - 1])
-            {
-                Activate();
-            }
-        }
+        if (GameManager.playerController.Go_heldObject.GetComponent<Pickupable>().bl_remote && !bl_on) Activate();
+        else if (GameManager.playerController.Go_heldObject.GetComponent<Pickupable>().bl_remote && bl_on) Deactivate();
     }
-
-
 }
