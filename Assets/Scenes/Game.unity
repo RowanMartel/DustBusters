@@ -7780,7 +7780,6 @@ GameObject:
   - component: {fileID: 739689078}
   - component: {fileID: 739689077}
   - component: {fileID: 739689075}
-  - component: {fileID: 739689079}
   - component: {fileID: 739689080}
   m_Layer: 0
   m_Name: ReflectiveSurface
@@ -7887,18 +7886,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 739689073}
   m_Mesh: {fileID: 5618640176408522257, guid: 8840f0b052b15fb4ab533907c6f1cf1c, type: 3}
---- !u!114 &739689079
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 739689073}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14a4e01beb276f84d8bc43d07433635b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &739689080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56181,7 +56168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 0
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineColor: {r: 1, g: 1, b: 1, a: 0}
   outlineWidth: 2
   precomputeOutline: 0
   bakeKeys: []
