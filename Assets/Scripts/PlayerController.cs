@@ -1,3 +1,4 @@
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -52,6 +53,11 @@ public class PlayerController : MonoBehaviour
 
     public GameObject go_curRegion;
 
+    private void Awake()
+    {
+        GameManager.playerController = this;
+    }
+
     void Start()
     {
         // Grabbing required references to objects and systems
@@ -105,6 +111,8 @@ public class PlayerController : MonoBehaviour
         // This forces the player to drop a prop if it gets too far away from them
         if(go_heldObject != null)
         {
+            if (En_state == State.inactive) return;
+
             Vector3 v3_propDirection = go_heldObject.transform.position - transform.position;
             float flt_propDistance = v3_propDirection.magnitude;
 
@@ -136,7 +144,6 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-
             Vector3 direction = go_heldObject.transform.position - v3_modifiedHeldPosition;
             float distance = direction.magnitude;
             Vector3 force = direction.normalized;
@@ -151,8 +158,8 @@ public class PlayerController : MonoBehaviour
             if (go_heldObject.GetComponent<Collider>().enabled == false) go_heldObject.GetComponent<Collider>().enabled = true;
         }
 
-        // This handles a held objects position in front of player while player is inactive, used during chore activities
-        else if (go_heldObject != null && en_state == State.inactive)
+        // This handles a held objects position in front of player while player is inactive, used during chore activities - UNUSED
+        /*else if (go_heldObject != null && en_state == State.inactive)
         {
             Vector3 heldPosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1.5f));
             Vector3 direction = go_heldObject.transform.position - heldPosition;
@@ -165,7 +172,7 @@ public class PlayerController : MonoBehaviour
             go_heldObject.transform.rotation = transform.rotation;
 
             go_heldObject.transform.Rotate(go_heldObject.GetComponent<Pickupable>().v3_heldRotationMod);
-        }
+        }*/
 
         // Player can only move and jump if in Active state
         if (en_state == State.active)
@@ -257,6 +264,8 @@ public class PlayerController : MonoBehaviour
     // This handles the player's view at the crosshair and if pointed at an Interactable object, will activate the object's outline to indicate it can be interacted with.
     void GetLookedAtObject()
     {
+        if (En_state == State.inactive) return;
+
         ray_playerView = Camera.main.ScreenPointToRay(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2, 0));
         RaycastHit hit;
 
@@ -392,14 +401,26 @@ public class PlayerController : MonoBehaviour
     {
         switch(en_state)
         {
+            // turning inactive from active
             case State.active:
                 en_state = State.inactive;
                 Cursor.lockState = CursorLockMode.Confined;
+                if (Go_heldObject != null)
+                {
+                    Go_heldObject.GetComponent<Renderer>().enabled = false;
+                    Go_heldObject.GetComponent<Rigidbody>().Sleep();
+                }
                 break;
 
+            // turning active from inactive
             case State.inactive:
                 en_state = State.active;
                 Cursor.lockState = CursorLockMode.Locked;
+                if (Go_heldObject != null)
+                {
+                    Go_heldObject.GetComponent<Renderer>().enabled = true;
+                    Go_heldObject.GetComponent<Rigidbody>().Sleep();
+                }
                 break;
         }
     }

@@ -7,6 +7,7 @@ public class Mirror : Interactable
     public int int_splats;
     [HideInInspector] public bool bl_gameActive = false;
     public bool bl_clean = false;
+    public GameObject go_virtualCam;
 
     public List<MirrorSplat> l_mirrorSplat;
     public MirrorSplat bloodText;
@@ -28,14 +29,13 @@ public class Mirror : Interactable
 
         if (bl_gameActive)
         {
-            Cursor.lockState = CursorLockMode.Confined;
-            GameManager.playerController.En_state = PlayerController.State.inactive;
+            go_virtualCam.SetActive(true);
         }
         else
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            GameManager.playerController.En_state = PlayerController.State.active;
+            go_virtualCam.SetActive(false);
         }
+        GameManager.playerController.TogglePlayerControl();
     }
 
     // ticks down splats int, then checks if the minigame is complete
@@ -45,10 +45,10 @@ public class Mirror : Interactable
         if (int_splats <= 0)
         {
             GameManager.taskManager.CompleteTask(TaskManager.Task.CleanMirror);
-            Cursor.lockState = CursorLockMode.Locked;
-            GameManager.playerController.En_state = PlayerController.State.active;
+            GameManager.playerController.TogglePlayerControl();
             bl_gameActive = false;
             bl_clean = true;
+            go_virtualCam.SetActive(false);
 
             //Spooky Encounter
             int int_aggro = GameManager.ghost.int_curAggressionLevel - 1;

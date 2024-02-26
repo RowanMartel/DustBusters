@@ -33,6 +33,11 @@ public class TaskManager : MonoBehaviour
     public GhostBehavior ghost;
     public TMP_Text tmp_taskListTxt;
 
+    private void Awake()
+    {
+        GameManager.taskManager = this;
+    }
+
     public void ResetValues()
     {
         ghost = GameManager.ghost;
