@@ -1,3 +1,4 @@
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -143,7 +144,6 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-
             Vector3 direction = go_heldObject.transform.position - v3_modifiedHeldPosition;
             float distance = direction.magnitude;
             Vector3 force = direction.normalized;
@@ -158,8 +158,8 @@ public class PlayerController : MonoBehaviour
             if (go_heldObject.GetComponent<Collider>().enabled == false) go_heldObject.GetComponent<Collider>().enabled = true;
         }
 
-        // This handles a held objects position in front of player while player is inactive, used during chore activities
-        else if (go_heldObject != null && en_state == State.inactive)
+        // This handles a held objects position in front of player while player is inactive, used during chore activities - UNUSED
+        /*else if (go_heldObject != null && en_state == State.inactive)
         {
             Vector3 heldPosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1.5f));
             Vector3 direction = go_heldObject.transform.position - heldPosition;
@@ -172,7 +172,7 @@ public class PlayerController : MonoBehaviour
             go_heldObject.transform.rotation = transform.rotation;
 
             go_heldObject.transform.Rotate(go_heldObject.GetComponent<Pickupable>().v3_heldRotationMod);
-        }
+        }*/
 
         // Player can only move and jump if in Active state
         if (en_state == State.active)
@@ -401,14 +401,26 @@ public class PlayerController : MonoBehaviour
     {
         switch(en_state)
         {
+            // turning inactive from active
             case State.active:
                 en_state = State.inactive;
                 Cursor.lockState = CursorLockMode.Confined;
+                if (Go_heldObject != null)
+                {
+                    Go_heldObject.GetComponent<Renderer>().enabled = false;
+                    Go_heldObject.GetComponent<Rigidbody>().Sleep();
+                }
                 break;
 
+            // turning active from inactive
             case State.inactive:
                 en_state = State.active;
                 Cursor.lockState = CursorLockMode.Locked;
+                if (Go_heldObject != null)
+                {
+                    Go_heldObject.GetComponent<Renderer>().enabled = true;
+                    Go_heldObject.GetComponent<Rigidbody>().Sleep();
+                }
                 break;
         }
     }

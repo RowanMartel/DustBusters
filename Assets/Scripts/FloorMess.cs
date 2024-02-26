@@ -24,16 +24,13 @@ public class FloorMess : Interactable
 
         if (bl_gameActive)
         {
-            Cursor.lockState = CursorLockMode.Confined;
-            GameManager.playerController.En_state = PlayerController.State.inactive;
             go_virtualCam.SetActive(true);
         }
         else
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            GameManager.playerController.En_state = PlayerController.State.active;
             go_virtualCam.SetActive(false);
         }
+        GameManager.playerController.TogglePlayerControl();
     }
 
     // ticks down splats int, then checks if the minigame is complete
@@ -43,8 +40,7 @@ public class FloorMess : Interactable
         if (int_splats <= 0)
         {
             GameManager.taskManager.CompleteTask(TaskManager.Task.MopFloor);
-            Cursor.lockState = CursorLockMode.Locked;
-            GameManager.playerController.En_state = PlayerController.State.active;
+            GameManager.playerController.TogglePlayerControl();
             bl_gameActive = false;
             bl_clean = true;
             go_virtualCam.SetActive(false);
