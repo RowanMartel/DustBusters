@@ -105,6 +105,8 @@ public class PlayerController : MonoBehaviour
         // This forces the player to drop a prop if it gets too far away from them
         if(go_heldObject != null)
         {
+            if (En_state == State.inactive) return;
+
             Vector3 v3_propDirection = go_heldObject.transform.position - transform.position;
             float flt_propDistance = v3_propDirection.magnitude;
 
@@ -257,6 +259,8 @@ public class PlayerController : MonoBehaviour
     // This handles the player's view at the crosshair and if pointed at an Interactable object, will activate the object's outline to indicate it can be interacted with.
     void GetLookedAtObject()
     {
+        if (En_state == State.inactive) return;
+
         ray_playerView = Camera.main.ScreenPointToRay(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2, 0));
         RaycastHit hit;
 
