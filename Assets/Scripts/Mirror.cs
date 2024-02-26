@@ -7,6 +7,7 @@ public class Mirror : Interactable
     public int int_splats;
     [HideInInspector] public bool bl_gameActive = false;
     public bool bl_clean = false;
+    public GameObject go_virtualCam;
 
     public List<MirrorSplat> l_mirrorSplat;
     public MirrorSplat bloodText;
@@ -30,11 +31,13 @@ public class Mirror : Interactable
         {
             Cursor.lockState = CursorLockMode.Confined;
             GameManager.playerController.En_state = PlayerController.State.inactive;
+            go_virtualCam.SetActive(true);
         }
         else
         {
             Cursor.lockState = CursorLockMode.Locked;
             GameManager.playerController.En_state = PlayerController.State.active;
+            go_virtualCam.SetActive(false);
         }
     }
 
@@ -49,6 +52,7 @@ public class Mirror : Interactable
             GameManager.playerController.En_state = PlayerController.State.active;
             bl_gameActive = false;
             bl_clean = true;
+            go_virtualCam.SetActive(false);
 
             //Spooky Encounter
             int int_aggro = GameManager.ghost.int_curAggressionLevel - 1;
