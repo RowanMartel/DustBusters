@@ -52,6 +52,11 @@ public class PlayerController : MonoBehaviour
 
     public GameObject go_curRegion;
 
+    private void Awake()
+    {
+        GameManager.playerController = this;
+    }
+
     void Start()
     {
         // Grabbing required references to objects and systems

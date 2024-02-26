@@ -113,6 +113,11 @@ public class GhostBehavior : MonoBehaviour
     public float flt_distToFlickerFuseBox;
     public FuseBox fb_fuseBox;
 
+    private void Awake()
+    {
+        GameManager.ghost = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {

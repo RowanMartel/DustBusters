@@ -35,12 +35,12 @@ public class GameManager : MonoBehaviour
     {
         if (instance != this) return;
 
-        taskManager = GetComponent<TaskManager>();
-        soundManager = GetComponent<SoundManager>();
-        menuManager = FindObjectOfType<MenuManager>();
-        playerController = FindObjectOfType<PlayerController>();
-        healthSystem = playerController?.GetComponent<HealthSystem>();
-        ghost = FindAnyObjectByType<GhostBehavior>();
+        //taskManager = GetComponent<TaskManager>();
+        //soundManager = GetComponent<SoundManager>();
+        //menuManager = FindObjectOfType<MenuManager>();
+        //playerController = FindObjectOfType<PlayerController>();
+        //healthSystem = playerController?.GetComponent<HealthSystem>();
+        //ghost = FindAnyObjectByType<GhostBehavior>();
         taskManager.ResetValues();
     }
 
