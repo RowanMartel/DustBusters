@@ -36,20 +36,24 @@ public class Pickupable : Interactable
     public Vector3 v3_heldPositionMod;
 
     protected Rigidbody rb;
+    public Rigidbody RB { get { return rb; } }
     [HideInInspector] public bool bl_held;
     protected MeshRenderer ren_meshRenderer;
     // holds the default material for objects that change materials
     // i.e. clean material for dirty dish
     protected Material mat_base;
 
-    private void Start()
+    protected virtual void Start()
     {
         bl_pickupable = true;
         ren_meshRenderer = GetComponent<MeshRenderer>();
         rb = GetComponent<Rigidbody>();
+        bl_held = false;
         mat_base = ren_meshRenderer.material;
     }
 
-    // does nothing
-    public override void Interact(){}
+    // turns collider off when picked up, until item is in hand. This should prevent things from getting stuck in hand.
+    public override void Interact()
+    {
+    }
 }

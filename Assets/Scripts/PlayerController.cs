@@ -1,4 +1,5 @@
 using Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -130,8 +131,9 @@ public class PlayerController : MonoBehaviour
         // This handles a held objects position in front of player while player is active
         if (go_heldObject != null && en_state == State.active)
         {
+            Pickupable pu_pickup = go_heldObject.GetComponent<Pickupable>();            
 
-            Vector3 v3_modifiedHeldPosition = go_heldPosition.transform.TransformPoint(go_heldPosition.transform.localPosition.x + go_heldObject.GetComponent<Pickupable>().v3_heldPositionMod.x, go_heldPosition.transform.localPosition.y - 0.5f + go_heldObject.GetComponent<Pickupable>().v3_heldPositionMod.y, go_heldPosition.transform.localPosition.z - 1 + go_heldObject.GetComponent<Pickupable>().v3_heldPositionMod.z);
+            Vector3 v3_modifiedHeldPosition = go_heldPosition.transform.TransformPoint(go_heldPosition.transform.localPosition.x + pu_pickup.v3_heldPositionMod.x, go_heldPosition.transform.localPosition.y - 0.5f + pu_pickup.v3_heldPositionMod.y, go_heldPosition.transform.localPosition.z - 1 + pu_pickup.v3_heldPositionMod.z);
 
             RaycastHit hit;
             Debug.DrawRay(go_cameraContainer.transform.position, v3_modifiedHeldPosition - go_cameraContainer.transform.position, Color.red);
@@ -152,10 +154,7 @@ public class PlayerController : MonoBehaviour
             go_heldObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
             go_heldObject.transform.rotation = go_heldPosition.transform.rotation;
 
-            go_heldObject.transform.Rotate(go_heldObject.GetComponent<Pickupable>().v3_heldRotationMod);
-
-            // the held object's collider gets turned off in the Interact method, and gets turned back on here. Should prevent props from getting stuck in furniture on pickup.
-            if (go_heldObject.GetComponent<Collider>().enabled == false) go_heldObject.GetComponent<Collider>().enabled = true;
+            pu_pickup.RB.MoveRotation(Quaternion.Euler(pu_pickup.v3_heldRotationMod));
         }
 
         // This handles a held objects position in front of player while player is inactive, used during chore activities - UNUSED
@@ -318,9 +317,6 @@ public class PlayerController : MonoBehaviour
                 go_heldObject = go_lookingAtObject;
                 Physics.IgnoreCollision(go_heldObject.GetComponent<Collider>(), GetComponent<Collider>());
 
-                // Turning off the held object's collider and enabling it again in the FixedUpdate method. Should prevent props from getting stuck in furniture on pickup.
-                go_heldObject.GetComponent<Collider>().enabled = false;
-
                 go_heldObject.GetComponent<Rigidbody>().useGravity = false;
                 go_heldObject.GetComponent<Outline>().enabled = false;
 
@@ -330,6 +326,8 @@ public class PlayerController : MonoBehaviour
                 {
                     GameManager.ghost.GetRobbed();
                 }
+                pickupable.Interact();
+                return;
             }
 
             go_lookingAtObject.GetComponent<Interactable>().Interact();
@@ -356,8 +354,6 @@ public class PlayerController : MonoBehaviour
                 go_heldObject = null;
 
                 //Pick up new item
-                if (go_heldObject != null)
-                    Physics.IgnoreCollision(go_heldObject.GetComponent<Collider>(), GetComponent<Collider>(), false);
                 go_heldObject = go_lookingAtObject;
                 Physics.IgnoreCollision(go_heldObject.GetComponent<Collider>(), GetComponent<Collider>());
 
@@ -370,6 +366,9 @@ public class PlayerController : MonoBehaviour
                 {
                     GameManager.ghost.GetRobbed();
                 }
+
+                pickupable.Interact();
+                return;
             }
             go_lookingAtObject.GetComponent<Interactable>().Interact();
         }

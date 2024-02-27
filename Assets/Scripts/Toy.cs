@@ -8,6 +8,7 @@ public class Toy : Pickupable
 
     private void Start()
     {
+        base.Start();
         bl_pickupable = true;
     }
 }
