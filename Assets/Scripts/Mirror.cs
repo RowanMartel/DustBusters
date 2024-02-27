@@ -26,15 +26,9 @@ public class Mirror : Interactable
         if (bl_clean) return;
 
         bl_gameActive = !bl_gameActive;
+        go_virtualCam.SetActive(!go_virtualCam.activeSelf);
+        GameManager.menuManager.Bl_allowPause = !GameManager.menuManager.Bl_allowPause;
 
-        if (bl_gameActive)
-        {
-            go_virtualCam.SetActive(true);
-        }
-        else
-        {
-            go_virtualCam.SetActive(false);
-        }
         GameManager.playerController.TogglePlayerControl();
     }
 
@@ -49,6 +43,7 @@ public class Mirror : Interactable
             bl_gameActive = false;
             bl_clean = true;
             go_virtualCam.SetActive(false);
+            GameManager.menuManager.Bl_allowPause = true;
 
             //Spooky Encounter
             int int_aggro = GameManager.ghost.int_curAggressionLevel - 1;
