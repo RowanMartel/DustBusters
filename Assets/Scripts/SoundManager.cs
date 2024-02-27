@@ -23,7 +23,9 @@ public class SoundManager : MonoBehaviour
         
         l_ac_curSFX.Add(ac_clip);
 
-        as_source.PlayOneShot(ac_clip, Settings.flt_volume);
+        as_source.clip = ac_clip;
+        as_source.volume = Settings.flt_volume;
+        as_source.Play();
 
         coroutine = RemoveClip(ac_clip.length, ac_clip);
         StartCoroutine(coroutine);
