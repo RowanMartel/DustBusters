@@ -52,6 +52,7 @@ public class FuseBox : Interactable
                     //Turn power on
                     bl_isOn = true;
                     int_timesToFlicker--;
+                    SetSwitchesOn();
                 }
             }
         }
@@ -70,7 +71,7 @@ public class FuseBox : Interactable
         else if(!bl_isOn && bl_ready)
         {
             bl_ready = false;
-            LeanTween.rotateLocal(go_lever, new Vector3(0, 0, 0), 0.4f).setEase(LeanTweenType.easeOutCubic).setOnComplete(SetSwitchesOn);
+            LeanTween.rotateLocal(go_lever, new Vector3(0, 0, 0), 0.4f).setEase(LeanTweenType.easeOutCubic);
             bl_isOn = true;
             GameManager.taskManager.CompleteTask(TaskManager.Task.ResetBreakerBox);
             SetSwitchesOn();
