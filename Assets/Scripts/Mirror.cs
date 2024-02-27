@@ -16,6 +16,8 @@ public class Mirror : Interactable
     public List<GameObject> l_go_spookyThingByAggro;
     public Transform tr_spawnSpooky;
 
+    public Texture2D dusterPointer;
+
     // toggles the mirror cleaning minigame if the player is holding the right object
     public override void Interact()
     {
@@ -28,8 +30,13 @@ public class Mirror : Interactable
         bl_gameActive = !bl_gameActive;
         go_virtualCam.SetActive(!go_virtualCam.activeSelf);
         GameManager.menuManager.Bl_allowPause = !GameManager.menuManager.Bl_allowPause;
-
         GameManager.playerController.TogglePlayerControl();
+        GameManager.menuManager.img_crosshair.enabled = !GameManager.menuManager.img_crosshair.enabled;
+
+        if (bl_gameActive)
+            Cursor.SetCursor(dusterPointer, Vector2.zero, CursorMode.Auto);
+        else
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
     }
 
     // ticks down splats int, then checks if the minigame is complete
@@ -44,6 +51,8 @@ public class Mirror : Interactable
             bl_clean = true;
             go_virtualCam.SetActive(false);
             GameManager.menuManager.Bl_allowPause = true;
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+            GameManager.menuManager.img_crosshair.enabled = true;
 
             //Spooky Encounter
             int int_aggro = GameManager.ghost.int_curAggressionLevel - 1;

@@ -11,6 +11,8 @@ public class FloorMess : Interactable
 
     public List<FloorSplat> l_floorSplat;
 
+    public Texture2D mirrorPointer;
+
     // toggles the floor cleaning minigame if the player is holding the right object
     public override void Interact()
     {
@@ -23,8 +25,13 @@ public class FloorMess : Interactable
         bl_gameActive = !bl_gameActive;
         go_virtualCam.SetActive(!go_virtualCam.activeSelf);
         GameManager.menuManager.Bl_allowPause = !GameManager.menuManager.Bl_allowPause;
-
         GameManager.playerController.TogglePlayerControl();
+        GameManager.menuManager.img_crosshair.enabled = !GameManager.menuManager.img_crosshair.enabled;
+
+        if (bl_gameActive)
+            Cursor.SetCursor(mirrorPointer, Vector2.zero, CursorMode.Auto);
+        else
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
     }
 
     // ticks down splats int, then checks if the minigame is complete
@@ -39,6 +46,8 @@ public class FloorMess : Interactable
             bl_clean = true;
             go_virtualCam.SetActive(false);
             GameManager.menuManager.Bl_allowPause = true;
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+            GameManager.menuManager.img_crosshair.enabled = true;
         }
     }
 

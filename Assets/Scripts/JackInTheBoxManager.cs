@@ -8,40 +8,47 @@ public class JackInTheBoxManager : Pickupable
     public GameObject go_lid;
     public GameObject go_clown;
     public GameObject go_handle;
+    public AudioSource as_jackAudio;
 
-    protected int int_bounceCount = 0;
-    protected float flt_countDown = 0;
-    protected bool turnHandle = true;
+    public AudioClip jackMusic01;
+    public AudioClip jackMusic02;
+    public AudioClip jackLaugh;
+
+    protected bool turnHandle = false;
+    protected bool readyToPop = false;
 
     private void Update()
     {
-        if (flt_countDown > 0)
+        if (turnHandle)
         {
-            flt_countDown -= Time.deltaTime;
-        }
-        else if(flt_countDown < 0)
-        {
-            LeanTween.rotateLocal(go_lid, new Vector3(0, 0, 0), 0.1f);
-            LeanTween.scaleY(go_clown, 1f, 0.75f).setEaseOutElastic();
-            flt_countDown = 0;
+            go_handle.transform.Rotate(0f, 0f, -1f, Space.Self);
+            if (!as_jackAudio.isPlaying && as_jackAudio.clip == jackMusic01)
+            {
+                turnHandle = false;
+                readyToPop = true;
+            }
         }
 
-        if(turnHandle)
+        if (GameManager.playerController.Go_heldObject == gameObject && readyToPop)
         {
-            go_handle.transform.Rotate(transform.forward);
+            as_jackAudio.PlayOneShot(jackMusic02);
+            as_jackAudio.PlayOneShot(jackLaugh);
+            LeanTween.rotateLocal(go_lid, new Vector3(0, 0, 0), 0.1f);
+            LeanTween.scaleY(go_clown, 1f, 0.75f).setEaseOutElastic();
+            readyToPop = false;
         }
     }
 
     public override void Interact()
     {
-        flt_countDown = 3;
-        //OpenLid();
-        //BouncyClown();
+
     }
 
-    public void StartHandleSpin()
+    public void ActivateJack()
     {
         turnHandle = true;
+        as_jackAudio.clip = jackMusic01;
+        as_jackAudio.Play();
     }
 
 
