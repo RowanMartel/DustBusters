@@ -55,6 +55,7 @@ public class MenuManager : MonoBehaviour
 
     // Bools related to the Pause system
     protected bool bl_paused = false;
+    public bool Bl_paused { get { return bl_paused; } set { bl_paused = value; } }
     protected bool bl_allowPause = false;
     public bool Bl_allowPause { get { return bl_allowPause; } set { bl_allowPause = value; } }
     protected bool ready = true;

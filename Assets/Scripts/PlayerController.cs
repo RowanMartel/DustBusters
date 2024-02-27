@@ -405,18 +405,17 @@ public class PlayerController : MonoBehaviour
             case State.active:
                 en_state = State.inactive;
                 Cursor.lockState = CursorLockMode.Confined;
-                if (Go_heldObject != null)
+                if (Go_heldObject != null && !GameManager.menuManager.Bl_paused)
                 {
                     Go_heldObject.GetComponent<Renderer>().enabled = false;
                     Go_heldObject.GetComponent<Rigidbody>().Sleep();
                 }
                 break;
-
             // turning active from inactive
             case State.inactive:
                 en_state = State.active;
                 Cursor.lockState = CursorLockMode.Locked;
-                if (Go_heldObject != null)
+                if (Go_heldObject != null && !GameManager.menuManager.Bl_paused)
                 {
                     Go_heldObject.GetComponent<Renderer>().enabled = true;
                     Go_heldObject.GetComponent<Rigidbody>().Sleep();
