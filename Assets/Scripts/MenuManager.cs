@@ -30,6 +30,7 @@ public class MenuManager : MonoBehaviour
     protected Image img_deathScreen;
     protected Image img_damageOverlay;
     protected Image img_fadeOverlay;
+    public Image img_crosshair;
 
     //Tooltip Elements
     protected Image img_tooltipBackground;
