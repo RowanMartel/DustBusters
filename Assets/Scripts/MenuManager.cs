@@ -380,6 +380,7 @@ public class MenuManager : MonoBehaviour
         if (!bl_paused)
         {
             bl_allowPause = false;
+            bl_paused = true;
 
             GameManager.playerController.TogglePlayerControl();
             //ClearScreens();
@@ -392,7 +393,6 @@ public class MenuManager : MonoBehaviour
             {
                 GameManager.ghost.bl_frozen = true;
             }
-            bl_paused = true;
         }
         else if (bl_paused)
         {
