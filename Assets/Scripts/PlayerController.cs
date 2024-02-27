@@ -122,6 +122,7 @@ public class PlayerController : MonoBehaviour
                 go_heldObject.layer = 0;
                 go_heldObject.GetComponent<Rigidbody>().useGravity = true;
                 Physics.IgnoreCollision(go_heldObject.GetComponent<Collider>(), GetComponent<Collider>(), false);
+                go_heldObject.GetComponent<Pickupable>().Drop();
                 go_heldObject = null;
             }
         }
@@ -153,8 +154,9 @@ public class PlayerController : MonoBehaviour
             if (distance > 0) go_heldObject.GetComponent<Rigidbody>().AddForce(-force * distance * 10, ForceMode.VelocityChange);
             go_heldObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
             go_heldObject.transform.rotation = go_heldPosition.transform.rotation;
+            go_heldObject.transform.Rotate(pu_pickup.v3_heldRotationMod);
 
-            pu_pickup.RB.MoveRotation(Quaternion.Euler(pu_pickup.v3_heldRotationMod));
+            //pu_pickup.RB.MoveRotation(Quaternion.Euler(pu_pickup.v3_heldRotationMod));
         }
 
         // This handles a held objects position in front of player while player is inactive, used during chore activities - UNUSED
@@ -338,6 +340,7 @@ public class PlayerController : MonoBehaviour
             go_heldObject.layer = 0;
             go_heldObject.GetComponent<Rigidbody>().useGravity = true;
             Physics.IgnoreCollision(go_heldObject.GetComponent<Collider>(), GetComponent<Collider>(), false);
+            go_heldObject.GetComponent<Pickupable>().Drop();
             go_heldObject = null;
         }
         else if (go_heldObject != null && go_lookingAtObject.CompareTag("Interactable"))
@@ -351,6 +354,7 @@ public class PlayerController : MonoBehaviour
                 go_heldObject.layer = 0;
                 go_heldObject.GetComponent<Rigidbody>().useGravity = true;
                 Physics.IgnoreCollision(go_heldObject.GetComponent<Collider>(), GetComponent<Collider>(), false);
+                go_heldObject.GetComponent<Pickupable>().Drop();
                 go_heldObject = null;
 
                 //Pick up new item
