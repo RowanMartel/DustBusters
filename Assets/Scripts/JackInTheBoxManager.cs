@@ -22,20 +22,28 @@ public class JackInTheBoxManager : Pickupable
         if (turnHandle)
         {
             go_handle.transform.Rotate(0f, 0f, -1f, Space.Self);
-            if (!as_jackAudio.isPlaying && as_jackAudio.clip == jackMusic01)
+            if (!as_jackAudio.isPlaying)
             {
-                turnHandle = false;
-                readyToPop = true;
-            }
-        }
+                if(as_jackAudio.clip == jackMusic01 && GameManager.playerController.Go_heldObject != gameObject)
+                {
+                    as_jackAudio.clip = jackMusic02;
+                    as_jackAudio.Play();
+                }
 
-        if (GameManager.playerController.Go_heldObject == gameObject && readyToPop)
-        {
-            as_jackAudio.PlayOneShot(jackMusic02);
-            as_jackAudio.PlayOneShot(jackLaugh);
-            LeanTween.rotateLocal(go_lid, new Vector3(0, 0, 0), 0.1f);
-            LeanTween.scaleY(go_clown, 1f, 0.75f).setEaseOutElastic();
-            readyToPop = false;
+                else if (as_jackAudio.clip == jackMusic02 && GameManager.playerController.Go_heldObject != gameObject)
+                {
+                    as_jackAudio.clip = jackMusic01;
+                    as_jackAudio.Play();
+                }
+
+                if (as_jackAudio.clip == jackMusic01 && GameManager.playerController.Go_heldObject == gameObject)
+                {
+                    turnHandle = false;
+                    as_jackAudio.PlayOneShot(jackLaugh);
+                    LeanTween.rotateLocal(go_lid, new Vector3(0, 0, 0), 0.1f);
+                    LeanTween.scaleY(go_clown, 1f, 0.75f).setEaseOutElastic();
+                }
+            }
         }
     }
 
