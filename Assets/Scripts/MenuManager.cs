@@ -55,7 +55,10 @@ public class MenuManager : MonoBehaviour
 
     // Bools related to the Pause system
     protected bool bl_paused = false;
-    public bool bl_allowPause = false;
+    protected bool bl_allowPause = false;
+    public bool Bl_allowPause { get { return bl_allowPause; } set { bl_allowPause = value; } }
+    protected bool ready = true;
+
     private void Awake()
     {
         img_damageOverlay = FindObjectOfType<DamageOverlay>(true).GetComponent<Image>();
@@ -102,12 +105,15 @@ public class MenuManager : MonoBehaviour
     // Dismisses Menu screen with a LeanTween transition
     public void DissmissScreenAndCallNext(GameObject screen)
     {
-        go_nextScreen = screen;
+        if(ready)
+        {
+            go_nextScreen = screen;
 
-        if(screen == go_gameScreen) LeanTween.moveLocal(go_lastScreen, new Vector3(750f, 0f, 0f), Settings.flt_menuTransitionSpeed).setEase(LeanTweenType.easeInSine).setOnComplete(SwitchToGame).setIgnoreTimeScale(true);
-        else LeanTween.moveLocal(go_lastScreen, new Vector3(750f, 0f, 0f), Settings.flt_menuTransitionSpeed).setEase(LeanTweenType.easeInSine).setOnComplete(CallScreenWithTransition).setIgnoreTimeScale(true);
-        
-        if (go_nextScreen == go_optionsScreen || go_nextScreen == go_controlsScreen) go_screenBuffer = go_lastScreen;
+            if (screen == go_gameScreen) LeanTween.moveLocal(go_lastScreen, new Vector3(750f, 0f, 0f), Settings.flt_menuTransitionSpeed).setEase(LeanTweenType.easeInSine).setOnComplete(SwitchToGame).setIgnoreTimeScale(true);
+            else LeanTween.moveLocal(go_lastScreen, new Vector3(750f, 0f, 0f), Settings.flt_menuTransitionSpeed).setEase(LeanTweenType.easeInSine).setOnComplete(CallScreenWithTransition).setIgnoreTimeScale(true);
+
+            if (go_nextScreen == go_optionsScreen || go_nextScreen == go_controlsScreen) go_screenBuffer = go_lastScreen;
+        }
     }
 
     // Used to bring up the Game menu screen after LeanTween transition
@@ -239,6 +245,7 @@ public class MenuManager : MonoBehaviour
         switch (int_enterSequence)
         {
             case 0:
+                ready = false;
                 int_enterSequence++;
                 LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 1, 1f).setOnComplete(EnterGameSequence).setIgnoreTimeScale(true);
                 break;
@@ -257,6 +264,7 @@ public class MenuManager : MonoBehaviour
                 LeanTween.moveLocal(go_startButton, new Vector3(0f, -135f, 0f), 0.5f).setEase(LeanTweenType.easeInSine).setIgnoreTimeScale(true);
                 int_enterSequence = 0;
                 Cursor.lockState = CursorLockMode.Confined;
+                ready = true;
                 break;
         }
     }

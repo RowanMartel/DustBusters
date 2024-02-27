@@ -7,43 +7,41 @@ public class JackInTheBoxManager : Pickupable
 
     public GameObject go_lid;
     public GameObject go_clown;
+    public GameObject go_handle;
 
     protected int int_bounceCount = 0;
+    protected float flt_countDown = 0;
+    protected bool turnHandle = true;
 
-    void OpenLid()
+    private void Update()
     {
-        LeanTween.rotateLocal(go_lid, new Vector3(0, 0, 0), 0.1f);
-    }
-
-    void BouncyClown()
-    {
-        switch(int_bounceCount)
+        if (flt_countDown > 0)
         {
-            case 0:
-                int_bounceCount++;
-                LeanTween.scaleY(go_clown, 1.15f, 0.1f).setOnComplete(BouncyClown);
-                break;
+            flt_countDown -= Time.deltaTime;
+        }
+        else if(flt_countDown < 0)
+        {
+            LeanTween.rotateLocal(go_lid, new Vector3(0, 0, 0), 0.1f);
+            LeanTween.scaleY(go_clown, 1f, 0.75f).setEaseOutElastic();
+            flt_countDown = 0;
+        }
 
-            case 1:
-                int_bounceCount++;
-                LeanTween.scaleY(go_clown, 0.9f, 0.13f).setOnComplete(BouncyClown);
-                break;
-
-            case 2:
-                int_bounceCount++;
-                LeanTween.scaleY(go_clown, 1.05f, 0.17f).setOnComplete(BouncyClown);
-                break;
-
-            case 3:
-                LeanTween.scaleY(go_clown, 1f, 0.22f);
-                break;
-
+        if(turnHandle)
+        {
+            go_handle.transform.Rotate(transform.forward);
         }
     }
+
     public override void Interact()
     {
-        OpenLid();
-        BouncyClown();
+        flt_countDown = 3;
+        //OpenLid();
+        //BouncyClown();
+    }
+
+    public void StartHandleSpin()
+    {
+        turnHandle = true;
     }
 
 

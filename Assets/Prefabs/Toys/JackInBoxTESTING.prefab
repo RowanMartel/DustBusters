@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4501211846145397276}
   - component: {fileID: 4573415700313046199}
   - component: {fileID: 4425230805743114136}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: JackInBoxClown:Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,7 +253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5746f0711e2e2954499ce585f5a7595d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bl_pickupable: 0
+  bl_pickupable: 1
   bl_mop: 0
   bl_duster: 0
   bl_lighter: 0
@@ -263,8 +263,8 @@ MonoBehaviour:
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
-  v3_heldRotationMod: {x: 0, y: -90, z: 0}
-  v3_heldPositionMod: {x: 0, y: 0, z: 0}
+  v3_heldRotationMod: {x: 0, y: -90, z: 20}
+  v3_heldPositionMod: {x: 0, y: -0.15, z: -0.3}
   bl_held: 0
   go_lid: {fileID: 6309544962816523551}
   go_clown: {fileID: 6304699711347171219}
@@ -302,7 +302,7 @@ GameObject:
   - component: {fileID: 7345985769374572926}
   - component: {fileID: 8409098342943072824}
   - component: {fileID: 4929649113636729153}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: JackInBoxClown:head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -408,7 +408,7 @@ GameObject:
   - component: {fileID: 5401771388524932316}
   - component: {fileID: 2339398508820017840}
   - component: {fileID: 7185281813804325816}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: JackInBoxClown:spring
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -516,7 +516,7 @@ GameObject:
   - component: {fileID: 2768601334552255050}
   - component: {fileID: 3235641999013568283}
   - component: {fileID: 695391366558912724}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: JackInBoxClown:lid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
