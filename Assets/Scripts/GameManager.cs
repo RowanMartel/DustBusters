@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
         if (instance != this) return;
 
         //taskManager = GetComponent<TaskManager>();
-        //soundManager = GetComponent<SoundManager>();
+        soundManager = GetComponent<SoundManager>();
         //menuManager = FindObjectOfType<MenuManager>();
         //playerController = FindObjectOfType<PlayerController>();
         //healthSystem = playerController?.GetComponent<HealthSystem>();
