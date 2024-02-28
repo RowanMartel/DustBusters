@@ -27,7 +27,7 @@ public class Cobweb : MonoBehaviour
         Pickupable pickupable = other.GetComponent<Pickupable>();
         if (!pickupable || !pickupable.bl_duster || bl_cleaned) return;
 
-        GameManager.soundManager.PlayClip(ac_clean, as_source);
+        GameManager.soundManager.PlayClip(ac_clean, as_source, true);
 
         //Dust particle effect
         GameObject go_dust = Instantiate(go_dustParticles, transform);

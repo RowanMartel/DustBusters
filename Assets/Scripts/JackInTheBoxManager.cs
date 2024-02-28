@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JackInTheBoxManager : Pickupable
+public class JackInTheBoxManager : Toy
 {
 
     public GameObject go_lid;
@@ -14,32 +14,25 @@ public class JackInTheBoxManager : Pickupable
     public AudioClip ac_jackMusic02;
     public AudioClip ac_jackLaugh;
 
-    protected bool turnHandle = false;
-    protected bool readyToPop = false;
+    protected bool bl_turnHandle = false;
+    protected bool bl_readyToPop = false;
+    protected bool bl_sprung = false;
 
     private void Update()
     {
-        if (turnHandle)
+        if (bl_turnHandle)
         {
             go_handle.transform.Rotate(0f, 0f, -1f, Space.Self);
             if (!as_jackAudio.isPlaying)
             {
                 if(as_jackAudio.clip == ac_jackMusic01 && GameManager.playerController.Go_heldObject != gameObject)
                 {
-                    GameManager.soundManager.PlayClip(ac_jackMusic02, as_jackAudio);
+                    GameManager.soundManager.PlayClip(ac_jackMusic02, as_jackAudio, false);
                 }
 
                 else if (as_jackAudio.clip == ac_jackMusic02)
                 {
-                    GameManager.soundManager.PlayClip(ac_jackMusic01, as_jackAudio);
-                }
-
-                else if (as_jackAudio.clip == ac_jackMusic01 && GameManager.playerController.Go_heldObject == gameObject)
-                {
-                    turnHandle = false;
-                    GameManager.soundManager.PlayClip(ac_jackLaugh, as_jackAudio);
-                    LeanTween.rotateLocal(go_lid, new Vector3(0, 0, 0), 0.1f);
-                    LeanTween.scaleY(go_clown, 1f, 0.75f).setEaseOutElastic();
+                    GameManager.soundManager.PlayClip(ac_jackMusic01, as_jackAudio, false);
                 }
             }
         }
@@ -47,14 +40,29 @@ public class JackInTheBoxManager : Pickupable
 
     public override void Interact()
     {
-        ActivateJack();
+        base.Interact();
+        if (bl_readyToPop && !bl_sprung)
+        {
+            SpringJack();
+        }
     }
 
     public void ActivateJack()
     {
-        turnHandle = true;
-        GameManager.soundManager.PlayClip(ac_jackMusic01, as_jackAudio);
+        bl_turnHandle = true;
+        bl_readyToPop = true;
+        GameManager.soundManager.PlayClip(ac_jackMusic01, as_jackAudio, false);
     }
 
+    public void SpringJack()
+    {
+        as_jackAudio.Stop();
+        bl_readyToPop = false;
+        bl_turnHandle = false;
+        bl_sprung = true;
+        GameManager.soundManager.PlayClip(ac_jackLaugh, as_jackAudio, true);
+        LeanTween.rotateLocal(go_lid, new Vector3(0, 0, 0), 0.1f);
+        LeanTween.scaleY(go_clown, 1f, 0.75f).setEaseOutElastic();
+    }
 
 }

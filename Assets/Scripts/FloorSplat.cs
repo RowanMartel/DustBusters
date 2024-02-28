@@ -34,7 +34,7 @@ public class FloorSplat : MonoBehaviour
         if (bl_cleaned || !floorMess.bl_gameActive || floorMess.bl_paused) return;
         int_dirtLevel--;
         ren.material.color = new Color(ren.material.color.r, ren.material.color.g, ren.material.color.g, ren.material.color.a - .2f);
-        GameManager.soundManager.PlayClip(ac_clean, as_clean);
+        GameManager.soundManager.PlayClip(ac_clean, as_clean, true);
 
         //Dust particle effect
         GameObject go_dust = Instantiate(go_dustParticles, transform);

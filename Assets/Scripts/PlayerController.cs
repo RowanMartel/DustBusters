@@ -98,7 +98,7 @@ public class PlayerController : MonoBehaviour
             {
                 bl_hasJumped = true;
                 bl_isGrounded = false;
-                GameManager.soundManager.PlayClip(ac_jump, as_source);
+                GameManager.soundManager.PlayClip(ac_jump, as_source, true);
             }
 
             // Handles Crouch
@@ -381,7 +381,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Floor")
         {
-            if (bl_isGrounded == false) GameManager.soundManager.PlayClip(ac_land, as_source);
+            if (bl_isGrounded == false) GameManager.soundManager.PlayClip(ac_land, as_source, true);
             bl_isGrounded = true;
         }
     }

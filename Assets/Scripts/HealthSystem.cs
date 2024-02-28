@@ -36,7 +36,7 @@ public class HealthSystem : MonoBehaviour
 
         if (pu_pickupable.bl_canDamagePlayer)
         {
-            GameManager.soundManager.PlayClip(ac_hurtSharp, as_source);
+            GameManager.soundManager.PlayClip(ac_hurtSharp, as_source, true);
 
             int_playerHealth--;
             if (int_playerHealth <= 0)

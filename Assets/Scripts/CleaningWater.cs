@@ -32,7 +32,7 @@ public class CleaningWater : MonoBehaviour
     // if other is a dirty dish, clean it, then check if complete in all instances of this script
     private void OnTriggerEnter(Collider other)
     {
-        GameManager.soundManager.PlayClip(ac_splash, as_source);
+        GameManager.soundManager.PlayClip(ac_splash, as_source, true);
         
         //Plays the appropriate splash effect
         if (splashEffect != null)

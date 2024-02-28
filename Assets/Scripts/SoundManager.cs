@@ -11,14 +11,14 @@ public class SoundManager : MonoBehaviour
     public int int_attemptsToPickNewSound;
 
     // plays the given clip in the given source if it isn't already playing and if it's near the player
-    public void PlayClip(AudioClip ac_clip, AudioSource as_source)
+    public void PlayClip(AudioClip ac_clip, AudioSource as_source, bool bl_distanceMatters)
     {
         if (as_source.isPlaying) return;
 
         if (l_ac_curSFX.Contains(ac_clip)) return;
 
         Vector3 v3_sourcePos = as_source.transform.position;
-        if (Vector3.Distance(GameManager.playerController.transform.position, v3_sourcePos) >= Settings.int_SFXCullingDist)
+        if (Vector3.Distance(GameManager.playerController.transform.position, v3_sourcePos) >= Settings.int_SFXCullingDist && bl_distanceMatters)
             return;
         
         l_ac_curSFX.Add(ac_clip);
@@ -32,7 +32,7 @@ public class SoundManager : MonoBehaviour
     }
 
     //Picks a random clip from a list of clips, then plays that clip with the other PlayClip method
-    public void PlayClip(AudioClip[] a_ac_clips, AudioSource as_source)
+    public void PlayClip(AudioClip[] a_ac_clips, AudioSource as_source, bool bl_distanceMatters)
     {
         if (as_source.isPlaying) return;
 
@@ -44,7 +44,7 @@ public class SoundManager : MonoBehaviour
             attempts++;
         }while(l_ac_curSFX.Contains(ac_clip) && attempts >= int_attemptsToPickNewSound);
 
-        PlayClip(ac_clip, as_source);
+        PlayClip(ac_clip, as_source, bl_distanceMatters);
     }
 
     // removes the clip from the currently playing list after the duration of the clip has passed

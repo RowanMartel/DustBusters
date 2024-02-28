@@ -238,7 +238,7 @@ public class GhostBehavior : MonoBehaviour
                 flt_curSFXTime -= Time.deltaTime;
                 if (flt_curSFXTime <= 0)
                 {
-                    GameManager.soundManager.PlayClip(a_ac_sounds, as_aSource);
+                    GameManager.soundManager.PlayClip(a_ac_sounds, as_aSource, true);
                     flt_curSFXTime = flt_sfxTime + Random.Range(-flt_sfxTimeDeviationRange, flt_sfxTimeDeviationRange);
                 }
 
@@ -274,7 +274,7 @@ public class GhostBehavior : MonoBehaviour
                 flt_curSFXTime -= Time.deltaTime;
                 if (flt_curSFXTime <= 0)
                 {
-                    GameManager.soundManager.PlayClip(a_ac_sounds, as_aSource);
+                    GameManager.soundManager.PlayClip(a_ac_sounds, as_aSource, true);
                     flt_curSFXTime = flt_sfxTime + Random.Range(-flt_sfxTimeDeviationRange, flt_sfxTimeDeviationRange);
                 }
 
@@ -312,7 +312,7 @@ public class GhostBehavior : MonoBehaviour
                 flt_curSFXTime -= Time.deltaTime;
                 if (flt_curSFXTime <= 0)
                 {
-                    GameManager.soundManager.PlayClip(a_ac_sounds, as_aSource);
+                    GameManager.soundManager.PlayClip(a_ac_sounds, as_aSource, true);
                     flt_curSFXTime = flt_sfxTime + Random.Range(-flt_sfxTimeDeviationRange, flt_sfxTimeDeviationRange);
                 }
 
@@ -905,6 +905,11 @@ public class GhostBehavior : MonoBehaviour
                     go_floatTrigger.SetActive(true);
                 }
                 AddTask(TaskManager.Task.ResetBreakerBox);
+
+                foreach(JackInTheBoxManager jack in GameObject.FindObjectsByType<JackInTheBoxManager>(FindObjectsSortMode.None))
+                {
+                    jack.ActivateJack();
+                }
 
                 //Turn Water Bloody
                 foreach (CleaningWater cleaningWater in FindObjectsByType<CleaningWater>(FindObjectsSortMode.None))

@@ -31,7 +31,7 @@ public class MirrorSplat : MonoBehaviour
         if (bl_cleaned || !mirror.bl_gameActive || mirror.bl_paused) return;
         int_dirtLevel--;
         ren.material.color = new Color(ren.material.color.r, ren.material.color.g, ren.material.color.g, ren.material.color.a - .2f);
-        GameManager.soundManager.PlayClip(ac_clean, as_clean);
+        GameManager.soundManager.PlayClip(ac_clean, as_clean, true);
         if (int_dirtLevel == 0)
         {
             bl_cleaned = true;
