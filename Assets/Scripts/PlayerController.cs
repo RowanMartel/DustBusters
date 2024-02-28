@@ -119,11 +119,7 @@ public class PlayerController : MonoBehaviour
 
             if (flt_propDistance > 3f)
             {
-                go_heldObject.layer = 0;
-                go_heldObject.GetComponent<Rigidbody>().useGravity = true;
-                Physics.IgnoreCollision(go_heldObject.GetComponent<Collider>(), GetComponent<Collider>(), false);
-                go_heldObject.GetComponent<Pickupable>().Drop();
-                go_heldObject = null;
+                DropItem();
             }
         }
     }
@@ -191,6 +187,35 @@ public class PlayerController : MonoBehaviour
             DoPlayerMovement();
         }
     }
+
+    // This drops the held item
+    void DropItem()
+    {
+        go_heldObject.layer = 0;
+        go_heldObject.GetComponent<Rigidbody>().useGravity = true;
+        Physics.IgnoreCollision(go_heldObject.GetComponent<Collider>(), GetComponent<Collider>(), false);
+        go_heldObject.GetComponent<Pickupable>().Drop();
+        go_heldObject = null;
+    }
+
+    // This picksup an item
+    void PickUpItem(GameObject go_item)
+    {
+        go_heldObject = go_item;
+        Physics.IgnoreCollision(go_heldObject.GetComponent<Collider>(), GetComponent<Collider>());
+
+        go_heldObject.GetComponent<Rigidbody>().useGravity = false;
+        go_heldObject.GetComponent<Outline>().enabled = false;
+
+        int layerIgnoreRaycast = LayerMask.NameToLayer("Ignore Raycast");
+        go_heldObject.layer = layerIgnoreRaycast;
+        if (go_heldObject == GameManager.ghost.go_curHeldItem)
+        {
+            GameManager.ghost.GetRobbed();
+        }
+        go_heldObject.GetComponent<Pickupable>().Interact();
+    }
+
 
     // This handles the player's ability to look up and down, and rotate the player.
     void MoveCamera()
@@ -316,19 +341,7 @@ public class PlayerController : MonoBehaviour
             if (pickupable != null)
             {
                 //Pick up said object
-                go_heldObject = go_lookingAtObject;
-                Physics.IgnoreCollision(go_heldObject.GetComponent<Collider>(), GetComponent<Collider>());
-
-                go_heldObject.GetComponent<Rigidbody>().useGravity = false;
-                go_heldObject.GetComponent<Outline>().enabled = false;
-
-                int layerIgnoreRaycast = LayerMask.NameToLayer("Ignore Raycast");
-                go_heldObject.layer = layerIgnoreRaycast;
-                if(go_heldObject == GameManager.ghost.go_curHeldItem)
-                {
-                    GameManager.ghost.GetRobbed();
-                }
-                pickupable.Interact();
+                PickUpItem(go_lookingAtObject);
                 return;
             }
 
@@ -337,11 +350,7 @@ public class PlayerController : MonoBehaviour
         else if(go_heldObject != null && (go_lookingAtObject == null || go_lookingAtObject.tag != "Interactable"))
         {
             //Drop held item
-            go_heldObject.layer = 0;
-            go_heldObject.GetComponent<Rigidbody>().useGravity = true;
-            Physics.IgnoreCollision(go_heldObject.GetComponent<Collider>(), GetComponent<Collider>(), false);
-            go_heldObject.GetComponent<Pickupable>().Drop();
-            go_heldObject = null;
+            DropItem();
         }
         else if (go_heldObject != null && go_lookingAtObject.CompareTag("Interactable"))
         {
@@ -351,27 +360,10 @@ public class PlayerController : MonoBehaviour
             if (pickupable != null)
             {
                 //Drop old item
-                go_heldObject.layer = 0;
-                go_heldObject.GetComponent<Rigidbody>().useGravity = true;
-                Physics.IgnoreCollision(go_heldObject.GetComponent<Collider>(), GetComponent<Collider>(), false);
-                go_heldObject.GetComponent<Pickupable>().Drop();
-                go_heldObject = null;
+                DropItem();
 
                 //Pick up new item
-                go_heldObject = go_lookingAtObject;
-                Physics.IgnoreCollision(go_heldObject.GetComponent<Collider>(), GetComponent<Collider>());
-
-                go_heldObject.GetComponent<Rigidbody>().useGravity = false;
-                go_heldObject.GetComponent<Outline>().enabled = false;
-
-                int layerIgnoreRaycast = LayerMask.NameToLayer("Ignore Raycast");
-                go_heldObject.layer = layerIgnoreRaycast;
-                if (go_heldObject == GameManager.ghost.go_curHeldItem)
-                {
-                    GameManager.ghost.GetRobbed();
-                }
-
-                pickupable.Interact();
+                PickUpItem(go_lookingAtObject);
                 return;
             }
             go_lookingAtObject.GetComponent<Interactable>().Interact();
