@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -60,6 +61,9 @@ public class MenuManager : MonoBehaviour
     protected bool bl_allowPause = false;
     public bool Bl_allowPause { get { return bl_allowPause; } set { bl_allowPause = value; } }
     protected bool ready = true;
+
+    public event EventHandler<EventArgs> GamePaused;
+    public event EventHandler<EventArgs> GameUnpaused;
 
     private void Awake()
     {
@@ -370,6 +374,9 @@ public class MenuManager : MonoBehaviour
                 GameManager.ghost.bl_frozen = false;
             }
             bl_paused = false;
+
+            if (GamePaused != null)
+                GamePaused(this, new EventArgs());
         }
     }
 
@@ -382,6 +389,9 @@ public class MenuManager : MonoBehaviour
         {
             bl_allowPause = false;
             bl_paused = true;
+
+            if (GameUnpaused != null)
+                GameUnpaused(this, new EventArgs());
 
             GameManager.playerController.TogglePlayerControl();
             //ClearScreens();
