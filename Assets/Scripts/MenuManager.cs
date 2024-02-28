@@ -103,7 +103,7 @@ public class MenuManager : MonoBehaviour
         if (go_lastScreen == go_optionsScreen || go_lastScreen == go_controlsScreen) LeanTween.moveLocal(go_screenBuffer, new Vector3(0f, 0f, 0f), Settings.flt_menuTransitionSpeed).setEase(LeanTweenType.easeOutSine).setIgnoreTimeScale(true);
         
         if(go_nextScreen == go_pauseScreen) LeanTween.moveLocal(go_nextScreen, new Vector3(0f, 0f, 0f), Settings.flt_menuTransitionSpeed).setEase(LeanTweenType.easeOutSine).setOnComplete(AllowPause).setIgnoreTimeScale(true);
-        else LeanTween.moveLocal(go_nextScreen, new Vector3(0f, 0f, 0f), Settings.flt_menuTransitionSpeed).setEase(LeanTweenType.easeOutSine).setIgnoreTimeScale(true);
+        else LeanTween.moveLocal(go_nextScreen, new Vector3(0f, 0f, 0f), Settings.flt_menuTransitionSpeed).setOnComplete(AllowPause).setEase(LeanTweenType.easeOutSine).setIgnoreTimeScale(true);
 
         go_lastScreen = go_nextScreen;
     }
@@ -113,6 +113,8 @@ public class MenuManager : MonoBehaviour
     {
         if(ready)
         {
+            bl_allowPause = false;
+
             go_nextScreen = screen;
 
             if (screen == go_gameScreen) LeanTween.moveLocal(go_lastScreen, new Vector3(750f, 0f, 0f), Settings.flt_menuTransitionSpeed).setEase(LeanTweenType.easeInSine).setOnComplete(SwitchToGame).setIgnoreTimeScale(true);
@@ -162,7 +164,7 @@ public class MenuManager : MonoBehaviour
 
             case 1:
                 if (!bl_allowPause) bl_allowPause = true;
-                GameManager.playerController.TogglePlayerControl();
+                // GameManager.playerController.TogglePlayerControl();
                 int_clearScreenSequence = 0;
 
                 go_optionsScreen.transform.localPosition = new Vector3(-750, 0f, 0f);
@@ -389,16 +391,14 @@ public class MenuManager : MonoBehaviour
         {
             bl_allowPause = false;
             bl_paused = true;
-            GameManager.playerController.TogglePlayerControl();
+            // GameManager.playerController.TogglePlayerControl();
 
             if (GamePaused != null)
                 GamePaused(this, new EventArgs());
 
-            //ClearScreens();
             go_nextScreen = go_pauseScreen;
             CallScreenWithTransition();
 
-            // SwitchScreenFancy(go_pauseScreen);
             Time.timeScale = 0;
             if (GameManager.ghost != null)
             {
@@ -439,6 +439,7 @@ public class MenuManager : MonoBehaviour
         Settings.flt_lookSensitivity = sli_lookSensitivity.value;
     }
 
+    //Updating the player's tooltip:
     public void UpdateTooltip(GameObject go_lookingAtObject, GameObject go_heldObject)
     {
         bool bl_lookingAtObjectIsInteractable = false;
@@ -452,14 +453,19 @@ public class MenuManager : MonoBehaviour
         img_tooltipBackground.gameObject.SetActive(true);
         tmp_tooltipText.gameObject.SetActive(true);
 
+        // If the object is interactable and pickupable, this checks if it is a doorknob. If not, propts player to pick up the object.
+
         if (bl_lookingAtObjectIsInteractable && go_lookingAtObject.GetComponent<Pickupable>() != null)
         {
             if (go_lookingAtObject.GetComponent<Pickupable>().bl_doorKnob) st_tooltipMessage = "Press \"E\" to grab handle";
             else st_tooltipMessage = "Press \"E\" to pick up " + go_lookingAtObject.name;
         }
 
+        //If the player is holding an object..
         if (go_heldObject != null)
         {
+
+            //..and the object is a dish:
             if (go_heldObject.GetComponent<Dish>() != null)
             {
                 bool bl_goesInCupboard = FindObjectOfType<CupboardTrigger>().li_dishes.Contains(go_heldObject.GetComponent<Dish>());
@@ -469,6 +475,7 @@ public class MenuManager : MonoBehaviour
                 if (go_heldObject.GetComponent<Dish>().bl_dirtyDish == false && bl_goesInCupboard) st_tooltipMessage = "Put this in the cupboard";
             }
 
+            //..and the object is a book:
             if (go_heldObject.GetComponent<Book>() != null)
             {
                 bool bl_goesOnShelf = FindObjectOfType<LibraryManager>().l_books.Contains(go_heldObject.GetComponent<Book>());
@@ -476,6 +483,7 @@ public class MenuManager : MonoBehaviour
                 if (bl_goesOnShelf) st_tooltipMessage = "Put this on the bookshelf";
             }
 
+            //..and the object is a toy:
             if (go_heldObject.GetComponent<Toy>() != null)
             {
                 bool bl_goesInToybox = FindObjectOfType<ToyChestTrigger>().li_toys.Contains(go_heldObject.GetComponent<Toy>());
@@ -483,6 +491,7 @@ public class MenuManager : MonoBehaviour
                 if (bl_goesInToybox) st_tooltipMessage = "Put this in the toy chest";
             }
 
+            //..and the object is the TV remote:
             if (go_heldObject.GetComponent<Pickupable>().bl_remote)
             {
                 bool bl_tvOn = FindObjectOfType<TVStatic>().bl_on;
