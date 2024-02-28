@@ -1,4 +1,5 @@
 using Cinemachine;
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -63,6 +64,8 @@ public class PlayerController : MonoBehaviour
     {
         // Grabbing required references to objects and systems
         menuManager = GameObject.Find("MenuManager").GetComponent<MenuManager>();
+        menuManager.GamePaused += OnPause;
+        menuManager.GameUnpaused += OnUnpause;
 
         go_lookingAtObject = GameObject.Find("Floor");
         go_heldPosition = GameObject.Find("HeldPosition");
@@ -75,6 +78,8 @@ public class PlayerController : MonoBehaviour
 
         Scene activeScene = SceneManager.GetActiveScene();
         if (activeScene.name == "ChrisTestScene") TogglePlayerControl();
+
+        
     }
 
     // Update is called once per frame
@@ -102,8 +107,8 @@ public class PlayerController : MonoBehaviour
             }
 
             // Handles Crouch
-            if (Input.GetKeyDown(KeyCode.LeftShift)) LeanTween.moveLocalY(go_cameraContainer, 0f, 0.25f); // bl_isCrouching = true;
-            if (Input.GetKeyUp(KeyCode.LeftShift)) LeanTween.moveLocalY(go_cameraContainer, 0.5f, 0.25f); // bl_isCrouching = false;
+            if (Input.GetKeyDown(KeyCode.LeftShift)) LeanTween.moveLocalY(go_cameraContainer, 0f, 0.25f);
+            if (Input.GetKeyUp(KeyCode.LeftShift)) LeanTween.moveLocalY(go_cameraContainer, 0.5f, 0.25f);
         }
 
         // Toggles pause
@@ -417,5 +422,15 @@ public class PlayerController : MonoBehaviour
                 }
                 break;
         }
+    }
+
+    //These are tied to the MenuManager's pause and unpause events
+    void OnPause(object source, EventArgs e)
+    {
+        TogglePlayerControl();
+    }
+    void OnUnpause(object source, EventArgs e)
+    {
+        TogglePlayerControl();
     }
 }
