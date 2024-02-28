@@ -92,13 +92,11 @@ public class FloorMess : Interactable
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
         bl_paused = true;
         Cursor.lockState = CursorLockMode.Confined;
-        Debug.Log("game paused while cleaning floor");
     }
     void OnUnpause(object source, EventArgs e)
     {
         if (!bl_gameActive) return;
         Cursor.SetCursor(broomPointer, Vector2.zero, CursorMode.Auto);
         bl_paused = false;
-        Debug.Log("game unpaused while cleaning floor");
     }
 }
