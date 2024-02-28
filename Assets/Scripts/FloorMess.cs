@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +12,15 @@ public class FloorMess : Interactable
 
     public List<FloorSplat> l_floorSplat;
 
-    public Texture2D mirrorPointer;
+    public Texture2D broomPointer;
+
+    [HideInInspector] public bool bl_paused = false;
+    
+    private void Awake()
+    {
+        GameManager.menuManager.GamePaused += OnPause;
+        GameManager.menuManager.GameUnpaused += OnUnpause;
+    }
 
     // toggles the floor cleaning minigame if the player is holding the right object
     public override void Interact()
@@ -24,12 +33,11 @@ public class FloorMess : Interactable
 
         bl_gameActive = !bl_gameActive;
         go_virtualCam.SetActive(!go_virtualCam.activeSelf);
-        GameManager.menuManager.Bl_allowPause = !GameManager.menuManager.Bl_allowPause;
         GameManager.playerController.TogglePlayerControl();
         GameManager.menuManager.img_crosshair.enabled = !GameManager.menuManager.img_crosshair.enabled;
 
         if (bl_gameActive)
-            Cursor.SetCursor(mirrorPointer, Vector2.zero, CursorMode.Auto);
+            Cursor.SetCursor(broomPointer, Vector2.zero, CursorMode.Auto);
         else
             Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
     }
@@ -45,7 +53,6 @@ public class FloorMess : Interactable
             bl_gameActive = false;
             bl_clean = true;
             go_virtualCam.SetActive(false);
-            GameManager.menuManager.Bl_allowPause = true;
             Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
             GameManager.menuManager.img_crosshair.enabled = true;
         }
@@ -56,6 +63,7 @@ public class FloorMess : Interactable
     {
         if (!bl_clean ||
             bl_gameActive ||
+            bl_paused ||
             GameManager.taskManager.li_taskList.Contains(TaskManager.Task.FindKey) ||
             GameManager.taskManager.li_taskList.Contains(TaskManager.Task.EscapeHouse) ||
             int_aggression < 2)
@@ -69,12 +77,28 @@ public class FloorMess : Interactable
         if (int_aggression >= 3)
             bl_bloody = true;
 
-        int int_rand = Random.Range(0, int_splats);
+        int int_rand = UnityEngine.Random.Range(0, int_splats);
         floorSplat = l_floorSplat[int_rand];
         GameManager.taskManager.AddTask(TaskManager.Task.MopFloor);
         GameManager.ghost.AddTask(TaskManager.Task.MopFloor);
         GameManager.ghost.RemoveTask(TaskManager.Task.GhostDirtyFloor);
 
         floorSplat.ReDirty(bl_bloody);
+    }
+
+    void OnPause(object source, EventArgs e)
+    {
+        if (!bl_gameActive) return;
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        bl_paused = true;
+        Cursor.lockState = CursorLockMode.Confined;
+        Debug.Log("game paused while cleaning floor");
+    }
+    void OnUnpause(object source, EventArgs e)
+    {
+        if (!bl_gameActive) return;
+        Cursor.SetCursor(broomPointer, Vector2.zero, CursorMode.Auto);
+        bl_paused = false;
+        Debug.Log("game unpaused while cleaning floor");
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,6 +19,14 @@ public class Mirror : Interactable
 
     public Texture2D dusterPointer;
 
+    [HideInInspector] public bool bl_paused = false;
+
+    private void Awake()
+    {
+        GameManager.menuManager.GamePaused += OnPause;
+        GameManager.menuManager.GameUnpaused += OnUnpause;
+    }
+
     // toggles the mirror cleaning minigame if the player is holding the right object
     public override void Interact()
     {
@@ -29,7 +38,6 @@ public class Mirror : Interactable
 
         bl_gameActive = !bl_gameActive;
         go_virtualCam.SetActive(!go_virtualCam.activeSelf);
-        GameManager.menuManager.Bl_allowPause = !GameManager.menuManager.Bl_allowPause;
         GameManager.playerController.TogglePlayerControl();
         GameManager.menuManager.img_crosshair.enabled = !GameManager.menuManager.img_crosshair.enabled;
 
@@ -50,13 +58,12 @@ public class Mirror : Interactable
             bl_gameActive = false;
             bl_clean = true;
             go_virtualCam.SetActive(false);
-            GameManager.menuManager.Bl_allowPause = true;
             Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
             GameManager.menuManager.img_crosshair.enabled = true;
 
             //Spooky Encounter
             int int_aggro = GameManager.ghost.int_curAggressionLevel - 1;
-            float flt_rand = Random.Range(0, 100);
+            float flt_rand = UnityEngine.Random.Range(0, 100);
             if(flt_rand <= l_flt_chanceForSpookByAggro[int_aggro])
             {
                 GameObject go_spooky = Instantiate(l_go_spookyThingByAggro[int_aggro]);
@@ -71,6 +78,7 @@ public class Mirror : Interactable
     {
         if (!bl_clean ||
             bl_gameActive ||
+            bl_paused ||
             GameManager.taskManager.li_taskList.Contains(TaskManager.Task.FindKey) ||
             GameManager.taskManager.li_taskList.Contains(TaskManager.Task.EscapeHouse) ||
             int_aggression < 2)
@@ -87,12 +95,28 @@ public class Mirror : Interactable
             bloodText?.ReDirty();
         }
 
-        int int_rand = Random.Range(0, int_splats);
+        int int_rand = UnityEngine.Random.Range(0, int_splats);
         mirrorSplat = l_mirrorSplat[int_rand];
         GameManager.taskManager.AddTask(TaskManager.Task.CleanMirror);
         GameManager.ghost.AddTask(TaskManager.Task.CleanMirror);
         GameManager.ghost.RemoveTask(TaskManager.Task.GhostDirtyMirror);
 
         mirrorSplat.ReDirty(bl_bloody);
+    }
+
+    void OnPause(object source, EventArgs e)
+    {
+        if (!bl_gameActive) return;
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        bl_paused = true;
+        Cursor.lockState = CursorLockMode.Confined;
+        Debug.Log("game paused while cleaning floor");
+    }
+    void OnUnpause(object source, EventArgs e)
+    {
+        if (!bl_gameActive) return;
+        Cursor.SetCursor(dusterPointer, Vector2.zero, CursorMode.Auto);
+        bl_paused = false;
+        Debug.Log("game unpaused while cleaning floor");
     }
 }

@@ -375,8 +375,8 @@ public class MenuManager : MonoBehaviour
             }
             bl_paused = false;
 
-            if (GamePaused != null)
-                GamePaused(this, new EventArgs());
+            if (GameUnpaused != null)
+                GameUnpaused(this, new EventArgs());
         }
     }
 
@@ -389,11 +389,11 @@ public class MenuManager : MonoBehaviour
         {
             bl_allowPause = false;
             bl_paused = true;
-
-            if (GameUnpaused != null)
-                GameUnpaused(this, new EventArgs());
-
             GameManager.playerController.TogglePlayerControl();
+
+            if (GamePaused != null)
+                GamePaused(this, new EventArgs());
+
             //ClearScreens();
             go_nextScreen = go_pauseScreen;
             CallScreenWithTransition();
