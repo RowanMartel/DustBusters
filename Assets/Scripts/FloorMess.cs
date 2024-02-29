@@ -33,6 +33,7 @@ public class FloorMess : Interactable
 
         bl_gameActive = !bl_gameActive;
         go_virtualCam.SetActive(!go_virtualCam.activeSelf);
+        GameManager.Bl_inCleaningGame = !GameManager.Bl_inCleaningGame;
         GameManager.playerController.TogglePlayerControl();
         GameManager.menuManager.img_crosshair.enabled = !GameManager.menuManager.img_crosshair.enabled;
 
@@ -49,6 +50,7 @@ public class FloorMess : Interactable
         if (int_splats <= 0)
         {
             GameManager.taskManager.CompleteTask(TaskManager.Task.MopFloor);
+            GameManager.Bl_inCleaningGame = false;
             GameManager.playerController.TogglePlayerControl();
             bl_gameActive = false;
             bl_clean = true;

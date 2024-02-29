@@ -414,7 +414,7 @@ public class PlayerController : MonoBehaviour
             // turning active from inactive
             case State.inactive:
                 en_state = State.active;
-                Cursor.lockState = CursorLockMode.Locked;
+                if (!GameManager.Bl_inCleaningGame) Cursor.lockState = CursorLockMode.Locked;
                 if (Go_heldObject != null && !GameManager.menuManager.Bl_paused)
                 {
                     Go_heldObject.GetComponent<Renderer>().enabled = true;
