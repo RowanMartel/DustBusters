@@ -906,6 +906,7 @@ public class GhostBehavior : MonoBehaviour
                 }
                 AddTask(TaskManager.Task.ResetBreakerBox);
 
+                //Activate Jack in the Box
                 foreach(JackInTheBoxManager jack in GameObject.FindObjectsByType<JackInTheBoxManager>(FindObjectsSortMode.None))
                 {
                     jack.ActivateJack();

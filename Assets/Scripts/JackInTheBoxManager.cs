@@ -22,7 +22,9 @@ public class JackInTheBoxManager : Toy
     {
         if (bl_turnHandle)
         {
+            //Rotates handle if handle needs rotating
             go_handle.transform.Rotate(0f, 0f, -1f, Space.Self);
+            //Plays the next audio clip when the current audio clip is done
             if (!as_jackAudio.isPlaying)
             {
                 if(as_jackAudio.clip == ac_jackMusic01 && GameManager.playerController.Go_heldObject != gameObject)
@@ -38,6 +40,7 @@ public class JackInTheBoxManager : Toy
         }
     }
 
+    //Springs the Jack in the Box when picked up
     public override void Interact()
     {
         base.Interact();
@@ -47,6 +50,7 @@ public class JackInTheBoxManager : Toy
         }
     }
 
+    //Prepare jack in the box to spring
     public void ActivateJack()
     {
         bl_turnHandle = true;
@@ -54,6 +58,7 @@ public class JackInTheBoxManager : Toy
         GameManager.soundManager.PlayClip(ac_jackMusic01, as_jackAudio, false);
     }
 
+    //Plays spring audio and animation
     public void SpringJack()
     {
         as_jackAudio.Stop();
