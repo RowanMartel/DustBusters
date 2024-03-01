@@ -161,24 +161,7 @@ public class PlayerController : MonoBehaviour
             go_heldObject.transform.rotation = go_heldPosition.transform.rotation;
             go_heldObject.transform.Rotate(pu_pickup.v3_heldRotationMod);
 
-            //pu_pickup.RB.MoveRotation(Quaternion.Euler(pu_pickup.v3_heldRotationMod));
         }
-
-        // This handles a held objects position in front of player while player is inactive, used during chore activities - UNUSED
-        /*else if (go_heldObject != null && en_state == State.inactive)
-        {
-            Vector3 heldPosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1.5f));
-            Vector3 direction = go_heldObject.transform.position - heldPosition;
-            float distance = direction.magnitude;
-            Vector3 force = direction.normalized;
-
-            if (distance > 0) go_heldObject.GetComponent<Rigidbody>().AddForce(-force * distance * 10, ForceMode.VelocityChange);
-
-            go_heldObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            go_heldObject.transform.rotation = transform.rotation;
-
-            go_heldObject.transform.Rotate(go_heldObject.GetComponent<Pickupable>().v3_heldRotationMod);
-        }*/
 
         // Player can only move and jump if in Active state
         if (en_state == State.active)
