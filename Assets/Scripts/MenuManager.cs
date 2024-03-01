@@ -165,7 +165,6 @@ public class MenuManager : MonoBehaviour
 
             case 1:
                 if (!bl_allowPause) bl_allowPause = true;
-                // GameManager.playerController.TogglePlayerControl();
                 int_clearScreenSequence = 0;
 
                 go_optionsScreen.transform.localPosition = new Vector3(-750, 0f, 0f);
@@ -320,7 +319,6 @@ public class MenuManager : MonoBehaviour
                 LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 0, 1f).setOnComplete(QuitToTitleSequence).setIgnoreTimeScale(true);
                 break;
             case 2:
-                // Time.timeScale = 1;
                 Cursor.lockState = CursorLockMode.Confined;
                 int_quitToMenuSequence = 0;
                 if (bl_paused) bl_paused = false;
@@ -392,7 +390,6 @@ public class MenuManager : MonoBehaviour
         {
             bl_allowPause = false;
             bl_paused = true;
-            // GameManager.playerController.TogglePlayerControl();
 
             if (GamePaused != null)
                 GamePaused(this, new EventArgs());
