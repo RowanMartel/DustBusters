@@ -26,4 +26,14 @@ public class ButtonManager : MonoBehaviour
     {
         LeanTween.scale(button, new Vector3(1, 1, 1), .1f).setIgnoreTimeScale(true);
     }
+
+    public void OnPointerEnterSlider(GameObject slider)
+    {
+        LeanTween.scale(slider, new Vector3(1.075f, 1.075f, 1.075f), .1f).setIgnoreTimeScale(true);
+    }
+
+    public void OnPointerExitSlider(GameObject slider)
+    {
+        LeanTween.scale(slider, new Vector3(1, 1, 1), .1f).setIgnoreTimeScale(true);
+    }
 }

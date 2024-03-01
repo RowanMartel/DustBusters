@@ -68,31 +68,40 @@ public class MenuManager : MonoBehaviour
 
     private void Awake()
     {
+
+        // These are primary menu related image component references:
         img_damageOverlay = FindObjectOfType<DamageOverlay>(true).GetComponent<Image>();
         img_deathMessage = FindObjectOfType<DeathMessage>(true).GetComponent<Image>();
         img_deathScreen = GameObject.Find("DeathOverlay").GetComponent<Image>();
         img_fadeOverlay = GameObject.Find("FadeOverlay").GetComponent<Image>();
 
+        // These components make up the player tooltip:
         img_tooltipBackground = GameObject.Find("ToolTipBackground").GetComponent<Image>();
         tmp_tooltipText = GameObject.Find("ToolTipText").GetComponent<TextMeshProUGUI>();
 
+        // These components have references because they are animated into/out of view
         go_quitButton = GameObject.Find("DeathScreenQuit");
         go_startButton = GameObject.Find("StartScreenButton");
         go_OrientationNote = GameObject.Find("Note");
         
+        // These are the references to the Options screen slider components:
         sli_volume = GameObject.Find("VolumeSlider").GetComponent<Slider>();
         sli_lookSensitivity = GameObject.Find("LookSensitivitySlider").GetComponent<Slider>();
 
+        // We set the volume and look sensitivity to the defaults defined in Settings
         sli_volume.value = Settings.flt_volume;
         sli_lookSensitivity.value = Settings.flt_lookSensitivity;
 
+        // The debug screen is a special case screen that is not set active or deactivated elsewhere, so it is deactivated here
         go_debugScreen.SetActive(false);
 
+        // The game should load into the Title Scene, and so we show the title scene object. Otherwise we just show a blank screen.
         Scene activeScene = SceneManager.GetActiveScene();
 
         if (activeScene.name == "TitleScene") SwitchScreen(go_titleScreen);
         else ClearScreens();
 
+        // The screen buffer is used in animation transitions, and we set it to TItleScreen so it is not null at start
         go_screenBuffer = go_titleScreen;
     }
 
@@ -474,7 +483,7 @@ public class MenuManager : MonoBehaviour
             }
 
             //..and the object is a book:
-            if (go_heldObject.GetComponent<Book>() != null)
+            else if (go_heldObject.GetComponent<Book>() != null)
             {
                 bool bl_goesOnShelf = FindObjectOfType<LibraryManager>().l_books.Contains(go_heldObject.GetComponent<Book>());
 
@@ -482,7 +491,7 @@ public class MenuManager : MonoBehaviour
             }
 
             //..and the object is a toy:
-            if (go_heldObject.GetComponent<Toy>() != null)
+            else if (go_heldObject.GetComponent<Toy>() != null)
             {
                 bool bl_goesInToybox = FindObjectOfType<ToyChestTrigger>().li_toys.Contains(go_heldObject.GetComponent<Toy>());
 
@@ -490,7 +499,7 @@ public class MenuManager : MonoBehaviour
             }
 
             //..and the object is the TV remote:
-            if (go_heldObject.GetComponent<Pickupable>().bl_remote)
+            else if (go_heldObject.GetComponent<Pickupable>().bl_remote)
             {
                 bool bl_tvOn = FindObjectOfType<TVStatic>().bl_on;
 
@@ -498,15 +507,17 @@ public class MenuManager : MonoBehaviour
             }
         }
 
-        // If the object the player is looking at is interactable, but not pickupable:
-
+        // If the object the player is looking at is interactable, but not pickupable..
         if (bl_lookingAtObjectIsInteractable && go_lookingAtObject.GetComponent<Pickupable>() == null)
         {
+            //..and the obejct is a light switch:
             if (go_lookingAtObject.GetComponent<LightSwitch>() != null) st_tooltipMessage = "Press \"E\" to toggle switch";
 
-            if (go_lookingAtObject.GetComponent<FuseBox>() != null) st_tooltipMessage = "Press \"E\" to toggle breaker";
+            //..and the object is the breaker box:
+            else if (go_lookingAtObject.GetComponent<FuseBox>() != null) st_tooltipMessage = "Press \"E\" to toggle breaker";
 
-            if (go_lookingAtObject.GetComponent<Cobweb>() != null)
+            //..and the object is a cobweb:
+            else if (go_lookingAtObject.GetComponent<Cobweb>() != null)
             {
                 if(go_lookingAtObject.GetComponent<Cobweb>().bl_cleaned == false)
                 {
@@ -515,7 +526,8 @@ public class MenuManager : MonoBehaviour
                 }
             }
 
-            if (go_lookingAtObject.GetComponent<Mirror>() != null && go_lookingAtObject.GetComponent<Mirror>().bl_gameActive == false)
+            //..and the object is the mirror chore:
+            else if (go_lookingAtObject.GetComponent<Mirror>() != null && go_lookingAtObject.GetComponent<Mirror>().bl_gameActive == false)
             {
                 if (go_lookingAtObject.GetComponent<Mirror>().bl_clean == false)
                 {
@@ -524,7 +536,8 @@ public class MenuManager : MonoBehaviour
                 }
             }
 
-            if (go_lookingAtObject.GetComponent<FloorMess>() != null)
+            //..and the object is the floor mess chore:
+            else if (go_lookingAtObject.GetComponent<FloorMess>() != null)
             {
                 if (go_lookingAtObject.GetComponent<FloorMess>().bl_clean == false && go_lookingAtObject.GetComponent<FloorMess>().bl_gameActive == false)
                 {
@@ -533,7 +546,8 @@ public class MenuManager : MonoBehaviour
                 }
             }
 
-            if (go_lookingAtObject.GetComponent<Fireplace>() != null)
+            //..and the object is the fireplace:
+            else if (go_lookingAtObject.GetComponent<Fireplace>() != null)
             {
                 if (go_lookingAtObject.GetComponent<Fireplace>().bl_lit == false)
                 {
@@ -542,12 +556,14 @@ public class MenuManager : MonoBehaviour
                 }
             }
 
-            if (go_lookingAtObject.GetComponent<DrawerOpen>() != null)
+            //..and the object is a drawer:
+            else if (go_lookingAtObject.GetComponent<DrawerOpen>() != null)
             {
                 if (go_lookingAtObject.GetComponent<DrawerOpen>().Bl_ready == true && go_lookingAtObject.GetComponent<DrawerOpen>().Bl_open == false) st_tooltipMessage = "Press \"E\" to open drawer";
             }
 
-            if (go_lookingAtObject.GetComponent<Exit>() != null)
+            //..and the object is the exit door:
+            else if (go_lookingAtObject.GetComponent<Exit>() != null)
             {
                 if (GameManager.taskManager.li_taskList.Contains(TaskManager.Task.EscapeHouse))
                 {
@@ -558,13 +574,17 @@ public class MenuManager : MonoBehaviour
             }
         }
 
+        // If the player is in inactive state, it'll reset the tooltip to null, resulting in it getting dismissed from the screen
         if (GameManager.playerController.En_state == PlayerController.State.inactive) st_tooltipMessage = null;
 
+        // The tooltip message is set here, and its background adjusted to its contents:
         if (st_tooltipMessage != null)
         {
             tmp_tooltipText.text = st_tooltipMessage;
             img_tooltipBackground.rectTransform.sizeDelta = new Vector2(tmp_tooltipText.text.Length * 8, img_tooltipBackground.rectTransform.sizeDelta.y);
         }
+
+        // If the tooltip message is never set, or is set back to null at the end, then this deactivates message and background components
         else
         {
             img_tooltipBackground.gameObject.SetActive(false);
