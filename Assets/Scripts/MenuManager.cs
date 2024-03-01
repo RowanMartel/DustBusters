@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using TMPro;
 using UnityEngine;
@@ -556,11 +557,13 @@ public class MenuManager : MonoBehaviour
                     if (go_heldObject == null || go_heldObject.GetComponent<Pickupable>().bl_frontDoorKey == false) st_tooltipMessage = "Find the key to leave";
                     else st_tooltipMessage = "Press \"E\" to leave house";
                 }
-                else st_tooltipMessage = "Complete your task list before you leave";
+                else st_tooltipMessage = "Complete your chore list before you leave";
             }
         }
 
-        if(st_tooltipMessage != null)
+        if (GameManager.playerController.En_state == PlayerController.State.inactive) st_tooltipMessage = null;
+
+        if (st_tooltipMessage != null)
         {
             tmp_tooltipText.text = st_tooltipMessage;
             img_tooltipBackground.rectTransform.sizeDelta = new Vector2(tmp_tooltipText.text.Length * 8, img_tooltipBackground.rectTransform.sizeDelta.y);

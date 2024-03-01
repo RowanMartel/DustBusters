@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
 
     // Reference to the camera and ability to look around
     protected GameObject go_cameraContainer;
+    public CinemachineVirtualCamera vc_playerCamera;
 
     // Default position for where the player holds objects
     protected Vector3 v3_heldPositionReset;
@@ -87,6 +88,9 @@ public class PlayerController : MonoBehaviour
     {
         // This calls the method to fire the raycast that tells us what the player is looking at
         GetLookedAtObject();
+
+        // This sends required info to the tooltip
+        menuManager.UpdateTooltip(go_lookingAtObject, go_heldObject);
 
         // Player's ability to interact
         if (Input.GetKeyDown(KeyCode.E)) Interact();
@@ -316,9 +320,6 @@ public class PlayerController : MonoBehaviour
             if (go_lookingAtObject.CompareTag("Interactable")) go_lookingAtObject.GetComponent<Outline>().enabled = false;
             go_lookingAtObject = null;
         }
-
-        // Testing Tooltip
-        menuManager.UpdateTooltip(go_lookingAtObject, go_heldObject);
     }
 
     // Handles the player's ability to extend where the held prop is positioned, like reaching out in front of them
