@@ -141,6 +141,7 @@ public class PlayerController : MonoBehaviour
 
             Vector3 v3_modifiedHeldPosition = go_heldPosition.transform.TransformPoint(go_heldPosition.transform.localPosition.x + pu_pickup.v3_heldPositionMod.x, go_heldPosition.transform.localPosition.y - 0.5f + pu_pickup.v3_heldPositionMod.y, go_heldPosition.transform.localPosition.z - 1 + pu_pickup.v3_heldPositionMod.z);
 
+            //Casts a ray to ensure that the object isn't being shoved into a wall
             RaycastHit hit;
             Debug.DrawRay(go_cameraContainer.transform.position, v3_modifiedHeldPosition - go_cameraContainer.transform.position, Color.red);
             if(Physics.Raycast(go_cameraContainer.transform.position, v3_modifiedHeldPosition - go_cameraContainer.transform.position, out hit, Vector3.Distance(go_cameraContainer.transform.position, v3_modifiedHeldPosition)))
@@ -156,6 +157,7 @@ public class PlayerController : MonoBehaviour
             float distance = direction.magnitude;
             Vector3 force = direction.normalized;
 
+            //Positions object appropriately
             if (distance > 0) go_heldObject.GetComponent<Rigidbody>().AddForce(-force * distance * 10, ForceMode.VelocityChange);
             go_heldObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
             go_heldObject.transform.rotation = go_heldPosition.transform.rotation;
@@ -375,6 +377,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //Player loses ground when they leave the ground
     private void OnCollisionExit(Collision collision)
     {
         if(collision.gameObject.tag == "Floor") bl_isGrounded = false;
