@@ -32,7 +32,10 @@ public class FloorMess : Interactable
         if (bl_clean) return;
 
         bl_gameActive = !bl_gameActive;
+
+        // cinemachine brain goes to the minigame cam when toggled on, and the player cam when toggled off
         go_virtualCam.SetActive(!go_virtualCam.activeSelf);
+
         GameManager.Bl_inCleaningGame = !GameManager.Bl_inCleaningGame;
         GameManager.playerController.TogglePlayerControl();
         GameManager.menuManager.img_crosshair.enabled = !GameManager.menuManager.img_crosshair.enabled;
@@ -54,7 +57,7 @@ public class FloorMess : Interactable
             GameManager.playerController.TogglePlayerControl();
             bl_gameActive = false;
             bl_clean = true;
-            go_virtualCam.SetActive(false);
+            go_virtualCam.SetActive(false); // return to player virtual cam
             Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
             GameManager.menuManager.img_crosshair.enabled = true;
         }
@@ -88,6 +91,7 @@ public class FloorMess : Interactable
         floorSplat.ReDirty(bl_bloody);
     }
 
+    // handles cursor state when the player pauses while in the minigame. receives an event from menumanager
     void OnPause(object source, EventArgs e)
     {
         if (!bl_gameActive) return;
@@ -95,6 +99,7 @@ public class FloorMess : Interactable
         bl_paused = true;
         Cursor.lockState = CursorLockMode.Confined;
     }
+    // handles cursor state when the player unpauses while in the minigame. receives an event from menumanager
     void OnUnpause(object source, EventArgs e)
     {
         if (!bl_gameActive) return;
