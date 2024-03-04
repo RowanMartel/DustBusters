@@ -15961,6 +15961,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3934414225816213369, guid: f57bdf226e8a5704cb1391af84551a4f, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -5221963080773851136, guid: 5c065ed45684c424da1ffee48ccaf8c4, type: 3}
+    - target: {fileID: 5300691402701142033, guid: f57bdf226e8a5704cb1391af84551a4f, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -5221963080773851136, guid: 5c065ed45684c424da1ffee48ccaf8c4, type: 3}
+    - target: {fileID: 5315937688070379533, guid: f57bdf226e8a5704cb1391af84551a4f, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -5221963080773851136, guid: 5c065ed45684c424da1ffee48ccaf8c4, type: 3}
+    - target: {fileID: 7981515163591318684, guid: f57bdf226e8a5704cb1391af84551a4f, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -5221963080773851136, guid: 5c065ed45684c424da1ffee48ccaf8c4, type: 3}
     - target: {fileID: 8161605544233097197, guid: f57bdf226e8a5704cb1391af84551a4f, type: 3}
       propertyPath: m_Name
       value: House
@@ -19966,7 +19982,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!1 &6272519008392677977
 GameObject:
   m_ObjectHideFlags: 0
@@ -20204,7 +20220,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!4 &6850278254875863699
 Transform:
   m_ObjectHideFlags: 0
@@ -21133,7 +21149,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!33 &8291317545137553835
 MeshFilter:
   m_ObjectHideFlags: 0
