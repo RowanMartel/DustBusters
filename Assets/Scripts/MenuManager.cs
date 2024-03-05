@@ -3,7 +3,6 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.tvOS;
 using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
