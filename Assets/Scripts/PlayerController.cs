@@ -160,7 +160,7 @@ public class PlayerController : MonoBehaviour
             //Positions object appropriately
             if (distance > 0) go_heldObject.GetComponent<Rigidbody>().AddForce(-force * distance * 10, ForceMode.VelocityChange);
             go_heldObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            go_heldObject.transform.rotation = go_heldPosition.transform.rotation;
+            if(!pu_pickup.bl_doorKnob) go_heldObject.transform.rotation = go_heldPosition.transform.rotation;
             go_heldObject.transform.Rotate(pu_pickup.v3_heldRotationMod);
 
         }
