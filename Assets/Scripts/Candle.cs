@@ -18,7 +18,7 @@ public class Candle: Interactable
     // light the fireplace if the player is holding the right item
     public override void Interact()
     {
-        Light();
+        if(!bl_lit) Light();
     }
 
     // complete the light fireplace task and start the vfx and sfx
