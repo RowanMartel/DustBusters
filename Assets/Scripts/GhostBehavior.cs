@@ -552,8 +552,8 @@ public class GhostBehavior : MonoBehaviour
         }
 
         //Attempt to shut off fuse box
-        FuseBox fb_fuseBox = tr_currentPatrolPoint.GetComponent<FuseBox>();
-        if (fb_fuseBox != null)
+        //FuseBox fb_fuseBox = tr_currentPatrolPoint.GetComponent<FuseBox>();
+        if (tr_currentPatrolPoint.CompareTag("FuseBox"))
         {
             if (fb_fuseBox.bl_isOn)
             {

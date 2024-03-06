@@ -158,6 +158,8 @@ public class DebugSystem : MonoBehaviour
                 return "Put Away Books";
             case TaskManager.Task.ResetBreakerBox:
                 return "Reset Breaker Box";
+            case TaskManager.Task.PutAwayToys:
+                return "Put Away Toys";
             default:
                 return "Error, Improper Task";
         }
