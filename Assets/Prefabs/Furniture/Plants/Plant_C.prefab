@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 114896218544953615}
   - component: {fileID: 2578371259786849301}
   - component: {fileID: 9145680459570959450}
+  - component: {fileID: 4395137311585148861}
   m_Layer: 0
   m_Name: Plant_C
   m_TagString: Untagged
@@ -132,3 +133,21 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+--- !u!114 &4395137311585148861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055644550190044429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
