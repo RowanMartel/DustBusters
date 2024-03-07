@@ -8,7 +8,7 @@ public class EasterEggPicture : MonoBehaviour
     //public Image img_image;
     public Sprite spt_normal;
     public Sprite spt_after;
-    public Material mat_material;
+    Material mat_material;
 
     private void Start()
     {

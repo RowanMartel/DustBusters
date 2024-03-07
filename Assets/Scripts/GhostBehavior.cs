@@ -192,11 +192,13 @@ public class GhostBehavior : MonoBehaviour
         //Image easter egg
         if (flt_curTimeTweenImgChecks <= 0)
         {
+            Debug.Log("A");
             foreach (EasterEggPicture eep_picture in l_eep_pictures)
             {
                 if (Vector3.Distance(eep_picture.transform.position, transform.position) <= flt_distToImg)
                 {
                     float flt_imgAttempt = Random.Range(0f, 100f);
+                    Debug.Log(flt_imgAttempt);
                     if (flt_imgAttempt <= flt_chanceToChangeImg)
                     {
                         eep_picture.Switch();
