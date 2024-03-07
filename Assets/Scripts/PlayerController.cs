@@ -375,8 +375,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Floor")
         {
-            float flt_velocity = rb_player.velocity.magnitude;
-            if (bl_isGrounded == false && flt_velocity < 0.5f) GameManager.soundManager.PlayClip(ac_land, as_source, true);
+            if (!bl_isGrounded) GameManager.soundManager.PlayClip(ac_land, as_source, true);
             bl_isGrounded = true;
         }
     }
