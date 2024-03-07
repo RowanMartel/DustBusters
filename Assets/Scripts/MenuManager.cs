@@ -64,6 +64,10 @@ public class MenuManager : MonoBehaviour
 
     public event EventHandler<EventArgs> GamePaused;
     public event EventHandler<EventArgs> GameUnpaused;
+    public event EventHandler<EventArgs> GameStart;
+    public event EventHandler<EventArgs> MenuEntered;
+    public event EventHandler<EventArgs> CreditsEntered;
+    public event EventHandler<EventArgs> DeathScreenEntered;
 
     private void Awake()
     {
@@ -227,6 +231,8 @@ public class MenuManager : MonoBehaviour
             case 0:
                 Time.timeScale = 0;
                 go_deathScreen.SetActive(true);
+                if (DeathScreenEntered != null)
+                    DeathScreenEntered(this, new EventArgs());
                 int_deathSequence++;
                 LeanTween.alpha(img_deathScreen.GetComponent<RectTransform>(), 1, 1f).setOnComplete(ShowDeathSequence).setIgnoreTimeScale(true);
                 break;
@@ -281,6 +287,8 @@ public class MenuManager : MonoBehaviour
             case 2:
                 int_enterSequence++;                
                 SwitchScreen(go_startScreen);
+                if (GameStart != null)
+                    GameStart(this, new EventArgs());
                 LeanTween.moveLocal(go_OrientationNote, new Vector3(0f, 25f, 0f), 0.5f).setEase(LeanTweenType.easeOutSine).setOnComplete(EnterGameSequence).setIgnoreTimeScale(true);
                 break;
             case 3:
@@ -330,6 +338,8 @@ public class MenuManager : MonoBehaviour
                 GameManager.ResetGame();
                 go_pauseScreen.transform.localPosition = new Vector3(-1000, 0, 0);
                 SwitchScreen(go_titleScreen);
+                if (MenuEntered != null)
+                    MenuEntered(this, new EventArgs());
                 SceneManager.LoadScene("TitleScene");
                 LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 0, 1f).setOnComplete(QuitToTitleSequence).setIgnoreTimeScale(true);
                 break;
@@ -361,6 +371,8 @@ public class MenuManager : MonoBehaviour
                 ClearScreens();
                 SceneManager.LoadScene("EndScreen");
                 SwitchScreen(go_endScreen);
+                if (CreditsEntered != null)
+                    CreditsEntered(this, new EventArgs());
                 LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 0, 1f).setOnComplete(ToEnd).setIgnoreTimeScale(true);
                 break;
             case 2:
