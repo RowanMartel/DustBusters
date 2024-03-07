@@ -375,7 +375,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Floor")
         {
-            if (bl_isGrounded == false) GameManager.soundManager.PlayClip(ac_land, as_source, true);
+            if (!bl_isGrounded) GameManager.soundManager.PlayClip(ac_land, as_source, true);
             bl_isGrounded = true;
         }
     }
