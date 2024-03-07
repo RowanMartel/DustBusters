@@ -104,6 +104,13 @@ public class MenuManager : MonoBehaviour
         go_screenBuffer = go_titleScreen;
     }
 
+    // Hides the player's GUI
+    public void ToggleGUI()
+    {
+        if (go_gameScreen.activeSelf) go_gameScreen.SetActive(false);
+        else go_gameScreen.SetActive(true);
+    }
+
     // Brings up needed Menu screen with a LeanTween transition
     public void CallScreenWithTransition()
     {
