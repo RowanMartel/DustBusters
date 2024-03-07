@@ -148,7 +148,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (hit.collider != null)
                 {
-                    Debug.Log(hit.collider.gameObject.name);
+                    // Debug.Log(hit.collider.gameObject.name);
                     v3_modifiedHeldPosition = hit.point - ((hit.point - go_cameraContainer.transform.position) * flt_heldObjDistFromWall);
                 }
             }
@@ -297,7 +297,7 @@ public class PlayerController : MonoBehaviour
 
                 go_lookingAtObject = hit.collider.gameObject;
 
-                if (go_lookingAtObject.CompareTag("Interactable")) go_lookingAtObject.GetComponent<Outline>().enabled = true;
+                if (go_lookingAtObject.CompareTag("Interactable") && go_lookingAtObject.GetComponent<Candle>() == null) go_lookingAtObject.GetComponent<Outline>().enabled = true;
             }
         }
         if (!Physics.Raycast(ray_playerView, out hit, 3, lm) && go_lookingAtObject != null)

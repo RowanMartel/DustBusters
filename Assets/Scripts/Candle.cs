@@ -18,7 +18,8 @@ public class Candle: Interactable
     // light the fireplace if the player is holding the right item
     public override void Interact()
     {
-        if(!bl_lit) Light();
+        if (GameManager.playerController.Go_heldObject == null || !GameManager.playerController.Go_heldObject.GetComponent<Pickupable>().bl_lighter || bl_lit == true) return;
+        Light();
     }
 
     // complete the light fireplace task and start the vfx and sfx

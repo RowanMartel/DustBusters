@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 8863301035214593987}
   m_Layer: 0
   m_Name: spoon
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -132,7 +132,7 @@ MonoBehaviour:
   bl_hideable: 0
   bl_toThrow: 1
   bl_canDamagePlayer: 0
-  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  v3_heldRotationMod: {x: 120, y: 0, z: 180}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
 --- !u!114 &1597000834200531424
