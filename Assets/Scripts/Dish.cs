@@ -23,8 +23,10 @@ public class Dish : Pickupable
     public AudioClip ac_break;
     AudioSource as_source;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
+
         bl_pickupable = true;
         ren_meshRenderer = GetComponent<MeshRenderer>();
         rb = GetComponent<Rigidbody>();
@@ -48,7 +50,7 @@ public class Dish : Pickupable
     // changes the model and adjusts all tasks relating to this dish to either remove or add it as a requirement
     void Break()
     {
-        GameManager.soundManager.PlayClip(ac_break, as_source);
+        GameManager.soundManager.PlayClip(ac_break, as_source, true);
         GetComponent<MeshFilter>().mesh = brokenMesh;
         bl_broken = true;
 

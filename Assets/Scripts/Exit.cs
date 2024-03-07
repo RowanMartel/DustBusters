@@ -22,7 +22,7 @@ public class Exit : Interactable
             !GameManager.taskManager.li_taskList.Contains(TaskManager.Task.EscapeHouse))
             return;
 
-        GameManager.soundManager.PlayClip(ac_unlock, as_source);
+        GameManager.soundManager.PlayClip(ac_unlock, as_source, true);
 
         GameManager.playerController.En_state = PlayerController.State.inactive;
         Time.timeScale = 0;

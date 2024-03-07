@@ -12,6 +12,11 @@ public class HealthSystem : MonoBehaviour
     public AudioClip ac_hurtSharp;
     AudioSource as_source;
 
+    private void Awake()
+    {
+        GameManager.healthSystem = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +36,7 @@ public class HealthSystem : MonoBehaviour
 
         if (pu_pickupable.bl_canDamagePlayer)
         {
-            GameManager.soundManager.PlayClip(ac_hurtSharp, as_source);
+            GameManager.soundManager.PlayClip(ac_hurtSharp, as_source, true);
 
             int_playerHealth--;
             if (int_playerHealth <= 0)

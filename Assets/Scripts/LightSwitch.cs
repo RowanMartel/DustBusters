@@ -70,7 +70,7 @@ public class LightSwitch : Interactable
         bl_on = !bl_on;
 
         AudioSource as_source = GetComponent<AudioSource>();
-        GameManager.soundManager.PlayClip(as_source.clip, as_source);
+        GameManager.soundManager.PlayClip(as_source.clip, as_source, true);
 
         if (bl_on && bl_fuseActive)
         {

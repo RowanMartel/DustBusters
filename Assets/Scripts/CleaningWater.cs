@@ -21,6 +21,7 @@ public class CleaningWater : MonoBehaviour
 
     public Material mat_cleanWater;
     public Material mat_bloodyWater;
+    public Renderer ren_waterVisual;
 
     private void Start()
     {
@@ -32,7 +33,7 @@ public class CleaningWater : MonoBehaviour
     // if other is a dirty dish, clean it, then check if complete in all instances of this script
     private void OnTriggerEnter(Collider other)
     {
-        GameManager.soundManager.PlayClip(ac_splash, as_source);
+        GameManager.soundManager.PlayClip(ac_splash, as_source, true);
         
         //Plays the appropriate splash effect
         if (splashEffect != null)
@@ -61,7 +62,7 @@ public class CleaningWater : MonoBehaviour
     public void TurnBloody()
     {
         bl_bloody = true;
-        GetComponent<Renderer>().material = mat_bloodyWater;
+        ren_waterVisual.material = mat_bloodyWater;
     }
 
     // checks if all the dishes in the dishes list are clean, and ends the task if so

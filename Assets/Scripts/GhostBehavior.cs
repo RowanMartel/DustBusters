@@ -113,6 +113,11 @@ public class GhostBehavior : MonoBehaviour
     public float flt_distToFlickerFuseBox;
     public FuseBox fb_fuseBox;
 
+    private void Awake()
+    {
+        GameManager.ghost = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -187,11 +192,13 @@ public class GhostBehavior : MonoBehaviour
         //Image easter egg
         if (flt_curTimeTweenImgChecks <= 0)
         {
+            Debug.Log("A");
             foreach (EasterEggPicture eep_picture in l_eep_pictures)
             {
                 if (Vector3.Distance(eep_picture.transform.position, transform.position) <= flt_distToImg)
                 {
                     float flt_imgAttempt = Random.Range(0f, 100f);
+                    Debug.Log(flt_imgAttempt);
                     if (flt_imgAttempt <= flt_chanceToChangeImg)
                     {
                         eep_picture.Switch();
@@ -233,7 +240,7 @@ public class GhostBehavior : MonoBehaviour
                 flt_curSFXTime -= Time.deltaTime;
                 if (flt_curSFXTime <= 0)
                 {
-                    GameManager.soundManager.PlayClip(a_ac_sounds, as_aSource);
+                    GameManager.soundManager.PlayClip(a_ac_sounds, as_aSource, true);
                     flt_curSFXTime = flt_sfxTime + Random.Range(-flt_sfxTimeDeviationRange, flt_sfxTimeDeviationRange);
                 }
 
@@ -269,7 +276,7 @@ public class GhostBehavior : MonoBehaviour
                 flt_curSFXTime -= Time.deltaTime;
                 if (flt_curSFXTime <= 0)
                 {
-                    GameManager.soundManager.PlayClip(a_ac_sounds, as_aSource);
+                    GameManager.soundManager.PlayClip(a_ac_sounds, as_aSource, true);
                     flt_curSFXTime = flt_sfxTime + Random.Range(-flt_sfxTimeDeviationRange, flt_sfxTimeDeviationRange);
                 }
 
@@ -307,7 +314,7 @@ public class GhostBehavior : MonoBehaviour
                 flt_curSFXTime -= Time.deltaTime;
                 if (flt_curSFXTime <= 0)
                 {
-                    GameManager.soundManager.PlayClip(a_ac_sounds, as_aSource);
+                    GameManager.soundManager.PlayClip(a_ac_sounds, as_aSource, true);
                     flt_curSFXTime = flt_sfxTime + Random.Range(-flt_sfxTimeDeviationRange, flt_sfxTimeDeviationRange);
                 }
 
@@ -547,8 +554,8 @@ public class GhostBehavior : MonoBehaviour
         }
 
         //Attempt to shut off fuse box
-        FuseBox fb_fuseBox = tr_currentPatrolPoint.GetComponent<FuseBox>();
-        if (fb_fuseBox != null)
+        //FuseBox fb_fuseBox = tr_currentPatrolPoint.GetComponent<FuseBox>();
+        if (tr_currentPatrolPoint.CompareTag("FuseBox"))
         {
             if (fb_fuseBox.bl_isOn)
             {
@@ -900,6 +907,12 @@ public class GhostBehavior : MonoBehaviour
                     go_floatTrigger.SetActive(true);
                 }
                 AddTask(TaskManager.Task.ResetBreakerBox);
+
+                //Activate Jack in the Box
+                foreach(JackInTheBoxManager jack in GameObject.FindObjectsByType<JackInTheBoxManager>(FindObjectsSortMode.None))
+                {
+                    jack.ActivateJack();
+                }
 
                 //Turn Water Bloody
                 foreach (CleaningWater cleaningWater in FindObjectsByType<CleaningWater>(FindObjectsSortMode.None))

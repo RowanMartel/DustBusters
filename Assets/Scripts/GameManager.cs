@@ -12,6 +12,11 @@ public class GameManager : MonoBehaviour
     public static SoundManager soundManager;
 
     public static GameManager instance;
+
+    // keeps track of if the player is in a cleaning minigame
+    private static bool bl_inCleaningGame;
+    public static bool Bl_inCleaningGame { get { return bl_inCleaningGame; } set { bl_inCleaningGame = value; } }
+
     private void Awake()
     {
         taskManager = GetComponent<TaskManager>();
@@ -35,13 +40,10 @@ public class GameManager : MonoBehaviour
     {
         if (instance != this) return;
 
-        taskManager = GetComponent<TaskManager>();
         soundManager = GetComponent<SoundManager>();
-        menuManager = FindObjectOfType<MenuManager>();
-        playerController = FindObjectOfType<PlayerController>();
-        healthSystem = playerController?.GetComponent<HealthSystem>();
-        ghost = FindAnyObjectByType<GhostBehavior>();
         taskManager.ResetValues();
+
+        Bl_inCleaningGame = false;
     }
 
     public static void ResetGame()

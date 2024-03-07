@@ -18,6 +18,6 @@ public class CollisionSfx : MonoBehaviour
 
         if (as_source == null || ac_collide == null || collision.gameObject.CompareTag("Player")) return;
 
-        GameManager.soundManager.PlayClip(ac_collide, as_source);
+        GameManager.soundManager.PlayClip(ac_collide, as_source, true);
     }
 }
