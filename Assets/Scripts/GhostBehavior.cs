@@ -468,7 +468,6 @@ public class GhostBehavior : MonoBehaviour
             //Debug.Log(pickup.name);
             if (pickup.bl_hideable)
             {
-                Debug.Log(pickup.gameObject.name);
                 PickUpItem(pickup.gameObject);
                 ChooseHidingPlace();
                 return;
