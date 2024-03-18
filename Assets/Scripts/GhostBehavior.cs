@@ -112,6 +112,7 @@ public class GhostBehavior : MonoBehaviour
     [Header("Spooky Stuff")]
     public float flt_distToFlickerFuseBox;
     public FuseBox fb_fuseBox;
+    public Candle[] a_candles;
 
     private void Awake()
     {
@@ -158,6 +159,7 @@ public class GhostBehavior : MonoBehaviour
         bl_frozen = false;
         go_floatTrigger.SetActive(false);
         flt_curKeyCooldown = 0;
+        a_candles = FindObjectsByType<Candle>(FindObjectsSortMode.None);
     }
 
     // Update is called once per frame
@@ -202,6 +204,18 @@ public class GhostBehavior : MonoBehaviour
                     if (flt_imgAttempt <= flt_chanceToChangeImg)
                     {
                         eep_picture.Switch();
+                    }
+                }
+            }
+            foreach (Candle candle in a_candles)
+            {
+                if (candle.bl_lit && Vector3.Distance(candle.transform.position, transform.position) <= flt_distToImg)
+                {
+                    float flt_candleAttempt = Random.Range(0f, 100f);
+                    Debug.Log(flt_candleAttempt);
+                    if (flt_candleAttempt <= flt_chanceToChangeImg)
+                    {
+                        candle.UnLight();
                     }
                 }
             }
@@ -606,6 +620,8 @@ public class GhostBehavior : MonoBehaviour
             }
         }
     }
+
+    
 
     //Set ghost's destination to the appropriate point
     void SwitchToPoint(int index)

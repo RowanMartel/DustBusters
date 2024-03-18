@@ -15,14 +15,14 @@ public class Candle: Interactable
         bl_lit = false;
     }
 
-    // light the fireplace if the player is holding the right item
+    // light the candle if the player is holding the right item
     public override void Interact()
     {
         if (GameManager.playerController.Go_heldObject == null || !GameManager.playerController.Go_heldObject.GetComponent<Pickupable>().bl_lighter || bl_lit == true) return;
         Light();
     }
 
-    // complete the light fireplace task and start the vfx and sfx
+    // start the vfx and sfx
     public void Light()
     {
         //Activate light and audio
@@ -35,7 +35,7 @@ public class Candle: Interactable
         bl_lit = true;
     }
 
-    // stop the vfx and sfx, and re-grant the light fireplace task
+    // stop the vfx and sfx
     public void UnLight()
     {
         //Stop light and audio
