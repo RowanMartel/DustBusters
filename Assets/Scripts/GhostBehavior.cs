@@ -113,6 +113,7 @@ public class GhostBehavior : MonoBehaviour
     public float flt_distToFlickerFuseBox;
     public FuseBox fb_fuseBox;
     public Candle[] a_candles;
+    public GameObject go_aura;
 
     private void Awake()
     {
@@ -908,6 +909,7 @@ public class GhostBehavior : MonoBehaviour
                 {
                     go_floatTrigger.GetComponent<FloatTrigger>().CloseTrigger();
                 }
+                go_aura.SetActive(false);
                 break;
             case 2:
                 //Deactivate Float Trigger if required
@@ -915,6 +917,7 @@ public class GhostBehavior : MonoBehaviour
                 {
                     go_floatTrigger.GetComponent<FloatTrigger>().CloseTrigger();
                 }
+                go_aura.SetActive(false);
                 break;
             case 3:
                 //Activate Float Trigger if required
@@ -936,6 +939,8 @@ public class GhostBehavior : MonoBehaviour
                     cleaningWater.TurnBloody();
                 }
 
+                go_aura.SetActive(true);
+
                 break;
             case 4:
                 //Activate Float Trigger if required
@@ -943,6 +948,8 @@ public class GhostBehavior : MonoBehaviour
                 {
                     go_floatTrigger.SetActive(true);
                 }
+
+                go_aura.SetActive(true);
                 break;
         }
 
