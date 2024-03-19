@@ -118,8 +118,11 @@ public class PlayerController : MonoBehaviour
         // Toggles pause
         if (Input.GetKeyDown(KeyCode.Escape)) menuManager.TogglePause();
 
+        // Toggles GUI
+        // if (Input.GetKeyDown(KeyCode.F1)) menuManager.ToggleGUI();
+
         // This forces the player to drop a prop if it gets too far away from them
-        if(go_heldObject != null)
+        if (go_heldObject != null)
         {
             if (En_state == State.inactive) return;
 
@@ -148,7 +151,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (hit.collider != null)
                 {
-                    Debug.Log(hit.collider.gameObject.name);
+                    // Debug.Log(hit.collider.gameObject.name);
                     v3_modifiedHeldPosition = hit.point - ((hit.point - go_cameraContainer.transform.position) * flt_heldObjDistFromWall);
                 }
             }
@@ -297,7 +300,7 @@ public class PlayerController : MonoBehaviour
 
                 go_lookingAtObject = hit.collider.gameObject;
 
-                if (go_lookingAtObject.CompareTag("Interactable")) go_lookingAtObject.GetComponent<Outline>().enabled = true;
+                if (go_lookingAtObject.CompareTag("Interactable") && go_lookingAtObject.GetComponent<Candle>() == null) go_lookingAtObject.GetComponent<Outline>().enabled = true;
             }
         }
         if (!Physics.Raycast(ray_playerView, out hit, 3, lm) && go_lookingAtObject != null)
@@ -372,7 +375,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Floor")
         {
-            if (bl_isGrounded == false) GameManager.soundManager.PlayClip(ac_land, as_source, true);
+            if (!bl_isGrounded) GameManager.soundManager.PlayClip(ac_land, as_source, true);
             bl_isGrounded = true;
         }
     }
