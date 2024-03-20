@@ -80,7 +80,8 @@ public class MenuManager : MonoBehaviour
     public event EventHandler<EventArgs> MusicVolumeChanged;
     public event EventHandler<EventArgs> StartScreenClosed;
 
-    private void Awake()
+    // This was once the Awake method, but it was found that GameManager's Awake method was running first, and FadeIn() method needed components that weren't ready yet
+    public void InitializeMenuManager()
     {
         // These are primary menu related image component references:
         img_damageOverlay = FindObjectOfType<DamageOverlay>(true).GetComponent<Image>();
@@ -242,7 +243,7 @@ public class MenuManager : MonoBehaviour
     //Fade effect
     public void FadeOut()
     {
-        LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 0f, 0.2f);
+        LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 1f, 0.2f);
     }
 
     //Damage effect
@@ -320,9 +321,9 @@ public class MenuManager : MonoBehaviour
                 break;
             case 1:
                 int_enterSequence++;
-                ClearScreens();
                 SceneManager.LoadScene(1);
-                LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 0, 1f).setOnComplete(EnterGameSequence).setIgnoreTimeScale(true);
+                ClearScreens();
+                LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 0, 1f).setOnComplete(EnterGameSequence);
                 break;
             case 2:
                 int_enterSequence++;

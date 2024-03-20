@@ -22,17 +22,19 @@ public class GameManager : MonoBehaviour
         taskManager = GetComponent<TaskManager>();
         soundManager = GetComponent<SoundManager>();
         menuManager = FindObjectOfType<MenuManager>();
+        menuManager.InitializeMenuManager();
 
         //Singleton
         if (instance == null)
         {
             DontDestroyOnLoad(gameObject);
             instance = this;
-            menuManager.FadeIn();
         }
         else Destroy(gameObject);
 
         SceneManager.activeSceneChanged += OnGameStart;
+
+        menuManager.FadeIn();
     }
 
     // assigns neccessary variables on scene change
