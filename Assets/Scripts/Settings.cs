@@ -15,5 +15,6 @@ public class Settings : MonoBehaviour
 
     // NON-CONSTANTS
     public static float flt_volume = 0.5f;
+    public static float flt_musicVolume = 0.5f;
     public static float flt_lookSensitivity = 2f;
 }
