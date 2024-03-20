@@ -36,6 +36,14 @@ public class MenuManager : MonoBehaviour
     //Tooltip Elements
     protected Image img_tooltipBackground;
     protected TextMeshProUGUI tmp_tooltipText;
+
+    //Chore Notification Elements
+    protected bool bl_runNotificationTimer = false;
+    protected GameObject go_choreNotificationHolder;
+    protected Image img_notificationBackground;
+    protected TextMeshProUGUI tmp_notificationText;
+    protected float flt_notificationTimer = -1;
+
     public Image Img_damageOverlay { get { return img_damageOverlay; } set { img_damageOverlay = value; } }
 
     // These ints keep track of the transitions between screens and scenes. For example, EnterGameSequence() uses it to iterate through its switch statement to perform transitions with LeanTween.
@@ -73,7 +81,6 @@ public class MenuManager : MonoBehaviour
 
     private void Awake()
     {
-
         // These are primary menu related image component references:
         img_damageOverlay = FindObjectOfType<DamageOverlay>(true).GetComponent<Image>();
         img_deathMessage = FindObjectOfType<DeathMessage>(true).GetComponent<Image>();
@@ -83,6 +90,12 @@ public class MenuManager : MonoBehaviour
         // These components make up the player tooltip:
         img_tooltipBackground = GameObject.Find("ToolTipBackground").GetComponent<Image>();
         tmp_tooltipText = GameObject.Find("ToolTipText").GetComponent<TextMeshProUGUI>();
+
+        // These components make up the player chore notifications:
+        bl_runNotificationTimer = false;
+        go_choreNotificationHolder = GameObject.Find("ChoreNotification");
+        img_notificationBackground = GameObject.Find("ChoreNotificationBackground").GetComponent<Image>();
+        tmp_notificationText = GameObject.Find("ChoreNotificationText").GetComponent<TextMeshProUGUI>();
 
         // These components have references because they are animated into/out of view
         go_quitButton = GameObject.Find("DeathScreenQuit");
@@ -110,6 +123,28 @@ public class MenuManager : MonoBehaviour
 
         // The screen buffer is used in animation transitions, and we set it to TItleScreen so it is not null at start
         go_screenBuffer = go_titleScreen;
+    }
+
+    public void Start()
+    {
+        GameManager.taskManager.ChoreCompleted += ChoreCompleteNotification;
+        GameManager.taskManager.ChoreUpdated += ChoreUpdatedNotification;
+    }
+
+    public void Update()
+    {
+        if(bl_runNotificationTimer)
+        {
+            if (flt_notificationTimer > 0)
+            {
+                flt_notificationTimer -= Time.deltaTime;
+            }
+            else
+            {
+                bl_runNotificationTimer = false;
+                HideChoreNotification();
+            }
+        }
     }
 
     // Hides the player's GUI
@@ -622,4 +657,38 @@ public class MenuManager : MonoBehaviour
             tmp_tooltipText.gameObject.SetActive(false);
         }
     }
+
+    // This is attached to a listener that fires when a chore is complete
+    public void ChoreCompleteNotification(object source, EventArgs e)
+    {
+        tmp_notificationText.text = "Chore Complete!";
+        img_notificationBackground.rectTransform.sizeDelta = new Vector2(tmp_notificationText.text.Length * 8, img_notificationBackground.rectTransform.sizeDelta.y);
+
+        ShowChoreNotification();
+    }
+
+    // This is attached to a listener that fires when a chore is updated
+    public void ChoreUpdatedNotification(object source, EventArgs e)
+    {
+        tmp_notificationText.text = "Chore Updated!";
+        img_notificationBackground.rectTransform.sizeDelta = new Vector2(tmp_notificationText.text.Length * 8, img_notificationBackground.rectTransform.sizeDelta.y);
+
+        ShowChoreNotification();
+    }
+
+    // This handles the tweening on and off screen
+    protected void ShowChoreNotification()
+    {
+        flt_notificationTimer = Settings.flt_notificationTimer;
+
+        LeanTween.moveLocal(go_choreNotificationHolder, new Vector3(325f, -15f, 0f), Settings.flt_menuTransitionSpeed).setEase(LeanTweenType.easeOutSine);
+
+        bl_runNotificationTimer = true;
+    }
+
+    protected void HideChoreNotification()
+    {
+        LeanTween.moveLocal(go_choreNotificationHolder, new Vector3(550f, -15f, 0f), Settings.flt_menuTransitionSpeed).setEase(LeanTweenType.easeOutSine);
+    }
+
 }
