@@ -36,6 +36,14 @@ public class MenuManager : MonoBehaviour
     //Tooltip Elements
     protected Image img_tooltipBackground;
     protected TextMeshProUGUI tmp_tooltipText;
+
+    //Chore Notification Elements
+    protected bool bl_runNotificationTimer = false;
+    protected GameObject go_choreNotificationHolder;
+    protected Image img_notificationBackground;
+    protected TextMeshProUGUI tmp_notificationText;
+    protected float flt_notificationTimer = -1;
+
     public Image Img_damageOverlay { get { return img_damageOverlay; } set { img_damageOverlay = value; } }
 
     // These ints keep track of the transitions between screens and scenes. For example, EnterGameSequence() uses it to iterate through its switch statement to perform transitions with LeanTween.
@@ -48,6 +56,7 @@ public class MenuManager : MonoBehaviour
 
     // Volume and Look Sensativity slider references
     protected Slider sli_volume;
+    protected Slider sli_musicVolume;
     protected Slider sli_lookSensitivity;
 
     // A few miscellaneous screen elements that are animated via LeanTween
@@ -68,11 +77,10 @@ public class MenuManager : MonoBehaviour
     public event EventHandler<EventArgs> MenuEntered;
     public event EventHandler<EventArgs> CreditsEntered;
     public event EventHandler<EventArgs> DeathScreenEntered;
-    public event EventHandler<EventArgs> StartScreenClosed;
+    public event EventHandler<EventArgs> MusicVolumeChanged;
 
     private void Awake()
     {
-
         // These are primary menu related image component references:
         img_damageOverlay = FindObjectOfType<DamageOverlay>(true).GetComponent<Image>();
         img_deathMessage = FindObjectOfType<DeathMessage>(true).GetComponent<Image>();
@@ -83,17 +91,25 @@ public class MenuManager : MonoBehaviour
         img_tooltipBackground = GameObject.Find("ToolTipBackground").GetComponent<Image>();
         tmp_tooltipText = GameObject.Find("ToolTipText").GetComponent<TextMeshProUGUI>();
 
+        // These components make up the player chore notifications:
+        bl_runNotificationTimer = false;
+        go_choreNotificationHolder = GameObject.Find("ChoreNotification");
+        img_notificationBackground = GameObject.Find("ChoreNotificationBackground").GetComponent<Image>();
+        tmp_notificationText = GameObject.Find("ChoreNotificationText").GetComponent<TextMeshProUGUI>();
+
         // These components have references because they are animated into/out of view
         go_quitButton = GameObject.Find("DeathScreenQuit");
         go_startButton = GameObject.Find("StartScreenButton");
         go_OrientationNote = GameObject.Find("Note");
-        
+
         // These are the references to the Options screen slider components:
         sli_volume = GameObject.Find("VolumeSlider").GetComponent<Slider>();
+        sli_musicVolume = GameObject.Find("MusicVolumeSlider").GetComponent<Slider>();
         sli_lookSensitivity = GameObject.Find("LookSensitivitySlider").GetComponent<Slider>();
 
         // We set the volume and look sensitivity to the defaults defined in Settings
         sli_volume.value = Settings.flt_volume;
+        sli_musicVolume.value = Settings.flt_musicVolume;
         sli_lookSensitivity.value = Settings.flt_lookSensitivity;
 
         // The debug screen is a special case screen that is not set active or deactivated elsewhere, so it is deactivated here
@@ -109,6 +125,28 @@ public class MenuManager : MonoBehaviour
         go_screenBuffer = go_titleScreen;
     }
 
+    public void Start()
+    {
+        GameManager.taskManager.ChoreCompleted += ChoreCompleteNotification;
+        GameManager.taskManager.ChoreUpdated += ChoreUpdatedNotification;
+    }
+
+    public void Update()
+    {
+        if (bl_runNotificationTimer)
+        {
+            if (flt_notificationTimer > 0)
+            {
+                flt_notificationTimer -= Time.deltaTime;
+            }
+            else
+            {
+                bl_runNotificationTimer = false;
+                HideChoreNotification();
+            }
+        }
+    }
+
     // Hides the player's GUI
     public void ToggleGUI()
     {
@@ -122,8 +160,8 @@ public class MenuManager : MonoBehaviour
         go_lastScreen.transform.localPosition = new Vector3(-750, 0f, 0f);
 
         if (go_lastScreen == go_optionsScreen || go_lastScreen == go_controlsScreen) LeanTween.moveLocal(go_screenBuffer, new Vector3(0f, 0f, 0f), Settings.flt_menuTransitionSpeed).setEase(LeanTweenType.easeOutSine).setIgnoreTimeScale(true);
-        
-        if(go_nextScreen == go_pauseScreen) LeanTween.moveLocal(go_nextScreen, new Vector3(0f, 0f, 0f), Settings.flt_menuTransitionSpeed).setEase(LeanTweenType.easeOutSine).setOnComplete(AllowPause).setIgnoreTimeScale(true);
+
+        if (go_nextScreen == go_pauseScreen) LeanTween.moveLocal(go_nextScreen, new Vector3(0f, 0f, 0f), Settings.flt_menuTransitionSpeed).setEase(LeanTweenType.easeOutSine).setOnComplete(AllowPause).setIgnoreTimeScale(true);
         else LeanTween.moveLocal(go_nextScreen, new Vector3(0f, 0f, 0f), Settings.flt_menuTransitionSpeed).setOnComplete(AllowPause).setEase(LeanTweenType.easeOutSine).setIgnoreTimeScale(true);
 
         go_lastScreen = go_nextScreen;
@@ -132,7 +170,7 @@ public class MenuManager : MonoBehaviour
     // Dismisses Menu screen with a LeanTween transition
     public void DissmissScreenAndCallNext(GameObject screen)
     {
-        if(ready)
+        if (ready)
         {
             bl_allowPause = false;
 
@@ -160,7 +198,7 @@ public class MenuManager : MonoBehaviour
             Time.timeScale = 1;
 
         screen.SetActive(true);
-        if(screen != go_optionsScreen && screen != go_controlsScreen ) go_lastScreen = screen;
+        if (screen != go_optionsScreen && screen != go_controlsScreen) go_lastScreen = screen;
     }
 
     //Set all screens to inactive
@@ -176,7 +214,7 @@ public class MenuManager : MonoBehaviour
     // Clears screens like above, but uses LeanTween transition
     private void ClearScreenWithTransition()
     {
-        switch(int_clearScreenSequence)
+        switch (int_clearScreenSequence)
         {
             case 0:
                 int_clearScreenSequence++;
@@ -227,7 +265,7 @@ public class MenuManager : MonoBehaviour
     //Shows death sequence with animation in steps
     public void ShowDeathSequence()
     {
-        switch(int_deathSequence)
+        switch (int_deathSequence)
         {
             case 0:
                 Time.timeScale = 0;
@@ -286,7 +324,7 @@ public class MenuManager : MonoBehaviour
                 LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 0, 1f).setOnComplete(EnterGameSequence).setIgnoreTimeScale(true);
                 break;
             case 2:
-                int_enterSequence++;                
+                int_enterSequence++;
                 SwitchScreen(go_startScreen);
                 if (GameStart != null)
                     GameStart(this, new EventArgs());
@@ -320,8 +358,6 @@ public class MenuManager : MonoBehaviour
                 GameManager.playerController.TogglePlayerControl();
                 bl_allowPause = true;
                 int_startSequence = 0;
-                if (StartScreenClosed != null)
-                    StartScreenClosed(this, new EventArgs());
                 break;
         }
     }
@@ -394,7 +430,7 @@ public class MenuManager : MonoBehaviour
     //Go to Gameplay from Pause. Used by below TogglePause method, and to Pause Menu's 'continue' button
     public void Unpause()
     {
-        if(bl_allowPause)
+        if (bl_allowPause)
         {
             bl_allowPause = false;
 
@@ -456,9 +492,18 @@ public class MenuManager : MonoBehaviour
     }
 
     //Volume management
-    public void UpdateVolume()
+    public void UpdateEffectsVolume()
     {
         Settings.flt_volume = sli_volume.value;
+    }
+
+    //Music Volume management
+    public void UpdateMusicVolume()
+    {
+        Settings.flt_musicVolume = sli_musicVolume.value;
+
+        if (MusicVolumeChanged != null)
+            MusicVolumeChanged(this, new EventArgs());
     }
 
     //Mouse sensitivity management
@@ -540,7 +585,7 @@ public class MenuManager : MonoBehaviour
             //..and the object is a cobweb:
             else if (go_lookingAtObject.GetComponent<Cobweb>() != null)
             {
-                if(go_lookingAtObject.GetComponent<Cobweb>().bl_cleaned == false)
+                if (go_lookingAtObject.GetComponent<Cobweb>().bl_cleaned == false)
                 {
                     if (go_heldObject == null || go_heldObject.GetComponent<Pickupable>().bl_duster == false) st_tooltipMessage = "Duster required to clean";
                     else st_tooltipMessage = "Touch with duster";
@@ -612,4 +657,38 @@ public class MenuManager : MonoBehaviour
             tmp_tooltipText.gameObject.SetActive(false);
         }
     }
+
+    // This is attached to a listener that fires when a chore is complete
+    public void ChoreCompleteNotification(object source, EventArgs e)
+    {
+        tmp_notificationText.text = "Chore Complete!";
+        img_notificationBackground.rectTransform.sizeDelta = new Vector2(tmp_notificationText.text.Length * 8, img_notificationBackground.rectTransform.sizeDelta.y);
+
+        ShowChoreNotification();
+    }
+
+    // This is attached to a listener that fires when a chore is updated
+    public void ChoreUpdatedNotification(object source, EventArgs e)
+    {
+        tmp_notificationText.text = "Chore Updated!";
+        img_notificationBackground.rectTransform.sizeDelta = new Vector2(tmp_notificationText.text.Length * 8, img_notificationBackground.rectTransform.sizeDelta.y);
+
+        ShowChoreNotification();
+    }
+
+    // This handles the tweening on and off screen
+    protected void ShowChoreNotification()
+    {
+        flt_notificationTimer = Settings.flt_notificationTimer;
+
+        LeanTween.moveLocal(go_choreNotificationHolder, new Vector3(325f, -15f, 0f), Settings.flt_menuTransitionSpeed).setEase(LeanTweenType.easeOutSine);
+
+        bl_runNotificationTimer = true;
+    }
+
+    protected void HideChoreNotification()
+    {
+        LeanTween.moveLocal(go_choreNotificationHolder, new Vector3(550f, -15f, 0f), Settings.flt_menuTransitionSpeed).setEase(LeanTweenType.easeOutSine);
+    }
+
 }
