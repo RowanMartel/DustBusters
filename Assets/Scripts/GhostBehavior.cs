@@ -112,6 +112,8 @@ public class GhostBehavior : MonoBehaviour
     [Header("Spooky Stuff")]
     public float flt_distToFlickerFuseBox;
     public FuseBox fb_fuseBox;
+    public Candle[] a_candles;
+    public GameObject go_aura;
 
     private void Awake()
     {
@@ -158,6 +160,7 @@ public class GhostBehavior : MonoBehaviour
         bl_frozen = false;
         go_floatTrigger.SetActive(false);
         flt_curKeyCooldown = 0;
+        a_candles = FindObjectsByType<Candle>(FindObjectsSortMode.None);
     }
 
     // Update is called once per frame
@@ -202,6 +205,18 @@ public class GhostBehavior : MonoBehaviour
                     if (flt_imgAttempt <= flt_chanceToChangeImg)
                     {
                         eep_picture.Switch();
+                    }
+                }
+            }
+            foreach (Candle candle in a_candles)
+            {
+                if (candle.bl_lit && Vector3.Distance(candle.transform.position, transform.position) <= flt_distToImg)
+                {
+                    float flt_candleAttempt = Random.Range(0f, 100f);
+                    Debug.Log(flt_candleAttempt);
+                    if (flt_candleAttempt <= flt_chanceToChangeImg)
+                    {
+                        candle.UnLight();
                     }
                 }
             }
@@ -607,6 +622,8 @@ public class GhostBehavior : MonoBehaviour
         }
     }
 
+    
+
     //Set ghost's destination to the appropriate point
     void SwitchToPoint(int index)
     {
@@ -892,6 +909,7 @@ public class GhostBehavior : MonoBehaviour
                 {
                     go_floatTrigger.GetComponent<FloatTrigger>().CloseTrigger();
                 }
+                go_aura.SetActive(false);
                 break;
             case 2:
                 //Deactivate Float Trigger if required
@@ -899,6 +917,7 @@ public class GhostBehavior : MonoBehaviour
                 {
                     go_floatTrigger.GetComponent<FloatTrigger>().CloseTrigger();
                 }
+                go_aura.SetActive(false);
                 break;
             case 3:
                 //Activate Float Trigger if required
@@ -920,6 +939,8 @@ public class GhostBehavior : MonoBehaviour
                     cleaningWater.TurnBloody();
                 }
 
+                go_aura.SetActive(true);
+
                 break;
             case 4:
                 //Activate Float Trigger if required
@@ -927,6 +948,8 @@ public class GhostBehavior : MonoBehaviour
                 {
                     go_floatTrigger.SetActive(true);
                 }
+
+                go_aura.SetActive(true);
                 break;
         }
 

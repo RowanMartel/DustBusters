@@ -14,12 +14,15 @@ public class MusicManager : MonoBehaviour
     // assigns all event listeners, then plays the menu music
     private void Start()
     {
+        as_source.volume = Settings.flt_musicVolume;
+
         GameManager.menuManager.GamePaused += PlayPause;
         GameManager.menuManager.GameUnpaused += StopPause;
         GameManager.menuManager.CreditsEntered += Credits;
         GameManager.menuManager.DeathScreenEntered += PlayDeathSound;
         GameManager.menuManager.GameStart += GamePlay;
         GameManager.menuManager.MenuEntered += Title;
+        GameManager.menuManager.MusicVolumeChanged += UpdateVolume;
 
         Title(this, new EventArgs());
     }
@@ -62,5 +65,11 @@ public class MusicManager : MonoBehaviour
     void GamePlay(object source, EventArgs e)
     {
         as_source.Stop();
+    }
+
+    // updates the music volume when the menu slider is changed
+    void UpdateVolume(object source, EventArgs e)
+    {
+        as_source.volume = Settings.flt_musicVolume;
     }
 }

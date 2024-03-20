@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -33,6 +34,11 @@ public class TaskManager : MonoBehaviour
     public GhostBehavior ghost;
     public TMP_Text tmp_taskListTxt;
 
+    // events to notify Menu Manager of chore update and complete
+    public event EventHandler<EventArgs> ChoreCompleted;
+    public event EventHandler<EventArgs> ChoreUpdated;
+    protected bool bl_taskListFilled;
+
     private void Awake()
     {
         GameManager.taskManager = this;
@@ -40,6 +46,8 @@ public class TaskManager : MonoBehaviour
 
     public void ResetValues()
     {
+        bl_taskListFilled = false;
+
         ghost = GameManager.ghost;
 
         li_taskList = new();
@@ -50,7 +58,11 @@ public class TaskManager : MonoBehaviour
 
         // fill the task list with the starting tasks
         foreach (Task task in li_startingTasks)
+        {
             AddTask(task);
+        }
+
+        bl_taskListFilled = true;
     }
 
     // removes the given task from the task list and adds a strikethrough for the displayed list
@@ -131,6 +143,9 @@ public class TaskManager : MonoBehaviour
                 FindObjectOfType<Fireplace>().SpawnEmbers();
             }
         }
+
+        if (ChoreCompleted != null)
+            ChoreCompleted(this, new EventArgs());
     }
 
     // adds the given task to the task list
@@ -197,5 +212,10 @@ public class TaskManager : MonoBehaviour
             tmp_taskListTxt.text += str_text;
         }
 
+        if (bl_taskListFilled)
+        {
+            if (ChoreUpdated != null)
+                ChoreUpdated(this, new EventArgs());
+        }
     }
 }
