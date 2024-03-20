@@ -48,6 +48,7 @@ public class MenuManager : MonoBehaviour
 
     // Volume and Look Sensativity slider references
     protected Slider sli_volume;
+    protected Slider sli_musicVolume;
     protected Slider sli_lookSensitivity;
 
     // A few miscellaneous screen elements that are animated via LeanTween
@@ -68,6 +69,7 @@ public class MenuManager : MonoBehaviour
     public event EventHandler<EventArgs> MenuEntered;
     public event EventHandler<EventArgs> CreditsEntered;
     public event EventHandler<EventArgs> DeathScreenEntered;
+    public event EventHandler<EventArgs> MusicVolumeChanged;
 
     private void Awake()
     {
@@ -89,10 +91,12 @@ public class MenuManager : MonoBehaviour
         
         // These are the references to the Options screen slider components:
         sli_volume = GameObject.Find("VolumeSlider").GetComponent<Slider>();
+        sli_musicVolume = GameObject.Find("MusicVolumeSlider").GetComponent<Slider>();
         sli_lookSensitivity = GameObject.Find("LookSensitivitySlider").GetComponent<Slider>();
 
         // We set the volume and look sensitivity to the defaults defined in Settings
         sli_volume.value = Settings.flt_volume;
+        sli_musicVolume.value = Settings.flt_musicVolume;
         sli_lookSensitivity.value = Settings.flt_lookSensitivity;
 
         // The debug screen is a special case screen that is not set active or deactivated elsewhere, so it is deactivated here
@@ -453,9 +457,18 @@ public class MenuManager : MonoBehaviour
     }
 
     //Volume management
-    public void UpdateVolume()
+    public void UpdateEffectsVolume()
     {
         Settings.flt_volume = sli_volume.value;
+    }
+
+    //Music Volume management
+    public void UpdateMusicVolume()
+    {
+        Settings.flt_musicVolume = sli_musicVolume.value;
+
+        if (MusicVolumeChanged != null)
+            MusicVolumeChanged(this, new EventArgs());
     }
 
     //Mouse sensitivity management
