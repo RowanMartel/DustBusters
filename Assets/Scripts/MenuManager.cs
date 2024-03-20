@@ -78,6 +78,7 @@ public class MenuManager : MonoBehaviour
     public event EventHandler<EventArgs> CreditsEntered;
     public event EventHandler<EventArgs> DeathScreenEntered;
     public event EventHandler<EventArgs> MusicVolumeChanged;
+    public event EventHandler<EventArgs> StartScreenClosed;
 
     private void Awake()
     {
@@ -358,6 +359,8 @@ public class MenuManager : MonoBehaviour
                 GameManager.playerController.TogglePlayerControl();
                 bl_allowPause = true;
                 int_startSequence = 0;
+                if (StartScreenClosed != null)
+                    StartScreenClosed(this, new EventArgs());
                 break;
         }
     }
