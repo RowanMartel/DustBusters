@@ -93,7 +93,7 @@ public class PlayerController : MonoBehaviour
         menuManager.UpdateTooltip(go_lookingAtObject, go_heldObject);
 
         // Player's ability to interact
-        if (Input.GetKeyDown(KeyCode.E)) Interact();
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0)) Interact();
 
         if (en_state == State.active)
         {
