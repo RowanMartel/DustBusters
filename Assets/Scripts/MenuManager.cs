@@ -80,51 +80,59 @@ public class MenuManager : MonoBehaviour
     public event EventHandler<EventArgs> MusicVolumeChanged;
     public event EventHandler<EventArgs> StartScreenClosed;
 
+    protected bool bl_initialized = false;
+
     // This was once the Awake method, but it was found that GameManager's Awake method was running first, and FadeIn() method needed components that weren't ready yet
     public void InitializeMenuManager()
     {
-        // These are primary menu related image component references:
-        img_damageOverlay = FindObjectOfType<DamageOverlay>(true).GetComponent<Image>();
-        img_deathMessage = FindObjectOfType<DeathMessage>(true).GetComponent<Image>();
-        img_deathScreen = GameObject.Find("DeathOverlay").GetComponent<Image>();
-        img_fadeOverlay = GameObject.Find("FadeOverlay").GetComponent<Image>();
+        if(!bl_initialized)
+        {
+            // These are primary menu related image component references:
+            img_damageOverlay = FindObjectOfType<DamageOverlay>(true).GetComponent<Image>();
+            img_deathMessage = FindObjectOfType<DeathMessage>(true).GetComponent<Image>();
+            img_deathScreen = GameObject.Find("DeathOverlay").GetComponent<Image>();
+            img_fadeOverlay = GameObject.Find("FadeOverlay").GetComponent<Image>();
 
-        // These components make up the player tooltip:
-        img_tooltipBackground = GameObject.Find("ToolTipBackground").GetComponent<Image>();
-        tmp_tooltipText = GameObject.Find("ToolTipText").GetComponent<TextMeshProUGUI>();
+            // These components make up the player tooltip:
+            img_tooltipBackground = GameObject.Find("ToolTipBackground").GetComponent<Image>();
+            tmp_tooltipText = GameObject.Find("ToolTipText").GetComponent<TextMeshProUGUI>();
 
-        // These components make up the player chore notifications:
-        bl_runNotificationTimer = false;
-        go_choreNotificationHolder = GameObject.Find("ChoreNotification");
-        img_notificationBackground = GameObject.Find("ChoreNotificationBackground").GetComponent<Image>();
-        tmp_notificationText = GameObject.Find("ChoreNotificationText").GetComponent<TextMeshProUGUI>();
+            // These components make up the player chore notifications:
+            bl_runNotificationTimer = false;
+            go_choreNotificationHolder = GameObject.Find("ChoreNotification");
+            img_notificationBackground = GameObject.Find("ChoreNotificationBackground").GetComponent<Image>();
+            tmp_notificationText = GameObject.Find("ChoreNotificationText").GetComponent<TextMeshProUGUI>();
 
-        // These components have references because they are animated into/out of view
-        go_quitButton = GameObject.Find("DeathScreenQuit");
-        go_startButton = GameObject.Find("StartScreenButton");
-        go_OrientationNote = GameObject.Find("Note");
+            // These components have references because they are animated into/out of view
+            go_quitButton = GameObject.Find("DeathScreenQuit");
+            go_startButton = GameObject.Find("StartScreenButton");
+            go_OrientationNote = GameObject.Find("Note");
 
-        // These are the references to the Options screen slider components:
-        sli_volume = GameObject.Find("VolumeSlider").GetComponent<Slider>();
-        sli_musicVolume = GameObject.Find("MusicVolumeSlider").GetComponent<Slider>();
-        sli_lookSensitivity = GameObject.Find("LookSensitivitySlider").GetComponent<Slider>();
+            // These are the references to the Options screen slider components:
+            sli_volume = GameObject.Find("VolumeSlider").GetComponent<Slider>();
+            sli_musicVolume = GameObject.Find("MusicVolumeSlider").GetComponent<Slider>();
+            sli_lookSensitivity = GameObject.Find("LookSensitivitySlider").GetComponent<Slider>();
 
-        // We set the volume and look sensitivity to the defaults defined in Settings
-        sli_volume.value = Settings.flt_volume;
-        sli_musicVolume.value = Settings.flt_musicVolume;
-        sli_lookSensitivity.value = Settings.flt_lookSensitivity;
+            // We set the volume and look sensitivity to the defaults defined in Settings
+            sli_volume.value = Settings.flt_volume;
+            sli_musicVolume.value = Settings.flt_musicVolume;
+            sli_lookSensitivity.value = Settings.flt_lookSensitivity;
 
-        // The debug screen is a special case screen that is not set active or deactivated elsewhere, so it is deactivated here
-        go_debugScreen.SetActive(false);
+            // The debug screen is a special case screen that is not set active or deactivated elsewhere, so it is deactivated here
+            go_debugScreen.SetActive(false);
 
-        // The game should load into the Title Scene, and so we show the title scene object. Otherwise we just show a blank screen.
-        Scene activeScene = SceneManager.GetActiveScene();
+            // The game should load into the Title Scene, and so we show the title scene object. Otherwise we just show a blank screen.
+            Scene activeScene = SceneManager.GetActiveScene();
 
-        if (activeScene.name == "TitleScene") SwitchScreen(go_titleScreen);
-        else ClearScreens();
+            if (activeScene.name == "TitleScene") SwitchScreen(go_titleScreen);
+            else ClearScreens();
 
-        // The screen buffer is used in animation transitions, and we set it to TItleScreen so it is not null at start
-        go_screenBuffer = go_titleScreen;
+            // The screen buffer is used in animation transitions, and we set it to TItleScreen so it is not null at start
+            go_screenBuffer = go_titleScreen;
+
+            bl_initialized = true;
+        }
+        
     }
 
     public void Start()
