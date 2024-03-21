@@ -329,7 +329,7 @@ public class MenuManager : MonoBehaviour
                     StartTransitionToGame(this, new EventArgs());
                 ready = false;
                 int_enterSequence++;
-                LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 1, 1f).setOnComplete(EnterGameSequence).setIgnoreTimeScale(true);
+                LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 1, 1.5f).setOnComplete(EnterGameSequence).setIgnoreTimeScale(true);
                 break;
             case 1:
                 int_enterSequence++;
