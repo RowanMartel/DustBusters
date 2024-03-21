@@ -44,6 +44,12 @@ public class MenuManager : MonoBehaviour
     protected TextMeshProUGUI tmp_notificationText;
     protected float flt_notificationTimer = -1;
 
+    //Chore List and Current Chore variables
+    public bool bl_choreListUp = false;
+    protected GameObject go_choreSheet;
+    protected GameObject go_currentChoreLabel;
+    protected TextMeshProUGUI tmp_currentChore;
+
     public Image Img_damageOverlay { get { return img_damageOverlay; } set { img_damageOverlay = value; } }
 
     // These ints keep track of the transitions between screens and scenes. For example, EnterGameSequence() uses it to iterate through its switch statement to perform transitions with LeanTween.
@@ -104,6 +110,11 @@ public class MenuManager : MonoBehaviour
             go_choreNotificationHolder = GameObject.Find("ChoreNotification");
             img_notificationBackground = GameObject.Find("ChoreNotificationBackground").GetComponent<Image>();
             tmp_notificationText = GameObject.Find("ChoreNotificationText").GetComponent<TextMeshProUGUI>();
+
+            // This is the player's Current Chore info in the corner of their screen
+            go_choreSheet = GameObject.Find("ChoreSheet");
+            tmp_currentChore = GameObject.Find("CurrentChoreText").GetComponent<TextMeshProUGUI>();
+            tmp_currentChore.gameObject.SetActive(false);
 
             // These components have references because they are animated into/out of view
             go_quitButton = GameObject.Find("DeathScreenQuit");
@@ -697,14 +708,36 @@ public class MenuManager : MonoBehaviour
     {
         flt_notificationTimer = Settings.flt_notificationTimer;
 
-        LeanTween.moveLocal(go_choreNotificationHolder, new Vector3(325f, -15f, 0f), Settings.flt_menuTransitionSpeed).setEase(LeanTweenType.easeOutSine);
+        LeanTween.moveLocal(go_choreNotificationHolder, new Vector3(325f, 160f, 0f), Settings.flt_menuTransitionSpeed).setEase(LeanTweenType.easeOutSine);
 
         bl_runNotificationTimer = true;
     }
 
     protected void HideChoreNotification()
     {
-        LeanTween.moveLocal(go_choreNotificationHolder, new Vector3(550f, -15f, 0f), Settings.flt_menuTransitionSpeed).setEase(LeanTweenType.easeOutSine);
+        LeanTween.moveLocal(go_choreNotificationHolder, new Vector3(500, 160f, 0f), Settings.flt_menuTransitionSpeed).setEase(LeanTweenType.easeOutSine);
+    }
+
+    public void ToggleChoreSheet()
+    {
+        if (go_choreSheet.transform.localPosition.y > -5)
+        {
+            GameManager.playerController.TogglePlayerControl();
+            LeanTween.moveLocal(go_choreSheet, new Vector3(0f, -500f, 0f), 0.5f).setEase(LeanTweenType.easeInSine).setIgnoreTimeScale(true);
+            bl_choreListUp = false;
+        }
+        else if (go_choreSheet.transform.localPosition.y < -495)
+        {
+            GameManager.playerController.TogglePlayerControl();
+            LeanTween.moveLocal(go_choreSheet, new Vector3(0f, 0f, 0f), 0.5f).setEase(LeanTweenType.easeInSine).setIgnoreTimeScale(true);
+            bl_choreListUp = true;
+        }
+    }
+
+    public void UpdateCurrentChore(string choreString)
+    {
+        if (tmp_currentChore.gameObject.activeSelf == false) tmp_currentChore.gameObject.SetActive(true);
+        tmp_currentChore.text = choreString;
     }
 
 }

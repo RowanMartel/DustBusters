@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TaskManager : MonoBehaviour
@@ -8,6 +9,7 @@ public class TaskManager : MonoBehaviour
     // masterlist enum of all the tasks
     public enum Task
     {
+        Empty,
         CleanDishes,
         PutAwayDishes,
         MopFloor,
@@ -39,6 +41,34 @@ public class TaskManager : MonoBehaviour
     public event EventHandler<EventArgs> ChoreUpdated;
     protected bool bl_taskListFilled;
 
+    // Chore System variables
+    protected Chore currentChore;
+    protected GameObject go_choreSheet;
+    protected List<Chore> l_chores;
+
+    // This method creates the initial list of chores and gets references to the needed objects in the MenuManager
+    public void SetupChoreList()
+    {
+        go_choreSheet = GameObject.Find("ChoreSheet");
+        int chores = go_choreSheet.transform.childCount;
+
+        l_chores = new List<Chore>();
+
+        for(int i = 0; i < chores; i++)
+        {
+            Chore newChore = new Chore();
+            newChore.tmp_choreText = go_choreSheet.transform.GetChild(i).transform.Find("ChoreText").GetComponent<TMP_Text>();
+            newChore.go_box = go_choreSheet.transform.GetChild(i).transform.Find("CheckBox").gameObject;
+            newChore.go_check = go_choreSheet.transform.GetChild(i).transform.Find("Check").gameObject;
+            newChore.choreTask = Task.Empty;
+            newChore.go_box.SetActive(false);
+            newChore.go_check.SetActive(false);
+            l_chores.Add(newChore);
+        }
+
+        currentChore = l_chores[0];
+    }
+
     private void Awake()
     {
         GameManager.taskManager = this;
@@ -46,6 +76,8 @@ public class TaskManager : MonoBehaviour
 
     public void ResetValues()
     {
+        SetupChoreList();
+
         bl_taskListFilled = false;
 
         ghost = GameManager.ghost;
@@ -148,6 +180,31 @@ public class TaskManager : MonoBehaviour
             ChoreCompleted(this, new EventArgs());
 
         Debug.Log("Chore Completed: " + task.ToString());
+
+        // this finds the task in the chore list, enables the check mark and turns the text grey
+        foreach (Chore chore in l_chores)
+        {
+            if (chore.choreTask == task)
+            {
+                chore.go_check.SetActive(true);
+                chore.bl_choreComplete = true;
+                chore.tmp_choreText.color = Color.grey;
+            }
+        }
+
+        // if the completed task is the same as the "current task" highlighted on the task list, it will choose the first task on the list that is incomplete and set it to current
+        if (currentChore.choreTask == task)
+        {
+            foreach (Chore chore in l_chores)
+            {
+                if (chore.bl_choreComplete == false)
+                {
+                    SetCurrentChore(l_chores.IndexOf(chore) + 1);
+                    return;
+                }
+            }
+        }
+
     }
 
     // adds the given task to the task list
@@ -221,5 +278,91 @@ public class TaskManager : MonoBehaviour
         }
 
         Debug.Log("Chore Updated: " + task.ToString());
+
+        // If a chore is undone, this will uncheck it from the chore list and set the color to black
+        foreach(Chore chore in l_chores)
+        {
+            if (chore.choreTask == task)
+            {
+                chore.go_check.SetActive(false);
+                chore.bl_choreComplete = false;
+                chore.tmp_choreText.color = Color.black;
+                break;
+            }
+        }
+
+        // If the added chore does not appear on the chores list at all, this will add it to the next available spot
+        foreach(Chore chore in l_chores)
+        {
+            if (chore.choreTask == Task.Empty)
+            {
+                chore.choreTask = task;
+                chore.go_box.SetActive(true);
+                switch (task)
+                {
+                    case Task.CleanDishes:
+                        chore.tmp_choreText.text = "Clean the dirty dishes";
+                        break;
+                    case Task.PutAwayDishes:
+                        chore.tmp_choreText.text = "Put away the dishes on the counter";
+                        break;
+                    case Task.CleanCobwebs:
+                        chore.tmp_choreText.text = "Dust the cobwebs in the foyer";
+                        break;
+                    case Task.CleanMirror:
+                        chore.tmp_choreText.text = "Clean the bathroom mirror";
+                        break;
+                    case Task.ThrowOutBrokenDishes:
+                        chore.tmp_choreText.text = "Throw out the broken dishes";
+                        break;
+                    case Task.EscapeHouse:
+                        chore.tmp_choreText.text = "Escape the house";
+                        break;
+                    case Task.FindKey:
+                        chore.tmp_choreText.text = "Find the front door key";
+                        break;
+                    case Task.LightFireplace:
+                        chore.tmp_choreText.text = "Light the fireplace";
+                        break;
+                    case Task.MopFloor:
+                        chore.tmp_choreText.text = "Mop the laundry room floor";
+                        break;
+                    case Task.PutAwayBooks:
+                        chore.tmp_choreText.text = "Put the books back on the shelf";
+                        break;
+                    case Task.ResetBreakerBox:
+                        chore.tmp_choreText.text = "Reset the breaker box";
+                        break;
+                    case Task.PutAwayToys:
+                        chore.tmp_choreText.text = "Put away the toys";
+                        break;
+                }
+
+                break;
+            }
+        }
     }
+
+    // This changes which chore is highlighted on the list and displayed in the upper-right
+    public void SetCurrentChore(int choreNumber)
+    {
+        if (l_chores[choreNumber - 1].bl_choreComplete == true || l_chores[choreNumber - 1].choreTask == Task.Empty) return;
+
+        if (currentChore.tmp_choreText.color == Color.blue) currentChore.tmp_choreText.color = Color.black;
+
+        currentChore = l_chores[choreNumber - 1];
+        currentChore.tmp_choreText.color = Color.blue;
+
+        GameManager.menuManager.UpdateCurrentChore(currentChore.tmp_choreText.text);
+    }
+}
+
+// I created a new class to help manage chores and components of the list
+public class Chore
+{
+    public bool bl_choreComplete = false;
+    public GameObject go_box;
+    public GameObject go_check;
+    public TMP_Text tmp_choreText;
+    public TaskManager.Task choreTask;
 }

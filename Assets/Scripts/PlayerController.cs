@@ -95,6 +95,8 @@ public class PlayerController : MonoBehaviour
         // Player's ability to interact
         if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0)) Interact();
 
+        if(!GameManager.menuManager.Bl_paused) if (Input.GetKeyDown(KeyCode.C)) GameManager.menuManager.ToggleChoreSheet();
+
         if (en_state == State.active)
         {
             MoveCamera();
@@ -417,10 +419,10 @@ public class PlayerController : MonoBehaviour
     //These are tied to the MenuManager's pause and unpause events
     void OnPause(object source, EventArgs e)
     {
-        TogglePlayerControl();
+        if(en_state == State.active) TogglePlayerControl();
     }
     void OnUnpause(object source, EventArgs e)
     {
-        TogglePlayerControl();
+        if(!GameManager.menuManager.bl_choreListUp)TogglePlayerControl();
     }
 }

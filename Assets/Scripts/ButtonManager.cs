@@ -36,4 +36,9 @@ public class ButtonManager : MonoBehaviour
     {
         LeanTween.scale(slider, new Vector3(2, 2, 1), .1f).setIgnoreTimeScale(true);
     }
+
+    public void SelectChore(int choreNumber)
+    {
+        GameManager.taskManager.SetCurrentChore(choreNumber);
+    }
 }

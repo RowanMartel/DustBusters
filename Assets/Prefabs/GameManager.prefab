@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64d84b95f436c654fa99162fa82aee73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  li_startingTasks: 0000000002000000030000000400000005000000090000000e000000
+  li_startingTasks: 0100000002000000090000000400000005000000060000000a0000000f00000003000000
   li_taskList: 
   li_tsk_completedTaskList: 
   ghost: {fileID: 0}
@@ -517,6 +517,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7858087016286506723, guid: e8ed8e5bd237ef7469419992fd51117b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8585956364357714340, guid: e8ed8e5bd237ef7469419992fd51117b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8585956364357714340, guid: e8ed8e5bd237ef7469419992fd51117b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8585956364357714340, guid: e8ed8e5bd237ef7469419992fd51117b, type: 3}
+      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
