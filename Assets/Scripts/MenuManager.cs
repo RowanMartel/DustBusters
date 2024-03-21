@@ -74,11 +74,13 @@ public class MenuManager : MonoBehaviour
     public event EventHandler<EventArgs> GamePaused;
     public event EventHandler<EventArgs> GameUnpaused;
     public event EventHandler<EventArgs> GameStart;
+    public event EventHandler<EventArgs> StartTransitionToGame;
     public event EventHandler<EventArgs> MenuEntered;
     public event EventHandler<EventArgs> CreditsEntered;
     public event EventHandler<EventArgs> DeathScreenEntered;
     public event EventHandler<EventArgs> MusicVolumeChanged;
     public event EventHandler<EventArgs> StartScreenClosed;
+    public event EventHandler<EventArgs> StartQuitingGame;
 
     protected bool bl_initialized = false;
 
@@ -323,9 +325,11 @@ public class MenuManager : MonoBehaviour
         switch (int_enterSequence)
         {
             case 0:
+                if (StartTransitionToGame != null)
+                    StartTransitionToGame(this, new EventArgs());
                 ready = false;
                 int_enterSequence++;
-                LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 1, 1f).setOnComplete(EnterGameSequence).setIgnoreTimeScale(true);
+                LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 1, 1.5f).setOnComplete(EnterGameSequence).setIgnoreTimeScale(true);
                 break;
             case 1:
                 int_enterSequence++;
