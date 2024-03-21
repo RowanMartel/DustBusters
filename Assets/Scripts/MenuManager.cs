@@ -392,10 +392,10 @@ public class MenuManager : MonoBehaviour
                 int_quitToMenuSequence++;
                 GameManager.ResetGame();
                 go_pauseScreen.transform.localPosition = new Vector3(-1000, 0, 0);
+                SceneManager.LoadScene("TitleScene");
                 SwitchScreen(go_titleScreen);
                 if (MenuEntered != null)
                     MenuEntered(this, new EventArgs());
-                SceneManager.LoadScene("TitleScene");
                 LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 0, 1f).setOnComplete(QuitToTitleSequence).setIgnoreTimeScale(true);
                 break;
             case 2:
