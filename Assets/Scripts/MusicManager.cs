@@ -20,7 +20,8 @@ public class MusicManager : MonoBehaviour
         GameManager.menuManager.GameUnpaused += StopPause;
         GameManager.menuManager.CreditsEntered += Credits;
         GameManager.menuManager.DeathScreenEntered += PlayDeathSound;
-        GameManager.menuManager.GameStart += GamePlay;
+        GameManager.menuManager.StartTransitionToGame += GamePlay;
+        GameManager.menuManager.StartQuitingGame += StopPause;
         GameManager.menuManager.MenuEntered += Title;
         GameManager.menuManager.MusicVolumeChanged += UpdateVolume;
 
@@ -30,14 +31,15 @@ public class MusicManager : MonoBehaviour
     // plays pause music when it receives the game paused event
     void PlayPause(object source, EventArgs e)
     {
+        Debug.Log("DDD");
         as_source.clip = ac_pause;
-        as_source.Play();
+        FadeIn();
     }
 
     // stops pause music when it receives the game unpaused event
     void StopPause(object source, EventArgs e)
     {
-        as_source.Stop();
+        FadeOut();
     }
 
     // plays death sound when it receives the player death event
@@ -50,21 +52,48 @@ public class MusicManager : MonoBehaviour
     // stops all music when it receives the credits entered event
     void Credits(object source, EventArgs e)
     {
-        as_source.Stop();
+
     }
 
     // plays title them when it receives the menu entered event
     void Title(object source, EventArgs e)
     {
+        Debug.Log(as_source.volume);
         as_source.Stop();
         as_source.clip = ac_title;
-        as_source.Play();
+        FadeIn();
+        Debug.Log(as_source.volume);
     }
 
     // stops all music when it receives the gameplay entered event
     void GamePlay(object source, EventArgs e)
     {
-        as_source.Stop();
+        FadeOut();
+    }
+
+    void CommentComplete()
+    {
+        Debug.Log("BBBB" + as_source.volume);
+    }
+
+    void FadeIn()
+    {
+        as_source.volume = 0;
+        LeanTween.value(0f, Settings.flt_musicVolume, 3f).setOnComplete(CommentComplete).setOnUpdate(FadingUpdate).setIgnoreTimeScale(true);
+        as_source.Play();
+        Debug.Log("CCC");
+    }
+
+    void FadeOut()
+    {
+        as_source.volume = Settings.flt_volume;
+        Debug.Log("Now");
+        LeanTween.value(as_source.volume, 0, 1.5f).setOnComplete(as_source.Stop).setOnUpdate(FadingUpdate).setIgnoreTimeScale(true);
+    }
+
+    void FadingUpdate(float flt)
+    {
+        as_source.volume = flt;
     }
 
     // updates the music volume when the menu slider is changed
