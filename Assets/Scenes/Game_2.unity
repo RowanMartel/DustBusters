@@ -27449,6 +27449,18 @@ PrefabInstance:
       propertyPath: bl_hideable
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4938640577014948718, guid: 976047af61f68bc49b65b0aab96d8b4f, type: 3}
+      propertyPath: v3_heldPositionMod.y
+      value: -0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4938640577014948718, guid: 976047af61f68bc49b65b0aab96d8b4f, type: 3}
+      propertyPath: v3_heldPositionMod.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4938640577014948718, guid: 976047af61f68bc49b65b0aab96d8b4f, type: 3}
+      propertyPath: v3_heldRotationMod.x
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 5009814003119071146, guid: 976047af61f68bc49b65b0aab96d8b4f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -15.847733
@@ -48714,7 +48726,7 @@ MonoBehaviour:
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
-  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  v3_heldRotationMod: {x: 0, y: -85, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
 --- !u!54 &1699820354
