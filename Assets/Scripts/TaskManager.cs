@@ -146,6 +146,8 @@ public class TaskManager : MonoBehaviour
 
         if (ChoreCompleted != null)
             ChoreCompleted(this, new EventArgs());
+
+        Debug.Log("Chore Completed: " + task.ToString());
     }
 
     // adds the given task to the task list
@@ -217,5 +219,7 @@ public class TaskManager : MonoBehaviour
             if (ChoreUpdated != null)
                 ChoreUpdated(this, new EventArgs());
         }
+
+        Debug.Log("Chore Updated: " + task.ToString());
     }
 }
