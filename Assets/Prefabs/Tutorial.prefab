@@ -152,7 +152,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4049592781273138072
 RectTransform:
   m_ObjectHideFlags: 0
@@ -282,6 +282,12 @@ MonoBehaviour:
   go_seg7: {fileID: 4869248943201866596}
   go_seg8: {fileID: 2871606982718973983}
   go_seg9: {fileID: 3052082928585854781}
+  playerCompass: {fileID: 0}
+  go_playerCompass: {fileID: 0}
+  go_diningSwitch: {fileID: 0}
+  go_map: {fileID: 0}
+  go_dish: {fileID: 0}
+  go_door: {fileID: 0}
 --- !u!1 &2050382514978533199
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,7 +380,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5879229586345027389
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2465,7 +2471,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8343158507418244505
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2554,7 +2560,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &632071014701257707
 RectTransform:
   m_ObjectHideFlags: 0
