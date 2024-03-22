@@ -42,9 +42,10 @@ public class TaskManager : MonoBehaviour
     protected bool bl_taskListFilled;
 
     // Chore System variables
-    protected Chore currentChore;
+    public Chore currentChore;
     protected GameObject go_choreSheet;
     protected List<Chore> l_chores;
+    RegionTrigger[] a_rt_regions;
 
     // This method creates the initial list of chores and gets references to the needed objects in the MenuManager
     public void SetupChoreList()
@@ -73,6 +74,7 @@ public class TaskManager : MonoBehaviour
     private void Awake()
     {
         GameManager.taskManager = this;
+        a_rt_regions = FindObjectsByType<RegionTrigger>(FindObjectsSortMode.None);
     }
 
     public void ResetValues()
@@ -355,6 +357,10 @@ public class TaskManager : MonoBehaviour
         currentChore.tmp_choreText.color = Color.blue;
 
         GameManager.menuManager.UpdateCurrentChore(currentChore.tmp_choreText.text);
+        foreach(RegionTrigger rt_region in a_rt_regions)
+        {
+            rt_region.CheckObjects();
+        }
     }
 }
 

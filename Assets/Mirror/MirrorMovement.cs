@@ -9,7 +9,7 @@ public class MirrorMovement : MonoBehaviour
 
     public int intXMod, intYMod, intZMod;
 
-    public GameObject[] l_go_regions;
+    public GameObject[] a_go_regions;
 
     void Update()
     {
