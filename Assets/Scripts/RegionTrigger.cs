@@ -17,6 +17,8 @@ public class RegionTrigger : MonoBehaviour
     [Tooltip("0:Lighter 1:Duster 2:Mop 3:Key")]
     public Sprite[] a_spt_itemSprites;
     public bool bl_debug;
+    public RegionTrigger rt_closet;
+    public bool bl_isCloset;
 
     private void Start()
     {
@@ -31,7 +33,7 @@ public class RegionTrigger : MonoBehaviour
     private void Update()
     {
         if (bl_debug) Debug.Log(ListToString(l_pu_pickupables));
-        CheckObjects();
+        if(!bl_isCloset) CheckObjects();
     }
 
     private string ListToString(List<Pickupable> list)
@@ -149,9 +151,12 @@ public class RegionTrigger : MonoBehaviour
                 }
             }
         }
-
+        if (rt_closet != null)
+        {
+            rt_closet.CheckObjects();
+            return;
+        }
         img_itemIndicator.transform.parent.gameObject.SetActive(false);
-
     }
 
 }
