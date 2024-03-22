@@ -708,7 +708,7 @@ public class MenuManager : MonoBehaviour
     {
         flt_notificationTimer = Settings.flt_notificationTimer;
 
-        LeanTween.moveLocal(go_choreNotificationHolder, new Vector3(325f, 160f, 0f), Settings.flt_menuTransitionSpeed).setEase(LeanTweenType.easeOutSine);
+        LeanTween.moveLocal(go_choreNotificationHolder, new Vector3(250f, 160f, 0f), Settings.flt_menuTransitionSpeed).setEase(LeanTweenType.easeOutSine);
 
         bl_runNotificationTimer = true;
     }
