@@ -9,6 +9,8 @@ public class MirrorMovement : MonoBehaviour
 
     public int intXMod, intYMod, intZMod;
 
+    public GameObject[] l_go_regions;
+
     void Update()
     {
         Vector3 v3LocalPlayer = tfMirror.InverseTransformPoint(tfPlayerTarget.position);
@@ -19,4 +21,15 @@ public class MirrorMovement : MonoBehaviour
 
         //GetComponent<Camera>().nearClipPlane = Vector3.Distance(transform.position, tfMirror.position) + 1;
     }
+
+    public void ActivateCam()
+    {
+        gameObject.SetActive(true);
+    }
+
+    public void DeactivateCam()
+    {
+        gameObject.SetActive(false);
+    }
+
 }
