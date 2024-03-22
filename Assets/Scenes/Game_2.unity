@@ -4662,6 +4662,22 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3844044986079945532, guid: a137a69c917120245957388d6d524c2d, type: 3}
   m_PrefabInstance: {fileID: 223603284}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &223603288 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6069356355823141890, guid: a137a69c917120245957388d6d524c2d, type: 3}
+  m_PrefabInstance: {fileID: 223603284}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &223603289 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6496979227350486286, guid: a137a69c917120245957388d6d524c2d, type: 3}
+  m_PrefabInstance: {fileID: 223603284}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 223603288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c25417dcead6df2418a0a23382937b9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &234886696
 GameObject:
   m_ObjectHideFlags: 0
@@ -51302,9 +51318,33 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1411857199}
     - target: {fileID: 8275212638068635389, guid: 6e4f5e98381df6d42b13226c5692d366, type: 3}
+      propertyPath: go_map
+      value: 
+      objectReference: {fileID: 892005548497816092}
+    - target: {fileID: 8275212638068635389, guid: 6e4f5e98381df6d42b13226c5692d366, type: 3}
+      propertyPath: go_dish
+      value: 
+      objectReference: {fileID: 1411857199}
+    - target: {fileID: 8275212638068635389, guid: 6e4f5e98381df6d42b13226c5692d366, type: 3}
+      propertyPath: go_door
+      value: 
+      objectReference: {fileID: 919132149119637577}
+    - target: {fileID: 8275212638068635389, guid: 6e4f5e98381df6d42b13226c5692d366, type: 3}
       propertyPath: diningSwitch
       value: 
       objectReference: {fileID: 1309407536}
+    - target: {fileID: 8275212638068635389, guid: 6e4f5e98381df6d42b13226c5692d366, type: 3}
+      propertyPath: playerCompass
+      value: 
+      objectReference: {fileID: 223603289}
+    - target: {fileID: 8275212638068635389, guid: 6e4f5e98381df6d42b13226c5692d366, type: 3}
+      propertyPath: go_diningSwitch
+      value: 
+      objectReference: {fileID: 1309407537}
+    - target: {fileID: 8275212638068635389, guid: 6e4f5e98381df6d42b13226c5692d366, type: 3}
+      propertyPath: go_playerCompass
+      value: 
+      objectReference: {fileID: 223603288}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
