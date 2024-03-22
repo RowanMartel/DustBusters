@@ -708,7 +708,7 @@ public class MenuManager : MonoBehaviour
     {
         flt_notificationTimer = Settings.flt_notificationTimer;
 
-        LeanTween.moveLocal(go_choreNotificationHolder, new Vector3(325f, 160f, 0f), Settings.flt_menuTransitionSpeed).setEase(LeanTweenType.easeOutSine);
+        LeanTween.moveLocal(go_choreNotificationHolder, new Vector3(250f, 160f, 0f), Settings.flt_menuTransitionSpeed).setEase(LeanTweenType.easeOutSine);
 
         bl_runNotificationTimer = true;
     }
@@ -722,15 +722,15 @@ public class MenuManager : MonoBehaviour
     {
         if (go_choreSheet.transform.localPosition.y > -5)
         {
+            bl_choreListUp = false;
             GameManager.playerController.TogglePlayerControl();
             LeanTween.moveLocal(go_choreSheet, new Vector3(0f, -500f, 0f), 0.5f).setEase(LeanTweenType.easeInSine).setIgnoreTimeScale(true);
-            bl_choreListUp = false;
         }
         else if (go_choreSheet.transform.localPosition.y < -495)
         {
+            bl_choreListUp = true;
             GameManager.playerController.TogglePlayerControl();
             LeanTween.moveLocal(go_choreSheet, new Vector3(0f, 0f, 0f), 0.5f).setEase(LeanTweenType.easeInSine).setIgnoreTimeScale(true);
-            bl_choreListUp = true;
         }
     }
 
