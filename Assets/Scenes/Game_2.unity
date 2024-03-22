@@ -4511,6 +4511,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1180455513968762944, guid: a137a69c917120245957388d6d524c2d, type: 3}
+      propertyPath: ac_jump
+      value: 
+      objectReference: {fileID: 8300000, guid: db3a0dc633c6b4a459705ca8e5f5e260, type: 3}
+    - target: {fileID: 1180455513968762944, guid: a137a69c917120245957388d6d524c2d, type: 3}
+      propertyPath: ac_land
+      value: 
+      objectReference: {fileID: 8300000, guid: 8e01e437096d9f54cbc5afc6bdfc098a, type: 3}
+    - target: {fileID: 1180455513968762944, guid: a137a69c917120245957388d6d524c2d, type: 3}
       propertyPath: vc_playerCamera
       value: 
       objectReference: {fileID: 2016799940}
@@ -8609,7 +8617,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ac_collide: {fileID: 8300000, guid: 148166a6addda0e4e96d29bd91a85133, type: 3}
+  ac_collide: {fileID: 8300000, guid: 50ae45711a8173b4eb25a8f33cc6c37a, type: 3}
 --- !u!82 &345168137
 AudioSource:
   m_ObjectHideFlags: 0
@@ -17359,7 +17367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
+  ac_collide: {fileID: 8300000, guid: 041644fa150a1db47b2e48a59f450089, type: 3}
 --- !u!82 &738248197
 AudioSource:
   m_ObjectHideFlags: 0
@@ -29769,7 +29777,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
+  ac_collide: {fileID: 8300000, guid: 151382696de75d246a4c25b2bb05b4e5, type: 3}
 --- !u!1001 &1073191008
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32015,7 +32023,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
+  ac_collide: {fileID: 8300000, guid: 041644fa150a1db47b2e48a59f450089, type: 3}
 --- !u!82 &1153442431
 AudioSource:
   m_ObjectHideFlags: 0
@@ -36401,6 +36409,10 @@ PrefabInstance:
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8677663501947926910, guid: c365bc6b04b4d3e4f866b318b535f70a, type: 3}
+      propertyPath: ac_collide
+      value: 
+      objectReference: {fileID: 8300000, guid: 550d25ce9043a214c9f45b2d29055d10, type: 3}
     - target: {fileID: 9115016232712907181, guid: c365bc6b04b4d3e4f866b318b535f70a, type: 3}
       propertyPath: m_Name
       value: cutting board
@@ -55351,7 +55363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ac_collide: {fileID: 8300000, guid: a920a900edd5af3498bfe8bdb8f2b0d9, type: 3}
+  ac_collide: {fileID: 8300000, guid: 041644fa150a1db47b2e48a59f450089, type: 3}
 --- !u!82 &1929894708
 AudioSource:
   m_ObjectHideFlags: 0
