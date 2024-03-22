@@ -49,7 +49,7 @@ public class Tutorial : MonoBehaviour
 
     void Update()
     {
-        if (bl_tutorialActive)
+        if (bl_tutorialActive && GameManager.playerController.En_state == PlayerController.State.active)
         {
             if (Input.GetKeyDown(KeyCode.Return) ||
                 Input.GetKeyUp(KeyCode.KeypadEnter))
