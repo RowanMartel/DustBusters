@@ -140,7 +140,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         // This handles a held objects position in front of player while player is active
-        if (go_heldObject != null && en_state == State.active)
+        if (go_heldObject != null) // && en_state == State.active)
         {
             Pickupable pu_pickup = go_heldObject.GetComponent<Pickupable>();            
 
@@ -397,7 +397,7 @@ public class PlayerController : MonoBehaviour
             case State.active:
                 en_state = State.inactive;
                 Cursor.lockState = CursorLockMode.Confined;
-                if (Go_heldObject != null && !GameManager.menuManager.Bl_paused)
+                if (Go_heldObject != null && !GameManager.menuManager.Bl_paused && !GameManager.menuManager.bl_choreListUp)
                 {
                     Go_heldObject.GetComponent<Renderer>().enabled = false;
                     Go_heldObject.GetComponent<Rigidbody>().Sleep();
@@ -407,7 +407,7 @@ public class PlayerController : MonoBehaviour
             case State.inactive:
                 en_state = State.active;
                 if (!GameManager.Bl_inCleaningGame) Cursor.lockState = CursorLockMode.Locked;
-                if (Go_heldObject != null && !GameManager.menuManager.Bl_paused)
+                if (Go_heldObject != null && !GameManager.menuManager.Bl_paused && !GameManager.menuManager.bl_choreListUp)
                 {
                     Go_heldObject.GetComponent<Renderer>().enabled = true;
                     Go_heldObject.GetComponent<Rigidbody>().Sleep();
