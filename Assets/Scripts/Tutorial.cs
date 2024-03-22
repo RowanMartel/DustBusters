@@ -27,6 +27,14 @@ public class Tutorial : MonoBehaviour
     [SerializeField] GameObject go_seg7;
     [SerializeField] GameObject go_seg8;
     [SerializeField] GameObject go_seg9;
+    [SerializeField] PlayerCompass playerCompass;
+    [SerializeField] GameObject go_playerCompass;
+
+    // game objects for compass targets
+    [SerializeField] GameObject go_diningSwitch;
+    [SerializeField] GameObject go_map;
+    [SerializeField] GameObject go_dish;
+    [SerializeField] GameObject go_door;
 
     private void Awake()
     {
@@ -88,6 +96,8 @@ public class Tutorial : MonoBehaviour
                         int_tutorialSegment++;
                         go_seg4.SetActive(false);
                         go_seg5.SetActive(true);
+                        go_playerCompass.SetActive(true);
+                        playerCompass.SetTarget(go_map);
                     }
                     break;
                 case 5:
@@ -97,6 +107,7 @@ public class Tutorial : MonoBehaviour
                         int_tutorialSegment++;
                         go_seg5.SetActive(false);
                         go_seg6.SetActive(true);
+                        go_playerCompass.SetActive(false);
                     }
                     break;
                 case 6:
@@ -106,6 +117,8 @@ public class Tutorial : MonoBehaviour
                         int_tutorialSegment++;
                         go_seg6.SetActive(false);
                         go_seg7.SetActive(true);
+                        go_playerCompass.SetActive(true);
+                        playerCompass.SetTarget(go_diningSwitch);
                     }
                     break;
                 case 7:
@@ -114,6 +127,7 @@ public class Tutorial : MonoBehaviour
                         int_tutorialSegment++;
                         go_seg7.SetActive(false);
                         go_seg8.SetActive(true);
+                        playerCompass.SetTarget(go_door);
                     }
                     break;
                 case 8:
@@ -122,6 +136,7 @@ public class Tutorial : MonoBehaviour
                         int_tutorialSegment++;
                         go_seg8.SetActive(false);
                         go_seg9.SetActive(true);
+                        playerCompass.SetTarget(go_dish);
                     }
                     break;
                 case 9:
@@ -141,7 +156,6 @@ public class Tutorial : MonoBehaviour
         int_tutorialSegment = 1;
 
         go_seg1.SetActive(true);
-        tmp_skipText.enabled = true;
         tmp_skipText.gameObject.SetActive(true);
 
         v3_prevMousePos = Input.mousePosition;
@@ -149,7 +163,6 @@ public class Tutorial : MonoBehaviour
     }
     void EndTutorial()
     {
-        tmp_skipText.enabled = false;
         bl_tutorialActive = false;
         int_tutorialSegment = 0;
 
@@ -163,5 +176,6 @@ public class Tutorial : MonoBehaviour
         go_seg8.SetActive(false);
         go_seg9.SetActive(false);
         tmp_skipText.gameObject.SetActive(false);
+        go_playerCompass.SetActive(false);
     }
 }
