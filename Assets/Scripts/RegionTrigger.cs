@@ -27,6 +27,11 @@ public class RegionTrigger : MonoBehaviour
         //img_itemIndicator = transform.GetChild(0).GetChild(0).GetComponent<Image>();
     }
 
+    private void Update()
+    {
+        CheckObjects();
+    }
+
     //Assigns current region to characters who enter the region
     private void OnTriggerEnter(Collider other)
     {
@@ -72,7 +77,11 @@ public class RegionTrigger : MonoBehaviour
         else if (other.GetComponent<Pickupable>() != null)
         {
             Pickupable pu_other = other.GetComponent<Pickupable>();
-            l_pu_pickupables.Remove(pu_other);
+            while (l_pu_pickupables.Contains(pu_other))
+            {
+                Debug.Log("removing " + pu_other.name);
+                l_pu_pickupables.Remove(pu_other);
+            }
             CheckObjects();
         }
     }
