@@ -16,6 +16,7 @@ public class RegionTrigger : MonoBehaviour
     List<Pickupable> l_pu_pickupables = new List<Pickupable>();
     [Tooltip("0:Lighter 1:Duster 2:Mop 3:Key")]
     public Sprite[] a_spt_itemSprites;
+    public bool bl_debug;
 
     private void Start()
     {
@@ -29,7 +30,18 @@ public class RegionTrigger : MonoBehaviour
 
     private void Update()
     {
+        if (bl_debug) Debug.Log(ListToString(l_pu_pickupables));
         CheckObjects();
+    }
+
+    private string ListToString(List<Pickupable> list)
+    {
+        string str = "";
+        foreach(Pickupable pu in list)
+        {
+            str += pu.name + ", ";
+        }
+        return str;
     }
 
     //Assigns current region to characters who enter the region
