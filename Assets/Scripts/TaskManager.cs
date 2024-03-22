@@ -42,14 +42,15 @@ public class TaskManager : MonoBehaviour
     protected bool bl_taskListFilled;
 
     // Chore System variables
-    protected Chore currentChore;
+    public Chore currentChore;
     protected GameObject go_choreSheet;
     protected List<Chore> l_chores;
+    RegionTrigger[] a_rt_regions;
 
     // This method creates the initial list of chores and gets references to the needed objects in the MenuManager
     public void SetupChoreList()
     {
-        go_choreSheet = GameObject.Find("ChoreSheet");
+        go_choreSheet = GameObject.Find("ChoreList");
         int chores = go_choreSheet.transform.childCount;
 
         l_chores = new List<Chore>();
@@ -58,6 +59,7 @@ public class TaskManager : MonoBehaviour
         {
             Chore newChore = new Chore();
             newChore.tmp_choreText = go_choreSheet.transform.GetChild(i).transform.Find("ChoreText").GetComponent<TMP_Text>();
+            newChore.tmp_choreText.text = "";
             newChore.go_box = go_choreSheet.transform.GetChild(i).transform.Find("CheckBox").gameObject;
             newChore.go_check = go_choreSheet.transform.GetChild(i).transform.Find("Check").gameObject;
             newChore.choreTask = Task.Empty;
@@ -72,6 +74,7 @@ public class TaskManager : MonoBehaviour
     private void Awake()
     {
         GameManager.taskManager = this;
+        a_rt_regions = FindObjectsByType<RegionTrigger>(FindObjectsSortMode.None);
     }
 
     public void ResetValues()
@@ -216,10 +219,10 @@ public class TaskManager : MonoBehaviour
         switch (task)
         {
             case Task.CleanDishes:
-                str_text = "\nClean the dirty dishes";
+                str_text = "\nClean the dirty dishes in the kitchen";
                 break;
             case Task.PutAwayDishes:
-                str_text = "\nPut away the dishes on the counter";
+                str_text = "\nPut away the clean dishes in the kitchen";
                 break;
             case Task.CleanCobwebs:
                 str_text = "\nClean away the cobwebs in the foyer";
@@ -287,7 +290,7 @@ public class TaskManager : MonoBehaviour
                 chore.go_check.SetActive(false);
                 chore.bl_choreComplete = false;
                 chore.tmp_choreText.color = Color.black;
-                break;
+                return;
             }
         }
 
@@ -301,16 +304,16 @@ public class TaskManager : MonoBehaviour
                 switch (task)
                 {
                     case Task.CleanDishes:
-                        chore.tmp_choreText.text = "Clean the dirty dishes";
+                        chore.tmp_choreText.text = "Clean the dirty dishes in the kitchen";
                         break;
                     case Task.PutAwayDishes:
-                        chore.tmp_choreText.text = "Put away the dishes on the counter";
+                        chore.tmp_choreText.text = "Put away the clean dishes in the kitchen";
                         break;
                     case Task.CleanCobwebs:
                         chore.tmp_choreText.text = "Dust the cobwebs in the foyer";
                         break;
                     case Task.CleanMirror:
-                        chore.tmp_choreText.text = "Clean the bathroom mirror";
+                        chore.tmp_choreText.text = "Clean the downstairs bathroom mirror";
                         break;
                     case Task.ThrowOutBrokenDishes:
                         chore.tmp_choreText.text = "Throw out the broken dishes";
@@ -322,10 +325,10 @@ public class TaskManager : MonoBehaviour
                         chore.tmp_choreText.text = "Find the front door key";
                         break;
                     case Task.LightFireplace:
-                        chore.tmp_choreText.text = "Light the fireplace";
+                        chore.tmp_choreText.text = "Light the fireplace with the lighter";
                         break;
                     case Task.MopFloor:
-                        chore.tmp_choreText.text = "Mop the laundry room floor";
+                        chore.tmp_choreText.text = "Sweep the laundry room floor";
                         break;
                     case Task.PutAwayBooks:
                         chore.tmp_choreText.text = "Put the books back on the shelf";
@@ -354,6 +357,10 @@ public class TaskManager : MonoBehaviour
         currentChore.tmp_choreText.color = Color.blue;
 
         GameManager.menuManager.UpdateCurrentChore(currentChore.tmp_choreText.text);
+        foreach(RegionTrigger rt_region in a_rt_regions)
+        {
+            rt_region.CheckObjects();
+        }
     }
 }
 

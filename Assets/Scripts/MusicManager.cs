@@ -31,7 +31,6 @@ public class MusicManager : MonoBehaviour
     // plays pause music when it receives the game paused event
     void PlayPause(object source, EventArgs e)
     {
-        Debug.Log("DDD");
         as_source.clip = ac_pause;
         FadeIn();
     }
@@ -58,11 +57,9 @@ public class MusicManager : MonoBehaviour
     // plays title them when it receives the menu entered event
     void Title(object source, EventArgs e)
     {
-        Debug.Log(as_source.volume);
         as_source.Stop();
         as_source.clip = ac_title;
         FadeIn();
-        Debug.Log(as_source.volume);
     }
 
     // stops all music when it receives the gameplay entered event
@@ -71,23 +68,16 @@ public class MusicManager : MonoBehaviour
         FadeOut();
     }
 
-    void CommentComplete()
-    {
-        Debug.Log("BBBB" + as_source.volume);
-    }
-
     void FadeIn()
     {
         as_source.volume = 0;
-        LeanTween.value(0f, Settings.flt_musicVolume, 3f).setOnComplete(CommentComplete).setOnUpdate(FadingUpdate).setIgnoreTimeScale(true);
+        LeanTween.value(0f, Settings.flt_musicVolume, 3f).setOnUpdate(FadingUpdate).setIgnoreTimeScale(true);
         as_source.Play();
-        Debug.Log("CCC");
     }
 
     void FadeOut()
     {
         as_source.volume = Settings.flt_volume;
-        Debug.Log("Now");
         LeanTween.value(as_source.volume, 0, 1.5f).setOnComplete(as_source.Stop).setOnUpdate(FadingUpdate).setIgnoreTimeScale(true);
     }
 
