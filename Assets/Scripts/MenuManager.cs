@@ -688,7 +688,7 @@ public class MenuManager : MonoBehaviour
     // This is attached to a listener that fires when a chore is complete
     public void ChoreCompleteNotification(object source, EventArgs e)
     {
-        tmp_notificationText.text = "Chore Complete!";
+        tmp_notificationText.text = "Chore Completed!";
         img_notificationBackground.rectTransform.sizeDelta = new Vector2(tmp_notificationText.text.Length * 8, img_notificationBackground.rectTransform.sizeDelta.y);
 
         ShowChoreNotification();
@@ -697,7 +697,7 @@ public class MenuManager : MonoBehaviour
     // This is attached to a listener that fires when a chore is updated
     public void ChoreUpdatedNotification(object source, EventArgs e)
     {
-        tmp_notificationText.text = "Chore Updated!";
+        tmp_notificationText.text = "Chore Sheet Updated!";
         img_notificationBackground.rectTransform.sizeDelta = new Vector2(tmp_notificationText.text.Length * 8, img_notificationBackground.rectTransform.sizeDelta.y);
 
         ShowChoreNotification();

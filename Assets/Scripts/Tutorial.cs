@@ -137,6 +137,8 @@ public class Tutorial : MonoBehaviour
                         go_seg8.SetActive(false);
                         go_seg9.SetActive(true);
                         playerCompass.SetTarget(go_dish);
+
+                        GameManager.taskManager.SetCurrentChore(1);
                     }
                     break;
                 case 9:

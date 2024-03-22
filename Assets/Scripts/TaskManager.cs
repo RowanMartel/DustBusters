@@ -50,7 +50,7 @@ public class TaskManager : MonoBehaviour
     // This method creates the initial list of chores and gets references to the needed objects in the MenuManager
     public void SetupChoreList()
     {
-        go_choreSheet = GameObject.Find("ChoreSheet");
+        go_choreSheet = GameObject.Find("ChoreList");
         int chores = go_choreSheet.transform.childCount;
 
         l_chores = new List<Chore>();

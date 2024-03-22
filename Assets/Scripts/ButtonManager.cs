@@ -19,7 +19,7 @@ public class ButtonManager : MonoBehaviour
 
     public void OnPointerEnter(GameObject button)
     {
-        LeanTween.scale(button, new Vector3 (1.1f, 1.1f, 1.1f), .1f).setIgnoreTimeScale(true);
+        LeanTween.scale(button, new Vector3 (1.05f, 1.1f, 1.1f), .1f).setIgnoreTimeScale(true);
     }
 
     public void OnPointerExit(GameObject button)
