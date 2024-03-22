@@ -19,6 +19,8 @@ public class RegionTrigger : MonoBehaviour
     public bool bl_debug;
     public RegionTrigger rt_closet;
     public bool bl_isCloset;
+    [Tooltip("Regions that can easily be seen into from the current region.")]
+    public RegionTrigger[] a_rt_fullViewRegions;
 
     private void Start()
     {
@@ -55,7 +57,8 @@ public class RegionTrigger : MonoBehaviour
 
             if (gb_ghost.bl_hiding && gb_ghost.go_curRegion != pc_player.go_curRegion && gb_ghost.int_curAggressionLevel < 3)
             {
-                nav_obstacle.enabled = true;
+                Debug.Log("B");
+                
             }
 
             foreach(MirrorMovement mir in a_mirrorMovements)
@@ -86,7 +89,19 @@ public class RegionTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player") && nav_obstacle.enabled)
         {
-            nav_obstacle.enabled = false;
+            PlayerController pc = GameManager.playerController;
+            if (!pc.go_curRegion.GetComponent<RegionTrigger>().a_rt_fullViewRegions.Contains(this))
+            {
+                Debug.Log("A");
+                nav_obstacle.enabled = false;
+            }
+            foreach (RegionTrigger rt in a_rt_fullViewRegions)
+            {
+                if (!pc.go_curRegion.GetComponent<RegionTrigger>().a_rt_fullViewRegions.Contains(rt) && rt != pc.go_curRegion.GetComponent<RegionTrigger>())
+                {
+                    rt.nav_obstacle.enabled = false;
+                }
+            }
         }
         else if (other.GetComponent<Pickupable>() != null)
         {
@@ -97,6 +112,24 @@ public class RegionTrigger : MonoBehaviour
                 l_pu_pickupables.Remove(pu_other);
             }
             CheckObjects();
+        }
+    }
+
+    public void BlockGhostPath()
+    {
+        nav_obstacle.enabled = true;
+        foreach (RegionTrigger rt in a_rt_fullViewRegions)
+        {
+            rt.nav_obstacle.enabled = true;
+        }
+    }
+
+    public void OpenGhostPath()
+    {
+        nav_obstacle.enabled = false;
+        foreach (RegionTrigger rt in a_rt_fullViewRegions)
+        {
+            rt.nav_obstacle.enabled = false;
         }
     }
 

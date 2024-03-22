@@ -372,6 +372,9 @@ MonoBehaviour:
   bl_debug: 0
   rt_closet: {fileID: 0}
   bl_isCloset: 1
+  a_rt_fullViewRegions:
+  - {fileID: 1743294837}
+  - {fileID: 1857991536}
 --- !u!65 &22102221
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2978,6 +2981,7 @@ MonoBehaviour:
   bl_debug: 0
   rt_closet: {fileID: 710783864}
   bl_isCloset: 0
+  a_rt_fullViewRegions: []
 --- !u!65 &151300018
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5477,6 +5481,9 @@ MonoBehaviour:
   bl_debug: 0
   rt_closet: {fileID: 0}
   bl_isCloset: 0
+  a_rt_fullViewRegions:
+  - {fileID: 252261975}
+  - {fileID: 906184330}
 --- !u!65 &251517227
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5640,6 +5647,10 @@ MonoBehaviour:
   bl_debug: 0
   rt_closet: {fileID: 0}
   bl_isCloset: 0
+  a_rt_fullViewRegions:
+  - {fileID: 906184330}
+  - {fileID: 251517226}
+  - {fileID: 1743294837}
 --- !u!65 &252261976
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9623,6 +9634,7 @@ MonoBehaviour:
   bl_debug: 0
   rt_closet: {fileID: 0}
   bl_isCloset: 0
+  a_rt_fullViewRegions: []
 --- !u!65 &356724317
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9933,6 +9945,7 @@ MonoBehaviour:
   bl_debug: 0
   rt_closet: {fileID: 505624035}
   bl_isCloset: 0
+  a_rt_fullViewRegions: []
 --- !u!65 &360669698
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12924,6 +12937,7 @@ MonoBehaviour:
   bl_debug: 0
   rt_closet: {fileID: 0}
   bl_isCloset: 0
+  a_rt_fullViewRegions: []
 --- !u!65 &502061767
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13109,6 +13123,7 @@ MonoBehaviour:
   bl_debug: 0
   rt_closet: {fileID: 0}
   bl_isCloset: 1
+  a_rt_fullViewRegions: []
 --- !u!65 &505624036
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14856,6 +14871,7 @@ MonoBehaviour:
   bl_debug: 0
   rt_closet: {fileID: 0}
   bl_isCloset: 0
+  a_rt_fullViewRegions: []
 --- !u!65 &588387260
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17744,6 +17760,7 @@ MonoBehaviour:
   bl_debug: 0
   rt_closet: {fileID: 0}
   bl_isCloset: 1
+  a_rt_fullViewRegions: []
 --- !u!65 &710783865
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20577,6 +20594,7 @@ MonoBehaviour:
   bl_debug: 0
   rt_closet: {fileID: 0}
   bl_isCloset: 1
+  a_rt_fullViewRegions: []
 --- !u!65 &791661051
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27382,6 +27400,10 @@ MonoBehaviour:
   bl_debug: 0
   rt_closet: {fileID: 0}
   bl_isCloset: 0
+  a_rt_fullViewRegions:
+  - {fileID: 252261975}
+  - {fileID: 251517226}
+  - {fileID: 1743294837}
 --- !u!65 &906184331
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27401,8 +27423,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.584553, y: 4.266019, z: 6.564028}
-  m_Center: {x: 5.2728558, y: 4.542869, z: 2.2160482}
+  m_Size: {x: 4.584553, y: 4.3576813, z: 6.564028}
+  m_Center: {x: 5.2728558, y: -0.07297087, z: 2.2160482}
 --- !u!208 &906184332
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -27417,7 +27439,7 @@ NavMeshObstacle:
   m_MoveThreshold: 0.1
   m_Carve: 1
   m_CarveOnlyStationary: 1
-  m_Center: {x: 5.272856, y: 4.542869, z: 2.216048}
+  m_Center: {x: 5.272856, y: -0.07297087, z: 2.216048}
   m_TimeToStationary: 0.5
 --- !u!1001 &906567479
 PrefabInstance:
@@ -34664,6 +34686,7 @@ MonoBehaviour:
   bl_debug: 0
   rt_closet: {fileID: 0}
   bl_isCloset: 0
+  a_rt_fullViewRegions: []
 --- !u!65 &1188076904
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -37855,9 +37878,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 38d7f314e23c9ac46b3f651b74f7b780, type: 3}
   - {fileID: 21300000, guid: 604c94d9ba5ae6c42bf1095d86d6a57e, type: 3}
   - {fileID: 21300000, guid: 3ba778cb489389a4ba194ef20f70c491, type: 3}
-  bl_debug: 1
+  bl_debug: 0
   rt_closet: {fileID: 0}
   bl_isCloset: 0
+  a_rt_fullViewRegions: []
 --- !u!65 &1333493161
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -46154,6 +46178,7 @@ MonoBehaviour:
   bl_debug: 0
   rt_closet: {fileID: 0}
   bl_isCloset: 1
+  a_rt_fullViewRegions: []
 --- !u!65 &1446597394
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -48486,6 +48511,7 @@ MonoBehaviour:
   bl_debug: 0
   rt_closet: {fileID: 0}
   bl_isCloset: 0
+  a_rt_fullViewRegions: []
 --- !u!65 &1549443261
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -50729,6 +50755,7 @@ MonoBehaviour:
   bl_debug: 0
   rt_closet: {fileID: 791661050}
   bl_isCloset: 0
+  a_rt_fullViewRegions: []
 --- !u!65 &1625500757
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -53111,6 +53138,10 @@ MonoBehaviour:
   bl_debug: 0
   rt_closet: {fileID: 0}
   bl_isCloset: 0
+  a_rt_fullViewRegions:
+  - {fileID: 1857991536}
+  - {fileID: 906184330}
+  - {fileID: 252261975}
 --- !u!65 &1743294838
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -53678,6 +53709,7 @@ MonoBehaviour:
   bl_debug: 0
   rt_closet: {fileID: 1446597393}
   bl_isCloset: 0
+  a_rt_fullViewRegions: []
 --- !u!65 &1782937184
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -54786,6 +54818,7 @@ MonoBehaviour:
   bl_debug: 0
   rt_closet: {fileID: 0}
   bl_isCloset: 0
+  a_rt_fullViewRegions: []
 --- !u!65 &1826368991
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -55620,6 +55653,10 @@ MonoBehaviour:
   bl_debug: 0
   rt_closet: {fileID: 22102220}
   bl_isCloset: 0
+  a_rt_fullViewRegions:
+  - {fileID: 1743294837}
+  - {fileID: 252261975}
+  - {fileID: 22102220}
 --- !u!65 &1857991537
 BoxCollider:
   m_ObjectHideFlags: 0

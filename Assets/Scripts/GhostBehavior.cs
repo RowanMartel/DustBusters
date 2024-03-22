@@ -845,7 +845,7 @@ public class GhostBehavior : MonoBehaviour
         if (bl_hiding)
         {
             bl_hiding = false;
-            pc_player.go_curRegion.GetComponent<NavMeshObstacle>().enabled = false;
+            pc_player.go_curRegion.GetComponent<RegionTrigger>().OpenGhostPath();
         }
         go_curHeldItem = null;
     }
@@ -863,8 +863,8 @@ public class GhostBehavior : MonoBehaviour
     public void ChooseHidingPlace()
     {
         if (go_curHeldItem == null) return;
-        if(int_curAggressionLevel < 3)
-            pc_player.go_curRegion.GetComponent<NavMeshObstacle>().enabled = true;
+        if (int_curAggressionLevel < 3)
+            pc_player.go_curRegion.GetComponent<RegionTrigger>().BlockGhostPath();
         do
         {
             bl_hiding = true;
