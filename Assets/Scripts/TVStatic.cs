@@ -53,7 +53,9 @@ public class TVStatic : Interactable
 
     public override void Interact()
     {
-        if (GameManager.playerController.Go_heldObject.GetComponent<Pickupable>().bl_remote && !bl_on) Activate();
-        else if (GameManager.playerController.Go_heldObject.GetComponent<Pickupable>().bl_remote && bl_on) Deactivate();
+        PlayerController pc_player = GameManager.playerController;
+        if (pc_player.Go_heldObject == null) return;
+        if (pc_player.Go_heldObject.GetComponent<Pickupable>().bl_remote && !bl_on) Activate();
+        else if (pc_player.Go_heldObject.GetComponent<Pickupable>().bl_remote && bl_on) Deactivate();
     }
 }
