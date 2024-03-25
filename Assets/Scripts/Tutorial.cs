@@ -58,8 +58,6 @@ public class Tutorial : MonoBehaviour
             switch (int_tutorialSegment)
             {
                 case 1:
-                    int x = Screen.width / 2;
-                    int y = Screen.height / 2;
                     if (v3_prevMousePos != Input.mousePosition)
                         int_mousePosChanges++;
                     if (int_mousePosChanges >= 3)
@@ -71,10 +69,10 @@ public class Tutorial : MonoBehaviour
                     v3_prevMousePos = Input.mousePosition;
                     break;
                 case 2:
-                    if (Input.GetKeyDown(KeyCode.W) ||
-                        Input.GetKeyDown(KeyCode.A) ||
-                        Input.GetKeyDown(KeyCode.S) ||
-                        Input.GetKeyDown(KeyCode.D))
+                    if (Input.GetKey(KeyCode.W) ||
+                        Input.GetKey(KeyCode.A) ||
+                        Input.GetKey(KeyCode.S) ||
+                        Input.GetKey(KeyCode.D))
                     {
                         int_tutorialSegment++;
                         go_seg2.SetActive(false);
@@ -90,8 +88,8 @@ public class Tutorial : MonoBehaviour
                     }
                     break;
                 case 4:
-                    if (Input.GetKeyDown(KeyCode.LeftShift) ||
-                        Input.GetKeyDown(KeyCode.RightShift))
+                    if (Input.GetKey(KeyCode.LeftShift) ||
+                        Input.GetKey(KeyCode.RightShift))
                     {
                         int_tutorialSegment++;
                         go_seg4.SetActive(false);
