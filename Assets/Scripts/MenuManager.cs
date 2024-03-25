@@ -1,9 +1,12 @@
 using Cinemachine;
 using System;
+using System.Collections.Generic;
+// using System.Drawing;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+// using static System.Net.Mime.MediaTypeNames;
 
 public class MenuManager : MonoBehaviour
 {
@@ -17,6 +20,20 @@ public class MenuManager : MonoBehaviour
     public GameObject go_endScreen;
     public GameObject go_debugScreen;
     public GameObject go_controlsScreen;
+
+    //Credits Sequence Objects
+    protected GameObject go_creditsScreensHolder;
+    protected bool bl_creditsSequenceRunning = false;
+    protected List<GameObject> li_creditScreens;
+
+    protected int int_creditsScreenTracker = 0;
+    protected int int_creditsScreenSequence = 0;
+
+    protected bool bl_runCreditsTimer = false;
+    protected float flt_creditsTimer = 3;
+
+    protected Color co_transparent;
+    protected Color co_opaque;
 
     // Screen Variables used in screen transitions, and the ability to go back and forth within Main Menu and Pause
     protected GameObject go_nextScreen;
@@ -69,6 +86,7 @@ public class MenuManager : MonoBehaviour
     protected GameObject go_OrientationNote;
     protected GameObject go_quitButton;
     protected GameObject go_startButton;
+    protected GameObject go_restartButton;
 
     // Bools related to the Pause system
     protected bool bl_paused = false;
@@ -101,6 +119,34 @@ public class MenuManager : MonoBehaviour
             img_deathScreen = GameObject.Find("DeathOverlay").GetComponent<Image>();
             img_fadeOverlay = GameObject.Find("FadeOverlay").GetComponent<Image>();
 
+            // These are credits sequence related variables:
+            go_creditsScreensHolder = GameObject.Find("CreditsScreens");
+
+            li_creditScreens = new();
+
+            foreach (Transform creditsScreen in go_creditsScreensHolder.transform)
+            {
+                li_creditScreens.Add(creditsScreen.gameObject);
+            }
+
+            co_opaque = new();
+            co_opaque = Color.white;
+            co_transparent = new();
+            co_transparent = co_opaque;
+            co_transparent.a = 0;
+
+            foreach (GameObject creditsScreen in li_creditScreens)
+            {
+                creditsScreen.transform.Find("Picture").GetComponent<Image>().color = co_transparent;
+
+                GameObject textObjectHolder = creditsScreen.transform.Find("TextObjects").gameObject;
+
+                foreach (Transform textObject in textObjectHolder.transform)
+                {
+                    if (textObject.GetComponent<TextMeshProUGUI>() != null) textObject.GetComponent<TextMeshProUGUI>().color = co_transparent;
+                }
+            }
+
             // These components make up the player tooltip:
             img_tooltipBackground = GameObject.Find("ToolTipBackground").GetComponent<Image>();
             tmp_tooltipText = GameObject.Find("ToolTipText").GetComponent<TextMeshProUGUI>();
@@ -120,6 +166,7 @@ public class MenuManager : MonoBehaviour
             go_quitButton = GameObject.Find("DeathScreenQuit");
             go_startButton = GameObject.Find("StartScreenButton");
             go_OrientationNote = GameObject.Find("Note");
+            go_restartButton = GameObject.Find("RestartButton");
 
             // These are the references to the Options screen slider components:
             sli_volume = GameObject.Find("VolumeSlider").GetComponent<Slider>();
@@ -166,6 +213,20 @@ public class MenuManager : MonoBehaviour
             {
                 bl_runNotificationTimer = false;
                 HideChoreNotification();
+            }
+        }
+
+        if (bl_runCreditsTimer)
+        {
+            if (flt_creditsTimer > 0)
+            {
+                flt_creditsTimer -= Time.deltaTime;
+            }
+            else
+            {
+                bl_runCreditsTimer = false;
+                flt_creditsTimer = 3;
+                CreditsHide();
             }
         }
     }
@@ -328,6 +389,7 @@ public class MenuManager : MonoBehaviour
         go_quitButton.transform.localPosition = new Vector3(0f, -300, 0f);
         go_startButton.transform.localPosition = new Vector3(0f, -300, 0f);
         go_OrientationNote.transform.localPosition = new Vector3(0f, -500f, 0f);
+        go_restartButton.transform.localPosition = new Vector3(0f, -500, 0f);
     }
 
     // This handles the transition from the TitleScreen scene to the Game scene and brings up the Orientation Note and Start buttons with LeanTween with animation in steps
@@ -444,7 +506,79 @@ public class MenuManager : MonoBehaviour
             case 2:
                 Cursor.lockState = CursorLockMode.Confined;
                 int_endSequence = 0;
+                CreditsShow();
                 break;
+        }
+    }
+
+    private void CreditsShow()
+    {
+        switch(int_creditsScreenSequence)
+        {
+            case 0:
+                int_creditsScreenSequence++;
+                LeanTween.alpha(li_creditScreens[int_creditsScreenTracker].transform.Find("Picture").GetComponent<RectTransform>(), 1, 1f).setOnComplete(CreditsShow).setIgnoreTimeScale(true);
+                break;
+            case 1:
+                int_creditsScreenSequence++;
+                LeanTween.value(li_creditScreens[int_creditsScreenTracker].transform.Find("Picture").gameObject, 0, 1, 1f).setOnUpdate(UpdateTextAlpha).setOnComplete(CreditsShow).setIgnoreTimeScale(true);
+                break;
+            case 2:
+                int_creditsScreenSequence = 0;
+                bl_runCreditsTimer = true;
+                break;
+        }
+    }
+
+    private void CreditsHide()
+    {
+        var color = Color.white;
+        var fadeoutcolor = color;
+        fadeoutcolor.a = 0;
+
+        switch (int_creditsScreenSequence)
+        {
+            case 0:
+                int_creditsScreenSequence++;
+                // LeanTween.textAlpha(li_creditScreens[int_creditsScreenTracker].transform.Find("Role").GetComponent<RectTransform>(), 0, 1f).setOnUpdate().setOnComplete(CreditsHide).setIgnoreTimeScale(true);
+                LeanTween.value(li_creditScreens[int_creditsScreenTracker].transform.Find("Picture").gameObject, 1, 0, 1f).setOnUpdate(UpdateTextAlpha).setOnComplete(CreditsHide).setIgnoreTimeScale(true);
+                break;
+            case 1:
+                int_creditsScreenSequence++;
+                LeanTween.alpha(li_creditScreens[int_creditsScreenTracker].transform.Find("Picture").GetComponent<RectTransform>(), 0, 1f).setOnComplete(CreditsHide).setIgnoreTimeScale(true);
+                break;
+            case 2:
+                int_creditsScreenSequence = 0;
+                CheckCreditSequenceDone();
+                break;
+        }
+    }
+
+    private void UpdateTextAlpha(float alpha)
+    {
+        Color color = Color.white;
+        color.a = alpha;
+
+        GameObject textObjectHolder = li_creditScreens[int_creditsScreenTracker].transform.Find("TextObjects").gameObject;
+
+        foreach(Transform textObject in textObjectHolder.transform)
+        {
+            if(textObject.GetComponent<TextMeshProUGUI>() != null) textObject.GetComponent<TextMeshProUGUI>().color = color;
+        }
+    }
+
+    private void CheckCreditSequenceDone()
+    {
+        if (int_creditsScreenTracker != li_creditScreens.Count - 1)
+        {
+            int_creditsScreenTracker++;
+            CreditsShow();
+        }
+        else
+        {
+            int_creditsScreenTracker = 0;
+            LeanTween.moveLocal(go_restartButton, new Vector3(0f, -110f, 0f), 1f).setEase(LeanTweenType.easeInSine).setIgnoreTimeScale(true);
+
         }
     }
 
