@@ -1,6 +1,7 @@
 using Cinemachine;
 using System;
 using System.Collections.Generic;
+// using System.Drawing;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -137,8 +138,13 @@ public class MenuManager : MonoBehaviour
             foreach (GameObject creditsScreen in li_creditScreens)
             {
                 creditsScreen.transform.Find("Picture").GetComponent<Image>().color = co_transparent;
-                creditsScreen.transform.Find("Role").GetComponent<TextMeshProUGUI>().color = co_transparent;
-                creditsScreen.transform.Find("Name").GetComponent<TextMeshProUGUI>().color = co_transparent;
+
+                GameObject textObjectHolder = creditsScreen.transform.Find("TextObjects").gameObject;
+
+                foreach (Transform textObject in textObjectHolder.transform)
+                {
+                    if (textObject.GetComponent<TextMeshProUGUI>() != null) textObject.GetComponent<TextMeshProUGUI>().color = co_transparent;
+                }
             }
 
             // These components make up the player tooltip:
@@ -383,7 +389,7 @@ public class MenuManager : MonoBehaviour
         go_quitButton.transform.localPosition = new Vector3(0f, -300, 0f);
         go_startButton.transform.localPosition = new Vector3(0f, -300, 0f);
         go_OrientationNote.transform.localPosition = new Vector3(0f, -500f, 0f);
-        go_restartButton.transform.localPosition = new Vector3(0f, -300, 0f);
+        go_restartButton.transform.localPosition = new Vector3(0f, -500, 0f);
     }
 
     // This handles the transition from the TitleScreen scene to the Game scene and brings up the Orientation Note and Start buttons with LeanTween with animation in steps
@@ -515,7 +521,7 @@ public class MenuManager : MonoBehaviour
                 break;
             case 1:
                 int_creditsScreenSequence++;
-                LeanTween.value(li_creditScreens[int_creditsScreenTracker].transform.Find("Name").gameObject, 0, 1, 1f).setOnUpdate(UpdateTextAlpha).setOnComplete(CreditsShow).setIgnoreTimeScale(true);
+                LeanTween.value(li_creditScreens[int_creditsScreenTracker].transform.Find("Picture").gameObject, 0, 1, 1f).setOnUpdate(UpdateTextAlpha).setOnComplete(CreditsShow).setIgnoreTimeScale(true);
                 break;
             case 2:
                 int_creditsScreenSequence = 0;
@@ -526,7 +532,7 @@ public class MenuManager : MonoBehaviour
 
     private void CreditsHide()
     {
-        var color = li_creditScreens[int_creditsScreenTracker].transform.Find("Name").GetComponent<TextMeshProUGUI>().color;
+        var color = Color.white;
         var fadeoutcolor = color;
         fadeoutcolor.a = 0;
 
@@ -535,7 +541,7 @@ public class MenuManager : MonoBehaviour
             case 0:
                 int_creditsScreenSequence++;
                 // LeanTween.textAlpha(li_creditScreens[int_creditsScreenTracker].transform.Find("Role").GetComponent<RectTransform>(), 0, 1f).setOnUpdate().setOnComplete(CreditsHide).setIgnoreTimeScale(true);
-                LeanTween.value(li_creditScreens[int_creditsScreenTracker].transform.Find("Name").gameObject, 1, 0, 1f).setOnUpdate(UpdateTextAlpha).setOnComplete(CreditsHide).setIgnoreTimeScale(true);
+                LeanTween.value(li_creditScreens[int_creditsScreenTracker].transform.Find("Picture").gameObject, 1, 0, 1f).setOnUpdate(UpdateTextAlpha).setOnComplete(CreditsHide).setIgnoreTimeScale(true);
                 break;
             case 1:
                 int_creditsScreenSequence++;
@@ -550,10 +556,15 @@ public class MenuManager : MonoBehaviour
 
     private void UpdateTextAlpha(float alpha)
     {
-        Color color = li_creditScreens[int_creditsScreenTracker].transform.Find("Role").GetComponent<TextMeshProUGUI>().color;
+        Color color = Color.white;
         color.a = alpha;
-        li_creditScreens[int_creditsScreenTracker].transform.Find("Role").GetComponent<TextMeshProUGUI>().color = color;
-        li_creditScreens[int_creditsScreenTracker].transform.Find("Name").GetComponent<TextMeshProUGUI>().color = color;
+
+        GameObject textObjectHolder = li_creditScreens[int_creditsScreenTracker].transform.Find("TextObjects").gameObject;
+
+        foreach(Transform textObject in textObjectHolder.transform)
+        {
+            if(textObject.GetComponent<TextMeshProUGUI>() != null) textObject.GetComponent<TextMeshProUGUI>().color = color;
+        }
     }
 
     private void CheckCreditSequenceDone()
