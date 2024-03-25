@@ -150,8 +150,14 @@ public class Tutorial : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        GameManager.menuManager.StartScreenClosed -= StartTutorial;
+    }
+
     void StartTutorial(object source, EventArgs e)
     {
+        Debug.Log(FindObjectsByType<Tutorial>(FindObjectsSortMode.None).Length);
         bl_tutorialActive = true;
         int_tutorialSegment = 1;
 
