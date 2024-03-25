@@ -167,6 +167,8 @@ public class GhostBehavior : MonoBehaviour
     void Update()
     {
 
+        Debug.Log(nav_agent.pathStatus);
+
         if(flt_curKeyCooldown > 0)
         {
             flt_curKeyCooldown -= Time.deltaTime;
@@ -358,7 +360,7 @@ public class GhostBehavior : MonoBehaviour
         //Switch Hiding Spot if player enters that region
         if (bl_hiding)
         {
-            if (hs_curHidingSpot.a_go_region.Contains<GameObject>(pc_player.go_curRegion))
+            if (hs_curHidingSpot.a_go_region.Contains<GameObject>(pc_player.go_curRegion) || nav_agent.pathStatus == NavMeshPathStatus.PathPartial)
             {
                 ChooseHidingPlace();
             }
@@ -464,7 +466,7 @@ public class GhostBehavior : MonoBehaviour
     void PerformTask()
     {
 
-        if (int_curAggressionLevel < 3 && go_curRegion == pc_player.go_curRegion) return;
+        if (int_curAggressionLevel < 3 && (go_curRegion == pc_player.go_curRegion || go_curRegion.GetComponent<RegionTrigger>().a_rt_fullViewRegions.Contains(pc_player.go_curRegion.GetComponent<RegionTrigger>()))) return;
         
         //Attempt to interact with patrol point
         Pickupable pickup = tr_currentPatrolPoint.GetComponent<Pickupable>();
@@ -865,14 +867,21 @@ public class GhostBehavior : MonoBehaviour
         if (go_curHeldItem == null) return;
         if (int_curAggressionLevel < 3)
             pc_player.go_curRegion.GetComponent<RegionTrigger>().BlockGhostPath();
+
+        bl_hiding = true;
         do
         {
-            bl_hiding = true;
             int rand = Random.Range(0, a_hs_hidingPlaces.Length);
             hs_curHidingSpot = a_hs_hidingPlaces[rand];
             nav_agent.SetDestination(hs_curHidingSpot.transform.position);
+            Debug.Log(nav_agent.path.status);
             tr_currentPatrolPoint = hs_curHidingSpot.transform;
-        } while (hs_curHidingSpot.a_go_region.Contains<GameObject>(pc_player.go_curRegion));
+            //rand++;
+            //if(rand >= a_hs_hidingPlaces.Length)
+           // {
+            //    rand = 0;
+            //}
+        } while (hs_curHidingSpot.a_go_region.Contains<GameObject>(pc_player.go_curRegion)/* || nav_agent.pathStatus == NavMeshPathStatus.PathPartial*/);
     }
 
     //Add light to light sources list
