@@ -5326,9 +5326,9 @@ MonoBehaviour:
   nav_agent: {fileID: 6990169330593324436}
   l_tsk_currentTasks: 
   l_pl_currentPoints: []
-  l_tsk_startTasks: 0000000002000000040000000500000003000000090000000e000000
-  l_tsk_endGameTasks: 06000000070000000a000000
-  l_tsk_masterTaskList: 00000000020000000400000005000000030000000100000006000000070000000d0000000b0000000c000000090000000a0000000e000000
+  l_tsk_startTasks: 010000000200000004000000030000000f000000050000000a00000006000000
+  l_tsk_endGameTasks: 07000000080000000b000000
+  l_tsk_masterTaskList: 01000000030000000400000006000000050000000200000007000000080000000e0000000c0000000d0000000a0000000b0000000f000000
   l_pl_patrolPointsPerTask:
   - listAggro1:
     - {fileID: 0}
@@ -5460,7 +5460,6 @@ MonoBehaviour:
     - {fileID: 0}
   - listAggro1:
     - {fileID: 0}
-    - {fileID: 0}
     listAggro2:
     - {fileID: 0}
     - {fileID: 0}
@@ -5537,13 +5536,16 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
+    - {fileID: 0}
     listAggro3:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
+    - {fileID: 0}
     listAggro4:
+    - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
@@ -5566,6 +5568,9 @@ MonoBehaviour:
   flt_heldItemWobble: 60
   bl_hiding: 0
   a_hs_hidingPlaces:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -5608,10 +5613,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  flt_distToImg: 5
+  flt_distToImg: 10
   flt_timeBetweenImgChecks: 10
   flt_curTimeTweenImgChecks: 0
-  flt_chanceToChangeImg: 25
+  flt_chanceToChangeImg: 10
   flt_distToFlickerFuseBox: 5
   fb_fuseBox: {fileID: 0}
   a_candles: []
