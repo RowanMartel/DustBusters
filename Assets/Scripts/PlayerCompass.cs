@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerCompass : MonoBehaviour
 {
+    // used by the tutorial to point towards the player's current target
+
     GameObject go_currentTarget;
 
     void Update()

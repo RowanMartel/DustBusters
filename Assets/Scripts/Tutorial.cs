@@ -8,7 +8,6 @@ public class Tutorial : MonoBehaviour
 {
     int int_tutorialSegment;
     bool bl_tutorialActive;
-    [SerializeField] TMP_Text tmp_skipText;
 
     // variables for segment completion detection
     Vector3 v3_prevMousePos;
@@ -27,6 +26,7 @@ public class Tutorial : MonoBehaviour
     [SerializeField] GameObject go_seg7;
     [SerializeField] GameObject go_seg8;
     [SerializeField] GameObject go_seg9;
+    [SerializeField] TMP_Text tmp_skipText;
     [SerializeField] PlayerCompass playerCompass;
     [SerializeField] GameObject go_playerCompass;
 
@@ -49,15 +49,19 @@ public class Tutorial : MonoBehaviour
 
     void Update()
     {
+        // if in the tutorial and player can move
         if (bl_tutorialActive && GameManager.playerController.En_state == PlayerController.State.active)
         {
+            // skip to final segment if enter is pressed
             if (Input.GetKeyDown(KeyCode.Return) ||
                 Input.GetKeyUp(KeyCode.KeypadEnter))
                 int_tutorialSegment = 10;
 
+            // perform action based on current segment, then go to next segment if completed
             switch (int_tutorialSegment)
             {
                 case 1:
+                    // check if mouse has moved
                     if (v3_prevMousePos != Input.mousePosition)
                         int_mousePosChanges++;
                     if (int_mousePosChanges >= 3)
@@ -69,6 +73,7 @@ public class Tutorial : MonoBehaviour
                     v3_prevMousePos = Input.mousePosition;
                     break;
                 case 2:
+                    // check if player is pressing WASD
                     if (Input.GetKey(KeyCode.W) ||
                         Input.GetKey(KeyCode.A) ||
                         Input.GetKey(KeyCode.S) ||
@@ -80,6 +85,7 @@ public class Tutorial : MonoBehaviour
                     }
                     break;
                 case 3:
+                    // check when player presses space
                     if (Input.GetKeyDown(KeyCode.Space))
                     {
                         int_tutorialSegment++;
@@ -88,6 +94,7 @@ public class Tutorial : MonoBehaviour
                     }
                     break;
                 case 4:
+                    // check if player is pressing shift
                     if (Input.GetKey(KeyCode.LeftShift) ||
                         Input.GetKey(KeyCode.RightShift))
                     {
@@ -99,6 +106,7 @@ public class Tutorial : MonoBehaviour
                     }
                     break;
                 case 5:
+                    // check if player is holding the map
                     if (GameManager.playerController.Go_heldObject != null &&
                         GameManager.playerController.Go_heldObject.name == "map")
                     {
@@ -109,6 +117,7 @@ public class Tutorial : MonoBehaviour
                     }
                     break;
                 case 6:
+                    // check if player is scrolling while holding an object
                     if (Input.GetAxisRaw("Mouse ScrollWheel") != 0 &&
                         GameManager.playerController.Go_heldObject != null)
                     {
@@ -120,6 +129,7 @@ public class Tutorial : MonoBehaviour
                     }
                     break;
                 case 7:
+                    // check if dingin room light switch is on
                     if (diningSwitch.bl_on)
                     {
                         int_tutorialSegment++;
@@ -129,6 +139,7 @@ public class Tutorial : MonoBehaviour
                     }
                     break;
                 case 8:
+                    // check if player has passed through the kitchen door
                     if (doorZone.bl_playerIn)
                     {
                         int_tutorialSegment++;
@@ -140,6 +151,7 @@ public class Tutorial : MonoBehaviour
                     }
                     break;
                 case 9:
+                    // check if player is at the kitchen island
                     if (dishZone.bl_playerIn)
                         int_tutorialSegment++;
                     break;
@@ -150,14 +162,15 @@ public class Tutorial : MonoBehaviour
         }
     }
 
+    // unsubscribe from event when destroyed
     private void OnDestroy()
     {
         GameManager.menuManager.StartScreenClosed -= StartTutorial;
     }
 
+    // begin tutorial sequence
     void StartTutorial(object source, EventArgs e)
     {
-        Debug.Log(FindObjectsByType<Tutorial>(FindObjectsSortMode.None).Length);
         bl_tutorialActive = true;
         int_tutorialSegment = 1;
 
@@ -167,6 +180,8 @@ public class Tutorial : MonoBehaviour
         v3_prevMousePos = Input.mousePosition;
         int_mousePosChanges = 0;
     }
+
+    // disable all tutorial UI
     void EndTutorial()
     {
         bl_tutorialActive = false;
