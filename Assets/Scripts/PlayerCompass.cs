@@ -9,6 +9,7 @@ public class PlayerCompass : MonoBehaviour
     void Update()
     {
         transform.LookAt(go_currentTarget.transform.position);
+        transform.Rotate(new Vector3(0, 180, 0));
     }
 
     public void SetTarget(GameObject go_newTarget)

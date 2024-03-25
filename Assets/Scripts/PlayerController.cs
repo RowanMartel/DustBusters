@@ -248,8 +248,8 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
         {
-            rb_player.AddForce(transform.forward * Settings.int_playerSpeed * 0.75f);
-            rb_player.AddForce(transform.right * Settings.int_playerSpeed * 0.75f);
+            rb_player.AddForce(0.75f * Settings.int_playerSpeed * transform.forward);
+            rb_player.AddForce(0.75f * Settings.int_playerSpeed * transform.right);
         }
 
         if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))
@@ -259,8 +259,8 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.S))
         {
-            rb_player.AddForce(-transform.forward * Settings.int_playerSpeed * 0.75f);
-            rb_player.AddForce(transform.right * Settings.int_playerSpeed * 0.75f);
+            rb_player.AddForce(0.75f * Settings.int_playerSpeed * -transform.forward);
+            rb_player.AddForce(0.75f * Settings.int_playerSpeed * transform.right);
         }
 
         if (Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
@@ -270,8 +270,8 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
         {
-            rb_player.AddForce(-transform.forward * Settings.int_playerSpeed * 0.75f);
-            rb_player.AddForce(-transform.right * Settings.int_playerSpeed * 0.75f);
+            rb_player.AddForce(0.75f * Settings.int_playerSpeed * -transform.forward);
+            rb_player.AddForce(0.75f * Settings.int_playerSpeed * -transform.right);
         }
 
         if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))
@@ -281,8 +281,8 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
         {
-            rb_player.AddForce(transform.forward * Settings.int_playerSpeed * 0.75f);
-            rb_player.AddForce(-transform.right * Settings.int_playerSpeed * 0.75f);
+            rb_player.AddForce(0.75f * Settings.int_playerSpeed * transform.forward);
+            rb_player.AddForce(0.75f * Settings.int_playerSpeed * -transform.right);
         }
     }
 

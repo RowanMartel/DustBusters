@@ -57,7 +57,7 @@ public class RegionTrigger : MonoBehaviour
 
             if (gb_ghost.bl_hiding && gb_ghost.go_curRegion != pc_player.go_curRegion && gb_ghost.int_curAggressionLevel < 3)
             {
-                Debug.Log("B");
+                BlockGhostPath();
                 
             }
 
