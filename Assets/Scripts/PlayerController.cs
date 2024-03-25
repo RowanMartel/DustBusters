@@ -121,7 +121,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape)) menuManager.TogglePause();
 
         // Toggles GUI
-        // if (Input.GetKeyDown(KeyCode.F1)) menuManager.ToggleGUI();
+        if (Input.GetKeyDown(KeyCode.F1)) menuManager.ToggleGUI();
 
         // This forces the player to drop a prop if it gets too far away from them
         if (go_heldObject != null)
