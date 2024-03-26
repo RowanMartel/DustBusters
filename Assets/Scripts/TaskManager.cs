@@ -71,7 +71,7 @@ public class TaskManager : MonoBehaviour
         currentChore = l_chores[0];
     }
 
-    private void Awake()
+    private void Start()
     {
         GameManager.taskManager = this;
         a_rt_regions = FindObjectsByType<RegionTrigger>(FindObjectsSortMode.None);
