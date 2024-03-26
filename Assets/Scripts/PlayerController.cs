@@ -1,6 +1,5 @@
 using Cinemachine;
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -55,6 +54,8 @@ public class PlayerController : MonoBehaviour
     public LayerMask lm;
 
     public GameObject go_curRegion;
+
+    public bool bl_onStairs;
 
     private void Awake()
     {
@@ -121,7 +122,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape)) menuManager.TogglePause();
 
         // Toggles GUI
-        // if (Input.GetKeyDown(KeyCode.F1)) menuManager.ToggleGUI();
+        if (Input.GetKeyDown(KeyCode.F1)) menuManager.ToggleGUI();
 
         // This forces the player to drop a prop if it gets too far away from them
         if (go_heldObject != null)
@@ -292,9 +293,8 @@ public class PlayerController : MonoBehaviour
         if (En_state == State.inactive) return;
 
         ray_playerView = Camera.main.ScreenPointToRay(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2, 0));
-        RaycastHit hit;
 
-        if (Physics.Raycast(ray_playerView, out hit, 5, lm))
+        if (Physics.Raycast(ray_playerView, out RaycastHit hit, 5, lm))
         {
             if (hit.collider.gameObject != go_lookingAtObject)
             {
@@ -305,7 +305,7 @@ public class PlayerController : MonoBehaviour
                 if (go_lookingAtObject.CompareTag("Interactable") && go_lookingAtObject.GetComponent<Candle>() == null) go_lookingAtObject.GetComponent<Outline>().enabled = true;
             }
         }
-        if (!Physics.Raycast(ray_playerView, out hit, 3, lm) && go_lookingAtObject != null)
+        if (!Physics.Raycast(ray_playerView, out _, 3, lm) && go_lookingAtObject != null)
         {
             if (go_lookingAtObject.CompareTag("Interactable")) go_lookingAtObject.GetComponent<Outline>().enabled = false;
             go_lookingAtObject = null;
@@ -375,17 +375,22 @@ public class PlayerController : MonoBehaviour
     // These reset the player's ability to jump when they hit the floor and prevents double jumping
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.tag == "Floor")
+        if (collision.gameObject.CompareTag("Floor"))
         {
             if (!bl_isGrounded) GameManager.soundManager.PlayClip(ac_land, as_source, true);
             bl_isGrounded = true;
         }
+        if (collision.gameObject.layer == 15)
+            bl_onStairs = true;
     }
 
     //Player loses ground when they leave the ground
     private void OnCollisionExit(Collision collision)
     {
-        if(collision.gameObject.tag == "Floor") bl_isGrounded = false;
+        if(collision.gameObject.CompareTag("Floor")) bl_isGrounded = false;
+
+        if (collision.gameObject.layer == 15)
+            bl_onStairs = false;
     }
 
     // This turns player control on and off and handles mouse confinement

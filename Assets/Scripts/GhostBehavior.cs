@@ -194,11 +194,10 @@ public class GhostBehavior : MonoBehaviour
             }
         }
 
-        //Image easter egg
+        //Spooky item interactions
         if (flt_curTimeTweenImgChecks <= 0)
         {
-            Debug.Log("A");
-            foreach (EasterEggPicture eep_picture in l_eep_pictures)
+            foreach (EasterEggPicture eep_picture in l_eep_pictures)    //Chance to switch to spooky ghost image when close enough
             {
                 if (Vector3.Distance(eep_picture.transform.position, transform.position) <= flt_distToImg)
                 {
@@ -210,7 +209,7 @@ public class GhostBehavior : MonoBehaviour
                     }
                 }
             }
-            foreach (Candle candle in a_candles)
+            foreach (Candle candle in a_candles)    //Chance to put out candle when close enough
             {
                 if (candle.bl_lit && Vector3.Distance(candle.transform.position, transform.position) <= flt_distToImg)
                 {
@@ -840,6 +839,7 @@ public class GhostBehavior : MonoBehaviour
     //Remove current held item from ghost
     public void DropItem()
     {
+        if (go_curHeldItem == null) return;
         go_curHeldItem.transform.parent = null;
         go_curHeldItem.GetComponent<Rigidbody>().velocity = Vector3.zero;
         go_curHeldItem.GetComponent<Rigidbody>().useGravity = true;
@@ -847,7 +847,10 @@ public class GhostBehavior : MonoBehaviour
         if (bl_hiding)
         {
             bl_hiding = false;
-            pc_player.go_curRegion.GetComponent<RegionTrigger>().OpenGhostPath();
+            foreach(RegionTrigger rt in FindObjectsOfType<RegionTrigger>())
+            {
+                rt.OpenGhostPath();
+            }
         }
         go_curHeldItem = null;
     }
@@ -876,11 +879,6 @@ public class GhostBehavior : MonoBehaviour
             nav_agent.SetDestination(hs_curHidingSpot.transform.position);
             Debug.Log(nav_agent.path.status);
             tr_currentPatrolPoint = hs_curHidingSpot.transform;
-            //rand++;
-            //if(rand >= a_hs_hidingPlaces.Length)
-           // {
-            //    rand = 0;
-            //}
         } while (hs_curHidingSpot.a_go_region.Contains<GameObject>(pc_player.go_curRegion)/* || nav_agent.pathStatus == NavMeshPathStatus.PathPartial*/);
     }
 
@@ -918,6 +916,8 @@ public class GhostBehavior : MonoBehaviour
                 {
                     go_floatTrigger.GetComponent<FloatTrigger>().CloseTrigger();
                 }
+
+                //Deactivate Ghost's Particle Effects
                 go_aura.SetActive(false);
                 break;
             case 2:
@@ -926,6 +926,8 @@ public class GhostBehavior : MonoBehaviour
                 {
                     go_floatTrigger.GetComponent<FloatTrigger>().CloseTrigger();
                 }
+
+                //Deactivate Ghost's Particle Effects
                 go_aura.SetActive(false);
                 break;
             case 3:
@@ -948,6 +950,7 @@ public class GhostBehavior : MonoBehaviour
                     cleaningWater.TurnBloody();
                 }
 
+                //Activate Ghost's Particle Effects
                 go_aura.SetActive(true);
 
                 break;
@@ -958,6 +961,7 @@ public class GhostBehavior : MonoBehaviour
                     go_floatTrigger.SetActive(true);
                 }
 
+                //Activate Ghost's Particle Effects
                 go_aura.SetActive(true);
                 break;
         }

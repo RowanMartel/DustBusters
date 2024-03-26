@@ -107,7 +107,7 @@ public class DebugSystem : MonoBehaviour
 
                     while (tm_taskManager.li_taskList.Contains(TaskManager.Task.FindKey) == false && tm_taskManager.li_taskList.Contains(TaskManager.Task.EscapeHouse) == false)
                     {
-                        tm_taskManager.CompleteTask(tm_taskManager.li_taskList[0]);
+                        tm_taskManager.AddTask(TaskManager.Task.EscapeHouse);
                     }
                 }
 
