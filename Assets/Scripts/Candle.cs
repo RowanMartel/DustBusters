@@ -1,15 +1,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Candle: Interactable
+public class Candle: Pickupable
 {
     [Tooltip("Put the fire particle effect / light object here")]
     public GameObject go_fireFX;
     public ParticleSystem ps_fire;
     public bool bl_lit;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
+
         ps_fire.Stop();
 
         bl_lit = false;
