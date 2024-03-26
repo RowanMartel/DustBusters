@@ -192,7 +192,6 @@ public class MenuManager : MonoBehaviour
 
             bl_initialized = true;
         }
-        
     }
 
     public void Start()
@@ -226,7 +225,8 @@ public class MenuManager : MonoBehaviour
             {
                 bl_runCreditsTimer = false;
                 flt_creditsTimer = 3;
-                CreditsHide();
+                CheckCreditSequenceDone();
+                //CreditsHide();
             }
         }
     }
@@ -390,6 +390,19 @@ public class MenuManager : MonoBehaviour
         go_startButton.transform.localPosition = new Vector3(0f, -300, 0f);
         go_OrientationNote.transform.localPosition = new Vector3(0f, -500f, 0f);
         go_restartButton.transform.localPosition = new Vector3(0f, -500, 0f);
+
+        foreach (GameObject creditsScreen in li_creditScreens)
+        {
+            creditsScreen.transform.Find("Picture").GetComponent<Image>().color = co_transparent;
+
+            GameObject textObjectHolder = creditsScreen.transform.Find("TextObjects").gameObject;
+
+            foreach (Transform textObject in textObjectHolder.transform)
+            {
+                if (textObject.GetComponent<TextMeshProUGUI>() != null) textObject.GetComponent<TextMeshProUGUI>().color = co_transparent;
+            }
+        }
+
     }
 
     // This handles the transition from the TitleScreen scene to the Game scene and brings up the Orientation Note and Start buttons with LeanTween with animation in steps
@@ -549,7 +562,8 @@ public class MenuManager : MonoBehaviour
                 break;
             case 2:
                 int_creditsScreenSequence = 0;
-                CheckCreditSequenceDone();
+                int_creditsScreenTracker++;
+                CreditsShow();
                 break;
         }
     }
@@ -571,8 +585,7 @@ public class MenuManager : MonoBehaviour
     {
         if (int_creditsScreenTracker != li_creditScreens.Count - 1)
         {
-            int_creditsScreenTracker++;
-            CreditsShow();
+            CreditsHide();
         }
         else
         {
