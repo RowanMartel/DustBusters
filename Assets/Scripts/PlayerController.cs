@@ -55,7 +55,9 @@ public class PlayerController : MonoBehaviour
 
     public GameObject go_curRegion;
 
+    // Stair-related variables
     public bool bl_onStairs;
+    public Transform tr_footOrigin;
 
     private void Awake()
     {
@@ -244,47 +246,162 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
         {
-            rb_player.AddForce(transform.forward * Settings.int_playerSpeed);
+            if (bl_onStairs)
+            {
+                Physics.Raycast(tr_footOrigin.position, transform.forward, out RaycastHit hit, 2, lm);
+                if (hit.collider?.gameObject.layer == LayerMask.NameToLayer("Stairs"))
+                    rb_player.AddForce(RotateVector(transform.forward * Settings.int_playerSpeed, transform.right, -30));
+                else
+                    rb_player.AddForce(transform.forward * Settings.int_playerSpeed);
+            }
+            else
+                rb_player.AddForce(transform.forward * Settings.int_playerSpeed);
         }
 
         if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
         {
-            rb_player.AddForce(0.75f * Settings.int_playerSpeed * transform.forward);
-            rb_player.AddForce(0.75f * Settings.int_playerSpeed * transform.right);
+            if (bl_onStairs)
+            {
+                Physics.Raycast(tr_footOrigin.position, Vector3.Lerp(transform.forward, transform.right, .5f), out RaycastHit hit, 2, lm);
+                if (hit.collider?.gameObject.layer == LayerMask.NameToLayer("Stairs"))
+                {
+                    rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed * transform.forward, transform.right, -30));
+                    rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed * transform.right, transform.forward, 30));
+
+                }
+                else
+                {
+                    rb_player.AddForce(0.75f * Settings.int_playerSpeed * transform.forward);
+                    rb_player.AddForce(0.75f * Settings.int_playerSpeed * transform.right);
+                }
+            }
+            else
+            {
+                rb_player.AddForce(0.75f * Settings.int_playerSpeed * transform.forward);
+                rb_player.AddForce(0.75f * Settings.int_playerSpeed * transform.right);
+            }
         }
 
         if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))
         {
-            rb_player.AddForce(transform.right * Settings.int_playerSpeed);
+            if (bl_onStairs)
+            {
+                Physics.Raycast(tr_footOrigin.position, transform.right, out RaycastHit hit, 2, lm);
+                if (hit.collider?.gameObject.layer == LayerMask.NameToLayer("Stairs"))
+                    rb_player.AddForce(RotateVector(transform.right * Settings.int_playerSpeed, transform.forward, 30));
+                else
+                    rb_player.AddForce(transform.right * Settings.int_playerSpeed);
+            }
+            else
+                rb_player.AddForce(transform.right * Settings.int_playerSpeed);
         }
 
         if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.S))
         {
-            rb_player.AddForce(0.75f * Settings.int_playerSpeed * -transform.forward);
-            rb_player.AddForce(0.75f * Settings.int_playerSpeed * transform.right);
+            if (bl_onStairs)
+            {
+                Physics.Raycast(tr_footOrigin.position, Vector3.Lerp(-transform.forward, transform.right, .5f), out RaycastHit hit, 2, lm);
+                if (hit.collider?.gameObject.layer == LayerMask.NameToLayer("Stairs"))
+                {
+                    rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed * -transform.forward, transform.right, 30));
+                    rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed * transform.right, transform.forward, 30));
+
+                }
+                else
+                {
+                    rb_player.AddForce(0.75f * Settings.int_playerSpeed * -transform.forward);
+                    rb_player.AddForce(0.75f * Settings.int_playerSpeed * transform.right);
+                }
+            }
+            else
+            {
+                rb_player.AddForce(0.75f * Settings.int_playerSpeed * -transform.forward);
+                rb_player.AddForce(0.75f * Settings.int_playerSpeed * transform.right);
+            }
         }
 
         if (Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
         {
-            rb_player.AddForce(-transform.forward * Settings.int_playerSpeed);
+            if (bl_onStairs)
+            {
+                Physics.Raycast(tr_footOrigin.position, -transform.forward, out RaycastHit hit, 2, lm);
+                if (hit.collider?.gameObject.layer == LayerMask.NameToLayer("Stairs"))
+                    rb_player.AddForce(RotateVector(-transform.forward * Settings.int_playerSpeed, transform.right, 30));
+                else
+                    rb_player.AddForce(-transform.forward * Settings.int_playerSpeed);
+            }
+            else
+                rb_player.AddForce(-transform.forward * Settings.int_playerSpeed);
         }
 
         if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
         {
-            rb_player.AddForce(0.75f * Settings.int_playerSpeed * -transform.forward);
-            rb_player.AddForce(0.75f * Settings.int_playerSpeed * -transform.right);
+            if (bl_onStairs)
+            {
+                Physics.Raycast(tr_footOrigin.position, Vector3.Lerp(-transform.forward, -transform.right, .5f), out RaycastHit hit, 2, lm);
+                if (hit.collider?.gameObject.layer == LayerMask.NameToLayer("Stairs"))
+                {
+                    rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed * -transform.forward, transform.right, 30));
+                    rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed * -transform.right, transform.forward, -30));
+
+                }
+                else
+                {
+                    rb_player.AddForce(0.75f * Settings.int_playerSpeed * -transform.forward);
+                    rb_player.AddForce(0.75f * Settings.int_playerSpeed * -transform.right);
+                }
+            }
+            else
+            {
+                rb_player.AddForce(0.75f * Settings.int_playerSpeed * -transform.forward);
+                rb_player.AddForce(0.75f * Settings.int_playerSpeed * -transform.right);
+            }
         }
 
         if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))
         {
-            rb_player.AddForce(-transform.right * Settings.int_playerSpeed);
+            if (bl_onStairs)
+            {
+                Physics.Raycast(tr_footOrigin.position, -transform.right, out RaycastHit hit, 2, lm);
+                if (hit.collider?.gameObject.layer == LayerMask.NameToLayer("Stairs"))
+                    rb_player.AddForce(RotateVector(-transform.right * Settings.int_playerSpeed, transform.forward, -30));
+                else
+                    rb_player.AddForce(-transform.right * Settings.int_playerSpeed);
+            }
+            else
+                rb_player.AddForce(-transform.right * Settings.int_playerSpeed);
         }
 
         if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
         {
-            rb_player.AddForce(0.75f * Settings.int_playerSpeed * transform.forward);
-            rb_player.AddForce(0.75f * Settings.int_playerSpeed * -transform.right);
+            if (bl_onStairs)
+            {
+                Physics.Raycast(tr_footOrigin.position, Vector3.Lerp(transform.forward, -transform.right, .5f), out RaycastHit hit, 2, lm);
+                if (hit.collider?.gameObject.layer == LayerMask.NameToLayer("Stairs"))
+                {
+                    rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed * transform.forward, transform.right, -30));
+                    rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed * -transform.right, transform.forward, -30));
+
+                }
+                else
+                {
+                    rb_player.AddForce(0.75f * Settings.int_playerSpeed * transform.forward);
+                    rb_player.AddForce(0.75f * Settings.int_playerSpeed * -transform.right);
+                }
+            }
+            else
+            {
+                rb_player.AddForce(0.75f * Settings.int_playerSpeed * transform.forward);
+                rb_player.AddForce(0.75f * Settings.int_playerSpeed * -transform.right);
+            }
         }
+    }
+
+    //rotates force vectors
+    Vector3 RotateVector(Vector3 vector, Vector3 axis, float angle)
+    {
+        Quaternion rotation = Quaternion.AngleAxis(angle, axis);
+        return rotation * vector;
     }
 
     // This handles the player's view at the crosshair and if pointed at an Interactable object, will activate the object's outline to indicate it can be interacted with.
