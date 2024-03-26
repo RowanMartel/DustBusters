@@ -55,7 +55,10 @@ public class Tutorial : MonoBehaviour
             // skip to final segment if enter is pressed
             if (Input.GetKeyDown(KeyCode.Return) ||
                 Input.GetKeyUp(KeyCode.KeypadEnter))
+            {
                 int_tutorialSegment = 10;
+                GameManager.taskManager.SetCurrentChore(1);
+            }
 
             // perform action based on current segment, then go to next segment if completed
             switch (int_tutorialSegment)

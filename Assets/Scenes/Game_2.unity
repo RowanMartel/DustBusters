@@ -4723,6 +4723,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 8e01e437096d9f54cbc5afc6bdfc098a, type: 3}
     - target: {fileID: 1180455513968762944, guid: a137a69c917120245957388d6d524c2d, type: 3}
+      propertyPath: tr_footOrigin
+      value: 
+      objectReference: {fileID: 281489149}
+    - target: {fileID: 1180455513968762944, guid: a137a69c917120245957388d6d524c2d, type: 3}
       propertyPath: vc_playerCamera
       value: 
       objectReference: {fileID: 2016799940}
@@ -6583,6 +6587,11 @@ Transform:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5433050179365818405, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
   m_PrefabInstance: {fileID: 276860316}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &281489149 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5850816920602231112, guid: a137a69c917120245957388d6d524c2d, type: 3}
+  m_PrefabInstance: {fileID: 223603284}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &284089152
 PrefabInstance:
@@ -36174,7 +36183,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1264131277}
-  m_Material: {fileID: 13400000, guid: 5d2eac7b64960354ba3a2ef7e5f469b7, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 4294967295
