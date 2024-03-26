@@ -81,6 +81,11 @@ public class Pickupable : Interactable
     // turns collider off when picked up, until item is in hand. This should prevent things from getting stuck in hand.
     public override void Interact()
     {
+        if(transform.GetComponent<Candle>())
+        {
+            if (GameManager.playerController.Go_heldObject.GetComponent<Pickupable>().bl_lighter) transform.GetComponent<Candle>().Light();
+        }
+
         l_col_overlapping.Clear();
         Col.isTrigger = true;
     }
