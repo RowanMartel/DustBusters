@@ -252,7 +252,15 @@ public class PlayerController : MonoBehaviour
                 if (hit.collider?.gameObject.layer == LayerMask.NameToLayer("Stairs"))
                     rb_player.AddForce(RotateVector(transform.forward * Settings.int_playerSpeed, transform.right, -30));
                 else
-                    rb_player.AddForce(transform.forward * Settings.int_playerSpeed);
+                {
+                    Physics.Raycast(tr_footOrigin.position, -transform.forward, out RaycastHit hit2, 2, lm);
+                    if (hit2.collider?.gameObject.layer == LayerMask.NameToLayer("Stairs"))
+                        rb_player.AddForce(RotateVector(transform.forward * Settings.int_playerSpeed / 2, transform.right, 30));
+                    else
+                    {
+                        rb_player.AddForce(transform.forward * Settings.int_playerSpeed);
+                    }
+                }
             }
             else
                 rb_player.AddForce(transform.forward * Settings.int_playerSpeed);
@@ -271,8 +279,18 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    rb_player.AddForce(0.75f * Settings.int_playerSpeed * transform.forward);
-                    rb_player.AddForce(0.75f * Settings.int_playerSpeed * transform.right);
+                    Physics.Raycast(tr_footOrigin.position, Vector3.Lerp(-transform.forward, transform.right, .5f), out RaycastHit hit2, 2, lm);
+                    if (hit2.collider?.gameObject.layer == LayerMask.NameToLayer("Stairs"))
+                    {
+                        rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed / 2 * transform.forward, transform.right, 30));
+                        rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed / 2 * transform.right, transform.forward, -30));
+
+                    }
+                    else
+                    {
+                        rb_player.AddForce(0.75f * Settings.int_playerSpeed * transform.forward);
+                        rb_player.AddForce(0.75f * Settings.int_playerSpeed * transform.right);
+                    }
                 }
             }
             else
@@ -290,7 +308,15 @@ public class PlayerController : MonoBehaviour
                 if (hit.collider?.gameObject.layer == LayerMask.NameToLayer("Stairs"))
                     rb_player.AddForce(RotateVector(transform.right * Settings.int_playerSpeed, transform.forward, 30));
                 else
-                    rb_player.AddForce(transform.right * Settings.int_playerSpeed);
+                {
+                    Physics.Raycast(tr_footOrigin.position, -transform.right, out RaycastHit hit2, 2, lm);
+                    if (hit2.collider?.gameObject.layer == LayerMask.NameToLayer("Stairs"))
+                        rb_player.AddForce(RotateVector(transform.right * Settings.int_playerSpeed / 2, transform.forward, -30));
+                    else
+                    {
+                        rb_player.AddForce(transform.right * Settings.int_playerSpeed);
+                    }
+                }
             }
             else
                 rb_player.AddForce(transform.right * Settings.int_playerSpeed);
@@ -303,14 +329,22 @@ public class PlayerController : MonoBehaviour
                 Physics.Raycast(tr_footOrigin.position, Vector3.Lerp(-transform.forward, transform.right, .5f), out RaycastHit hit, 2, lm);
                 if (hit.collider?.gameObject.layer == LayerMask.NameToLayer("Stairs"))
                 {
-                    rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed * -transform.forward, transform.right, 30));
-                    rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed * transform.right, transform.forward, 30));
-
+                    rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed / 2 * -transform.forward, transform.right, 30));
+                    rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed / 2 * transform.right, transform.forward, 30));
                 }
                 else
                 {
-                    rb_player.AddForce(0.75f * Settings.int_playerSpeed * -transform.forward);
-                    rb_player.AddForce(0.75f * Settings.int_playerSpeed * transform.right);
+                    Physics.Raycast(tr_footOrigin.position, Vector3.Lerp(transform.forward, -transform.right, .5f), out RaycastHit hit2, 2, lm);
+                    if (hit2.collider?.gameObject.layer == LayerMask.NameToLayer("Stairs"))
+                    {
+                        rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed * -transform.forward, transform.right, -30));
+                        rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed * transform.right, transform.forward, -30));
+                    }
+                    else
+                    {
+                        rb_player.AddForce(0.75f * Settings.int_playerSpeed * -transform.forward);
+                        rb_player.AddForce(0.75f * Settings.int_playerSpeed * transform.right);
+                    }
                 }
             }
             else
@@ -328,7 +362,15 @@ public class PlayerController : MonoBehaviour
                 if (hit.collider?.gameObject.layer == LayerMask.NameToLayer("Stairs"))
                     rb_player.AddForce(RotateVector(-transform.forward * Settings.int_playerSpeed, transform.right, 30));
                 else
-                    rb_player.AddForce(-transform.forward * Settings.int_playerSpeed);
+                {
+                    Physics.Raycast(tr_footOrigin.position, transform.forward, out RaycastHit hit2, 2, lm);
+                    if (hit.collider?.gameObject.layer == LayerMask.NameToLayer("Stairs"))
+                        rb_player.AddForce(RotateVector(-transform.forward * Settings.int_playerSpeed / 2, transform.right, -30));
+                    else
+                    {
+                        rb_player.AddForce(-transform.forward * Settings.int_playerSpeed);
+                    }
+                }
             }
             else
                 rb_player.AddForce(-transform.forward * Settings.int_playerSpeed);
@@ -347,8 +389,18 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    rb_player.AddForce(0.75f * Settings.int_playerSpeed * -transform.forward);
-                    rb_player.AddForce(0.75f * Settings.int_playerSpeed * -transform.right);
+                    Physics.Raycast(tr_footOrigin.position, Vector3.Lerp(transform.forward, transform.right, .5f), out RaycastHit hit2, 2, lm);
+                    if (hit2.collider?.gameObject.layer == LayerMask.NameToLayer("Stairs"))
+                    {
+                        rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed / 2 * -transform.forward, transform.right, -30));
+                        rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed / 2 * -transform.right, transform.forward, 30));
+
+                    }
+                    else
+                    {
+                        rb_player.AddForce(0.75f * Settings.int_playerSpeed * -transform.forward);
+                        rb_player.AddForce(0.75f * Settings.int_playerSpeed * -transform.right);
+                    }
                 }
             }
             else
@@ -366,7 +418,15 @@ public class PlayerController : MonoBehaviour
                 if (hit.collider?.gameObject.layer == LayerMask.NameToLayer("Stairs"))
                     rb_player.AddForce(RotateVector(-transform.right * Settings.int_playerSpeed, transform.forward, -30));
                 else
-                    rb_player.AddForce(-transform.right * Settings.int_playerSpeed);
+                {
+                    Physics.Raycast(tr_footOrigin.position, transform.right, out RaycastHit hit2, 2, lm);
+                    if (hit2.collider?.gameObject.layer == LayerMask.NameToLayer("Stairs"))
+                        rb_player.AddForce(RotateVector(-transform.right * Settings.int_playerSpeed / 2, transform.forward, 30));
+                    else
+                    {
+                        rb_player.AddForce(-transform.right * Settings.int_playerSpeed);
+                    }
+                }
             }
             else
                 rb_player.AddForce(-transform.right * Settings.int_playerSpeed);
@@ -385,8 +445,18 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    rb_player.AddForce(0.75f * Settings.int_playerSpeed * transform.forward);
-                    rb_player.AddForce(0.75f * Settings.int_playerSpeed * -transform.right);
+                    Physics.Raycast(tr_footOrigin.position, Vector3.Lerp(-transform.forward, transform.right, .5f), out RaycastHit hit2, 2, lm);
+                    if (hit2.collider?.gameObject.layer == LayerMask.NameToLayer("Stairs"))
+                    {
+                        rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed / 2 * transform.forward, transform.right, 30));
+                        rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed / 2 * -transform.right, transform.forward, 30));
+
+                    }
+                    else
+                    {
+                        rb_player.AddForce(0.75f * Settings.int_playerSpeed * transform.forward);
+                        rb_player.AddForce(0.75f * Settings.int_playerSpeed * -transform.right);
+                    }
                 }
             }
             else
@@ -494,7 +564,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Floor"))
         {
-            if (!bl_isGrounded) GameManager.soundManager.PlayClip(ac_land, as_source, true);
+            if (!bl_isGrounded && collision.relativeVelocity.y > 0) GameManager.soundManager.PlayClip(ac_land, as_source, true);
             bl_isGrounded = true;
         }
         if (collision.gameObject.layer == 15)
