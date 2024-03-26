@@ -10,7 +10,7 @@ public class FuseBox : Interactable
     public GameObject go_lever;
 
     LightSwitch[] a_ls_switches;
-    TVStatic tv_static;
+    TVStatic[] a_tv_static;
 
     int int_timesToFlicker;
     public float flt_timeTweenFlicker;
@@ -25,7 +25,7 @@ public class FuseBox : Interactable
     void Start()
     {
         a_ls_switches = FindObjectsByType<LightSwitch>(FindObjectsSortMode.None);
-        tv_static = FindObjectOfType<TVStatic>();
+        a_tv_static = FindObjectsByType<TVStatic>(FindObjectsSortMode.None);
         SetSwitchesOn();
         flt_curFlickerTime = 0;
         int_timesToFlicker = 0;
@@ -85,8 +85,11 @@ public class FuseBox : Interactable
         {
             ls_switch.SetFuseActive(true);
         }
-        tv_static.bl_powered = true;
-        tv_static.Refresh();
+        foreach(TVStatic tv in a_tv_static)
+        {
+            tv.bl_powered = true;
+            tv.Refresh();
+        }
         bl_ready = true;
     }
 
@@ -97,8 +100,11 @@ public class FuseBox : Interactable
         {
             ls_switch.SetFuseActive(false);
         }
-        tv_static.bl_powered = false;
-        tv_static.Refresh();
+        foreach (TVStatic tv in a_tv_static)
+        {
+            tv.bl_powered = false;
+            tv.Refresh();
+        }
         bl_ready = true;
     }
 
