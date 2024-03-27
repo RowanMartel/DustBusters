@@ -20,6 +20,10 @@ public class FuseBox : Interactable
     float flt_curFlickerDelay;
     public int int_maxFlickerTimes;
     public int int_minFlickerTimes;
+    public AudioSource as_source;
+    public AudioSource as_loop;
+    public AudioClip ac_activate;
+    public AudioClip ac_deactivate;
 
     // Start is called before the first frame update
     void Start()
@@ -81,6 +85,8 @@ public class FuseBox : Interactable
     //Lets all switches know they should have power
     void SetSwitchesOn()
     {
+        GameManager.soundManager.PlayClip(ac_activate, as_source, false);
+        as_loop.Play();
         foreach (LightSwitch ls_switch in a_ls_switches)
         {
             ls_switch.SetFuseActive(true);
@@ -96,6 +102,8 @@ public class FuseBox : Interactable
     //Lets all switches know they shouldn't have power
     void SetSwitchesOff()
     {
+        GameManager.soundManager.PlayClip(ac_deactivate, as_source, false);
+        as_loop.Stop();
         foreach (LightSwitch ls_switch in a_ls_switches)
         {
             ls_switch.SetFuseActive(false);
