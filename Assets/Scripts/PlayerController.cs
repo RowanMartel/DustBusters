@@ -544,12 +544,20 @@ public class PlayerController : MonoBehaviour
 
             if (pickupable != null)
             {
-                //Drop old item
-                DropItem();
+                // if the looked at object is an unlit candle, and the player is holding the lighter:
+                if(go_lookingAtObject.GetComponent<Candle>() && !go_lookingAtObject.GetComponent<Candle>().bl_lit && go_heldObject.GetComponent<Pickupable>().bl_lighter)
+                {
+                    go_lookingAtObject.GetComponent<Interactable>().Interact();
+                }
+                else
+                {
+                    //Drop old item
+                    DropItem();
 
-                //Pick up new item
-                PickUpItem(go_lookingAtObject);
-                return;
+                    //Pick up new item
+                    PickUpItem(go_lookingAtObject);
+                    return;
+                }
             }
             go_lookingAtObject.GetComponent<Interactable>().Interact();
         }

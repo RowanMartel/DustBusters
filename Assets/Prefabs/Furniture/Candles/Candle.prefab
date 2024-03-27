@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1094781217254557497}
   - component: {fileID: 6306177205052065405}
   m_Layer: 0
-  m_Name: Candle
+  m_Name: candle
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -132,8 +132,8 @@ MonoBehaviour:
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
-  v3_heldRotationMod: {x: 0, y: 0, z: 0}
-  v3_heldPositionMod: {x: 0, y: 0, z: 0}
+  v3_heldRotationMod: {x: -20, y: 0, z: 0}
+  v3_heldPositionMod: {x: 0, y: -0.2, z: 0}
   bl_held: 0
   go_fireFX: {fileID: 5219250312805161273}
   ps_fire: {fileID: 7789725414934829081}
@@ -191,17 +191,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1281090082358168758}
     m_Modifications:
+    - target: {fileID: 5784791627499334250, guid: 290e72b39a909ad49b10914c84c077ae, type: 3}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 7231735538373974623}
+    - target: {fileID: 5784791627499334250, guid: 290e72b39a909ad49b10914c84c077ae, type: 3}
+      propertyPath: LightsModule.ratio
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5784791627499334250, guid: 290e72b39a909ad49b10914c84c077ae, type: 3}
+      propertyPath: LightsModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8360495120534473829, guid: 290e72b39a909ad49b10914c84c077ae, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14.345281
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8360495120534473829, guid: 290e72b39a909ad49b10914c84c077ae, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 318.3
+      value: 328
       objectReference: {fileID: 0}
     - target: {fileID: 8360495120534473829, guid: 290e72b39a909ad49b10914c84c077ae, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.32
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8360495120534473829, guid: 290e72b39a909ad49b10914c84c077ae, type: 3}
       propertyPath: m_LocalRotation.w
@@ -252,6 +264,11 @@ Transform:
 --- !u!1 &5219250312805161273 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8373207834524691274, guid: 290e72b39a909ad49b10914c84c077ae, type: 3}
+  m_PrefabInstance: {fileID: 4349664323925553779}
+  m_PrefabAsset: {fileID: 0}
+--- !u!108 &7231735538373974623 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 6341443758921148460, guid: 290e72b39a909ad49b10914c84c077ae, type: 3}
   m_PrefabInstance: {fileID: 4349664323925553779}
   m_PrefabAsset: {fileID: 0}
 --- !u!198 &7789725414934829081 stripped
