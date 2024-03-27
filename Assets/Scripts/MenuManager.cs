@@ -503,6 +503,8 @@ public class MenuManager : MonoBehaviour
     //Go to End Scene with LeanTween transitions
     public void ToEnd()
     {
+        tmp_currentChore.gameObject.SetActive(false);
+
         switch (int_endSequence)
         {
             case 0:
