@@ -102,6 +102,7 @@ public class MenuManager : MonoBehaviour
     public event EventHandler<EventArgs> MenuEntered;
     public event EventHandler<EventArgs> CreditsEntered;
     public event EventHandler<EventArgs> DeathScreenEntered;
+    public event EventHandler<EventArgs> SoundVolumeChanged;
     public event EventHandler<EventArgs> MusicVolumeChanged;
     public event EventHandler<EventArgs> StartScreenClosed;
     public event EventHandler<EventArgs> StartQuitingGame;
@@ -678,6 +679,9 @@ public class MenuManager : MonoBehaviour
     public void UpdateEffectsVolume()
     {
         Settings.flt_volume = sli_volume.value;
+
+        if (SoundVolumeChanged != null)
+            SoundVolumeChanged(this, new EventArgs());
     }
 
     //Music Volume management

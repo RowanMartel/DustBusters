@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class TVStatic : Interactable
 {
@@ -16,13 +18,18 @@ public class TVStatic : Interactable
 
     private void Start()
     {
+        as_staticAudio.volume = Settings.flt_musicVolume;
+
+        GameManager.menuManager.SoundVolumeChanged += UpdateVolume;
         bl_powered = true;
     }
 
     //Checks if the tv is set to on and has power, and sets the static accordingly
     public void Refresh()
     {
-        if(bl_powered == false || bl_on == false)
+        as_staticAudio.volume = Settings.flt_musicVolume;
+
+        if (bl_powered == false || bl_on == false)
         {
             as_staticAudio.Pause();
             go_staticScreen.SetActive(false);
@@ -57,5 +64,10 @@ public class TVStatic : Interactable
         if (pc_player.Go_heldObject == null) return;
         if (pc_player.Go_heldObject.GetComponent<Pickupable>().bl_remote && !bl_on) Activate();
         else if (pc_player.Go_heldObject.GetComponent<Pickupable>().bl_remote && bl_on) Deactivate();
+    }
+
+    void UpdateVolume(object source, EventArgs e)
+    {
+        as_staticAudio.volume = Settings.flt_musicVolume;
     }
 }

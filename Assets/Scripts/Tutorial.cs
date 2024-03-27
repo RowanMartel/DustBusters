@@ -56,6 +56,7 @@ public class Tutorial : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Return) ||
                 Input.GetKeyUp(KeyCode.KeypadEnter))
             {
+                Debug.Log("SKIPPED");
                 int_tutorialSegment = 10;
                 GameManager.taskManager.SetCurrentChore(1);
             }

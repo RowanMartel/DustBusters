@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
     public bool bl_isGrounded = true;
 
     public LayerMask lm;
+    public LayerMask lookMask;
 
     public GameObject go_curRegion;
 
@@ -481,7 +482,7 @@ public class PlayerController : MonoBehaviour
 
         ray_playerView = Camera.main.ScreenPointToRay(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2, 0));
 
-        if (Physics.Raycast(ray_playerView, out RaycastHit hit, 5, lm))
+        if (Physics.Raycast(ray_playerView, out RaycastHit hit, 5, lookMask))
         {
             if (hit.collider.gameObject != go_lookingAtObject)
             {

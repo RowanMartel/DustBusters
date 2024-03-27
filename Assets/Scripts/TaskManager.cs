@@ -47,6 +47,12 @@ public class TaskManager : MonoBehaviour
     protected List<Chore> l_chores;
     RegionTrigger[] a_rt_regions;
 
+    // Task System / Chore related sound variables
+    private AudioSource as_taskSoundSource;
+    public AudioClip ac_choreComplete;
+    public AudioClip ac_choreUpdated;
+    public AudioClip ac_choreAdded;
+
     // This method creates the initial list of chores and gets references to the needed objects in the MenuManager
     public void SetupChoreList()
     {
@@ -75,6 +81,8 @@ public class TaskManager : MonoBehaviour
     {
         GameManager.taskManager = this;
         a_rt_regions = FindObjectsByType<RegionTrigger>(FindObjectsSortMode.None);
+
+        as_taskSoundSource = GetComponent<AudioSource>();
     }
 
     public void ResetValues()
@@ -195,6 +203,8 @@ public class TaskManager : MonoBehaviour
             }
         }
 
+        GameManager.soundManager.PlayClip(ac_choreComplete, as_taskSoundSource, false);
+
         // if the completed task is the same as the "current task" highlighted on the task list, it will choose the first task on the list that is incomplete and set it to current
         if (currentChore.choreTask == task)
         {
@@ -278,9 +288,13 @@ public class TaskManager : MonoBehaviour
         {
             if (ChoreUpdated != null)
                 ChoreUpdated(this, new EventArgs());
+
+            GameManager.soundManager.PlayClip(ac_choreAdded, as_taskSoundSource, false);
         }
 
         Debug.Log("Chore Updated: " + task.ToString());
+
+
 
         // If a chore is undone, this will uncheck it from the chore list and set the color to black
         foreach(Chore chore in l_chores)

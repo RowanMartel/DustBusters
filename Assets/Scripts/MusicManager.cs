@@ -9,6 +9,7 @@ public class MusicManager : MonoBehaviour
     public AudioClip ac_title;
     public AudioClip ac_pause;
     public AudioClip ac_dead;
+    public AudioClip ac_credits;
     public AudioSource as_source;
 
     // assigns all event listeners, then plays the menu music
@@ -51,7 +52,8 @@ public class MusicManager : MonoBehaviour
     // stops all music when it receives the credits entered event
     void Credits(object source, EventArgs e)
     {
-
+        as_source.clip = ac_credits;
+        FadeIn();
     }
 
     // plays title them when it receives the menu entered event
@@ -77,7 +79,7 @@ public class MusicManager : MonoBehaviour
 
     void FadeOut()
     {
-        as_source.volume = Settings.flt_volume;
+        as_source.volume = Settings.flt_musicVolume;
         LeanTween.value(as_source.volume, 0, 1.5f).setOnComplete(as_source.Stop).setOnUpdate(FadingUpdate).setIgnoreTimeScale(true);
     }
 
