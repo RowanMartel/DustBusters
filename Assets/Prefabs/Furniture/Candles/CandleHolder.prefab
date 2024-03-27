@@ -132,7 +132,7 @@ MonoBehaviour:
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
-  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  v3_heldRotationMod: {x: -20, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
   go_fireFX: {fileID: 5689592180626131188}
@@ -193,15 +193,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8360495120534473829, guid: 290e72b39a909ad49b10914c84c077ae, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14.345281
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8360495120534473829, guid: 290e72b39a909ad49b10914c84c077ae, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 133.7
+      value: 125.6
       objectReference: {fileID: 0}
     - target: {fileID: 8360495120534473829, guid: 290e72b39a909ad49b10914c84c077ae, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.32
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8360495120534473829, guid: 290e72b39a909ad49b10914c84c077ae, type: 3}
       propertyPath: m_LocalRotation.w
