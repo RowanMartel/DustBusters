@@ -85,7 +85,9 @@ public class FuseBox : Interactable
     //Lets all switches know they should have power
     void SetSwitchesOn()
     {
-        GameManager.soundManager.PlayClip(ac_activate, as_source, false);
+        Debug.Log("Switches ON");
+
+        GameManager.soundManager.PlayClip(ac_activate, as_source, true);
         as_loop.Play();
         foreach (LightSwitch ls_switch in a_ls_switches)
         {
@@ -102,7 +104,9 @@ public class FuseBox : Interactable
     //Lets all switches know they shouldn't have power
     void SetSwitchesOff()
     {
-        GameManager.soundManager.PlayClip(ac_deactivate, as_source, false);
+        Debug.Log("Switches OFF");
+
+        GameManager.soundManager.PlayClip(ac_deactivate, as_source, true);
         as_loop.Stop();
         foreach (LightSwitch ls_switch in a_ls_switches)
         {
