@@ -59,6 +59,7 @@ public class PlayerController : MonoBehaviour
     // Stair-related variables
     public bool bl_onStairs;
     public Transform tr_footOrigin;
+    public LayerMask lm_stairsRay;
 
     private void Awake()
     {
@@ -249,13 +250,14 @@ public class PlayerController : MonoBehaviour
         {
             if (bl_onStairs)
             {
-                Physics.Raycast(tr_footOrigin.position, transform.forward, out RaycastHit hit, 2, lm);
-                if (hit.collider?.gameObject.layer == LayerMask.NameToLayer("Stairs"))
+                Physics.Raycast(tr_footOrigin.position, transform.forward, out RaycastHit hit, 2, lm_stairsRay, QueryTriggerInteraction.Collide);
+                if (hit.collider != null)
                     rb_player.AddForce(RotateVector(transform.forward * Settings.int_playerSpeed, transform.right, -30));
                 else
                 {
-                    Physics.Raycast(tr_footOrigin.position, -transform.forward, out RaycastHit hit2, 2, lm);
-                    if (hit2.collider?.gameObject.layer == LayerMask.NameToLayer("Stairs"))
+                    Physics.Raycast(tr_footOrigin.position, -transform.forward, out RaycastHit hit2, 2, lm_stairsRay, QueryTriggerInteraction.Collide);
+                    Debug.DrawRay(tr_footOrigin.position, -transform.forward * 5, Color.red, 5);
+                    if (hit2.collider != null)
                         rb_player.AddForce(RotateVector(transform.forward * Settings.int_playerSpeed / 2, transform.right, 30));
                     else
                     {
@@ -271,8 +273,8 @@ public class PlayerController : MonoBehaviour
         {
             if (bl_onStairs)
             {
-                Physics.Raycast(tr_footOrigin.position, Vector3.Lerp(transform.forward, transform.right, .5f), out RaycastHit hit, 2, lm);
-                if (hit.collider?.gameObject.layer == LayerMask.NameToLayer("Stairs"))
+                Physics.Raycast(tr_footOrigin.position, Vector3.Lerp(transform.forward, transform.right, .5f), out RaycastHit hit, 2, lm_stairsRay, QueryTriggerInteraction.Collide);
+                if (hit.collider != null)
                 {
                     rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed * transform.forward, transform.right, -30));
                     rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed * transform.right, transform.forward, 30));
@@ -280,8 +282,8 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    Physics.Raycast(tr_footOrigin.position, Vector3.Lerp(-transform.forward, transform.right, .5f), out RaycastHit hit2, 2, lm);
-                    if (hit2.collider?.gameObject.layer == LayerMask.NameToLayer("Stairs"))
+                    Physics.Raycast(tr_footOrigin.position, Vector3.Lerp(-transform.forward, transform.right, .5f), out RaycastHit hit2, 2, lm_stairsRay, QueryTriggerInteraction.Collide);
+                    if (hit2.collider != null)
                     {
                         rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed / 2 * transform.forward, transform.right, 30));
                         rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed / 2 * transform.right, transform.forward, -30));
@@ -305,13 +307,13 @@ public class PlayerController : MonoBehaviour
         {
             if (bl_onStairs)
             {
-                Physics.Raycast(tr_footOrigin.position, transform.right, out RaycastHit hit, 2, lm);
-                if (hit.collider?.gameObject.layer == LayerMask.NameToLayer("Stairs"))
+                Physics.Raycast(tr_footOrigin.position, transform.right, out RaycastHit hit, 2, lm_stairsRay, QueryTriggerInteraction.Collide);
+                if (hit.collider != null)
                     rb_player.AddForce(RotateVector(transform.right * Settings.int_playerSpeed, transform.forward, 30));
                 else
                 {
-                    Physics.Raycast(tr_footOrigin.position, -transform.right, out RaycastHit hit2, 2, lm);
-                    if (hit2.collider?.gameObject.layer == LayerMask.NameToLayer("Stairs"))
+                    Physics.Raycast(tr_footOrigin.position, -transform.right, out RaycastHit hit2, 2, lm_stairsRay, QueryTriggerInteraction.Collide);
+                    if (hit2.collider != null)
                         rb_player.AddForce(RotateVector(transform.right * Settings.int_playerSpeed / 2, transform.forward, -30));
                     else
                     {
@@ -327,16 +329,16 @@ public class PlayerController : MonoBehaviour
         {
             if (bl_onStairs)
             {
-                Physics.Raycast(tr_footOrigin.position, Vector3.Lerp(-transform.forward, transform.right, .5f), out RaycastHit hit, 2, lm);
-                if (hit.collider?.gameObject.layer == LayerMask.NameToLayer("Stairs"))
+                Physics.Raycast(tr_footOrigin.position, Vector3.Lerp(-transform.forward, transform.right, .5f), out RaycastHit hit, 2, lm_stairsRay, QueryTriggerInteraction.Collide);
+                if (hit.collider != null)
                 {
-                    rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed / 2 * -transform.forward, transform.right, 30));
-                    rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed / 2 * transform.right, transform.forward, 30));
+                    rb_player.AddForce(RotateVector(0.5f * Settings.int_playerSpeed * -transform.forward, transform.right, 30));
+                    rb_player.AddForce(RotateVector(0.5f * Settings.int_playerSpeed * transform.right, transform.forward, 30));
                 }
                 else
                 {
-                    Physics.Raycast(tr_footOrigin.position, Vector3.Lerp(transform.forward, -transform.right, .5f), out RaycastHit hit2, 2, lm);
-                    if (hit2.collider?.gameObject.layer == LayerMask.NameToLayer("Stairs"))
+                    Physics.Raycast(tr_footOrigin.position, Vector3.Lerp(transform.forward, -transform.right, .5f), out RaycastHit hit2, 2, lm_stairsRay, QueryTriggerInteraction.Collide);
+                    if (hit2.collider != null)
                     {
                         rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed * -transform.forward, transform.right, -30));
                         rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed * transform.right, transform.forward, -30));
@@ -359,13 +361,13 @@ public class PlayerController : MonoBehaviour
         {
             if (bl_onStairs)
             {
-                Physics.Raycast(tr_footOrigin.position, -transform.forward, out RaycastHit hit, 2, lm);
-                if (hit.collider?.gameObject.layer == LayerMask.NameToLayer("Stairs"))
+                Physics.Raycast(tr_footOrigin.position, -transform.forward, out RaycastHit hit, 2, lm_stairsRay, QueryTriggerInteraction.Collide);
+                if (hit.collider != null)
                     rb_player.AddForce(RotateVector(-transform.forward * Settings.int_playerSpeed, transform.right, 30));
                 else
                 {
-                    Physics.Raycast(tr_footOrigin.position, transform.forward, out RaycastHit hit2, 2, lm);
-                    if (hit.collider?.gameObject.layer == LayerMask.NameToLayer("Stairs"))
+                    Physics.Raycast(tr_footOrigin.position, transform.forward, out RaycastHit hit2, 2, lm_stairsRay, QueryTriggerInteraction.Collide);
+                    if (hit2.collider != null)
                         rb_player.AddForce(RotateVector(-transform.forward * Settings.int_playerSpeed / 2, transform.right, -30));
                     else
                     {
@@ -381,8 +383,8 @@ public class PlayerController : MonoBehaviour
         {
             if (bl_onStairs)
             {
-                Physics.Raycast(tr_footOrigin.position, Vector3.Lerp(-transform.forward, -transform.right, .5f), out RaycastHit hit, 2, lm);
-                if (hit.collider?.gameObject.layer == LayerMask.NameToLayer("Stairs"))
+                Physics.Raycast(tr_footOrigin.position, Vector3.Lerp(-transform.forward, -transform.right, .5f), out RaycastHit hit, 2, lm_stairsRay, QueryTriggerInteraction.Collide);
+                if (hit.collider != null)
                 {
                     rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed * -transform.forward, transform.right, 30));
                     rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed * -transform.right, transform.forward, -30));
@@ -390,8 +392,8 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    Physics.Raycast(tr_footOrigin.position, Vector3.Lerp(transform.forward, transform.right, .5f), out RaycastHit hit2, 2, lm);
-                    if (hit2.collider?.gameObject.layer == LayerMask.NameToLayer("Stairs"))
+                    Physics.Raycast(tr_footOrigin.position, Vector3.Lerp(transform.forward, transform.right, .5f), out RaycastHit hit2, 2, lm_stairsRay, QueryTriggerInteraction.Collide);
+                    if (hit2.collider != null)
                     {
                         rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed / 2 * -transform.forward, transform.right, -30));
                         rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed / 2 * -transform.right, transform.forward, 30));
@@ -415,13 +417,13 @@ public class PlayerController : MonoBehaviour
         {
             if (bl_onStairs)
             {
-                Physics.Raycast(tr_footOrigin.position, -transform.right, out RaycastHit hit, 2, lm);
-                if (hit.collider?.gameObject.layer == LayerMask.NameToLayer("Stairs"))
+                Physics.Raycast(tr_footOrigin.position, -transform.right, out RaycastHit hit, 2, lm_stairsRay, QueryTriggerInteraction.Collide);
+                if (hit.collider != null)
                     rb_player.AddForce(RotateVector(-transform.right * Settings.int_playerSpeed, transform.forward, -30));
                 else
                 {
-                    Physics.Raycast(tr_footOrigin.position, transform.right, out RaycastHit hit2, 2, lm);
-                    if (hit2.collider?.gameObject.layer == LayerMask.NameToLayer("Stairs"))
+                    Physics.Raycast(tr_footOrigin.position, transform.right, out RaycastHit hit2, 2, lm_stairsRay, QueryTriggerInteraction.Collide);
+                    if (hit2.collider != null)
                         rb_player.AddForce(RotateVector(-transform.right * Settings.int_playerSpeed / 2, transform.forward, 30));
                     else
                     {
@@ -437,8 +439,8 @@ public class PlayerController : MonoBehaviour
         {
             if (bl_onStairs)
             {
-                Physics.Raycast(tr_footOrigin.position, Vector3.Lerp(transform.forward, -transform.right, .5f), out RaycastHit hit, 2, lm);
-                if (hit.collider?.gameObject.layer == LayerMask.NameToLayer("Stairs"))
+                Physics.Raycast(tr_footOrigin.position, Vector3.Lerp(transform.forward, -transform.right, .5f), out RaycastHit hit, 2, lm_stairsRay, QueryTriggerInteraction.Collide);
+                if (hit.collider != null)
                 {
                     rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed * transform.forward, transform.right, -30));
                     rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed * -transform.right, transform.forward, -30));
@@ -446,8 +448,8 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    Physics.Raycast(tr_footOrigin.position, Vector3.Lerp(-transform.forward, transform.right, .5f), out RaycastHit hit2, 2, lm);
-                    if (hit2.collider?.gameObject.layer == LayerMask.NameToLayer("Stairs"))
+                    Physics.Raycast(tr_footOrigin.position, Vector3.Lerp(-transform.forward, transform.right, .5f), out RaycastHit hit2, 2, lm_stairsRay, QueryTriggerInteraction.Collide);
+                    if (hit2.collider != null)
                     {
                         rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed / 2 * transform.forward, transform.right, 30));
                         rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed / 2 * -transform.right, transform.forward, 30));
