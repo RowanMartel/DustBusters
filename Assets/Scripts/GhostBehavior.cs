@@ -582,9 +582,9 @@ public class GhostBehavior : MonoBehaviour
 
         //Attempt to hide item
         HidingSpot hs_spot = tr_currentPatrolPoint.GetComponent<HidingSpot>();
-        if(hs_spot != null)
+        if(hs_spot != null && go_curHeldItem != null)
         {
-            PlaceItem(hs_spot.transform.position);
+            PlaceItem(hs_spot.transform.position); 
             return;
         }
     }
