@@ -204,6 +204,7 @@ GameObject:
   - component: {fileID: 870726972181429145}
   - component: {fileID: 9204799007984368867}
   - component: {fileID: 6398819449383755449}
+  - component: {fileID: 8249998536945033995}
   m_Layer: 0
   m_Name: Door
   m_TagString: Interactable
@@ -332,6 +333,33 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 8651188073722086574, guid: 025a0343c741ea34496763fca7819dab, type: 3}
+--- !u!54 &8249998536945033995
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4645132457491701068}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &8950575678533415272
 GameObject:
   m_ObjectHideFlags: 0

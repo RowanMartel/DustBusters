@@ -310,7 +310,7 @@ public class TaskManager : MonoBehaviour
                         chore.tmp_choreText.text = "Put away the clean dishes in the kitchen";
                         break;
                     case Task.CleanCobwebs:
-                        chore.tmp_choreText.text = "Dust the cobwebs in the foyer";
+                        chore.tmp_choreText.text = "Dust the cobwebs in the basement";
                         break;
                     case Task.CleanMirror:
                         chore.tmp_choreText.text = "Clean the downstairs bathroom mirror";

@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
 
         taskManager = GetComponent<TaskManager>();
         soundManager = GetComponent<SoundManager>();
-        menuManager = FindObjectOfType<MenuManager>();
+        if(menuManager == null) menuManager = FindObjectOfType<MenuManager>();
         menuManager.InitializeMenuManager();
 
         SceneManager.activeSceneChanged += OnGameStart;

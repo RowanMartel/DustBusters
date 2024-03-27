@@ -21,12 +21,17 @@ public class Radio : Interactable
 
         GameManager.menuManager.GamePaused += FadeOut;
         GameManager.menuManager.GameUnpaused += FadeIn;
-        GameManager.menuManager.CreditsEntered += FadeOut;
         GameManager.menuManager.MusicVolumeChanged += UpdateVolume;
 
         as_source.volume = Settings.flt_musicVolume;
     }
 
+    private void OnDestroy()
+    {
+        GameManager.menuManager.GamePaused -= FadeOut;
+        GameManager.menuManager.GameUnpaused -= FadeIn;
+        GameManager.menuManager.MusicVolumeChanged -= UpdateVolume;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -57,7 +62,7 @@ public class Radio : Interactable
         if (bl_playing)
         {
             as_source.volume = Settings.flt_volume;
-            LeanTween.value(as_source.volume, 0, 1.5f).setOnComplete(as_source.Stop).setOnUpdate(FadingUpdate).setIgnoreTimeScale(true);
+            LeanTween.value(as_source.volume, 0, 2f).setOnComplete(as_source.Stop).setOnUpdate(FadingUpdate).setIgnoreTimeScale(true);
         }
     }
 
