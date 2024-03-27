@@ -4606,6 +4606,10 @@ PrefabInstance:
       propertyPath: vc_playerCamera
       value: 
       objectReference: {fileID: 2016799940}
+    - target: {fileID: 1180455513968762944, guid: a137a69c917120245957388d6d524c2d, type: 3}
+      propertyPath: lm_stairsRay.m_Bits
+      value: 32768
+      objectReference: {fileID: 0}
     - target: {fileID: 1371281139184470510, guid: a137a69c917120245957388d6d524c2d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -7311,9 +7315,21 @@ PrefabInstance:
       value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 3252823415719424403, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
+      propertyPath: go_renderObj
+      value: 
+      objectReference: {fileID: 297922288}
+    - target: {fileID: 3252823415719424403, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
+      propertyPath: ren_renderer
+      value: 
+      objectReference: {fileID: 297922289}
+    - target: {fileID: 3252823415719424403, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
       propertyPath: tfPlayerTarget
       value: 
       objectReference: {fileID: 2016799939}
+    - target: {fileID: 3252823415719424403, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
+      propertyPath: int_framesToRend
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3252823415719424403, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
       propertyPath: a_go_regions.Array.size
       value: 2
@@ -7342,6 +7358,14 @@ PrefabInstance:
       propertyPath: l_go_regions.Array.data[2]
       value: 
       objectReference: {fileID: 360669695}
+    - target: {fileID: 3406293664878737047, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3406293664878737047, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
+      propertyPath: far clip plane
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3406293664878737047, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
       propertyPath: m_TargetTexture
       value: 
@@ -7467,6 +7491,16 @@ PrefabInstance:
 --- !u!4 &297922287 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6703882999351095727, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
+  m_PrefabInstance: {fileID: 297922286}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &297922288 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6392317366478282081, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
+  m_PrefabInstance: {fileID: 297922286}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &297922289 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8584845477321624713, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
   m_PrefabInstance: {fileID: 297922286}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &309091946
@@ -54206,9 +54240,21 @@ PrefabInstance:
       value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 3252823415719424403, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
+      propertyPath: go_renderObj
+      value: 
+      objectReference: {fileID: 1827026383}
+    - target: {fileID: 3252823415719424403, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
+      propertyPath: ren_renderer
+      value: 
+      objectReference: {fileID: 1827026384}
+    - target: {fileID: 3252823415719424403, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
       propertyPath: tfPlayerTarget
       value: 
       objectReference: {fileID: 2016799939}
+    - target: {fileID: 3252823415719424403, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
+      propertyPath: int_framesToRend
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3252823415719424403, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
       propertyPath: a_go_regions.Array.size
       value: 2
@@ -54233,6 +54279,14 @@ PrefabInstance:
       propertyPath: l_go_regions.Array.data[1]
       value: 
       objectReference: {fileID: 502061764}
+    - target: {fileID: 3406293664878737047, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3406293664878737047, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
+      propertyPath: far clip plane
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 3406293664878737047, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
       propertyPath: m_TargetTexture
       value: 
@@ -54358,6 +54412,16 @@ PrefabInstance:
 --- !u!4 &1827026382 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6703882999351095727, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
+  m_PrefabInstance: {fileID: 1827026381}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1827026383 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6392317366478282081, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
+  m_PrefabInstance: {fileID: 1827026381}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1827026384 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8584845477321624713, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
   m_PrefabInstance: {fileID: 1827026381}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1833679671
@@ -68133,9 +68197,21 @@ PrefabInstance:
       value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 3252823415719424403, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
+      propertyPath: go_renderObj
+      value: 
+      objectReference: {fileID: 3238900970046781225}
+    - target: {fileID: 3252823415719424403, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
+      propertyPath: ren_renderer
+      value: 
+      objectReference: {fileID: 3238900970046781226}
+    - target: {fileID: 3252823415719424403, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
       propertyPath: tfPlayerTarget
       value: 
       objectReference: {fileID: 2016799939}
+    - target: {fileID: 3252823415719424403, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
+      propertyPath: int_framesToRend
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3252823415719424403, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
       propertyPath: a_go_regions.Array.size
       value: 2
@@ -68183,6 +68259,14 @@ PrefabInstance:
     - target: {fileID: 3315374263009936661, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3406293664878737047, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3406293664878737047, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
+      propertyPath: far clip plane
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3600765353620922682, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
       propertyPath: m_PlayOnAwake
@@ -68301,6 +68385,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
+--- !u!1 &3238900970046781225 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6392317366478282081, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
+  m_PrefabInstance: {fileID: 3238900970046781224}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &3238900970046781226 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8584845477321624713, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
+  m_PrefabInstance: {fileID: 3238900970046781224}
+  m_PrefabAsset: {fileID: 0}
 --- !u!33 &3379448741465440640
 MeshFilter:
   m_ObjectHideFlags: 0
