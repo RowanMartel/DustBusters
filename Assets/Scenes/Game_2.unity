@@ -825,6 +825,22 @@ PrefabInstance:
       propertyPath: li_go_lights.Array.data[2]
       value: 
       objectReference: {fileID: 712404759}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.data[0]
+      value: 
+      objectReference: {fileID: 1410116393}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.data[1]
+      value: 
+      objectReference: {fileID: 1504693925}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.data[2]
+      value: 
+      objectReference: {fileID: 712404760}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2137,6 +2153,11 @@ Transform:
 --- !u!1 &135415317 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5433050179365818405, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
+  m_PrefabInstance: {fileID: 135415315}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &135415318 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 702878457156481454, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
   m_PrefabInstance: {fileID: 135415315}
   m_PrefabAsset: {fileID: 0}
 --- !u!59 &141945239
@@ -4464,6 +4485,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5433050179365818405, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
   m_PrefabInstance: {fileID: 214665182}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &214665185 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 702878457156481454, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
+  m_PrefabInstance: {fileID: 214665182}
+  m_PrefabAsset: {fileID: 0}
 --- !u!64 &221790179
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -6141,6 +6167,14 @@ PrefabInstance:
       propertyPath: li_go_lights.Array.data[1]
       value: 
       objectReference: {fileID: 576466738}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.data[0]
+      value: 
+      objectReference: {fileID: 276860319}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6232,6 +6266,11 @@ Transform:
 --- !u!1 &275137844 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5433050179365818405, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
+  m_PrefabInstance: {fileID: 275137842}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &275137845 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 702878457156481454, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
   m_PrefabInstance: {fileID: 275137842}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &276860316
@@ -6335,6 +6374,11 @@ Transform:
 --- !u!1 &276860318 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5433050179365818405, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
+  m_PrefabInstance: {fileID: 276860316}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &276860319 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 702878457156481454, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
   m_PrefabInstance: {fileID: 276860316}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &281489149 stripped
@@ -11498,6 +11542,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5433050179365818405, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
   m_PrefabInstance: {fileID: 434957996}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &434957999 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 702878457156481454, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
+  m_PrefabInstance: {fileID: 434957996}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &456498469
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13926,6 +13975,14 @@ PrefabInstance:
       propertyPath: li_go_lights.Array.data[0]
       value: 
       objectReference: {fileID: 1578508776}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.data[0]
+      value: 
+      objectReference: {fileID: 1578508777}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14342,6 +14399,11 @@ Transform:
 --- !u!1 &576466738 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5433050179365818405, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
+  m_PrefabInstance: {fileID: 576466736}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &576466739 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 702878457156481454, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
   m_PrefabInstance: {fileID: 576466736}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &579519661 stripped
@@ -15669,6 +15731,14 @@ PrefabInstance:
       propertyPath: li_go_lights.Array.data[1]
       value: 
       objectReference: {fileID: 576466738}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.data[0]
+      value: 
+      objectReference: {fileID: 654227559}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15945,6 +16015,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5433050179365818405, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
   m_PrefabInstance: {fileID: 654227556}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &654227559 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 702878457156481454, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
+  m_PrefabInstance: {fileID: 654227556}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &655264634
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16158,6 +16233,11 @@ Transform:
 --- !u!1 &662139929 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5433050179365818405, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
+  m_PrefabInstance: {fileID: 662139927}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &662139930 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 702878457156481454, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
   m_PrefabInstance: {fileID: 662139927}
   m_PrefabAsset: {fileID: 0}
 --- !u!59 &665372102
@@ -17416,6 +17496,11 @@ Transform:
 --- !u!1 &712404759 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5433050179365818405, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
+  m_PrefabInstance: {fileID: 712404757}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &712404760 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 702878457156481454, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
   m_PrefabInstance: {fileID: 712404757}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &715058514
@@ -18926,6 +19011,14 @@ PrefabInstance:
       propertyPath: li_go_lights.Array.data[1]
       value: 
       objectReference: {fileID: 576466738}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.data[0]
+      value: 
+      objectReference: {fileID: 1041868394}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19021,6 +19114,11 @@ Transform:
 --- !u!1 &774248703 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5433050179365818405, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
+  m_PrefabInstance: {fileID: 774248701}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &774248704 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 702878457156481454, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
   m_PrefabInstance: {fileID: 774248701}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &775561236
@@ -20146,6 +20244,11 @@ Transform:
 --- !u!1 &797894960 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5433050179365818405, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
+  m_PrefabInstance: {fileID: 797894958}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &797894961 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 702878457156481454, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
   m_PrefabInstance: {fileID: 797894958}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &799877802
@@ -26685,6 +26788,14 @@ PrefabInstance:
       propertyPath: li_go_lights.Array.data[1]
       value: 
       objectReference: {fileID: 576466738}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.data[0]
+      value: 
+      objectReference: {fileID: 1073191011}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -26929,6 +27040,11 @@ Transform:
 --- !u!1 &951692947 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5433050179365818405, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
+  m_PrefabInstance: {fileID: 951692945}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &951692948 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 702878457156481454, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
   m_PrefabInstance: {fileID: 951692945}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &954258245
@@ -27366,6 +27482,14 @@ PrefabInstance:
       propertyPath: li_go_lights.Array.data[1]
       value: 
       objectReference: {fileID: 576466738}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.data[0]
+      value: 
+      objectReference: {fileID: 1569792787}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -30221,6 +30345,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5433050179365818405, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
   m_PrefabInstance: {fileID: 1041868391}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &1041868394 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 702878457156481454, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
+  m_PrefabInstance: {fileID: 1041868391}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1046269637
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30799,6 +30928,11 @@ Transform:
 --- !u!1 &1073191010 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5433050179365818405, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
+  m_PrefabInstance: {fileID: 1073191008}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1073191011 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 702878457156481454, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
   m_PrefabInstance: {fileID: 1073191008}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1074176994
@@ -32347,6 +32481,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5433050179365818405, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
   m_PrefabInstance: {fileID: 1131006193}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &1131006196 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 702878457156481454, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
+  m_PrefabInstance: {fileID: 1131006193}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1131293296
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32432,6 +32571,11 @@ Transform:
 --- !u!1 &1131293298 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5433050179365818405, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
+  m_PrefabInstance: {fileID: 1131293296}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1131293299 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 702878457156481454, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
   m_PrefabInstance: {fileID: 1131293296}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1131959312
@@ -32534,6 +32678,14 @@ PrefabInstance:
       propertyPath: li_go_lights.Array.data[0]
       value: 
       objectReference: {fileID: 1573042265}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.data[0]
+      value: 
+      objectReference: {fileID: 1573042266}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -32636,6 +32788,14 @@ PrefabInstance:
       propertyPath: li_go_lights.Array.data[1]
       value: 
       objectReference: {fileID: 434957998}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.data[0]
+      value: 
+      objectReference: {fileID: 951692948}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -32870,6 +33030,14 @@ PrefabInstance:
       propertyPath: li_go_lights.Array.data[0]
       value: 
       objectReference: {fileID: 1457544789}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.data[0]
+      value: 
+      objectReference: {fileID: 1457544790}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -35683,6 +35851,18 @@ PrefabInstance:
       propertyPath: li_go_lights.Array.data[1]
       value: 
       objectReference: {fileID: 774248703}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.data[0]
+      value: 
+      objectReference: {fileID: 214665185}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.data[1]
+      value: 
+      objectReference: {fileID: 774248704}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -36730,6 +36910,18 @@ PrefabInstance:
       propertyPath: li_go_lights.Array.data[1]
       value: 
       objectReference: {fileID: 434957998}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.data[0]
+      value: 
+      objectReference: {fileID: 1981478249}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.data[1]
+      value: 
+      objectReference: {fileID: 434957999}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -37193,6 +37385,18 @@ PrefabInstance:
       propertyPath: li_go_lights.Array.data[1]
       value: 
       objectReference: {fileID: 576466738}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.data[0]
+      value: 
+      objectReference: {fileID: 1420338491}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.data[1]
+      value: 
+      objectReference: {fileID: 576466739}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -37866,6 +38070,14 @@ PrefabInstance:
       propertyPath: li_go_lights.Array.data[0]
       value: 
       objectReference: {fileID: 1369765073}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.data[0]
+      value: 
+      objectReference: {fileID: 1369765074}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -37961,6 +38173,11 @@ Transform:
 --- !u!1 &1369765073 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5433050179365818405, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
+  m_PrefabInstance: {fileID: 1369765071}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1369765074 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 702878457156481454, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
   m_PrefabInstance: {fileID: 1369765071}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1369873352
@@ -44011,6 +44228,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5433050179365818405, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
   m_PrefabInstance: {fileID: 1410116390}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &1410116393 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 702878457156481454, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
+  m_PrefabInstance: {fileID: 1410116390}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1411021603
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44021,7 +44243,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 379622810805929617, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
       propertyPath: m_Name
-      value: StorageRoomLight
+      value: BathRoomLight
       objectReference: {fileID: 0}
     - target: {fileID: 2820874218622458113, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
       propertyPath: m_LocalPosition.x
@@ -44076,6 +44298,11 @@ Transform:
 --- !u!1 &1411021605 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5433050179365818405, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
+  m_PrefabInstance: {fileID: 1411021603}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1411021606 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 702878457156481454, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
   m_PrefabInstance: {fileID: 1411021603}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1411329357
@@ -44888,6 +45115,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5433050179365818405, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
   m_PrefabInstance: {fileID: 1420338488}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &1420338491 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 702878457156481454, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
+  m_PrefabInstance: {fileID: 1420338488}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1426749661
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45672,6 +45904,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5433050179365818405, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
   m_PrefabInstance: {fileID: 1457544787}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &1457544790 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 702878457156481454, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
+  m_PrefabInstance: {fileID: 1457544787}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1471880543
 GameObject:
   m_ObjectHideFlags: 0
@@ -45987,6 +46224,14 @@ PrefabInstance:
       propertyPath: li_go_lights.Array.data[1]
       value: 
       objectReference: {fileID: 434957998}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.data[0]
+      value: 
+      objectReference: {fileID: 797894961}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -46335,7 +46580,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1093960759345217512, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
       propertyPath: m_Name
-      value: StorageSwitch
+      value: BathroomSwitch
       objectReference: {fileID: 0}
     - target: {fileID: 2212476269214427968, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
       propertyPath: m_PlayOnAwake
@@ -46421,6 +46666,14 @@ PrefabInstance:
       propertyPath: li_go_lights.Array.data[0]
       value: 
       objectReference: {fileID: 1411021605}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.data[0]
+      value: 
+      objectReference: {fileID: 1411021606}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -46554,6 +46807,11 @@ Transform:
 --- !u!1 &1504693924 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5433050179365818405, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
+  m_PrefabInstance: {fileID: 1504693922}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1504693925 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 702878457156481454, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
   m_PrefabInstance: {fileID: 1504693922}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1516071287
@@ -48160,6 +48418,14 @@ PrefabInstance:
       propertyPath: li_go_lights.Array.data[0]
       value: 
       objectReference: {fileID: 8166875435805760623}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.data[0]
+      value: 
+      objectReference: {fileID: 8166875435805760624}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -48253,6 +48519,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5433050179365818405, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
   m_PrefabInstance: {fileID: 1569792784}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &1569792787 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 702878457156481454, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
+  m_PrefabInstance: {fileID: 1569792784}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1573042263
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48318,6 +48589,11 @@ Transform:
 --- !u!1 &1573042265 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5433050179365818405, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
+  m_PrefabInstance: {fileID: 1573042263}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1573042266 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 702878457156481454, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
   m_PrefabInstance: {fileID: 1573042263}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1574440111 stripped
@@ -48548,6 +48824,11 @@ Transform:
 --- !u!1 &1578508776 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5433050179365818405, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
+  m_PrefabInstance: {fileID: 1578508774}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1578508777 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 702878457156481454, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
   m_PrefabInstance: {fileID: 1578508774}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1582754148
@@ -50161,6 +50442,14 @@ PrefabInstance:
       propertyPath: li_go_lights.Array.data[1]
       value: 
       objectReference: {fileID: 576466738}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.data[0]
+      value: 
+      objectReference: {fileID: 275137845}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -55802,6 +56091,14 @@ PrefabInstance:
       propertyPath: li_go_lights.Array.data[1]
       value: 
       objectReference: {fileID: 576466738}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.data[0]
+      value: 
+      objectReference: {fileID: 1131293299}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -57470,6 +57767,14 @@ PrefabInstance:
       propertyPath: li_go_lights.Array.data[1]
       value: 
       objectReference: {fileID: 576466738}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.data[0]
+      value: 
+      objectReference: {fileID: 662139930}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -58354,6 +58659,11 @@ Transform:
 --- !u!1 &1981478248 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5433050179365818405, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
+  m_PrefabInstance: {fileID: 1981478246}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1981478249 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 702878457156481454, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
   m_PrefabInstance: {fileID: 1981478246}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1988001418
@@ -61905,6 +62215,14 @@ PrefabInstance:
       propertyPath: li_go_lights.Array.data[1]
       value: 
       objectReference: {fileID: 576466738}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.data[0]
+      value: 
+      objectReference: {fileID: 1131006196}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -62012,6 +62330,14 @@ PrefabInstance:
       propertyPath: li_go_lights.Array.data[1]
       value: 
       objectReference: {fileID: 434957998}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8008402779307414571, guid: ea00ae68d62f4b5439ae07af10167caf, type: 3}
+      propertyPath: a_ren_fixturesGlass.Array.data[0]
+      value: 
+      objectReference: {fileID: 135415318}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -70909,6 +71235,11 @@ PrefabInstance:
 --- !u!1 &8166875435805760623 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5433050179365818405, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
+  m_PrefabInstance: {fileID: 8166875435805760622}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &8166875435805760624 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 702878457156481454, guid: 0874e73a691d1ff409d8a8cd684f7a98, type: 3}
   m_PrefabInstance: {fileID: 8166875435805760622}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8265023635331002626

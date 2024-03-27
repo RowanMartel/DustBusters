@@ -15,6 +15,12 @@ public class LightSwitch : Interactable
     public GameObject[] a_go_regions;
     [Tooltip("Depicts whether the fusebox is supplying power to the switch")]
     public bool bl_fuseActive;
+    [Tooltip("Material for light fixture for when light is off")]
+    public Material mat_off;
+    [Tooltip("Material for light fixture for when light is on")]
+    public Material mat_on;
+    [Tooltip("LightFixtures Renderers")]
+    public Renderer[] a_ren_fixturesGlass;
 
     // toggle all lights on or off at start
     private void Start()
@@ -24,12 +30,20 @@ public class LightSwitch : Interactable
             foreach (GameObject go_light in li_go_lights)
                 go_light.SetActive(true);
             lightCollider.enabled = true;
+            foreach (Renderer ren in a_ren_fixturesGlass)
+            {
+                ren.material = mat_on;
+            }
         }
         else
         {
             foreach (GameObject go_light in li_go_lights)
                 go_light.SetActive(false);
             lightCollider.enabled = false;
+            foreach (Renderer ren in a_ren_fixturesGlass)
+            {
+                ren.material = mat_off;
+            }
         }
     }
 
@@ -49,13 +63,20 @@ public class LightSwitch : Interactable
             foreach (GameObject light in li_go_lights)
                 light.SetActive(true);
             lightCollider.enabled = true;
-
+            foreach (Renderer ren in a_ren_fixturesGlass)
+            {
+                ren.material = mat_on;
+            }
             return;
         }
 
         //Otherwise turn the light off
         foreach (GameObject light in li_go_lights)
             light.SetActive(false);
+        foreach (Renderer ren in a_ren_fixturesGlass)
+        {
+            ren.material = mat_off;
+        }
         lightCollider.enabled = false;
     }
 
@@ -77,6 +98,10 @@ public class LightSwitch : Interactable
             //Turns the lights on if both the fuse and the switch are on
             foreach (GameObject light in li_go_lights)
                 light.SetActive(true);
+            foreach(Renderer ren in a_ren_fixturesGlass)
+            {
+                ren.material = mat_on;
+            }
             lightCollider.enabled = true;
         }
         else
@@ -84,6 +109,10 @@ public class LightSwitch : Interactable
             //Otherwise turn the lights off
             foreach (GameObject light in li_go_lights)
                 light.SetActive(false);
+            foreach (Renderer ren in a_ren_fixturesGlass)
+            {
+                ren.material = mat_off;
+            }
             lightCollider.enabled = false;
         }
     }
