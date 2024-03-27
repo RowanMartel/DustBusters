@@ -202,6 +202,7 @@ public class MenuManager : MonoBehaviour
 
     public void Update()
     {
+        // when a chore is completed or updated, this counts down and then dismisses the chore notification
         if (bl_runNotificationTimer)
         {
             if (flt_notificationTimer > 0)
@@ -215,6 +216,7 @@ public class MenuManager : MonoBehaviour
             }
         }
 
+        // this handles the timing between credits slides
         if (bl_runCreditsTimer)
         {
             if (flt_creditsTimer > 0)
@@ -524,6 +526,7 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    // this tweens in the image and text for a credits slide
     private void CreditsShow()
     {
         switch(int_creditsScreenSequence)
@@ -542,6 +545,8 @@ public class MenuManager : MonoBehaviour
                 break;
         }
     }
+
+    // this tweens out the image and text for a credits slide
 
     private void CreditsHide()
     {
@@ -568,6 +573,7 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    // this is part of the tweening of text, this applies the tweened value to the text's alpha
     private void UpdateTextAlpha(float alpha)
     {
         Color color = Color.white;
@@ -581,6 +587,7 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    // if there are no more slides, this shows the last message and the back button
     private void CheckCreditSequenceDone()
     {
         if (int_creditsScreenTracker != li_creditScreens.Count - 1)
@@ -711,7 +718,6 @@ public class MenuManager : MonoBehaviour
         //If the player is holding an object..
         if (go_heldObject != null)
         {
-
             //..and the object is a dish:
             if (go_heldObject.GetComponent<Dish>() != null)
             {
@@ -744,6 +750,13 @@ public class MenuManager : MonoBehaviour
                 bool bl_tvOn = FindObjectOfType<TVStatic>().bl_on;
 
                 if (bl_tvOn) st_tooltipMessage = "Turn off the TV";
+            }
+
+            //..and the object is the lighter, while looking at a candle:
+            else if (go_heldObject.GetComponent<Pickupable>().bl_lighter && go_lookingAtObject)
+            {
+                if(go_lookingAtObject.GetComponent<Candle>() && !go_lookingAtObject.GetComponent<Candle>().bl_lit) st_tooltipMessage = "Press \"E\" to light" + go_lookingAtObject.name;
+                else if(go_lookingAtObject.GetComponent<Candle>() && go_lookingAtObject.GetComponent<Candle>().bl_lit)st_tooltipMessage = "Press \"E\" to pick up " + go_lookingAtObject.name;
             }
         }
 
