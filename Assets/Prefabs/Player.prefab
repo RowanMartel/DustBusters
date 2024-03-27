@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 1466336385272633059}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.865, z: 0}
+  m_LocalPosition: {x: 0, y: -0.92, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 1142164511881553153}
   - component: {fileID: 1078535883998137096}
   - component: {fileID: 3206450252048328638}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -222,7 +222,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 131072
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -256,6 +256,9 @@ MonoBehaviour:
   go_curRegion: {fileID: 0}
   bl_onStairs: 0
   tr_footOrigin: {fileID: 0}
+  lm_stairsRay:
+    serializedVersion: 2
+    m_Bits: 163840
 --- !u!54 &2924403984974301946
 Rigidbody:
   m_ObjectHideFlags: 0
