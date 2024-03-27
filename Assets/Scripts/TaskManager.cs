@@ -265,13 +265,13 @@ public class TaskManager : MonoBehaviour
 
             //tmp_taskListTxt.text = tmp_taskListTxt.text.Remove(i, str_strikethroughText.Length);
 
-            tmp_taskListTxt.text = tmp_taskListTxt.text.Insert(i, str_text);
+            //tmp_taskListTxt.text = tmp_taskListTxt.text.Insert(i, str_text);
 
             li_tsk_completedTaskList.Remove(task);
         }
         else
         {
-            tmp_taskListTxt.text += str_text;
+            //tmp_taskListTxt.text += str_text;
         }
 
         if (bl_taskListFilled)
