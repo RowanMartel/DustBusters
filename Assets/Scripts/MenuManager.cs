@@ -406,6 +406,7 @@ public class MenuManager : MonoBehaviour
             }
         }
 
+        tmp_currentChore.gameObject.SetActive(false);
     }
 
     // This handles the transition from the TitleScreen scene to the Game scene and brings up the Orientation Note and Start buttons with LeanTween with animation in steps

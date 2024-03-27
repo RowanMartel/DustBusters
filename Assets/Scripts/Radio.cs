@@ -52,7 +52,7 @@ public class Radio : Interactable
         if (bl_playing)
         {
             as_source.volume = 0;
-            LeanTween.value(0f, Settings.flt_musicVolume, 3f).setOnUpdate(FadingUpdate).setIgnoreTimeScale(true);
+            LeanTween.value(0f, Settings.flt_musicVolume, 2f).setOnUpdate(FadingUpdate).setIgnoreTimeScale(true);
             as_source.Play();
         }
     }
