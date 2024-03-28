@@ -246,30 +246,30 @@ public class PlayerController : MonoBehaviour
     // This handles the player's basic forward/backward/left/right movement, mapped to the WASD keys.
     void DoPlayerMovement()
     {
-        if (Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)) // if pressing forwards but not left or right,
         {
-            if (bl_onStairs)
+            if (bl_onStairs) // check if on stairs
             {
+                // if so, raycast forwards from the bottom of the player, hitting only the stairs layer
                 Physics.Raycast(tr_footOrigin.position, transform.forward, out RaycastHit hit, 2, lm_stairsRay, QueryTriggerInteraction.Collide);
-                if (hit.collider != null)
-                    rb_player.AddForce(RotateVector(transform.forward * Settings.int_playerSpeed, transform.right, -30));
-                else
+                if (hit.collider != null) // if that raycast hits then the player must be ascending the stairs
+                    rb_player.AddForce(RotateVector(transform.forward * Settings.int_playerSpeed, transform.right, -30)); // propel the player at a forwards/upwards angle
+                else // if the raycast didn't hit,
                 {
+                    // raycast *backwards* from the bottom of the player
                     Physics.Raycast(tr_footOrigin.position, -transform.forward, out RaycastHit hit2, 2, lm_stairsRay, QueryTriggerInteraction.Collide);
-                    Debug.DrawRay(tr_footOrigin.position, -transform.forward * 5, Color.red, 5);
-                    if (hit2.collider != null)
-                        rb_player.AddForce(RotateVector(transform.forward * Settings.int_playerSpeed / 2, transform.right, 30));
-                    else
-                    {
-                        rb_player.AddForce(transform.forward * Settings.int_playerSpeed);
-                    }
+                    //Debug.DrawRay(tr_footOrigin.position, -transform.forward * 5, Color.red, 5); // debug code
+                    if (hit2.collider != null) // if this one hits then the player must be descending the stairs
+                        rb_player.AddForce(RotateVector(transform.forward * Settings.int_playerSpeed / 2, transform.right, 30)); // propel the player at a forwards/downwards angle
+                    else // if neither raycast hit then the player must be moving sideways on the stairs
+                        rb_player.AddForce(transform.forward * Settings.int_playerSpeed); // push the player with a forwards force
                 }
             }
-            else
+            else // if the player isn't on the stairs, push them with a forwards force
                 rb_player.AddForce(transform.forward * Settings.int_playerSpeed);
         }
 
-        if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D)) // if pressing forwards and right,
         {
             if (bl_onStairs)
             {
@@ -303,7 +303,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S)) // if pressing right but not forwards or backwards,
         {
             if (bl_onStairs)
             {
@@ -325,7 +325,7 @@ public class PlayerController : MonoBehaviour
                 rb_player.AddForce(transform.right * Settings.int_playerSpeed);
         }
 
-        if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.S)) // if pressing backwards and right,
         {
             if (bl_onStairs)
             {
@@ -357,7 +357,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A)) // if pressing backwards but not left or right,
         {
             if (bl_onStairs)
             {
@@ -379,7 +379,7 @@ public class PlayerController : MonoBehaviour
                 rb_player.AddForce(-transform.forward * Settings.int_playerSpeed);
         }
 
-        if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A)) // if pressing forwards and left,
         {
             if (bl_onStairs)
             {
@@ -413,7 +413,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S)) // if pressing left but not forwards or backwards,
         {
             if (bl_onStairs)
             {
@@ -435,7 +435,7 @@ public class PlayerController : MonoBehaviour
                 rb_player.AddForce(-transform.right * Settings.int_playerSpeed);
         }
 
-        if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A)) // if pressing forwards and left,
         {
             if (bl_onStairs)
             {
@@ -470,7 +470,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    //rotates force vectors
+    //rotates force vectors by the given angle around the specified axis
     Vector3 RotateVector(Vector3 vector, Vector3 axis, float angle)
     {
         Quaternion rotation = Quaternion.AngleAxis(angle, axis);
