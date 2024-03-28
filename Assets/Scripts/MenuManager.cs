@@ -1,9 +1,12 @@
 using Cinemachine;
 using System;
+using System.Collections.Generic;
+// using System.Drawing;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+// using static System.Net.Mime.MediaTypeNames;
 
 public class MenuManager : MonoBehaviour
 {
@@ -17,6 +20,20 @@ public class MenuManager : MonoBehaviour
     public GameObject go_endScreen;
     public GameObject go_debugScreen;
     public GameObject go_controlsScreen;
+
+    //Credits Sequence Objects
+    protected GameObject go_creditsScreensHolder;
+    protected bool bl_creditsSequenceRunning = false;
+    protected List<GameObject> li_creditScreens;
+
+    protected int int_creditsScreenTracker = 0;
+    protected int int_creditsScreenSequence = 0;
+
+    protected bool bl_runCreditsTimer = false;
+    protected float flt_creditsTimer = 3;
+
+    protected Color co_transparent;
+    protected Color co_opaque;
 
     // Screen Variables used in screen transitions, and the ability to go back and forth within Main Menu and Pause
     protected GameObject go_nextScreen;
@@ -36,6 +53,20 @@ public class MenuManager : MonoBehaviour
     //Tooltip Elements
     protected Image img_tooltipBackground;
     protected TextMeshProUGUI tmp_tooltipText;
+
+    //Chore Notification Elements
+    protected bool bl_runNotificationTimer = false;
+    protected GameObject go_choreNotificationHolder;
+    protected Image img_notificationBackground;
+    protected TextMeshProUGUI tmp_notificationText;
+    protected float flt_notificationTimer = -1;
+
+    //Chore List and Current Chore variables
+    public bool bl_choreListUp = false;
+    protected GameObject go_choreSheet;
+    protected GameObject go_currentChoreLabel;
+    protected TextMeshProUGUI tmp_currentChore;
+
     public Image Img_damageOverlay { get { return img_damageOverlay; } set { img_damageOverlay = value; } }
 
     // These ints keep track of the transitions between screens and scenes. For example, EnterGameSequence() uses it to iterate through its switch statement to perform transitions with LeanTween.
@@ -48,12 +79,14 @@ public class MenuManager : MonoBehaviour
 
     // Volume and Look Sensativity slider references
     protected Slider sli_volume;
+    protected Slider sli_musicVolume;
     protected Slider sli_lookSensitivity;
 
     // A few miscellaneous screen elements that are animated via LeanTween
     protected GameObject go_OrientationNote;
     protected GameObject go_quitButton;
     protected GameObject go_startButton;
+    protected GameObject go_restartButton;
 
     // Bools related to the Pause system
     protected bool bl_paused = false;
@@ -65,47 +98,140 @@ public class MenuManager : MonoBehaviour
     public event EventHandler<EventArgs> GamePaused;
     public event EventHandler<EventArgs> GameUnpaused;
     public event EventHandler<EventArgs> GameStart;
+    public event EventHandler<EventArgs> StartTransitionToGame;
     public event EventHandler<EventArgs> MenuEntered;
     public event EventHandler<EventArgs> CreditsEntered;
     public event EventHandler<EventArgs> DeathScreenEntered;
+    public event EventHandler<EventArgs> SoundVolumeChanged;
+    public event EventHandler<EventArgs> MusicVolumeChanged;
+    public event EventHandler<EventArgs> StartScreenClosed;
+    public event EventHandler<EventArgs> StartQuitingGame;
 
-    private void Awake()
+    protected bool bl_initialized = false;
+
+    // This was once the Awake method, but it was found that GameManager's Awake method was running first, and FadeIn() method needed components that weren't ready yet
+    public void InitializeMenuManager()
     {
+        if(!bl_initialized)
+        {
+            // These are primary menu related image component references:
+            img_damageOverlay = FindObjectOfType<DamageOverlay>(true).GetComponent<Image>();
+            img_deathMessage = FindObjectOfType<DeathMessage>(true).GetComponent<Image>();
+            img_deathScreen = GameObject.Find("DeathOverlay").GetComponent<Image>();
+            img_fadeOverlay = GameObject.Find("FadeOverlay").GetComponent<Image>();
 
-        // These are primary menu related image component references:
-        img_damageOverlay = FindObjectOfType<DamageOverlay>(true).GetComponent<Image>();
-        img_deathMessage = FindObjectOfType<DeathMessage>(true).GetComponent<Image>();
-        img_deathScreen = GameObject.Find("DeathOverlay").GetComponent<Image>();
-        img_fadeOverlay = GameObject.Find("FadeOverlay").GetComponent<Image>();
+            // These are credits sequence related variables:
+            go_creditsScreensHolder = GameObject.Find("CreditsScreens");
 
-        // These components make up the player tooltip:
-        img_tooltipBackground = GameObject.Find("ToolTipBackground").GetComponent<Image>();
-        tmp_tooltipText = GameObject.Find("ToolTipText").GetComponent<TextMeshProUGUI>();
+            li_creditScreens = new();
 
-        // These components have references because they are animated into/out of view
-        go_quitButton = GameObject.Find("DeathScreenQuit");
-        go_startButton = GameObject.Find("StartScreenButton");
-        go_OrientationNote = GameObject.Find("Note");
-        
-        // These are the references to the Options screen slider components:
-        sli_volume = GameObject.Find("VolumeSlider").GetComponent<Slider>();
-        sli_lookSensitivity = GameObject.Find("LookSensitivitySlider").GetComponent<Slider>();
+            foreach (Transform creditsScreen in go_creditsScreensHolder.transform)
+            {
+                li_creditScreens.Add(creditsScreen.gameObject);
+            }
 
-        // We set the volume and look sensitivity to the defaults defined in Settings
-        sli_volume.value = Settings.flt_volume;
-        sli_lookSensitivity.value = Settings.flt_lookSensitivity;
+            co_opaque = new();
+            co_opaque = Color.white;
+            co_transparent = new();
+            co_transparent = co_opaque;
+            co_transparent.a = 0;
 
-        // The debug screen is a special case screen that is not set active or deactivated elsewhere, so it is deactivated here
-        go_debugScreen.SetActive(false);
+            foreach (GameObject creditsScreen in li_creditScreens)
+            {
+                creditsScreen.transform.Find("Picture").GetComponent<Image>().color = co_transparent;
 
-        // The game should load into the Title Scene, and so we show the title scene object. Otherwise we just show a blank screen.
-        Scene activeScene = SceneManager.GetActiveScene();
+                GameObject textObjectHolder = creditsScreen.transform.Find("TextObjects").gameObject;
 
-        if (activeScene.name == "TitleScene") SwitchScreen(go_titleScreen);
-        else ClearScreens();
+                foreach (Transform textObject in textObjectHolder.transform)
+                {
+                    if (textObject.GetComponent<TextMeshProUGUI>() != null) textObject.GetComponent<TextMeshProUGUI>().color = co_transparent;
+                }
+            }
 
-        // The screen buffer is used in animation transitions, and we set it to TItleScreen so it is not null at start
-        go_screenBuffer = go_titleScreen;
+            // These components make up the player tooltip:
+            img_tooltipBackground = GameObject.Find("ToolTipBackground").GetComponent<Image>();
+            tmp_tooltipText = GameObject.Find("ToolTipText").GetComponent<TextMeshProUGUI>();
+
+            // These components make up the player chore notifications:
+            bl_runNotificationTimer = false;
+            go_choreNotificationHolder = GameObject.Find("ChoreNotification");
+            img_notificationBackground = GameObject.Find("ChoreNotificationBackground").GetComponent<Image>();
+            tmp_notificationText = GameObject.Find("ChoreNotificationText").GetComponent<TextMeshProUGUI>();
+
+            // This is the player's Current Chore info in the corner of their screen
+            go_choreSheet = GameObject.Find("ChoreSheet");
+            tmp_currentChore = GameObject.Find("CurrentChoreText").GetComponent<TextMeshProUGUI>();
+            tmp_currentChore.gameObject.SetActive(false);
+
+            // These components have references because they are animated into/out of view
+            go_quitButton = GameObject.Find("DeathScreenQuit");
+            go_startButton = GameObject.Find("StartScreenButton");
+            go_OrientationNote = GameObject.Find("Note");
+            go_restartButton = GameObject.Find("RestartButton");
+
+            // These are the references to the Options screen slider components:
+            sli_volume = GameObject.Find("VolumeSlider").GetComponent<Slider>();
+            sli_musicVolume = GameObject.Find("MusicVolumeSlider").GetComponent<Slider>();
+            sli_lookSensitivity = GameObject.Find("LookSensitivitySlider").GetComponent<Slider>();
+
+            // We set the volume and look sensitivity to the defaults defined in Settings
+            sli_volume.value = Settings.flt_volume;
+            sli_musicVolume.value = Settings.flt_musicVolume;
+            sli_lookSensitivity.value = Settings.flt_lookSensitivity;
+
+            // The debug screen is a special case screen that is not set active or deactivated elsewhere, so it is deactivated here
+            go_debugScreen.SetActive(false);
+
+            // The game should load into the Title Scene, and so we show the title scene object. Otherwise we just show a blank screen.
+            Scene activeScene = SceneManager.GetActiveScene();
+
+            if (activeScene.name == "TitleScene") SwitchScreen(go_titleScreen);
+            else ClearScreens();
+
+            // The screen buffer is used in animation transitions, and we set it to TItleScreen so it is not null at start
+            go_screenBuffer = go_titleScreen;
+
+            bl_initialized = true;
+        }
+    }
+
+    public void Start()
+    {
+        GameManager.taskManager.ChoreCompleted += ChoreCompleteNotification;
+        GameManager.taskManager.ChoreUpdated += ChoreUpdatedNotification;
+    }
+
+    public void Update()
+    {
+        // when a chore is completed or updated, this counts down and then dismisses the chore notification
+        if (bl_runNotificationTimer)
+        {
+            if (flt_notificationTimer > 0)
+            {
+                flt_notificationTimer -= Time.deltaTime;
+            }
+            else
+            {
+                bl_runNotificationTimer = false;
+                HideChoreNotification();
+            }
+        }
+
+        // this handles the timing between credits slides
+        if (bl_runCreditsTimer)
+        {
+            if (flt_creditsTimer > 0)
+            {
+                flt_creditsTimer -= Time.deltaTime;
+            }
+            else
+            {
+                bl_runCreditsTimer = false;
+                flt_creditsTimer = 3;
+                CheckCreditSequenceDone();
+                //CreditsHide();
+            }
+        }
     }
 
     // Hides the player's GUI
@@ -121,8 +247,8 @@ public class MenuManager : MonoBehaviour
         go_lastScreen.transform.localPosition = new Vector3(-750, 0f, 0f);
 
         if (go_lastScreen == go_optionsScreen || go_lastScreen == go_controlsScreen) LeanTween.moveLocal(go_screenBuffer, new Vector3(0f, 0f, 0f), Settings.flt_menuTransitionSpeed).setEase(LeanTweenType.easeOutSine).setIgnoreTimeScale(true);
-        
-        if(go_nextScreen == go_pauseScreen) LeanTween.moveLocal(go_nextScreen, new Vector3(0f, 0f, 0f), Settings.flt_menuTransitionSpeed).setEase(LeanTweenType.easeOutSine).setOnComplete(AllowPause).setIgnoreTimeScale(true);
+
+        if (go_nextScreen == go_pauseScreen) LeanTween.moveLocal(go_nextScreen, new Vector3(0f, 0f, 0f), Settings.flt_menuTransitionSpeed).setEase(LeanTweenType.easeOutSine).setOnComplete(AllowPause).setIgnoreTimeScale(true);
         else LeanTween.moveLocal(go_nextScreen, new Vector3(0f, 0f, 0f), Settings.flt_menuTransitionSpeed).setOnComplete(AllowPause).setEase(LeanTweenType.easeOutSine).setIgnoreTimeScale(true);
 
         go_lastScreen = go_nextScreen;
@@ -131,7 +257,7 @@ public class MenuManager : MonoBehaviour
     // Dismisses Menu screen with a LeanTween transition
     public void DissmissScreenAndCallNext(GameObject screen)
     {
-        if(ready)
+        if (ready)
         {
             bl_allowPause = false;
 
@@ -159,7 +285,7 @@ public class MenuManager : MonoBehaviour
             Time.timeScale = 1;
 
         screen.SetActive(true);
-        if(screen != go_optionsScreen && screen != go_controlsScreen ) go_lastScreen = screen;
+        if (screen != go_optionsScreen && screen != go_controlsScreen) go_lastScreen = screen;
     }
 
     //Set all screens to inactive
@@ -175,7 +301,7 @@ public class MenuManager : MonoBehaviour
     // Clears screens like above, but uses LeanTween transition
     private void ClearScreenWithTransition()
     {
-        switch(int_clearScreenSequence)
+        switch (int_clearScreenSequence)
         {
             case 0:
                 int_clearScreenSequence++;
@@ -202,7 +328,7 @@ public class MenuManager : MonoBehaviour
     //Fade effect
     public void FadeOut()
     {
-        LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 0f, 0.2f);
+        LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 1f, 0.2f);
     }
 
     //Damage effect
@@ -226,7 +352,7 @@ public class MenuManager : MonoBehaviour
     //Shows death sequence with animation in steps
     public void ShowDeathSequence()
     {
-        switch(int_deathSequence)
+        switch (int_deathSequence)
         {
             case 0:
                 Time.timeScale = 0;
@@ -266,6 +392,21 @@ public class MenuManager : MonoBehaviour
         go_quitButton.transform.localPosition = new Vector3(0f, -300, 0f);
         go_startButton.transform.localPosition = new Vector3(0f, -300, 0f);
         go_OrientationNote.transform.localPosition = new Vector3(0f, -500f, 0f);
+        go_restartButton.transform.localPosition = new Vector3(0f, -500, 0f);
+
+        foreach (GameObject creditsScreen in li_creditScreens)
+        {
+            creditsScreen.transform.Find("Picture").GetComponent<Image>().color = co_transparent;
+
+            GameObject textObjectHolder = creditsScreen.transform.Find("TextObjects").gameObject;
+
+            foreach (Transform textObject in textObjectHolder.transform)
+            {
+                if (textObject.GetComponent<TextMeshProUGUI>() != null) textObject.GetComponent<TextMeshProUGUI>().color = co_transparent;
+            }
+        }
+
+        tmp_currentChore.gameObject.SetActive(false);
     }
 
     // This handles the transition from the TitleScreen scene to the Game scene and brings up the Orientation Note and Start buttons with LeanTween with animation in steps
@@ -274,18 +415,20 @@ public class MenuManager : MonoBehaviour
         switch (int_enterSequence)
         {
             case 0:
+                if (StartTransitionToGame != null)
+                    StartTransitionToGame(this, new EventArgs());
                 ready = false;
                 int_enterSequence++;
-                LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 1, 1f).setOnComplete(EnterGameSequence).setIgnoreTimeScale(true);
+                LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 1, 1.5f).setOnComplete(EnterGameSequence).setIgnoreTimeScale(true);
                 break;
             case 1:
                 int_enterSequence++;
-                ClearScreens();
                 SceneManager.LoadScene(1);
-                LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 0, 1f).setOnComplete(EnterGameSequence).setIgnoreTimeScale(true);
+                ClearScreens();
+                LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 0, 1f).setOnComplete(EnterGameSequence);
                 break;
             case 2:
-                int_enterSequence++;                
+                int_enterSequence++;
                 SwitchScreen(go_startScreen);
                 if (GameStart != null)
                     GameStart(this, new EventArgs());
@@ -319,6 +462,8 @@ public class MenuManager : MonoBehaviour
                 GameManager.playerController.TogglePlayerControl();
                 bl_allowPause = true;
                 int_startSequence = 0;
+                if (StartScreenClosed != null)
+                    StartScreenClosed(this, new EventArgs());
                 break;
         }
     }
@@ -337,10 +482,10 @@ public class MenuManager : MonoBehaviour
                 int_quitToMenuSequence++;
                 GameManager.ResetGame();
                 go_pauseScreen.transform.localPosition = new Vector3(-1000, 0, 0);
+                SceneManager.LoadScene("TitleScene");
                 SwitchScreen(go_titleScreen);
                 if (MenuEntered != null)
                     MenuEntered(this, new EventArgs());
-                SceneManager.LoadScene("TitleScene");
                 LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 0, 1f).setOnComplete(QuitToTitleSequence).setIgnoreTimeScale(true);
                 break;
             case 2:
@@ -360,6 +505,8 @@ public class MenuManager : MonoBehaviour
     //Go to End Scene with LeanTween transitions
     public void ToEnd()
     {
+        tmp_currentChore.gameObject.SetActive(false);
+
         switch (int_endSequence)
         {
             case 0:
@@ -378,7 +525,84 @@ public class MenuManager : MonoBehaviour
             case 2:
                 Cursor.lockState = CursorLockMode.Confined;
                 int_endSequence = 0;
+                CreditsShow();
                 break;
+        }
+    }
+
+    // this tweens in the image and text for a credits slide
+    private void CreditsShow()
+    {
+        switch(int_creditsScreenSequence)
+        {
+            case 0:
+                int_creditsScreenSequence++;
+                LeanTween.alpha(li_creditScreens[int_creditsScreenTracker].transform.Find("Picture").GetComponent<RectTransform>(), 1, 1f).setOnComplete(CreditsShow).setIgnoreTimeScale(true);
+                break;
+            case 1:
+                int_creditsScreenSequence++;
+                LeanTween.value(li_creditScreens[int_creditsScreenTracker].transform.Find("Picture").gameObject, 0, 1, 1f).setOnUpdate(UpdateTextAlpha).setOnComplete(CreditsShow).setIgnoreTimeScale(true);
+                break;
+            case 2:
+                int_creditsScreenSequence = 0;
+                bl_runCreditsTimer = true;
+                break;
+        }
+    }
+
+    // this tweens out the image and text for a credits slide
+
+    private void CreditsHide()
+    {
+        var color = Color.white;
+        var fadeoutcolor = color;
+        fadeoutcolor.a = 0;
+
+        switch (int_creditsScreenSequence)
+        {
+            case 0:
+                int_creditsScreenSequence++;
+                // LeanTween.textAlpha(li_creditScreens[int_creditsScreenTracker].transform.Find("Role").GetComponent<RectTransform>(), 0, 1f).setOnUpdate().setOnComplete(CreditsHide).setIgnoreTimeScale(true);
+                LeanTween.value(li_creditScreens[int_creditsScreenTracker].transform.Find("Picture").gameObject, 1, 0, 1f).setOnUpdate(UpdateTextAlpha).setOnComplete(CreditsHide).setIgnoreTimeScale(true);
+                break;
+            case 1:
+                int_creditsScreenSequence++;
+                LeanTween.alpha(li_creditScreens[int_creditsScreenTracker].transform.Find("Picture").GetComponent<RectTransform>(), 0, 1f).setOnComplete(CreditsHide).setIgnoreTimeScale(true);
+                break;
+            case 2:
+                int_creditsScreenSequence = 0;
+                int_creditsScreenTracker++;
+                CreditsShow();
+                break;
+        }
+    }
+
+    // this is part of the tweening of text, this applies the tweened value to the text's alpha
+    private void UpdateTextAlpha(float alpha)
+    {
+        Color color = Color.white;
+        color.a = alpha;
+
+        GameObject textObjectHolder = li_creditScreens[int_creditsScreenTracker].transform.Find("TextObjects").gameObject;
+
+        foreach(Transform textObject in textObjectHolder.transform)
+        {
+            if(textObject.GetComponent<TextMeshProUGUI>() != null) textObject.GetComponent<TextMeshProUGUI>().color = color;
+        }
+    }
+
+    // if there are no more slides, this shows the last message and the back button
+    private void CheckCreditSequenceDone()
+    {
+        if (int_creditsScreenTracker != li_creditScreens.Count - 1)
+        {
+            CreditsHide();
+        }
+        else
+        {
+            int_creditsScreenTracker = 0;
+            LeanTween.moveLocal(go_restartButton, new Vector3(0f, -110f, 0f), 1f).setEase(LeanTweenType.easeInSine).setIgnoreTimeScale(true);
+
         }
     }
 
@@ -391,7 +615,7 @@ public class MenuManager : MonoBehaviour
     //Go to Gameplay from Pause. Used by below TogglePause method, and to Pause Menu's 'continue' button
     public void Unpause()
     {
-        if(bl_allowPause)
+        if (bl_allowPause)
         {
             bl_allowPause = false;
 
@@ -453,9 +677,21 @@ public class MenuManager : MonoBehaviour
     }
 
     //Volume management
-    public void UpdateVolume()
+    public void UpdateEffectsVolume()
     {
         Settings.flt_volume = sli_volume.value;
+
+        if (SoundVolumeChanged != null)
+            SoundVolumeChanged(this, new EventArgs());
+    }
+
+    //Music Volume management
+    public void UpdateMusicVolume()
+    {
+        Settings.flt_musicVolume = sli_musicVolume.value;
+
+        if (MusicVolumeChanged != null)
+            MusicVolumeChanged(this, new EventArgs());
     }
 
     //Mouse sensitivity management
@@ -489,7 +725,6 @@ public class MenuManager : MonoBehaviour
         //If the player is holding an object..
         if (go_heldObject != null)
         {
-
             //..and the object is a dish:
             if (go_heldObject.GetComponent<Dish>() != null)
             {
@@ -523,6 +758,13 @@ public class MenuManager : MonoBehaviour
 
                 if (bl_tvOn) st_tooltipMessage = "Turn off the TV";
             }
+
+            //..and the object is the lighter, while looking at a candle:
+            else if (go_heldObject.GetComponent<Pickupable>().bl_lighter && go_lookingAtObject)
+            {
+                if(go_lookingAtObject.GetComponent<Candle>() && !go_lookingAtObject.GetComponent<Candle>().bl_lit) st_tooltipMessage = "Press \"E\" to light" + go_lookingAtObject.name;
+                else if(go_lookingAtObject.GetComponent<Candle>() && go_lookingAtObject.GetComponent<Candle>().bl_lit)st_tooltipMessage = "Press \"E\" to pick up " + go_lookingAtObject.name;
+            }
         }
 
         // If the object the player is looking at is interactable, but not pickupable..
@@ -537,7 +779,7 @@ public class MenuManager : MonoBehaviour
             //..and the object is a cobweb:
             else if (go_lookingAtObject.GetComponent<Cobweb>() != null)
             {
-                if(go_lookingAtObject.GetComponent<Cobweb>().bl_cleaned == false)
+                if (go_lookingAtObject.GetComponent<Cobweb>().bl_cleaned == false)
                 {
                     if (go_heldObject == null || go_heldObject.GetComponent<Pickupable>().bl_duster == false) st_tooltipMessage = "Duster required to clean";
                     else st_tooltipMessage = "Touch with duster";
@@ -609,4 +851,63 @@ public class MenuManager : MonoBehaviour
             tmp_tooltipText.gameObject.SetActive(false);
         }
     }
+
+    // This is attached to a listener that fires when a chore is complete
+    public void ChoreCompleteNotification(object source, EventArgs e)
+    {
+        tmp_notificationText.text = "Chore Completed!";
+        img_notificationBackground.rectTransform.sizeDelta = new Vector2(tmp_notificationText.text.Length * 8, img_notificationBackground.rectTransform.sizeDelta.y);
+
+        ShowChoreNotification();
+    }
+
+    // This is attached to a listener that fires when a chore is updated
+    public void ChoreUpdatedNotification(object source, EventArgs e)
+    {
+        tmp_notificationText.text = "Chore Sheet Updated!";
+        img_notificationBackground.rectTransform.sizeDelta = new Vector2(tmp_notificationText.text.Length * 8, img_notificationBackground.rectTransform.sizeDelta.y);
+
+        ShowChoreNotification();
+    }
+
+    // This handles the tweening the chore notification on screen
+    protected void ShowChoreNotification()
+    {
+        flt_notificationTimer = Settings.flt_notificationTimer;
+
+        LeanTween.moveLocal(go_choreNotificationHolder, new Vector3(250f, 160f, 0f), Settings.flt_menuTransitionSpeed).setEase(LeanTweenType.easeOutSine);
+
+        bl_runNotificationTimer = true;
+    }
+
+    // This handles tweening the chore notification away
+    protected void HideChoreNotification()
+    {
+        LeanTween.moveLocal(go_choreNotificationHolder, new Vector3(500, 160f, 0f), Settings.flt_menuTransitionSpeed).setEase(LeanTweenType.easeOutSine);
+    }
+
+    // this brings the chore sheet up and down with a tween
+    public void ToggleChoreSheet()
+    {
+        if (go_choreSheet.transform.localPosition.y > -5)
+        {
+            bl_choreListUp = false;
+            GameManager.playerController.TogglePlayerControl();
+            LeanTween.moveLocal(go_choreSheet, new Vector3(0f, -500f, 0f), 0.5f).setEase(LeanTweenType.easeInSine).setIgnoreTimeScale(true);
+        }
+        else if (go_choreSheet.transform.localPosition.y < -495)
+        {
+            bl_choreListUp = true;
+            GameManager.playerController.TogglePlayerControl();
+            LeanTween.moveLocal(go_choreSheet, new Vector3(0f, 0f, 0f), 0.5f).setEase(LeanTweenType.easeInSine).setIgnoreTimeScale(true);
+        }
+    }
+
+    // This updates the Current Chore text in the top right
+    public void UpdateCurrentChore(string choreString)
+    {
+        if (tmp_currentChore.gameObject.activeSelf == false) tmp_currentChore.gameObject.SetActive(true);
+        tmp_currentChore.text = choreString;
+    }
+
 }

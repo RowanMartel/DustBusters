@@ -58,6 +58,7 @@ public class Pickupable : Interactable
         mat_base = ren_meshRenderer.material;
     }
 
+    //Trigger Enter/Exit scripts are used to make sure objects don't stuck in the environment when picked up
     private void OnTriggerEnter(Collider other)
     {
         if (!Col.isTrigger || other.isTrigger || other == Col || l_col_overlapping.Contains(other)) return;
@@ -81,6 +82,11 @@ public class Pickupable : Interactable
     // turns collider off when picked up, until item is in hand. This should prevent things from getting stuck in hand.
     public override void Interact()
     {
+        if(transform.GetComponent<Candle>())
+        {
+            if (GameManager.playerController.Go_heldObject.GetComponent<Pickupable>().bl_lighter) transform.GetComponent<Candle>().Light();
+        }
+
         l_col_overlapping.Clear();
         Col.isTrigger = true;
     }

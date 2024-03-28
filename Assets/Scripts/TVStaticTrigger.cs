@@ -9,7 +9,7 @@ public class TVStaticTrigger : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        tvStatic = FindObjectOfType<TVStatic>();
+        tvStatic = transform.parent.GetComponent<TVStatic>();
     }
 
     //Has a chance to Activate when ghost enters collider

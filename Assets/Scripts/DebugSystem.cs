@@ -14,7 +14,7 @@ public class DebugSystem : MonoBehaviour
     GhostBehavior gb_ghost;
     PlayerController pc_player;
     TaskManager tm_taskManager;
-    TVStatic tv_televisionTrigger;
+    TVStaticTrigger[] a_tv_televisionTrigger;
 
     GameObject[] a_go_cams;
 
@@ -59,7 +59,7 @@ public class DebugSystem : MonoBehaviour
                 gb_ghost = GameManager.ghost;
                 pc_player = GameManager.playerController;
                 tm_taskManager = GameManager.taskManager;
-                tv_televisionTrigger = FindAnyObjectByType<TVStatic>();
+                a_tv_televisionTrigger = FindObjectsByType<TVStaticTrigger>(FindObjectsSortMode.None);
 
                 ActivateCams(true);
             }
@@ -97,7 +97,10 @@ public class DebugSystem : MonoBehaviour
                     gb_ghost.go_floatTrigger.GetComponent<MeshRenderer>().enabled = true;
                     gb_ghost.go_heldItemParent.GetComponent<MeshRenderer>().enabled = true;
                     //TV
-                    tv_televisionTrigger.GetComponent<MeshRenderer>().enabled = true;
+                    foreach (TVStaticTrigger tv in a_tv_televisionTrigger)
+                    {
+                        tv.GetComponent<MeshRenderer>().enabled = true;
+                    }
                 }
 
                 //Skip to End Game
@@ -107,7 +110,7 @@ public class DebugSystem : MonoBehaviour
 
                     while (tm_taskManager.li_taskList.Contains(TaskManager.Task.FindKey) == false && tm_taskManager.li_taskList.Contains(TaskManager.Task.EscapeHouse) == false)
                     {
-                        tm_taskManager.CompleteTask(tm_taskManager.li_taskList[0]);
+                        tm_taskManager.AddTask(TaskManager.Task.EscapeHouse);
                     }
                 }
 
@@ -206,7 +209,10 @@ public class DebugSystem : MonoBehaviour
             gb_ghost.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
             gb_ghost.go_heldItemParent.GetComponent<MeshRenderer>().enabled = false;
 
-            tv_televisionTrigger.GetComponent<MeshRenderer>().enabled = false;
+            foreach (TVStaticTrigger tv in a_tv_televisionTrigger)
+            {
+                tv.GetComponent<MeshRenderer>().enabled = false;
+            }
         }
 
         bl_inDebug = false;

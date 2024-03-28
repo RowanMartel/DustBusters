@@ -1,6 +1,5 @@
 using Cinemachine;
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -53,8 +52,14 @@ public class PlayerController : MonoBehaviour
     public bool bl_isGrounded = true;
 
     public LayerMask lm;
+    public LayerMask lookMask;
 
     public GameObject go_curRegion;
+
+    // Stair-related variables
+    public bool bl_onStairs;
+    public Transform tr_footOrigin;
+    public LayerMask lm_stairsRay;
 
     private void Awake()
     {
@@ -93,7 +98,9 @@ public class PlayerController : MonoBehaviour
         menuManager.UpdateTooltip(go_lookingAtObject, go_heldObject);
 
         // Player's ability to interact
-        if (Input.GetKeyDown(KeyCode.E)) Interact();
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0)) Interact();
+
+        if(!GameManager.menuManager.Bl_paused) if (Input.GetKeyDown(KeyCode.C)) GameManager.menuManager.ToggleChoreSheet();
 
         if (en_state == State.active)
         {
@@ -119,7 +126,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape)) menuManager.TogglePause();
 
         // Toggles GUI
-        // if (Input.GetKeyDown(KeyCode.F1)) menuManager.ToggleGUI();
+        if (Input.GetKeyDown(KeyCode.F1)) menuManager.ToggleGUI();
 
         // This forces the player to drop a prop if it gets too far away from them
         if (go_heldObject != null)
@@ -138,7 +145,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         // This handles a held objects position in front of player while player is active
-        if (go_heldObject != null && en_state == State.active)
+        if (go_heldObject != null) // && en_state == State.active)
         {
             Pickupable pu_pickup = go_heldObject.GetComponent<Pickupable>();            
 
@@ -239,49 +246,235 @@ public class PlayerController : MonoBehaviour
     // This handles the player's basic forward/backward/left/right movement, mapped to the WASD keys.
     void DoPlayerMovement()
     {
-        if (Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)) // if pressing forwards but not left or right,
         {
-            rb_player.AddForce(transform.forward * Settings.int_playerSpeed);
+            if (bl_onStairs) // check if on stairs
+            {
+                // if so, raycast forwards from the bottom of the player, hitting only the stairs layer
+                Physics.Raycast(tr_footOrigin.position, transform.forward, out RaycastHit hit, 2, lm_stairsRay, QueryTriggerInteraction.Collide);
+                if (hit.collider != null) // if that raycast hits then the player must be ascending the stairs
+                    rb_player.AddForce(RotateVector(transform.forward * Settings.int_playerSpeed, transform.right, -30)); // propel the player at a forwards/upwards angle
+                else // if the raycast didn't hit,
+                {
+                    // raycast *backwards* from the bottom of the player
+                    Physics.Raycast(tr_footOrigin.position, -transform.forward, out RaycastHit hit2, 2, lm_stairsRay, QueryTriggerInteraction.Collide);
+                    //Debug.DrawRay(tr_footOrigin.position, -transform.forward * 5, Color.red, 5); // debug code
+                    if (hit2.collider != null) // if this one hits then the player must be descending the stairs
+                        rb_player.AddForce(RotateVector(transform.forward * Settings.int_playerSpeed / 2, transform.right, 30)); // propel the player at a forwards/downwards angle
+                    else // if neither raycast hit then the player must be moving sideways on the stairs
+                        rb_player.AddForce(transform.forward * Settings.int_playerSpeed); // push the player with a forwards force
+                }
+            }
+            else // if the player isn't on the stairs, push them with a forwards force
+                rb_player.AddForce(transform.forward * Settings.int_playerSpeed);
         }
 
-        if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D)) // if pressing forwards and right,
         {
-            rb_player.AddForce(transform.forward * Settings.int_playerSpeed * 0.75f);
-            rb_player.AddForce(transform.right * Settings.int_playerSpeed * 0.75f);
+            if (bl_onStairs)
+            {
+                Physics.Raycast(tr_footOrigin.position, Vector3.Lerp(transform.forward, transform.right, .5f), out RaycastHit hit, 2, lm_stairsRay, QueryTriggerInteraction.Collide);
+                if (hit.collider != null)
+                {
+                    rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed * transform.forward, transform.right, -30));
+                    rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed * transform.right, transform.forward, 30));
+
+                }
+                else
+                {
+                    Physics.Raycast(tr_footOrigin.position, Vector3.Lerp(-transform.forward, transform.right, .5f), out RaycastHit hit2, 2, lm_stairsRay, QueryTriggerInteraction.Collide);
+                    if (hit2.collider != null)
+                    {
+                        rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed / 2 * transform.forward, transform.right, 30));
+                        rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed / 2 * transform.right, transform.forward, -30));
+
+                    }
+                    else
+                    {
+                        rb_player.AddForce(0.75f * Settings.int_playerSpeed * transform.forward);
+                        rb_player.AddForce(0.75f * Settings.int_playerSpeed * transform.right);
+                    }
+                }
+            }
+            else
+            {
+                rb_player.AddForce(0.75f * Settings.int_playerSpeed * transform.forward);
+                rb_player.AddForce(0.75f * Settings.int_playerSpeed * transform.right);
+            }
         }
 
-        if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S)) // if pressing right but not forwards or backwards,
         {
-            rb_player.AddForce(transform.right * Settings.int_playerSpeed);
+            if (bl_onStairs)
+            {
+                Physics.Raycast(tr_footOrigin.position, transform.right, out RaycastHit hit, 2, lm_stairsRay, QueryTriggerInteraction.Collide);
+                if (hit.collider != null)
+                    rb_player.AddForce(RotateVector(transform.right * Settings.int_playerSpeed, transform.forward, 30));
+                else
+                {
+                    Physics.Raycast(tr_footOrigin.position, -transform.right, out RaycastHit hit2, 2, lm_stairsRay, QueryTriggerInteraction.Collide);
+                    if (hit2.collider != null)
+                        rb_player.AddForce(RotateVector(transform.right * Settings.int_playerSpeed / 2, transform.forward, -30));
+                    else
+                    {
+                        rb_player.AddForce(transform.right * Settings.int_playerSpeed);
+                    }
+                }
+            }
+            else
+                rb_player.AddForce(transform.right * Settings.int_playerSpeed);
         }
 
-        if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.S)) // if pressing backwards and right,
         {
-            rb_player.AddForce(-transform.forward * Settings.int_playerSpeed * 0.75f);
-            rb_player.AddForce(transform.right * Settings.int_playerSpeed * 0.75f);
+            if (bl_onStairs)
+            {
+                Physics.Raycast(tr_footOrigin.position, Vector3.Lerp(-transform.forward, transform.right, .5f), out RaycastHit hit, 2, lm_stairsRay, QueryTriggerInteraction.Collide);
+                if (hit.collider != null)
+                {
+                    rb_player.AddForce(RotateVector(0.5f * Settings.int_playerSpeed * -transform.forward, transform.right, 30));
+                    rb_player.AddForce(RotateVector(0.5f * Settings.int_playerSpeed * transform.right, transform.forward, 30));
+                }
+                else
+                {
+                    Physics.Raycast(tr_footOrigin.position, Vector3.Lerp(transform.forward, -transform.right, .5f), out RaycastHit hit2, 2, lm_stairsRay, QueryTriggerInteraction.Collide);
+                    if (hit2.collider != null)
+                    {
+                        rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed * -transform.forward, transform.right, -30));
+                        rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed * transform.right, transform.forward, -30));
+                    }
+                    else
+                    {
+                        rb_player.AddForce(0.75f * Settings.int_playerSpeed * -transform.forward);
+                        rb_player.AddForce(0.75f * Settings.int_playerSpeed * transform.right);
+                    }
+                }
+            }
+            else
+            {
+                rb_player.AddForce(0.75f * Settings.int_playerSpeed * -transform.forward);
+                rb_player.AddForce(0.75f * Settings.int_playerSpeed * transform.right);
+            }
         }
 
-        if (Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A)) // if pressing backwards but not left or right,
         {
-            rb_player.AddForce(-transform.forward * Settings.int_playerSpeed);
+            if (bl_onStairs)
+            {
+                Physics.Raycast(tr_footOrigin.position, -transform.forward, out RaycastHit hit, 2, lm_stairsRay, QueryTriggerInteraction.Collide);
+                if (hit.collider != null)
+                    rb_player.AddForce(RotateVector(-transform.forward * Settings.int_playerSpeed, transform.right, 30));
+                else
+                {
+                    Physics.Raycast(tr_footOrigin.position, transform.forward, out RaycastHit hit2, 2, lm_stairsRay, QueryTriggerInteraction.Collide);
+                    if (hit2.collider != null)
+                        rb_player.AddForce(RotateVector(-transform.forward * Settings.int_playerSpeed / 2, transform.right, -30));
+                    else
+                    {
+                        rb_player.AddForce(-transform.forward * Settings.int_playerSpeed);
+                    }
+                }
+            }
+            else
+                rb_player.AddForce(-transform.forward * Settings.int_playerSpeed);
         }
 
-        if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A)) // if pressing forwards and left,
         {
-            rb_player.AddForce(-transform.forward * Settings.int_playerSpeed * 0.75f);
-            rb_player.AddForce(-transform.right * Settings.int_playerSpeed * 0.75f);
+            if (bl_onStairs)
+            {
+                Physics.Raycast(tr_footOrigin.position, Vector3.Lerp(-transform.forward, -transform.right, .5f), out RaycastHit hit, 2, lm_stairsRay, QueryTriggerInteraction.Collide);
+                if (hit.collider != null)
+                {
+                    rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed * -transform.forward, transform.right, 30));
+                    rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed * -transform.right, transform.forward, -30));
+
+                }
+                else
+                {
+                    Physics.Raycast(tr_footOrigin.position, Vector3.Lerp(transform.forward, transform.right, .5f), out RaycastHit hit2, 2, lm_stairsRay, QueryTriggerInteraction.Collide);
+                    if (hit2.collider != null)
+                    {
+                        rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed / 2 * -transform.forward, transform.right, -30));
+                        rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed / 2 * -transform.right, transform.forward, 30));
+
+                    }
+                    else
+                    {
+                        rb_player.AddForce(0.75f * Settings.int_playerSpeed * -transform.forward);
+                        rb_player.AddForce(0.75f * Settings.int_playerSpeed * -transform.right);
+                    }
+                }
+            }
+            else
+            {
+                rb_player.AddForce(0.75f * Settings.int_playerSpeed * -transform.forward);
+                rb_player.AddForce(0.75f * Settings.int_playerSpeed * -transform.right);
+            }
         }
 
-        if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S)) // if pressing left but not forwards or backwards,
         {
-            rb_player.AddForce(-transform.right * Settings.int_playerSpeed);
+            if (bl_onStairs)
+            {
+                Physics.Raycast(tr_footOrigin.position, -transform.right, out RaycastHit hit, 2, lm_stairsRay, QueryTriggerInteraction.Collide);
+                if (hit.collider != null)
+                    rb_player.AddForce(RotateVector(-transform.right * Settings.int_playerSpeed, transform.forward, -30));
+                else
+                {
+                    Physics.Raycast(tr_footOrigin.position, transform.right, out RaycastHit hit2, 2, lm_stairsRay, QueryTriggerInteraction.Collide);
+                    if (hit2.collider != null)
+                        rb_player.AddForce(RotateVector(-transform.right * Settings.int_playerSpeed / 2, transform.forward, 30));
+                    else
+                    {
+                        rb_player.AddForce(-transform.right * Settings.int_playerSpeed);
+                    }
+                }
+            }
+            else
+                rb_player.AddForce(-transform.right * Settings.int_playerSpeed);
         }
 
-        if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A)) // if pressing forwards and left,
         {
-            rb_player.AddForce(transform.forward * Settings.int_playerSpeed * 0.75f);
-            rb_player.AddForce(-transform.right * Settings.int_playerSpeed * 0.75f);
+            if (bl_onStairs)
+            {
+                Physics.Raycast(tr_footOrigin.position, Vector3.Lerp(transform.forward, -transform.right, .5f), out RaycastHit hit, 2, lm_stairsRay, QueryTriggerInteraction.Collide);
+                if (hit.collider != null)
+                {
+                    rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed * transform.forward, transform.right, -30));
+                    rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed * -transform.right, transform.forward, -30));
+
+                }
+                else
+                {
+                    Physics.Raycast(tr_footOrigin.position, Vector3.Lerp(-transform.forward, transform.right, .5f), out RaycastHit hit2, 2, lm_stairsRay, QueryTriggerInteraction.Collide);
+                    if (hit2.collider != null)
+                    {
+                        rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed / 2 * transform.forward, transform.right, 30));
+                        rb_player.AddForce(RotateVector(0.75f * Settings.int_playerSpeed / 2 * -transform.right, transform.forward, 30));
+
+                    }
+                    else
+                    {
+                        rb_player.AddForce(0.75f * Settings.int_playerSpeed * transform.forward);
+                        rb_player.AddForce(0.75f * Settings.int_playerSpeed * -transform.right);
+                    }
+                }
+            }
+            else
+            {
+                rb_player.AddForce(0.75f * Settings.int_playerSpeed * transform.forward);
+                rb_player.AddForce(0.75f * Settings.int_playerSpeed * -transform.right);
+            }
         }
+    }
+
+    //rotates force vectors by the given angle around the specified axis
+    Vector3 RotateVector(Vector3 vector, Vector3 axis, float angle)
+    {
+        Quaternion rotation = Quaternion.AngleAxis(angle, axis);
+        return rotation * vector;
     }
 
     // This handles the player's view at the crosshair and if pointed at an Interactable object, will activate the object's outline to indicate it can be interacted with.
@@ -290,9 +483,8 @@ public class PlayerController : MonoBehaviour
         if (En_state == State.inactive) return;
 
         ray_playerView = Camera.main.ScreenPointToRay(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2, 0));
-        RaycastHit hit;
 
-        if (Physics.Raycast(ray_playerView, out hit, 5, lm))
+        if (Physics.Raycast(ray_playerView, out RaycastHit hit, 5, lookMask))
         {
             if (hit.collider.gameObject != go_lookingAtObject)
             {
@@ -300,10 +492,10 @@ public class PlayerController : MonoBehaviour
 
                 go_lookingAtObject = hit.collider.gameObject;
 
-                if (go_lookingAtObject.CompareTag("Interactable") && go_lookingAtObject.GetComponent<Candle>() == null) go_lookingAtObject.GetComponent<Outline>().enabled = true;
+                if (go_lookingAtObject.CompareTag("Interactable")) go_lookingAtObject.GetComponent<Outline>().enabled = true;
             }
         }
-        if (!Physics.Raycast(ray_playerView, out hit, 3, lm) && go_lookingAtObject != null)
+        if (!Physics.Raycast(ray_playerView, out _, 3, lm) && go_lookingAtObject != null)
         {
             if (go_lookingAtObject.CompareTag("Interactable")) go_lookingAtObject.GetComponent<Outline>().enabled = false;
             go_lookingAtObject = null;
@@ -353,12 +545,20 @@ public class PlayerController : MonoBehaviour
 
             if (pickupable != null)
             {
-                //Drop old item
-                DropItem();
+                // if the looked at object is an unlit candle, and the player is holding the lighter:
+                if(go_lookingAtObject.GetComponent<Candle>() && !go_lookingAtObject.GetComponent<Candle>().bl_lit && go_heldObject.GetComponent<Pickupable>().bl_lighter)
+                {
+                    go_lookingAtObject.GetComponent<Interactable>().Interact();
+                }
+                else
+                {
+                    //Drop old item
+                    DropItem();
 
-                //Pick up new item
-                PickUpItem(go_lookingAtObject);
-                return;
+                    //Pick up new item
+                    PickUpItem(go_lookingAtObject);
+                    return;
+                }
             }
             go_lookingAtObject.GetComponent<Interactable>().Interact();
         }
@@ -373,17 +573,22 @@ public class PlayerController : MonoBehaviour
     // These reset the player's ability to jump when they hit the floor and prevents double jumping
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.tag == "Floor")
+        if (collision.gameObject.CompareTag("Floor"))
         {
-            if (!bl_isGrounded) GameManager.soundManager.PlayClip(ac_land, as_source, true);
+            if (!bl_isGrounded && collision.relativeVelocity.y > 0) GameManager.soundManager.PlayClip(ac_land, as_source, true);
             bl_isGrounded = true;
         }
+        if (collision.gameObject.layer == 15)
+            bl_onStairs = true;
     }
 
     //Player loses ground when they leave the ground
     private void OnCollisionExit(Collision collision)
     {
-        if(collision.gameObject.tag == "Floor") bl_isGrounded = false;
+        if(collision.gameObject.CompareTag("Floor")) bl_isGrounded = false;
+
+        if (collision.gameObject.layer == 15)
+            bl_onStairs = false;
     }
 
     // This turns player control on and off and handles mouse confinement
@@ -395,7 +600,7 @@ public class PlayerController : MonoBehaviour
             case State.active:
                 en_state = State.inactive;
                 Cursor.lockState = CursorLockMode.Confined;
-                if (Go_heldObject != null && !GameManager.menuManager.Bl_paused)
+                if (Go_heldObject != null && !GameManager.menuManager.Bl_paused && !GameManager.menuManager.bl_choreListUp)
                 {
                     Go_heldObject.GetComponent<Renderer>().enabled = false;
                     Go_heldObject.GetComponent<Rigidbody>().Sleep();
@@ -405,7 +610,7 @@ public class PlayerController : MonoBehaviour
             case State.inactive:
                 en_state = State.active;
                 if (!GameManager.Bl_inCleaningGame) Cursor.lockState = CursorLockMode.Locked;
-                if (Go_heldObject != null && !GameManager.menuManager.Bl_paused)
+                if (Go_heldObject != null && !GameManager.menuManager.Bl_paused && !GameManager.menuManager.bl_choreListUp)
                 {
                     Go_heldObject.GetComponent<Renderer>().enabled = true;
                     Go_heldObject.GetComponent<Rigidbody>().Sleep();
@@ -417,10 +622,10 @@ public class PlayerController : MonoBehaviour
     //These are tied to the MenuManager's pause and unpause events
     void OnPause(object source, EventArgs e)
     {
-        TogglePlayerControl();
+        if(en_state == State.active) TogglePlayerControl();
     }
     void OnUnpause(object source, EventArgs e)
     {
-        TogglePlayerControl();
+        if(!GameManager.menuManager.bl_choreListUp)TogglePlayerControl();
     }
 }

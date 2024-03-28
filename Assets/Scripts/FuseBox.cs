@@ -10,7 +10,7 @@ public class FuseBox : Interactable
     public GameObject go_lever;
 
     LightSwitch[] a_ls_switches;
-    TVStatic tv_static;
+    TVStatic[] a_tv_static;
 
     int int_timesToFlicker;
     public float flt_timeTweenFlicker;
@@ -20,12 +20,16 @@ public class FuseBox : Interactable
     float flt_curFlickerDelay;
     public int int_maxFlickerTimes;
     public int int_minFlickerTimes;
+    public AudioSource as_source;
+    public AudioSource as_loop;
+    public AudioClip ac_activate;
+    public AudioClip ac_deactivate;
 
     // Start is called before the first frame update
     void Start()
     {
         a_ls_switches = FindObjectsByType<LightSwitch>(FindObjectsSortMode.None);
-        tv_static = FindObjectOfType<TVStatic>();
+        a_tv_static = FindObjectsByType<TVStatic>(FindObjectsSortMode.None);
         SetSwitchesOn();
         flt_curFlickerTime = 0;
         int_timesToFlicker = 0;
@@ -81,24 +85,38 @@ public class FuseBox : Interactable
     //Lets all switches know they should have power
     void SetSwitchesOn()
     {
+        Debug.Log("Switches ON");
+
+        GameManager.soundManager.PlayClip(ac_activate, as_source, true);
+        as_loop.Play();
         foreach (LightSwitch ls_switch in a_ls_switches)
         {
             ls_switch.SetFuseActive(true);
         }
-        tv_static.bl_powered = true;
-        tv_static.Refresh();
+        foreach(TVStatic tv in a_tv_static)
+        {
+            tv.bl_powered = true;
+            tv.Refresh();
+        }
         bl_ready = true;
     }
 
     //Lets all switches know they shouldn't have power
     void SetSwitchesOff()
     {
+        Debug.Log("Switches OFF");
+
+        GameManager.soundManager.PlayClip(ac_deactivate, as_source, true);
+        as_loop.Stop();
         foreach (LightSwitch ls_switch in a_ls_switches)
         {
             ls_switch.SetFuseActive(false);
         }
-        tv_static.bl_powered = false;
-        tv_static.Refresh();
+        foreach (TVStatic tv in a_tv_static)
+        {
+            tv.bl_powered = false;
+            tv.Refresh();
+        }
         bl_ready = true;
     }
 
