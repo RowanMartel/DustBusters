@@ -492,7 +492,7 @@ public class PlayerController : MonoBehaviour
 
                 go_lookingAtObject = hit.collider.gameObject;
 
-                if (go_lookingAtObject.CompareTag("Interactable") && go_lookingAtObject.GetComponent<Candle>() == null) go_lookingAtObject.GetComponent<Outline>().enabled = true;
+                if (go_lookingAtObject.CompareTag("Interactable")) go_lookingAtObject.GetComponent<Outline>().enabled = true;
             }
         }
         if (!Physics.Raycast(ray_playerView, out _, 3, lm) && go_lookingAtObject != null)
