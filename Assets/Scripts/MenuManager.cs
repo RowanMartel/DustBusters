@@ -870,7 +870,7 @@ public class MenuManager : MonoBehaviour
         ShowChoreNotification();
     }
 
-    // This handles the tweening on and off screen
+    // This handles the tweening the chore notification on screen
     protected void ShowChoreNotification()
     {
         flt_notificationTimer = Settings.flt_notificationTimer;
@@ -880,11 +880,13 @@ public class MenuManager : MonoBehaviour
         bl_runNotificationTimer = true;
     }
 
+    // This handles tweening the chore notification away
     protected void HideChoreNotification()
     {
         LeanTween.moveLocal(go_choreNotificationHolder, new Vector3(500, 160f, 0f), Settings.flt_menuTransitionSpeed).setEase(LeanTweenType.easeOutSine);
     }
 
+    // this brings the chore sheet up and down with a tween
     public void ToggleChoreSheet()
     {
         if (go_choreSheet.transform.localPosition.y > -5)
@@ -901,6 +903,7 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    // This updates the Current Chore text in the top right
     public void UpdateCurrentChore(string choreString)
     {
         if (tmp_currentChore.gameObject.activeSelf == false) tmp_currentChore.gameObject.SetActive(true);

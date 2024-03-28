@@ -70,4 +70,11 @@ public class TVStatic : Interactable
     {
         as_staticAudio.volume = Settings.flt_musicVolume;
     }
+
+    //Unsubscribe when destroyed
+    private void OnDestroy()
+    {
+        GameManager.menuManager.SoundVolumeChanged -= UpdateVolume;
+    }
+
 }
