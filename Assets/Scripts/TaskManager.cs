@@ -343,13 +343,13 @@ public class TaskManager : MonoBehaviour
                         chore.tmp_choreText.text = "Sweep the laundry room floor";
                         break;
                     case Task.PutAwayBooks:
-                        chore.tmp_choreText.text = "Put the books back on the shelf";
+                        chore.tmp_choreText.text = "Tidy the books in the library";
                         break;
                     case Task.ResetBreakerBox:
-                        chore.tmp_choreText.text = "Reset the breaker box";
+                        chore.tmp_choreText.text = "Reset the breaker box in the basement";
                         break;
                     case Task.PutAwayToys:
-                        chore.tmp_choreText.text = "Put away the toys";
+                        chore.tmp_choreText.text = "Put away the toys in the kid's room";
                         break;
                 }
 
