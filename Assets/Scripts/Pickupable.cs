@@ -67,7 +67,8 @@ public class Pickupable : Interactable
     //Trigger Enter/Exit scripts are used to make sure objects don't stuck in the environment when picked up
     private void OnTriggerEnter(Collider other)
     {
-        if (!Col.isTrigger || other.isTrigger || other == Col || l_col_overlapping.Contains(other)) return;
+        if (!Col.isTrigger)return;
+        if(other.isTrigger || other == Col || l_col_overlapping.Contains(other)) return;
         l_col_overlapping.Add(other);
     }
 

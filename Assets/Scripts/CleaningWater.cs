@@ -68,9 +68,17 @@ public class CleaningWater : MonoBehaviour
     // checks if all the dishes in the dishes list are clean, and ends the task if so
     public void CheckIfComplete()
     {
+        int int_dirtyDishCount = 0;
         foreach (Dish dish in li_dishes)
-            if (dish.bl_dirtyDish) return;
-
+            if (dish.bl_dirtyDish)
+            {
+                int_dirtyDishCount++;
+            }
+        if(int_dirtyDishCount > 0)
+        {
+            GameManager.taskManager.UpdateTask(li_dishes.Count - int_dirtyDishCount, li_dishes.Count, TaskManager.Task.CleanDishes);
+            return;
+        }
         GameManager.taskManager.CompleteTask(TaskManager.Task.CleanDishes);
     }
 }
