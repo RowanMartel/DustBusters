@@ -33,6 +33,9 @@ public class Pickupable : Interactable
     [Tooltip("Check if this object can damage the player")]
     public bool bl_canDamagePlayer;
 
+    [Tooltip("check if the damage SFX from this object should be blunt or sharp")]
+    public bool bl_sharp;
+
     [Tooltip("Rotation applied when held")]
     public Vector3 v3_heldRotationMod;
 
