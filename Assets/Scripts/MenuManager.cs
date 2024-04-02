@@ -918,5 +918,4 @@ public class MenuManager : MonoBehaviour
         if (tmp_currentChore.gameObject.activeSelf == false) tmp_currentChore.gameObject.SetActive(true);
         tmp_currentChore.text = choreString;
     }
-
 }

@@ -35,7 +35,7 @@ public class Radio : Interactable
     // Update is called once per frame
     void Update()
     {
-        if(bl_playing && !as_source.isPlaying)
+        if(bl_playing && !as_source.isPlaying && !GameManager.menuManager.Bl_paused)
         {
             int_curBroadcast++;
             if(int_curBroadcast >=  a_ac_broadcasts.Length)
@@ -51,9 +51,9 @@ public class Radio : Interactable
     {
         if (bl_playing)
         {
+            as_source.UnPause();
             as_source.volume = 0;
             LeanTween.value(0f, Settings.flt_musicVolume, 2f).setOnUpdate(FadingUpdate).setIgnoreTimeScale(true);
-            as_source.Play();
         }
     }
 
@@ -61,8 +61,8 @@ public class Radio : Interactable
     {
         if (bl_playing)
         {
-            as_source.volume = Settings.flt_volume;
-            LeanTween.value(as_source.volume, 0, 2f).setOnComplete(as_source.Stop).setOnUpdate(FadingUpdate).setIgnoreTimeScale(true);
+            as_source.volume = Settings.flt_musicVolume;
+            LeanTween.value(as_source.volume, 0, 1f).setOnComplete(as_source.Pause).setOnUpdate(FadingUpdate).setIgnoreTimeScale(true);
         }
     }
 
@@ -91,5 +91,4 @@ public class Radio : Interactable
             GetComponent<Renderer>().material = mat_off;
         }
     }
-
 }
