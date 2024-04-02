@@ -109,6 +109,9 @@ public class MenuManager : MonoBehaviour
 
     protected bool bl_initialized = false;
 
+    // audio clip to play when SFX volume slider is updated
+    [SerializeField] AudioClip ac_sliderUpdate;
+
     // This was once the Awake method, but it was found that GameManager's Awake method was running first, and FadeIn() method needed components that weren't ready yet
     public void InitializeMenuManager()
     {
@@ -683,6 +686,12 @@ public class MenuManager : MonoBehaviour
 
         if (SoundVolumeChanged != null)
             SoundVolumeChanged(this, new EventArgs());
+    }
+
+    // play slider update SFX when player ends drag on SFX slider
+    public void PlaySFXUpdateClip()
+    {
+        GetComponent<AudioSource>().PlayOneShot(ac_sliderUpdate, Settings.flt_volume);
     }
 
     //Music Volume management

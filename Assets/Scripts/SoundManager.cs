@@ -18,7 +18,7 @@ public class SoundManager : MonoBehaviour
         if (l_ac_curSFX.Contains(ac_clip)) return;
 
         Vector3 v3_sourcePos = as_source.transform.position;
-        if (Vector3.Distance(GameManager.playerController.transform.position, v3_sourcePos) >= Settings.int_SFXCullingDist && bl_distanceMatters)
+        if (bl_distanceMatters && Vector3.Distance(GameManager.playerController.transform.position, v3_sourcePos) >= Settings.int_SFXCullingDist)
             return;
         
         l_ac_curSFX.Add(ac_clip);
