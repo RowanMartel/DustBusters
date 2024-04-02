@@ -74,7 +74,8 @@ public class Radio : Interactable
     // updates the music volume when the menu slider is changed
     void UpdateVolume(object source, EventArgs e)
     {
-        as_source.volume = Settings.flt_musicVolume;
+        if(as_source != null)
+            as_source.volume = Settings.flt_musicVolume;
     }
 
     public override void Interact()
