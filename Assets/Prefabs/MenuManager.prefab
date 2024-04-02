@@ -14579,6 +14579,7 @@ MonoBehaviour:
   go_controlsScreen: {fileID: 1976622195079596191}
   img_crosshair: {fileID: 1656632223118251713}
   bl_choreListUp: 0
+  ac_sliderUpdate: {fileID: 8300000, guid: 8ea30b52b01d03b4085be3541a9d528e, type: 3}
 --- !u!82 &1772372930508396887
 AudioSource:
   m_ObjectHideFlags: 0
@@ -16798,6 +16799,22 @@ MonoBehaviour:
           m_Arguments:
             m_ObjectArgument: {fileID: 1970173731687640521}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2704807646000791781}
+          m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+          m_MethodName: PlaySFXUpdateClip
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 

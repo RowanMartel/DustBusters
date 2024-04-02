@@ -31,7 +31,7 @@ public class Mirror : Interactable
     public override void Interact()
     {
         if (GameManager.playerController.Go_heldObject == null ||
-            !GameManager.playerController.Go_heldObject.GetComponent<Pickupable>().bl_duster)
+            !GameManager.playerController.Go_heldObject.GetComponent<Pickupable>().bl_soapBar)
             return;
 
         if (bl_clean) return;

@@ -6,8 +6,11 @@ public class Pickupable : Interactable
     [Tooltip("Check if object can be used to mop the floor")]
     public bool bl_mop;
 
-    [Tooltip("Check if object can be used to sweep cobwebs and clean the mirror")]
+    [Tooltip("Check if object can be used to sweep cobwebs")]
     public bool bl_duster;
+
+    [Tooltip("check if object can be used to clean the mirror")]
+    public bool bl_soapBar;
 
     [Tooltip("Check if object can be used to light the fireplace")]
     public bool bl_lighter;
