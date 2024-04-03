@@ -21,6 +21,8 @@ public class TVStatic : Interactable
         as_staticAudio.volume = Settings.flt_musicVolume;
 
         GameManager.menuManager.SoundVolumeChanged += UpdateVolume;
+        GameManager.menuManager.GamePaused += Pause;
+        GameManager.menuManager.GameUnpaused += UnPause;
         bl_powered = true;
     }
 
@@ -69,6 +71,16 @@ public class TVStatic : Interactable
     void UpdateVolume(object source, EventArgs e)
     {
         as_staticAudio.volume = Settings.flt_musicVolume;
+    }
+
+    void Pause(object source, EventArgs e)
+    {
+        as_staticAudio.Pause();
+    }
+
+    void UnPause(object source, EventArgs e)
+    {
+        as_staticAudio.UnPause();
     }
 
     //Unsubscribe when destroyed
