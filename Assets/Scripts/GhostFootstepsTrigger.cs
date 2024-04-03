@@ -13,7 +13,6 @@ public class GhostFootstepsTrigger : MonoBehaviour
         as_source = GetComponentInParent<AudioSource>();
     }
 
-
     // when player enters trigger, play footsteps sound if not already playing anything
     private void OnTriggerEnter(Collider other)
     {
