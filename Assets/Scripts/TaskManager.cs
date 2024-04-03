@@ -54,6 +54,7 @@ public class TaskManager : MonoBehaviour
 
     [Tooltip("Empty,\r\n        CleanDishes,\r\n        PutAwayDishes,\r\n        MopFloor,\r\n        CleanMirror,\r\n        CleanCobwebs,\r\n        LightFireplace,\r\n        FindKey,\r\n        EscapeHouse,\r\n        ThrowOutBrokenDishes,\r\n        PutAwayBooks,\r\n        ResetBreakerBox,\r\n        GhostDirtyMirror,\r\n        GhostDirtyFloor,\r\n        GhostDouseFireplace,\r\n        PutAwayToys")]
     public int[] a_int_timesToCompleteTasks;
+    int[] a_int_timesToCompleteThisRun;
     int[] a_int_timesCompletedTasks;
     public bool[] a_bl_updateOnComplete;
 
@@ -61,6 +62,12 @@ public class TaskManager : MonoBehaviour
     public void SetupChoreList()
     {
         a_int_timesCompletedTasks = new int[a_int_timesToCompleteTasks.Length];
+        a_int_timesToCompleteThisRun = new int[a_int_timesToCompleteTasks.Length];
+        for (int i = 0; i < a_int_timesCompletedTasks.Length; i++)
+        {
+            a_int_timesToCompleteThisRun[i] = a_int_timesToCompleteTasks[i];
+        }
+
 
         go_choreSheet = GameObject.Find("ChoreList");
         int chores = go_choreSheet.transform.childCount;
@@ -119,16 +126,16 @@ public class TaskManager : MonoBehaviour
         int int_index = (int)task;
         a_int_timesCompletedTasks[int_index] = int_completedAspects;
         if(currentChore.choreTask == task)
-            GameManager.menuManager.UpdateCurrentChore(currentChore.tmp_choreText.text + " (" + a_int_timesCompletedTasks[int_index] + "/" + a_int_timesToCompleteTasks[int_index] + ")");
+            GameManager.menuManager.UpdateCurrentChore(currentChore.tmp_choreText.text + " (" + a_int_timesCompletedTasks[int_index] + "/" + a_int_timesToCompleteThisRun[int_index] + ")");
     }
 
     public void UpdateTask(int int_completedAspects, int int_timesToCompleteTask, Task task)
     {
         int int_index = (int)task;
         a_int_timesCompletedTasks[int_index] = int_completedAspects;
-        a_int_timesToCompleteTasks[int_index] = int_timesToCompleteTask;
+        a_int_timesToCompleteThisRun[int_index] = int_timesToCompleteTask;
         if (currentChore.choreTask == task)
-            GameManager.menuManager.UpdateCurrentChore(currentChore.tmp_choreText.text + " (" + a_int_timesCompletedTasks[int_index] + "/" + a_int_timesToCompleteTasks[int_index] + ")");
+            GameManager.menuManager.UpdateCurrentChore(currentChore.tmp_choreText.text + " (" + a_int_timesCompletedTasks[int_index] + "/" + a_int_timesToCompleteThisRun[int_index] + ")");
     }
 
     // removes the given task from the task list and adds a strikethrough for the displayed list
@@ -141,9 +148,9 @@ public class TaskManager : MonoBehaviour
         if (a_bl_updateOnComplete[int_index])
         {
             a_int_timesCompletedTasks[int_index]++;
-            if (a_int_timesCompletedTasks[int_index] < a_int_timesToCompleteTasks[int_index])
+            if (a_int_timesCompletedTasks[int_index] < a_int_timesToCompleteThisRun[int_index])
             {
-                GameManager.menuManager.UpdateCurrentChore(currentChore.tmp_choreText.text + " (" + a_int_timesCompletedTasks[int_index] + "/" + a_int_timesToCompleteTasks[int_index] + ")");
+                GameManager.menuManager.UpdateCurrentChore(currentChore.tmp_choreText.text + " (" + a_int_timesCompletedTasks[int_index] + "/" + a_int_timesToCompleteThisRun[int_index] + ")");
                 return;
             }
         }
@@ -202,12 +209,11 @@ public class TaskManager : MonoBehaviour
         // gives put away dishes if clean dishes was the given task
         if (task == Task.CleanDishes)
         {
-            AddTask(Task.PutAwayDishes);
             ghost.AddTask(Task.PutAwayDishes);
         }
         
         // determines which task to give if the task list is now empty
-        if (li_taskList.Count == 0)
+        if (li_taskList.Count == 0 || (li_taskList.Count == 1 && li_taskList.Contains(Task.ResetBreakerBox)))
         {
             if (task == Task.FindKey)
                 AddTask(Task.EscapeHouse);
@@ -405,7 +411,7 @@ public class TaskManager : MonoBehaviour
 
         int int_taskIndex = (int)currentChore.choreTask;
 
-        GameManager.menuManager.UpdateCurrentChore(currentChore.tmp_choreText.text + " (" + a_int_timesCompletedTasks[int_taskIndex] + "/" + a_int_timesToCompleteTasks[int_taskIndex] + ")");
+        GameManager.menuManager.UpdateCurrentChore(currentChore.tmp_choreText.text + " (" + a_int_timesCompletedTasks[int_taskIndex] + "/" + a_int_timesToCompleteThisRun[int_taskIndex] + ")");
         foreach(RegionTrigger rt_region in a_rt_regions)
         {
             rt_region.CheckObjects();
