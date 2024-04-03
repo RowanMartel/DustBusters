@@ -779,6 +779,9 @@ public class MenuManager : MonoBehaviour
         // If the object the player is looking at is interactable, but not pickupable..
         if (bl_lookingAtObjectIsInteractable && go_lookingAtObject.GetComponent<Pickupable>() == null)
         {
+            //..and the object is a cupboard:
+            if (go_lookingAtObject.GetComponent<CabinetDoorController>() && go_lookingAtObject.GetComponent<CabinetDoorController>().Bl_ready) st_tooltipMessage = "Press \"E\" to use cupboard door";
+
             //..and the obejct is a light switch:
             if (go_lookingAtObject.GetComponent<LightSwitch>() != null) st_tooltipMessage = "Press \"E\" to toggle switch";
 
