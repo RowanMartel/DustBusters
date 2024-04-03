@@ -166,9 +166,6 @@ public class GhostBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        Debug.Log(nav_agent.pathStatus);
-
         if(flt_curKeyCooldown > 0)
         {
             flt_curKeyCooldown -= Time.deltaTime;
@@ -202,7 +199,6 @@ public class GhostBehavior : MonoBehaviour
                 if (Vector3.Distance(eep_picture.transform.position, transform.position) <= flt_distToImg)
                 {
                     float flt_imgAttempt = Random.Range(0f, 100f);
-                    Debug.Log(flt_imgAttempt);
                     if (flt_imgAttempt <= flt_chanceToChangeImg)
                     {
                         eep_picture.Switch();
@@ -214,7 +210,6 @@ public class GhostBehavior : MonoBehaviour
                 if (candle.bl_lit && Vector3.Distance(candle.transform.position, transform.position) <= flt_distToImg)
                 {
                     float flt_candleAttempt = Random.Range(0f, 100f);
-                    Debug.Log(flt_candleAttempt);
                     if (flt_candleAttempt <= flt_chanceToChangeImg)
                     {
                         candle.UnLight();
@@ -877,7 +872,6 @@ public class GhostBehavior : MonoBehaviour
             int rand = Random.Range(0, a_hs_hidingPlaces.Length);
             hs_curHidingSpot = a_hs_hidingPlaces[rand];
             nav_agent.SetDestination(hs_curHidingSpot.transform.position);
-            Debug.Log(nav_agent.path.status);
             tr_currentPatrolPoint = hs_curHidingSpot.transform;
         } while (hs_curHidingSpot.a_go_region.Contains<GameObject>(pc_player.go_curRegion)/* || nav_agent.pathStatus == NavMeshPathStatus.PathPartial*/);
     }

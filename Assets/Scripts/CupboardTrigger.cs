@@ -9,12 +9,10 @@ public class CupboardTrigger : MonoBehaviour
     // counts the dish as being in the cupboard, then checks if complete
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Cupboard Trigger");
         Dish dish = other.GetComponent<Dish>();
         if (!dish || dish.bl_dirtyDish || dish.bl_broken) return;
 
         dish.inCupboard = true;
-        Debug.Log("Accepted Dish");
 
         CheckIfComplete();
     }
