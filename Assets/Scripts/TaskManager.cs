@@ -329,8 +329,6 @@ public class TaskManager : MonoBehaviour
             GameManager.soundManager.PlayClip(ac_choreAdded, as_taskSoundSource, false);
         }
 
-        Debug.Log("Chore Updated: " + task.ToString());
-
         // If a chore is undone, this will uncheck it from the chore list and set the color to black
         foreach(Chore chore in l_chores)
         {
