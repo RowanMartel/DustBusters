@@ -209,12 +209,11 @@ public class TaskManager : MonoBehaviour
         // gives put away dishes if clean dishes was the given task
         if (task == Task.CleanDishes)
         {
-            AddTask(Task.PutAwayDishes);
             ghost.AddTask(Task.PutAwayDishes);
         }
         
         // determines which task to give if the task list is now empty
-        if (li_taskList.Count == 0)
+        if (li_taskList.Count == 0 || (li_taskList.Count == 1 && li_taskList.Contains(Task.ResetBreakerBox)))
         {
             if (task == Task.FindKey)
                 AddTask(Task.EscapeHouse);
