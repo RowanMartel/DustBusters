@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class TaskManager : MonoBehaviour
@@ -53,9 +52,16 @@ public class TaskManager : MonoBehaviour
     public AudioClip ac_choreUpdated;
     public AudioClip ac_choreAdded;
 
+    [Tooltip("Empty,\r\n        CleanDishes,\r\n        PutAwayDishes,\r\n        MopFloor,\r\n        CleanMirror,\r\n        CleanCobwebs,\r\n        LightFireplace,\r\n        FindKey,\r\n        EscapeHouse,\r\n        ThrowOutBrokenDishes,\r\n        PutAwayBooks,\r\n        ResetBreakerBox,\r\n        GhostDirtyMirror,\r\n        GhostDirtyFloor,\r\n        GhostDouseFireplace,\r\n        PutAwayToys")]
+    public int[] a_int_timesToCompleteTasks;
+    int[] a_int_timesCompletedTasks;
+    public bool[] a_bl_updateOnComplete;
+
     // This method creates the initial list of chores and gets references to the needed objects in the MenuManager
     public void SetupChoreList()
     {
+        a_int_timesCompletedTasks = new int[a_int_timesToCompleteTasks.Length];
+
         go_choreSheet = GameObject.Find("ChoreList");
         int chores = go_choreSheet.transform.childCount;
 
@@ -108,11 +114,39 @@ public class TaskManager : MonoBehaviour
         bl_taskListFilled = true;
     }
 
+    public void UpdateTask(int int_completedAspects, Task task)
+    {
+        int int_index = (int)task;
+        a_int_timesCompletedTasks[int_index] = int_completedAspects;
+        if(currentChore.choreTask == task)
+            GameManager.menuManager.UpdateCurrentChore(currentChore.tmp_choreText.text + " (" + a_int_timesCompletedTasks[int_index] + "/" + a_int_timesToCompleteTasks[int_index] + ")");
+    }
+
+    public void UpdateTask(int int_completedAspects, int int_timesToCompleteTask, Task task)
+    {
+        int int_index = (int)task;
+        a_int_timesCompletedTasks[int_index] = int_completedAspects;
+        a_int_timesToCompleteTasks[int_index] = int_timesToCompleteTask;
+        if (currentChore.choreTask == task)
+            GameManager.menuManager.UpdateCurrentChore(currentChore.tmp_choreText.text + " (" + a_int_timesCompletedTasks[int_index] + "/" + a_int_timesToCompleteTasks[int_index] + ")");
+    }
+
     // removes the given task from the task list and adds a strikethrough for the displayed list
     public void CompleteTask(Task task)
     {
         if (!li_taskList.Contains(task)) return;
         if (li_tsk_completedTaskList.Contains(task)) return;
+
+        int int_index = (int)task;
+        if (a_bl_updateOnComplete[int_index])
+        {
+            a_int_timesCompletedTasks[int_index]++;
+            if (a_int_timesCompletedTasks[int_index] < a_int_timesToCompleteTasks[int_index])
+            {
+                GameManager.menuManager.UpdateCurrentChore(currentChore.tmp_choreText.text + " (" + a_int_timesCompletedTasks[int_index] + "/" + a_int_timesToCompleteTasks[int_index] + ")");
+                return;
+            }
+        }
 
         string text = "";
         switch (task)
@@ -259,13 +293,16 @@ public class TaskManager : MonoBehaviour
                 str_text = "\nPut the books back on the shelf";
                 break;
             case Task.ResetBreakerBox:
-                str_text = "\nReset the breaker box";
+                str_text = "\nReset the breaker box in the basement";
                 break;
             case Task.PutAwayToys:
                 str_text = "\nPut away the toys";
                 break;
         }
-
+        if (a_int_timesCompletedTasks[(int)task] > 0)
+        {
+            a_int_timesCompletedTasks[(int)task]--;
+        }
         if (li_tsk_completedTaskList.Contains(task))
         {
             //Remove strikethrough from an uncompleted task
@@ -368,7 +405,9 @@ public class TaskManager : MonoBehaviour
         currentChore = l_chores[choreNumber - 1];
         currentChore.tmp_choreText.color = Color.blue;
 
-        GameManager.menuManager.UpdateCurrentChore(currentChore.tmp_choreText.text);
+        int int_taskIndex = (int)currentChore.choreTask;
+
+        GameManager.menuManager.UpdateCurrentChore(currentChore.tmp_choreText.text + " (" + a_int_timesCompletedTasks[int_taskIndex] + "/" + a_int_timesToCompleteTasks[int_taskIndex] + ")");
         foreach(RegionTrigger rt_region in a_rt_regions)
         {
             rt_region.CheckObjects();

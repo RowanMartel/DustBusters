@@ -10,6 +10,7 @@ public class HealthSystem : MonoBehaviour
     protected MenuManager menuReference;
 
     public AudioClip ac_hurtSharp;
+    public AudioClip ac_hurtBlunt;
     AudioSource as_source;
 
     private void Awake()
@@ -26,7 +27,7 @@ public class HealthSystem : MonoBehaviour
         as_source = GetComponent<AudioSource>();
     }
 
-    // This handles all collisions with the player, determines if the Damage Overlay is called, and if int_playerHealth is affected
+    // This handles all collisions with the player, determines if the Damage Overlay is called, if int_playerHealth is affected, and if the damage sound played is sharp or blunt
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.relativeVelocity.magnitude < 5) return;
@@ -36,7 +37,6 @@ public class HealthSystem : MonoBehaviour
 
         if (pu_pickupable.bl_canDamagePlayer)
         {
-            GameManager.soundManager.PlayClip(ac_hurtSharp, as_source, true);
 
             int_playerHealth--;
             if (int_playerHealth <= 0)
@@ -51,5 +51,10 @@ public class HealthSystem : MonoBehaviour
         {
             menuReference.IncreaseDamageOverlayTemporarily();
         }
+
+        if (pu_pickupable.bl_sharp)
+            GameManager.soundManager.PlayClip(ac_hurtSharp, as_source, true);
+        else
+            GameManager.soundManager.PlayClip(ac_hurtBlunt, as_source, true);
     }
 }

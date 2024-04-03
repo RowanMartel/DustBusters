@@ -33,6 +33,9 @@ public class Pickupable : Interactable
     [Tooltip("Check if this object can damage the player")]
     public bool bl_canDamagePlayer;
 
+    [Tooltip("check if the damage SFX from this object should be blunt or sharp")]
+    public bool bl_sharp;
+
     [Tooltip("Rotation applied when held")]
     public Vector3 v3_heldRotationMod;
 
@@ -64,7 +67,8 @@ public class Pickupable : Interactable
     //Trigger Enter/Exit scripts are used to make sure objects don't stuck in the environment when picked up
     private void OnTriggerEnter(Collider other)
     {
-        if (!Col.isTrigger || other.isTrigger || other == Col || l_col_overlapping.Contains(other)) return;
+        if (!Col.isTrigger)return;
+        if(other.isTrigger || other == Col || l_col_overlapping.Contains(other)) return;
         l_col_overlapping.Add(other);
     }
 
