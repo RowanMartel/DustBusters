@@ -17,7 +17,7 @@ public class GhostFootstepsTrigger : MonoBehaviour
     // when player enters trigger, play footsteps sound if not already playing anything
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") || !as_source.isPlaying)
+        if (other.CompareTag("Player") && !as_source.isPlaying)
             GameManager.soundManager.PlayClip(ac_footsteps, as_source, true);
     }
 }
