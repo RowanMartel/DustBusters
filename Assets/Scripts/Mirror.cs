@@ -21,6 +21,8 @@ public class Mirror : Interactable
 
     [HideInInspector] public bool bl_paused = false;
 
+    public bool bl_rotated;
+
     private void Awake()
     {
         GameManager.menuManager.GamePaused += OnPause;
@@ -73,6 +75,11 @@ public class Mirror : Interactable
             {
                 GameObject go_spooky = Instantiate(l_go_spookyThingByAggro[int_aggro]);
                 go_spooky.transform.position = tr_spawnSpooky.position;
+                if (bl_rotated)
+                {
+                    //go_spooky.transform.rotation.SetEulerAngles(new Vector3(go_spooky.transform.rotation.x, go_spooky.transform.rotation.y - 90, go_spooky.transform.rotation.z));
+                    go_spooky.transform.Rotate(new Vector3(go_spooky.transform.rotation.x, go_spooky.transform.rotation.y - 90, go_spooky.transform.rotation.z));
+                }
             }
 
         }
