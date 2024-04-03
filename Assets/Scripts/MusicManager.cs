@@ -45,6 +45,10 @@ public class MusicManager : MonoBehaviour
     // plays death sound when it receives the player death event
     void PlayDeathSound(object source, EventArgs e)
     {
+        Debug.Log("Death Sound Triggered");
+        Debug.Log(as_source.clip.name);
+        Debug.Log(as_source.volume);
+
         as_source.Stop();
         as_source.PlayOneShot(ac_dead);
     }
@@ -80,7 +84,13 @@ public class MusicManager : MonoBehaviour
     void FadeOut()
     {
         as_source.volume = Settings.flt_musicVolume;
-        LeanTween.value(as_source.volume, 0, 1.5f).setOnComplete(as_source.Stop).setOnUpdate(FadingUpdate).setIgnoreTimeScale(true);
+        LeanTween.value(as_source.volume, 0, 1.5f).setOnComplete(AsStop).setOnUpdate(FadingUpdate).setIgnoreTimeScale(true);
+    }
+
+    void AsStop()
+    {
+        as_source.Stop();
+        as_source.volume = Settings.flt_musicVolume;
     }
 
     void FadingUpdate(float flt)
