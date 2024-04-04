@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ToyChestTrigger : MonoBehaviour
@@ -23,6 +24,11 @@ public class ToyChestTrigger : MonoBehaviour
             toy.bl_inBox = true;
             CheckIfComplete();
         }
+        SpookyLookAtPlayer lookAt = other.GetComponent<SpookyLookAtPlayer>();
+        if(lookAt != null)
+        {
+            lookAt.bl_canMove = false;
+        }
     }
 
     //Makes the toy not in the box and reassign the task as needed
@@ -42,6 +48,11 @@ public class ToyChestTrigger : MonoBehaviour
             tm_taskManager.AddTask(TaskManager.Task.PutAwayToys);
 
             CheckIfComplete();
+        }
+        SpookyLookAtPlayer lookAt = other.GetComponent<SpookyLookAtPlayer>();
+        if (lookAt != null)
+        {
+            lookAt.bl_canMove = true;
         }
     }
 

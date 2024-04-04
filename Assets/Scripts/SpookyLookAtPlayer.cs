@@ -10,6 +10,7 @@ public class SpookyLookAtPlayer : MonoBehaviour
     Renderer ren_renderer;
     public float flt_heightOffset;
     Rigidbody rb_rigidbody;
+    public bool bl_canMove;
 
     // Start is called before the first frame update
     void Start()
@@ -18,26 +19,52 @@ public class SpookyLookAtPlayer : MonoBehaviour
         go_player = pc_player.gameObject;
         ren_renderer = GetComponent<Renderer>();
         rb_rigidbody = GetComponent<Rigidbody>();
+        bl_canMove = true;
     }
 
     // Update is called once per frame
     void Update()
     {
         //Debug.Log(ren_renderer.isVisible);
-        if (!ren_renderer.isVisible)
+        if (bl_canMove)
         {
-            transform.LookAt(go_player.transform.position);
+            if (!ren_renderer.isVisible)
+            {
+                transform.LookAt(go_player.transform.position);
+            }
         }
     }
-
     private void OnBecameInvisible()
     {
-        rb_rigidbody.isKinematic = true;
+        if (bl_canMove)
+        {
+            rb_rigidbody.isKinematic = true;
+        }
     }
 
     private void OnBecameVisible()
     {
-        rb_rigidbody.isKinematic = false;
+        if (bl_canMove)
+        {
+            rb_rigidbody.isKinematic = false;
+        }
     }
+
+    /*private void OnTriggerEnter(Collider other)
+    {
+        if(other.GetComponent<ToyChestTrigger>() != null)
+        {
+            Debug.Log("AA");
+            bl_canMove = false;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.GetComponent<ToyChestTrigger>() != null)
+        {
+            bl_canMove = true;
+        }
+    }*/
 
 }
