@@ -6,6 +6,8 @@ public class Candle: Pickupable
     [Tooltip("Put the fire particle effect / light object here")]
     public GameObject go_fireFX;
     public ParticleSystem ps_fire;
+    public AudioClip ac_candleLightSound;
+    public AudioSource as_candleSoundSource;
     public bool bl_lit;
 
     protected override void Start()
@@ -27,6 +29,8 @@ public class Candle: Pickupable
     // start the vfx and sfx
     public void Light()
     {
+        GameManager.soundManager.PlayClip(ac_candleLightSound, as_candleSoundSource, true);
+
         //Activate light and audio
         go_fireFX.SetActive(true);
 
