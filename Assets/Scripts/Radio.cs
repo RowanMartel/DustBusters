@@ -63,7 +63,7 @@ public class Radio : Interactable
             as_source.UnPause();
             //as_source.volume = 0;
             radioMixer.SetFloat("RadioVolume", -15f);
-            LeanTween.value(-15f, 0, 2f).setOnUpdate(FadingUpdate).setIgnoreTimeScale(true);
+            LeanTween.value(-15f, 0, 1f).setOnUpdate(FadingUpdate).setIgnoreTimeScale(true);
         }
     }
 
