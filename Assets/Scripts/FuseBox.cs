@@ -11,6 +11,7 @@ public class FuseBox : Interactable
 
     LightSwitch[] a_ls_switches;
     TVStatic[] a_tv_static;
+    Radio[] a_rad_radio;
 
     int int_timesToFlicker;
     public float flt_timeTweenFlicker;
@@ -30,6 +31,7 @@ public class FuseBox : Interactable
     {
         a_ls_switches = FindObjectsByType<LightSwitch>(FindObjectsSortMode.None);
         a_tv_static = FindObjectsByType<TVStatic>(FindObjectsSortMode.None);
+        a_rad_radio = FindObjectsByType<Radio>(FindObjectsSortMode.None);
         SetSwitchesOn();
         flt_curFlickerTime = 0;
         int_timesToFlicker = 0;
@@ -96,6 +98,10 @@ public class FuseBox : Interactable
             tv.bl_powered = true;
             tv.Refresh();
         }
+        foreach (Radio rad in a_rad_radio)
+        {
+            rad.PowerOn();
+        }
         bl_ready = true;
     }
 
@@ -112,6 +118,10 @@ public class FuseBox : Interactable
         {
             tv.bl_powered = false;
             tv.Refresh();
+        }
+        foreach (Radio rad in a_rad_radio)
+        {
+            rad.PowerOff();
         }
         bl_ready = true;
     }
