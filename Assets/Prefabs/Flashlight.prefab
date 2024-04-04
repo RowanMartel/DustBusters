@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7790343448745727623}
   - component: {fileID: 4752003029604827137}
   - component: {fileID: 962530723026310229}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Flashlightswitch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 231102680760861825}
   - component: {fileID: 3774352335168158883}
   - component: {fileID: 4149517384326911980}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -238,7 +238,7 @@ GameObject:
   - component: {fileID: 7617982894017672543}
   - component: {fileID: 7963293882191472060}
   - component: {fileID: 2242195345384847480}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Flashlight_glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -488,14 +488,17 @@ MonoBehaviour:
   bl_pickupable: 1
   bl_mop: 0
   bl_duster: 0
+  bl_soapBar: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
-  v3_heldRotationMod: {x: 0, y: 80.8, z: 0}
-  v3_heldPositionMod: {x: -0.34, y: -0.15, z: 0}
+  bl_sharp: 0
+  v3_heldRotationMod: {x: 0, y: 90, z: 0}
+  v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
 --- !u!114 &96245404154148924
 MonoBehaviour:
@@ -572,11 +575,11 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.9529412, b: 0.80784315, a: 1}
   m_Intensity: 1
-  m_Range: 10
-  m_SpotAngle: 30
-  m_InnerSpotAngle: 21.80208
+  m_Range: 30
+  m_SpotAngle: 75
+  m_InnerSpotAngle: 7
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
