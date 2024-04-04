@@ -87,6 +87,8 @@ public class TVStatic : Interactable
     private void OnDestroy()
     {
         GameManager.menuManager.SoundVolumeChanged -= UpdateVolume;
+        GameManager.menuManager.GamePaused -= Pause;
+        GameManager.menuManager.GameUnpaused -= UnPause;
     }
 
 }
