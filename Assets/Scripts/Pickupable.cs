@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Pickupable : Interactable
@@ -44,8 +45,8 @@ public class Pickupable : Interactable
 
     protected Rigidbody rb;
     public Rigidbody RB { get { return rb; } }
-    protected Collider col;
-    public Collider Col { get { return col; } }
+    protected Collider[] l_col;
+    public Collider[] l_Col { get { return l_col; } }
     [HideInInspector] public bool bl_held;
     protected MeshRenderer ren_meshRenderer;
     // holds the default material for objects that change materials
@@ -59,7 +60,7 @@ public class Pickupable : Interactable
         bl_pickupable = true;
         ren_meshRenderer = GetComponent<MeshRenderer>();
         rb = GetComponent<Rigidbody>();
-        col = GetComponent<Collider>();
+        l_col = GetComponents<Collider>();
         bl_held = false;
         mat_base = ren_meshRenderer.material;
     }
@@ -67,8 +68,8 @@ public class Pickupable : Interactable
     //Trigger Enter/Exit scripts are used to make sure objects don't stuck in the environment when picked up
     private void OnTriggerEnter(Collider other)
     {
-        if (!Col.isTrigger)return;
-        if(other.isTrigger || other == Col || l_col_overlapping.Contains(other)) return;
+        if (!l_Col[0].isTrigger)return;
+        if(other.isTrigger || l_Col.Contains(other) || l_col_overlapping.Contains(other)) return;
         l_col_overlapping.Add(other);
     }
 
@@ -77,13 +78,19 @@ public class Pickupable : Interactable
         l_col_overlapping.Remove(other);
         if(l_col_overlapping.Count <= 0)
         {
-            col.isTrigger = false;
+            foreach(Collider co in l_col)
+            {
+                co.isTrigger = false;
+            }
         }
     }
 
     public void Drop()
     {
-        Col.isTrigger = false;
+        foreach (Collider co in l_col)
+        {
+            co.isTrigger = false;
+        }
     }
 
     // turns collider off when picked up, until item is in hand. This should prevent things from getting stuck in hand.
@@ -95,6 +102,9 @@ public class Pickupable : Interactable
         }
 
         l_col_overlapping.Clear();
-        Col.isTrigger = true;
+        foreach (Collider co in l_col)
+        {
+            co.isTrigger = true;
+        }
     }
 }

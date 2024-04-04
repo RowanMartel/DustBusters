@@ -18,6 +18,8 @@ GameObject:
   - component: {fileID: 2865957407336065656}
   - component: {fileID: 2271211546624772481}
   - component: {fileID: 5652045214623159089}
+  - component: {fileID: 293484492630540376}
+  - component: {fileID: 7748414576372555101}
   m_Layer: 0
   m_Name: Broom
   m_TagString: Interactable
@@ -105,6 +107,7 @@ MonoBehaviour:
   bl_pickupable: 0
   bl_mop: 1
   bl_duster: 0
+  bl_soapBar: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
@@ -112,6 +115,7 @@ MonoBehaviour:
   bl_hideable: 1
   bl_toThrow: 0
   bl_canDamagePlayer: 0
+  bl_sharp: 0
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
@@ -159,7 +163,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
@@ -305,3 +309,45 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bl_canFloat: 0
   bl_isFloating: 0
+--- !u!65 &293484492630540376
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7807824327101876193}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.03, y: 0.4155174, z: 0.03}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &7748414576372555101
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7807824327101876193}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.13288943, y: 0.037677236, z: 0.048456572}
+  m_Center: {x: 0.0000632604, y: -0.18892047, z: 0}
