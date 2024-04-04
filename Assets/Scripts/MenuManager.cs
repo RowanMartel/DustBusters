@@ -783,7 +783,7 @@ public class MenuManager : MonoBehaviour
             if (go_lookingAtObject.GetComponent<CabinetDoorController>() && go_lookingAtObject.GetComponent<CabinetDoorController>().Bl_ready) st_tooltipMessage = "Press \"E\" to use cupboard door";
 
             //..and the obejct is a light switch:
-            if (go_lookingAtObject.GetComponent<LightSwitch>() != null) st_tooltipMessage = "Press \"E\" to toggle switch";
+            else if (go_lookingAtObject.GetComponent<LightSwitch>() != null) st_tooltipMessage = "Press \"E\" to toggle switch";
 
             //..and the object is the breaker box:
             else if (go_lookingAtObject.GetComponent<FuseBox>() != null) st_tooltipMessage = "Press \"E\" to toggle breaker";
@@ -798,12 +798,19 @@ public class MenuManager : MonoBehaviour
                 }
             }
 
+            //..and the object is the radio:
+            else if (go_lookingAtObject.GetComponent<Radio>() != null)
+            {
+                if (go_lookingAtObject.GetComponent<Radio>().bl_playing == true) st_tooltipMessage = "Press \"E\" to turn radio off";
+                else st_tooltipMessage = "Press \"E\" to turn radio on";
+            }
+
             //..and the object is the mirror chore:
             else if (go_lookingAtObject.GetComponent<Mirror>() != null && go_lookingAtObject.GetComponent<Mirror>().bl_gameActive == false)
             {
                 if (go_lookingAtObject.GetComponent<Mirror>().bl_clean == false)
                 {
-                    if (go_heldObject == null || go_heldObject.GetComponent<Pickupable>().bl_duster == false) st_tooltipMessage = "Duster required to clean";
+                    if (go_heldObject == null || go_heldObject.GetComponent<Pickupable>().bl_duster == false) st_tooltipMessage = "Soap required to clean";
                     else st_tooltipMessage = "Press \"E\" to clean";
                 }
             }
@@ -825,6 +832,16 @@ public class MenuManager : MonoBehaviour
                 {
                     if (go_heldObject == null || go_heldObject.GetComponent<Pickupable>().bl_lighter == false) st_tooltipMessage = "Lighter required to light";
                     else st_tooltipMessage = "Press \"E\" to light fireplace";
+                }
+            }
+
+            //..and the object is the TV:
+            else if (go_lookingAtObject.GetComponent<TVStatic>() != null)
+            {
+                if (go_lookingAtObject.GetComponent<TVStatic>().bl_on == true)
+                {
+                    if (go_heldObject == null || go_heldObject.GetComponent<Pickupable>().bl_remote == false) st_tooltipMessage = "Remote required to turn off";
+                    else st_tooltipMessage = "Press \"E\" to turn off TV";
                 }
             }
 

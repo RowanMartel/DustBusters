@@ -9,7 +9,7 @@ public class Radio : Interactable
 
     public AudioSource as_source;
     public AudioClip[] a_ac_broadcasts;
-    bool bl_playing = true;
+    public bool bl_playing = true;
     int int_curBroadcast = 0;
     public Material mat_on;
     public Material mat_off;
