@@ -381,7 +381,7 @@ public class TaskManager : MonoBehaviour
                         chore.tmp_choreText.text = "Light the fireplace with the lighter";
                         break;
                     case Task.MopFloor:
-                        chore.tmp_choreText.text = "Sweep the laundry room floor";
+                        chore.tmp_choreText.text = "Sweep the laundry room and basement";
                         break;
                     case Task.PutAwayBooks:
                         chore.tmp_choreText.text = "Tidy the books in the library";
