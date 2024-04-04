@@ -5184,10 +5184,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9054187573627407241}
+  - {fileID: 8832049278157100429}
   - {fileID: 717651196072784010}
   - {fileID: 229638373217841776}
   - {fileID: 7702434065910122952}
-  - {fileID: 8832049278157100429}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1171188374460215735
@@ -5607,6 +5607,7 @@ MonoBehaviour:
   int_tasksToStage3: 4
   l_tsk_completedTasks: 
   go_floatTrigger: {fileID: 5513713529297790404}
+  go_footstepTrigger: {fileID: 8976004196310846877}
   bl_frozen: 0
   l_eep_pictures:
   - {fileID: 0}
@@ -5737,7 +5738,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8832049278157100429
 Transform:
   m_ObjectHideFlags: 0
