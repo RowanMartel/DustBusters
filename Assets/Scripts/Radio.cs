@@ -9,13 +9,16 @@ public class Radio : Interactable
 
     public AudioSource as_source;
     public AudioClip[] a_ac_broadcasts;
-    bool bl_playing = true;
+    public bool bl_playing = true;
     int int_curBroadcast = 0;
     public Material mat_on;
     public Material mat_off;
     bool bl_powered;
+    bool bl_fadingOrPaused = false;
 
     public AudioMixer radioMixer;
+
+    int int_curTweenID;
 
     // Start is called before the first frame update
     void Start()
@@ -44,7 +47,7 @@ public class Radio : Interactable
     // Update is called once per frame
     void Update()
     {
-        if(!as_source.isPlaying && !GameManager.menuManager.Bl_paused)
+        if(!as_source.isPlaying && /*!GameManager.menuManager.Bl_paused &&*/ !bl_fadingOrPaused)
         {
             int_curBroadcast++;
             if(int_curBroadcast >=  a_ac_broadcasts.Length)
@@ -63,19 +66,40 @@ public class Radio : Interactable
             as_source.UnPause();
             //as_source.volume = 0;
             radioMixer.SetFloat("RadioVolume", -15f);
-            LeanTween.value(-15f, 0, 1f).setOnUpdate(FadingUpdate).setIgnoreTimeScale(true);
+            if(int_curTweenID != 0)
+            {
+                LeanTween.cancel(int_curTweenID);
+                int_curTweenID = 0;
+            }
+            int_curTweenID = LeanTween.value(-15f, 0, 1f).setOnComplete(Unpaused).setOnUpdate(FadingUpdate).setIgnoreTimeScale(true).setId(27, 27).id;
         }
     }
 
     void FadeOut(object source, EventArgs e)
     {
+        bl_fadingOrPaused = true;
         float value;
         radioMixer.GetFloat("RadioVolume", out value);
         if (bl_playing && bl_powered)
         {
             //as_source.volume = Settings.flt_musicVolume;
-            LeanTween.value(value, -15f, 1f).setOnComplete(as_source.Pause).setOnUpdate(FadingUpdate).setIgnoreTimeScale(true);
+            if (int_curTweenID != 0)
+            {
+                LeanTween.cancel(int_curTweenID);
+                int_curTweenID = 0;
+            }
+            int_curTweenID = LeanTween.value(value, -15f, 1f).setOnComplete(Paused).setOnUpdate(FadingUpdate).setIgnoreTimeScale(true).id;
         }
+    }
+
+    void Unpaused()
+    {
+        bl_fadingOrPaused = false;
+    }
+
+    void Paused()
+    {
+        as_source.Pause();
     }
 
     void FadingUpdate(float flt)

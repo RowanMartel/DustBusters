@@ -97,6 +97,7 @@ public class GhostBehavior : MonoBehaviour
     public int int_tasksToStage3;
     public List<TaskManager.Task> l_tsk_completedTasks;
     public GameObject go_floatTrigger;
+    public GameObject go_footstepTrigger;
 
     public bool bl_frozen;
 
@@ -911,6 +912,11 @@ public class GhostBehavior : MonoBehaviour
                     go_floatTrigger.GetComponent<FloatTrigger>().CloseTrigger();
                 }
 
+                if (go_footstepTrigger.activeSelf == true)
+                {
+                    go_footstepTrigger.SetActive(false);
+                }
+
                 //Deactivate Ghost's Particle Effects
                 go_aura.SetActive(false);
                 break;
@@ -919,6 +925,11 @@ public class GhostBehavior : MonoBehaviour
                 if (go_floatTrigger.activeSelf == true)
                 {
                     go_floatTrigger.GetComponent<FloatTrigger>().CloseTrigger();
+                }
+
+                if(go_footstepTrigger.activeSelf == false)
+                {
+                    go_footstepTrigger.SetActive(true);
                 }
 
                 //Deactivate Ghost's Particle Effects
@@ -930,6 +941,12 @@ public class GhostBehavior : MonoBehaviour
                 {
                     go_floatTrigger.SetActive(true);
                 }
+
+                if (go_footstepTrigger.activeSelf == false)
+                {
+                    go_footstepTrigger.SetActive(true);
+                }
+
                 AddTask(TaskManager.Task.ResetBreakerBox);
 
                 //Activate Jack in the Box
@@ -953,6 +970,11 @@ public class GhostBehavior : MonoBehaviour
                 if (go_floatTrigger.activeSelf == false)
                 {
                     go_floatTrigger.SetActive(true);
+                }
+
+                if (go_footstepTrigger.activeSelf == false)
+                {
+                    go_footstepTrigger.SetActive(true);
                 }
 
                 //Activate Ghost's Particle Effects
