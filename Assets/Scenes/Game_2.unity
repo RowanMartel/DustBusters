@@ -56829,7 +56829,7 @@ MonoBehaviour:
   bl_toThrow: 0
   bl_canDamagePlayer: 0
   bl_sharp: 0
-  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  v3_heldRotationMod: {x: 0, y: -90, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
 --- !u!54 &1668943760
@@ -59781,8 +59781,8 @@ MonoBehaviour:
   bl_toThrow: 0
   bl_canDamagePlayer: 1
   bl_sharp: 1
-  v3_heldRotationMod: {x: 0, y: 0, z: 0}
-  v3_heldPositionMod: {x: 0, y: 0, z: 0}
+  v3_heldRotationMod: {x: 0, y: -90, z: -50}
+  v3_heldPositionMod: {x: 0.3, y: 0, z: 0}
   bl_held: 0
 --- !u!54 &1799884719
 Rigidbody:
@@ -59863,7 +59863,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ac_collide: {fileID: 8300000, guid: 23fa4b113861b1f40bb6805dac2750c0, type: 3}
+  ac_collide: {fileID: 8300000, guid: bb2adf3ad8096b94383cb4868e598ad1, type: 3}
 --- !u!114 &1799884723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63097,7 +63097,7 @@ MonoBehaviour:
   bl_toThrow: 0
   bl_canDamagePlayer: 0
   bl_sharp: 0
-  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  v3_heldRotationMod: {x: 0, y: 180, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
 --- !u!54 &1913259659
@@ -66379,7 +66379,7 @@ MonoBehaviour:
   bl_toThrow: 0
   bl_canDamagePlayer: 0
   bl_sharp: 0
-  v3_heldRotationMod: {x: 0, y: 0, z: 0}
+  v3_heldRotationMod: {x: 0, y: 180, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
 --- !u!54 &2005668299
