@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Radio : Interactable
 {
@@ -12,6 +13,8 @@ public class Radio : Interactable
     int int_curBroadcast = 0;
     public Material mat_on;
     public Material mat_off;
+
+    public AudioMixer radioMixer;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +27,9 @@ public class Radio : Interactable
         GameManager.menuManager.MusicVolumeChanged += UpdateVolume;
 
         as_source.volume = Settings.flt_musicVolume;
+        radioMixer = as_source.outputAudioMixerGroup.audioMixer;
+        radioMixer.SetFloat("RadioVolume", 0f);
+
     }
 
     private void OnDestroy()
@@ -52,23 +58,27 @@ public class Radio : Interactable
         if (bl_playing)
         {
             as_source.UnPause();
-            as_source.volume = 0;
-            LeanTween.value(0f, Settings.flt_musicVolume, 2f).setOnUpdate(FadingUpdate).setIgnoreTimeScale(true);
+            //as_source.volume = 0;
+            radioMixer.SetFloat("RadioVolume", -15f);
+            LeanTween.value(-15f, 0, 2f).setOnUpdate(FadingUpdate).setIgnoreTimeScale(true);
         }
     }
 
     void FadeOut(object source, EventArgs e)
     {
+        float value;
+        radioMixer.GetFloat("RadioVolume", out value);
         if (bl_playing)
         {
-            as_source.volume = Settings.flt_musicVolume;
-            LeanTween.value(as_source.volume, 0, 1f).setOnComplete(as_source.Pause).setOnUpdate(FadingUpdate).setIgnoreTimeScale(true);
+            //as_source.volume = Settings.flt_musicVolume;
+            LeanTween.value(value, -15f, 1f).setOnComplete(as_source.Pause).setOnUpdate(FadingUpdate).setIgnoreTimeScale(true);
         }
     }
 
     void FadingUpdate(float flt)
     {
-        as_source.volume = flt;
+        // as_source.volume = flt;
+        radioMixer.SetFloat("RadioVolume", flt);
     }
 
     // updates the music volume when the menu slider is changed
