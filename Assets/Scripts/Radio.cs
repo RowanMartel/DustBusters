@@ -13,6 +13,7 @@ public class Radio : Interactable
     int int_curBroadcast = 0;
     public Material mat_on;
     public Material mat_off;
+    bool bl_powered;
 
     public AudioMixer radioMixer;
 
@@ -21,6 +22,8 @@ public class Radio : Interactable
     {
         as_source.clip = a_ac_broadcasts[int_curBroadcast];
         as_source.Play();
+
+        bl_powered = true;
 
         GameManager.menuManager.GamePaused += FadeOut;
         GameManager.menuManager.GameUnpaused += FadeIn;
@@ -41,7 +44,7 @@ public class Radio : Interactable
     // Update is called once per frame
     void Update()
     {
-        if(bl_playing && !as_source.isPlaying && !GameManager.menuManager.Bl_paused)
+        if(!as_source.isPlaying && !GameManager.menuManager.Bl_paused)
         {
             int_curBroadcast++;
             if(int_curBroadcast >=  a_ac_broadcasts.Length)
@@ -55,7 +58,7 @@ public class Radio : Interactable
 
     void FadeIn(object source, EventArgs e)
     {
-        if (bl_playing)
+        if (bl_playing && bl_powered)
         {
             as_source.UnPause();
             //as_source.volume = 0;
@@ -68,7 +71,7 @@ public class Radio : Interactable
     {
         float value;
         radioMixer.GetFloat("RadioVolume", out value);
-        if (bl_playing)
+        if (bl_playing && bl_powered)
         {
             //as_source.volume = Settings.flt_musicVolume;
             LeanTween.value(value, -15f, 1f).setOnComplete(as_source.Pause).setOnUpdate(FadingUpdate).setIgnoreTimeScale(true);
@@ -79,6 +82,23 @@ public class Radio : Interactable
     {
         // as_source.volume = flt;
         radioMixer.SetFloat("RadioVolume", flt);
+    }
+
+    public void PowerOff()
+    {
+        as_source.volume = 0;
+        bl_powered = false;
+        GetComponent<Renderer>().material = mat_off;
+    }
+
+    public void PowerOn()
+    {
+        if (bl_playing)
+        {
+            as_source.volume = Settings.flt_musicVolume;
+            GetComponent<Renderer>().material = mat_on;
+        }
+        bl_powered = true;
     }
 
     // updates the music volume when the menu slider is changed
@@ -93,12 +113,16 @@ public class Radio : Interactable
         if (!bl_playing)
         {
             bl_playing = true;
-            GetComponent<Renderer>().material = mat_on;
+            if (bl_powered)
+            {
+                as_source.volume = Settings.flt_musicVolume;
+                GetComponent<Renderer>().material = mat_on;
+            }
         }
         else
         {
             bl_playing = false;
-            as_source.Stop();
+            as_source.volume = 0;
             GetComponent<Renderer>().material = mat_off;
         }
     }
