@@ -21,13 +21,15 @@ public class RegionTrigger : MonoBehaviour
     public bool bl_isCloset;
     [Tooltip("Regions that can easily be seen into from the current region.")]
     public RegionTrigger[] a_rt_fullViewRegions;
+    RegionTrigger[] a_rt_allOtherRegions;
 
     private void Start()
     {
         nav_obstacle = GetComponent<NavMeshObstacle>();
         gb_ghost = GameManager.ghost;
         pc_player = GameManager.playerController;
-        a_mirrorMovements = GameObject.FindObjectsOfType<MirrorMovement>();
+        a_mirrorMovements = FindObjectsOfType<MirrorMovement>();
+        a_rt_allOtherRegions = FindObjectsOfType<RegionTrigger>();
         CheckObjects();
         //img_itemIndicator = transform.GetChild(0).GetChild(0).GetComponent<Image>();
     }
@@ -83,7 +85,13 @@ public class RegionTrigger : MonoBehaviour
         {
             Pickupable pu_other = other.GetComponent<Pickupable>();
             l_pu_pickupables.Add(pu_other);
-            CheckObjects();
+            foreach (RegionTrigger rt in a_rt_allOtherRegions)
+            {
+                if (rt.l_pu_pickupables.Contains(pu_other) && rt != this)
+                {
+                    rt.l_pu_pickupables.Remove(pu_other);
+                }
+            }
         }
     }
 
@@ -111,11 +119,22 @@ public class RegionTrigger : MonoBehaviour
         {
             //Removes pickupable object from list
             Pickupable pu_other = other.GetComponent<Pickupable>();
-            while (l_pu_pickupables.Contains(pu_other))
+            l_pu_pickupables.Remove(pu_other);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        Pickupable pu_other = other.GetComponent<Pickupable>();
+        if (pu_other == null) return;
+        if (l_pu_pickupables.Contains(pu_other)) return;
+        l_pu_pickupables.Add(pu_other);
+        foreach (RegionTrigger rt in a_rt_allOtherRegions)
+        {
+            if (rt.l_pu_pickupables.Contains(pu_other) && rt != this)
             {
-                l_pu_pickupables.Remove(pu_other);
+                rt.l_pu_pickupables.Remove(pu_other);
             }
-            CheckObjects();
         }
     }
 
