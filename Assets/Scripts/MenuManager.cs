@@ -109,6 +109,8 @@ public class MenuManager : MonoBehaviour
 
     protected bool bl_initialized = false;
 
+    protected bool bl_gameStarted = false;
+
     // audio clip to play when SFX volume slider is updated
     [SerializeField] AudioClip ac_sliderUpdate;
 
@@ -396,6 +398,7 @@ public class MenuManager : MonoBehaviour
         go_startButton.transform.localPosition = new Vector3(0f, -300, 0f);
         go_OrientationNote.transform.localPosition = new Vector3(0f, -500f, 0f);
         go_restartButton.transform.localPosition = new Vector3(0f, -500, 0f);
+        bl_gameStarted = false;
 
         foreach (GameObject creditsScreen in li_creditScreens)
         {
@@ -452,6 +455,8 @@ public class MenuManager : MonoBehaviour
         switch (int_startSequence)
         {
             case 0:
+                if (bl_gameStarted) return;
+                bl_gameStarted = true;
                 int_startSequence++;
                 LeanTween.moveLocal(go_startButton, new Vector3(0f, -300f, 0f), 0.5f).setEase(LeanTweenType.easeInSine).setOnComplete(StartGameSequence).setIgnoreTimeScale(true);
                 break;
