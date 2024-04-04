@@ -264,7 +264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dd082379c39c149939d6d9bc67d9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ac_collide: {fileID: 8300000, guid: 00cb7825cba63bd46b119d6a8000568c, type: 3}
+  ac_collide: {fileID: 8300000, guid: 95b87c44d71131d4c9c7b795062ddf1d, type: 3}
 --- !u!114 &3639044233959258779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,6 +280,7 @@ MonoBehaviour:
   bl_pickupable: 1
   bl_mop: 0
   bl_duster: 0
+  bl_soapBar: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
@@ -287,6 +288,7 @@ MonoBehaviour:
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
+  bl_sharp: 0
   v3_heldRotationMod: {x: -28.37, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: -0.09, z: 0}
   bl_held: 0
