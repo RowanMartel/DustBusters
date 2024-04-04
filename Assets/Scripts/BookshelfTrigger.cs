@@ -26,6 +26,7 @@ public class BookshelfTrigger : MonoBehaviour
         if(book != null)
         {
             libraryManager.RemoveBook(book);
+            libraryManager.CheckIfComplete();
         }
     }
 
