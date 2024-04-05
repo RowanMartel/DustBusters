@@ -78,6 +78,7 @@ public class TaskManager : MonoBehaviour
             Chore newChore = new Chore();
             newChore.tmp_choreText = go_choreSheet.transform.GetChild(i).transform.Find("ChoreText").GetComponent<TMP_Text>();
             newChore.tmp_choreText.text = "";
+            newChore.tmp_choreText.color = Color.black;
             newChore.go_box = go_choreSheet.transform.GetChild(i).transform.Find("CheckBox").gameObject;
             newChore.go_check = go_choreSheet.transform.GetChild(i).transform.Find("Check").gameObject;
             newChore.choreTask = Task.Empty;
