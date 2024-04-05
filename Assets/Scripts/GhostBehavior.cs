@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -162,6 +163,13 @@ public class GhostBehavior : MonoBehaviour
         go_floatTrigger.SetActive(false);
         flt_curKeyCooldown = 0;
         a_candles = FindObjectsByType<Candle>(FindObjectsSortMode.None);
+        as_aSource.volume = Settings.flt_musicVolume;
+        GameManager.menuManager.MusicVolumeChanged += UpdateVolume;
+    }
+
+    void UpdateVolume(object source, EventArgs e)
+    {
+        as_aSource.volume = Settings.flt_musicVolume;
     }
 
     // Update is called once per frame
@@ -199,7 +207,7 @@ public class GhostBehavior : MonoBehaviour
             {
                 if (Vector3.Distance(eep_picture.transform.position, transform.position) <= flt_distToImg)
                 {
-                    float flt_imgAttempt = Random.Range(0f, 100f);
+                    float flt_imgAttempt = UnityEngine.Random.Range(0f, 100f);
                     if (flt_imgAttempt <= flt_chanceToChangeImg)
                     {
                         eep_picture.Switch();
@@ -210,7 +218,7 @@ public class GhostBehavior : MonoBehaviour
             {
                 if (candle.bl_lit && Vector3.Distance(candle.transform.position, transform.position) <= flt_distToImg)
                 {
-                    float flt_candleAttempt = Random.Range(0f, 100f);
+                    float flt_candleAttempt = UnityEngine.Random.Range(0f, 100f);
                     if (flt_candleAttempt <= flt_chanceToChangeImg)
                     {
                         candle.UnLight();
@@ -253,7 +261,7 @@ public class GhostBehavior : MonoBehaviour
                 if (flt_curSFXTime <= 0)
                 {
                     GameManager.soundManager.PlayClip(a_ac_sounds, as_aSource, true);
-                    flt_curSFXTime = flt_sfxTime + Random.Range(-flt_sfxTimeDeviationRange, flt_sfxTimeDeviationRange);
+                    flt_curSFXTime = flt_sfxTime + UnityEngine.Random.Range(-flt_sfxTimeDeviationRange, flt_sfxTimeDeviationRange);
                 }
 
                 break;
@@ -289,7 +297,7 @@ public class GhostBehavior : MonoBehaviour
                 if (flt_curSFXTime <= 0)
                 {
                     GameManager.soundManager.PlayClip(a_ac_sounds, as_aSource, true);
-                    flt_curSFXTime = flt_sfxTime + Random.Range(-flt_sfxTimeDeviationRange, flt_sfxTimeDeviationRange);
+                    flt_curSFXTime = flt_sfxTime + UnityEngine.Random.Range(-flt_sfxTimeDeviationRange, flt_sfxTimeDeviationRange);
                 }
 
                 break;
@@ -327,7 +335,7 @@ public class GhostBehavior : MonoBehaviour
                 if (flt_curSFXTime <= 0)
                 {
                     GameManager.soundManager.PlayClip(a_ac_sounds, as_aSource, true);
-                    flt_curSFXTime = flt_sfxTime + Random.Range(-flt_sfxTimeDeviationRange, flt_sfxTimeDeviationRange);
+                    flt_curSFXTime = flt_sfxTime + UnityEngine.Random.Range(-flt_sfxTimeDeviationRange, flt_sfxTimeDeviationRange);
                 }
 
                 break;
@@ -492,7 +500,7 @@ public class GhostBehavior : MonoBehaviour
 
                 if (pickup.gameObject.GetComponent<Dish>() != null)
                 {
-                    int int_rand = Random.Range(0, 10);
+                    int int_rand = UnityEngine.Random.Range(0, 10);
                     if (int_rand <= flt_throwDishChance)
                     {
                         pickup.transform.LookAt(transform.position);
@@ -503,7 +511,7 @@ public class GhostBehavior : MonoBehaviour
 
                 if (pickup.gameObject.GetComponent<Book>() != null)
                 {
-                    int int_rand = Random.Range(0, 10);
+                    int int_rand = UnityEngine.Random.Range(0, 10);
                     if (int_rand <= flt_throwBookChance)
                     {
                         pickup.transform.LookAt(transform.position);
@@ -514,7 +522,7 @@ public class GhostBehavior : MonoBehaviour
 
                 if(pickup.gameObject.GetComponent<Toy>() != null)
                 {
-                    int int_rand = Random.Range(0, 10);
+                    int int_rand = UnityEngine.Random.Range(0, 10);
                     if (int_rand <= flt_throwToyChance)
                     {
                         pickup.transform.LookAt(transform.position);
@@ -533,7 +541,7 @@ public class GhostBehavior : MonoBehaviour
         Fireplace fireplace = tr_currentPatrolPoint.GetComponent<Fireplace>();
         if (fireplace != null)
         {
-            int int_rand = Random.Range(0, 10);
+            int int_rand = UnityEngine.Random.Range(0, 10);
             if (int_rand <= flt_douseFireplaceChance && int_curAggressionLevel >= 2)
             {
                 fireplace.UnLight();
@@ -545,7 +553,7 @@ public class GhostBehavior : MonoBehaviour
         Mirror mr_mirror = tr_currentPatrolPoint.GetComponent<Mirror>();
         if (mr_mirror != null)
         {
-            int int_rand = Random.Range(0, 10);
+            int int_rand = UnityEngine.Random.Range(0, 10);
             if (int_rand <= flt_dirtyMirrorChance && int_curAggressionLevel >= 2)
             {
                 mr_mirror.GhostDirty(int_curAggressionLevel);
@@ -557,7 +565,7 @@ public class GhostBehavior : MonoBehaviour
         FloorMess fm_mess = tr_currentPatrolPoint.GetComponent<FloorMess>();
         if (fm_mess != null)
         {
-            int int_rand = Random.Range(0, 10);
+            int int_rand = UnityEngine.Random.Range(0, 10);
             if (int_rand <= flt_dirtyFloorChance && int_curAggressionLevel >= 2)
             {
                 fm_mess.GhostDirty(int_curAggressionLevel);
@@ -643,7 +651,7 @@ public class GhostBehavior : MonoBehaviour
                     l_tr_points = l_pl_currentPoints[index].listAggro4;
                     break;
             }
-            int int_pointIndex = Random.Range(0, l_tr_points.Count);
+            int int_pointIndex = UnityEngine.Random.Range(0, l_tr_points.Count);
             tr_currentPatrolPoint = l_tr_points[int_pointIndex];
             nav_agent.SetDestination(tr_currentPatrolPoint.position);
             int_curIndex = index;
@@ -870,7 +878,7 @@ public class GhostBehavior : MonoBehaviour
         bl_hiding = true;
         do
         {
-            int rand = Random.Range(0, a_hs_hidingPlaces.Length);
+            int rand = UnityEngine.Random.Range(0, a_hs_hidingPlaces.Length);
             hs_curHidingSpot = a_hs_hidingPlaces[rand];
             nav_agent.SetDestination(hs_curHidingSpot.transform.position);
             tr_currentPatrolPoint = hs_curHidingSpot.transform;
