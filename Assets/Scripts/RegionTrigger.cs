@@ -182,7 +182,7 @@ public class RegionTrigger : MonoBehaviour
                     return;
                 }
             }
-        }else if (currentChore.choreTask == TaskManager.Task.CleanMirror || currentChore.choreTask == TaskManager.Task.CleanCobwebs)    //Handles Duster
+        }else if (currentChore.choreTask == TaskManager.Task.CleanCobwebs)    //Handles Duster
         {
             foreach (Pickupable pu in l_pu_pickupables)
             {
