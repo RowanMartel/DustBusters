@@ -146,9 +146,12 @@ public class TaskManager : MonoBehaviour
         if (a_bl_updateOnComplete[int_index])
         {
             a_int_timesCompletedTasks[int_index]++;
-            if (a_int_timesCompletedTasks[int_index] < a_int_timesToCompleteThisRun[int_index] && currentChore.choreTask == task)
+            if (a_int_timesCompletedTasks[int_index] < a_int_timesToCompleteThisRun[int_index])
             {
-                GameManager.menuManager.UpdateCurrentChore(currentChore.tmp_choreText.text + " (" + a_int_timesCompletedTasks[int_index] + "/" + a_int_timesToCompleteThisRun[int_index] + ")");
+                if (currentChore.choreTask == task)
+                {
+                    GameManager.menuManager.UpdateCurrentChore(currentChore.tmp_choreText.text + " (" + a_int_timesCompletedTasks[int_index] + "/" + a_int_timesToCompleteThisRun[int_index] + ")");
+                }
                 return;
             }
         }

@@ -164,12 +164,19 @@ public class GhostBehavior : MonoBehaviour
         flt_curKeyCooldown = 0;
         a_candles = FindObjectsByType<Candle>(FindObjectsSortMode.None);
         as_aSource.volume = Settings.flt_musicVolume;
-        GameManager.menuManager.MusicVolumeChanged += UpdateVolume;
+        GameManager.menuManager.SoundVolumeChanged += UpdateVolume;
     }
 
+    //Updates the volume to match the settings
     void UpdateVolume(object source, EventArgs e)
     {
         as_aSource.volume = Settings.flt_musicVolume;
+    }
+
+    //Unsubscribe from event when dead
+    private void OnDestroy()
+    {
+        GameManager.menuManager.SoundVolumeChanged -= UpdateVolume;
     }
 
     // Update is called once per frame
