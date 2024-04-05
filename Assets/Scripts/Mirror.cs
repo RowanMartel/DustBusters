@@ -19,12 +19,15 @@ public class Mirror : Interactable
 
     public Texture2D dusterPointer;
 
+    public static bool bl_jumpscared;
+
     [HideInInspector] public bool bl_paused = false;
 
     public bool bl_rotated;
 
     private void Awake()
     {
+        bl_jumpscared = false;
         GameManager.menuManager.GamePaused += OnPause;
         GameManager.menuManager.GameUnpaused += OnUnpause;
     }
@@ -71,8 +74,9 @@ public class Mirror : Interactable
             //Spooky Encounter
             int int_aggro = GameManager.ghost.int_curAggressionLevel - 1;
             float flt_rand = UnityEngine.Random.Range(0, 100);
-            if(flt_rand <= l_flt_chanceForSpookByAggro[int_aggro])
+            if(flt_rand <= l_flt_chanceForSpookByAggro[int_aggro] && bl_jumpscared == false)
             {
+                bl_jumpscared = true;
                 GameObject go_spooky = Instantiate(l_go_spookyThingByAggro[int_aggro]);
                 go_spooky.transform.position = tr_spawnSpooky.position;
                 if (bl_rotated)
