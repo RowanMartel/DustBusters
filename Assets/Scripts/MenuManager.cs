@@ -20,6 +20,7 @@ public class MenuManager : MonoBehaviour
     public GameObject go_endScreen;
     public GameObject go_debugScreen;
     public GameObject go_controlsScreen;
+    public GameObject go_fpsScreen;
 
     //Credits Sequence Objects
     protected GameObject go_creditsScreensHolder;
@@ -682,6 +683,16 @@ public class MenuManager : MonoBehaviour
     public void ExitDebug()
     {
         go_debugScreen.SetActive(false);
+    }
+
+    public void EnterFPS()
+    {
+        go_fpsScreen.SetActive(true);
+    }
+
+    public void ExitFPS()
+    {
+        go_fpsScreen.SetActive(false);
     }
 
     //Volume management
