@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 5266896983018784016}
   - component: {fileID: 8848244457200839775}
   - component: {fileID: 6526208334113480800}
-  - component: {fileID: 3267139787801072434}
   - component: {fileID: 7229522323171464437}
   - component: {fileID: 4941861681312492199}
   - component: {fileID: 6686799242792369387}
   - component: {fileID: 4768451178749743141}
   - component: {fileID: 1196490801052776151}
+  - component: {fileID: 546177847084750390}
   m_Layer: 0
   m_Name: Key
   m_TagString: Interactable
@@ -89,28 +89,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &3267139787801072434
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5630973006548995612}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -5546940888850326318, guid: 95d655ede32e75d4da677526f18dd550, type: 3}
 --- !u!54 &7229522323171464437
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -280,6 +258,7 @@ MonoBehaviour:
   bl_pickupable: 1
   bl_mop: 0
   bl_duster: 0
+  bl_soapBar: 0
   bl_lighter: 0
   bl_frontDoorKey: 1
   bl_remote: 0
@@ -287,6 +266,28 @@ MonoBehaviour:
   bl_hideable: 1
   bl_toThrow: 0
   bl_canDamagePlayer: 0
-  v3_heldRotationMod: {x: 58.3, y: 0.4, z: 97.09}
-  v3_heldPositionMod: {x: 0, y: 0, z: 0}
+  bl_sharp: 0
+  v3_heldRotationMod: {x: 141.3, y: 90, z: -90}
+  v3_heldPositionMod: {x: 0, y: 0, z: -0.2}
   bl_held: 0
+--- !u!65 &546177847084750390
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5630973006548995612}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.008558738, y: 0.024564898, z: 0.0040299892}
+  m_Center: {x: 7.7779183e-10, y: -0.008471784, z: 0.00007251899}
