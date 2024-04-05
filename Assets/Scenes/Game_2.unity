@@ -77952,8 +77952,8 @@ MonoBehaviour:
   bl_toThrow: 1
   bl_canDamagePlayer: 1
   bl_sharp: 1
-  v3_heldRotationMod: {x: 0, y: 0, z: 0}
-  v3_heldPositionMod: {x: 0, y: -0.5, z: 0}
+  v3_heldRotationMod: {x: 0, y: 90, z: 40}
+  v3_heldPositionMod: {x: 0.3, y: -0.7, z: 0}
   bl_held: 0
 --- !u!54 &2651889406568945555
 Rigidbody:
@@ -78144,7 +78144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bl_canFloat: 0
-  bl_isFloating: 1
+  bl_isFloating: 0
 --- !u!1 &2673018309798229865
 GameObject:
   m_ObjectHideFlags: 0
