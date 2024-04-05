@@ -36334,6 +36334,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: cactus
       objectReference: {fileID: 0}
+    - target: {fileID: 7432168565569309230, guid: 8310c4a6ec5e274419c170ffa60109e1, type: 3}
+      propertyPath: bl_sharp
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432168565569309230, guid: 8310c4a6ec5e274419c170ffa60109e1, type: 3}
+      propertyPath: bl_toThrow
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432168565569309230, guid: 8310c4a6ec5e274419c170ffa60109e1, type: 3}
+      propertyPath: bl_canDamagePlayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7954017665082577160, guid: 8310c4a6ec5e274419c170ffa60109e1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.3499966
@@ -68529,15 +68541,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 9b25c84bee3caec42a3cd59b11ca7f89, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.14263
+      value: 0.22835061
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9b25c84bee3caec42a3cd59b11ca7f89, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.14263
+      value: 0.22835061
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9b25c84bee3caec42a3cd59b11ca7f89, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.14263
+      value: 0.22835061
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9b25c84bee3caec42a3cd59b11ca7f89, type: 3}
       propertyPath: m_LocalPosition.x
@@ -82587,8 +82599,8 @@ MonoBehaviour:
   bl_doorKnob: 0
   bl_hideable: 0
   bl_toThrow: 0
-  bl_canDamagePlayer: 0
-  bl_sharp: 0
+  bl_canDamagePlayer: 1
+  bl_sharp: 1
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
