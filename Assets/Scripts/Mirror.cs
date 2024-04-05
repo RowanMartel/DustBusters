@@ -15,7 +15,7 @@ public class Mirror : Interactable
 
     public List<float> l_flt_chanceForSpookByAggro;
     public List<GameObject> l_go_spookyThingByAggro;
-    public Transform tr_spawnSpooky;
+    public List<Transform> l_tr_spawnSpookyByAggro;
 
     public Texture2D dusterPointer;
 
@@ -78,7 +78,7 @@ public class Mirror : Interactable
             {
                 bl_jumpscared = true;
                 GameObject go_spooky = Instantiate(l_go_spookyThingByAggro[int_aggro]);
-                go_spooky.transform.position = tr_spawnSpooky.position;
+                go_spooky.transform.position = l_tr_spawnSpookyByAggro[int_aggro].position;
                 if (bl_rotated)
                 {
                     //go_spooky.transform.rotation.SetEulerAngles(new Vector3(go_spooky.transform.rotation.x, go_spooky.transform.rotation.y - 90, go_spooky.transform.rotation.z));
