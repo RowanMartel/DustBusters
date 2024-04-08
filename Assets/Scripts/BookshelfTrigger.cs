@@ -35,7 +35,7 @@ public class BookshelfTrigger : MonoBehaviour
         Book book = other.GetComponent<Book>();
         if (book == null) return;
         if (book.bl_onShelf) return;
-        book.bl_onShelf = true;
+        libraryManager.PutAwayBook(book);
     }
 
 }
