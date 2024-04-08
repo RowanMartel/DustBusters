@@ -476,8 +476,12 @@ public class GhostBehavior : MonoBehaviour
     void PerformTask()
     {
 
-        if (int_curAggressionLevel < 3 && (go_curRegion == pc_player.go_curRegion || go_curRegion.GetComponent<RegionTrigger>().a_rt_fullViewRegions.Contains(pc_player.go_curRegion.GetComponent<RegionTrigger>()))) return;
-        
+        if (int_curAggressionLevel < 3 &&
+            (go_curRegion == pc_player.go_curRegion ||
+            go_curRegion.GetComponent<RegionTrigger>().a_rt_fullViewRegions.Contains(pc_player.go_curRegion.GetComponent<RegionTrigger>()))) return;
+
+        if (GameManager.taskManager.li_taskList.Count == 1 && GameManager.taskManager.li_taskList.Contains(l_tsk_currentTasks[int_curIndex]) && int_curAggressionLevel < 4) return;
+
         //Attempt to interact with patrol point
         Pickupable pickup = tr_currentPatrolPoint.GetComponent<Pickupable>();
         if (pickup != null)
