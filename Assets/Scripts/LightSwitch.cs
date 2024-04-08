@@ -21,6 +21,9 @@ public class LightSwitch : Interactable
     public Material mat_on;
     [Tooltip("LightFixtures Renderers")]
     public Renderer[] a_ren_fixturesGlass;
+    public LightSwitch[] l_ls_secondarySwitches;
+    public LightSwitch ls_primarySwitch;
+    public bool bl_isSecondarySwitch;
 
     // toggle all lights on or off at start
     private void Start()
@@ -83,15 +86,38 @@ public class LightSwitch : Interactable
     // rotates the lightswitch model 180 degrees and then toggles the lights
     void Toggle()
     {
+
+        AudioSource as_source = GetComponent<AudioSource>();
+        GameManager.soundManager.PlayClip(as_source.clip, as_source, true);
+
+
+        //If this isn't the primary lightswitch, then tell the primary lightswitch to Toggle
+        if (bl_isSecondarySwitch)
+        {
+            ls_primarySwitch.Toggle();
+            return;
+        }
+
+        //If this is the primary lightswitch
+        //Tell all connected lightswitches to rotate and swap it's state
+        foreach(LightSwitch ls in l_ls_secondarySwitches)
+        {
+            if (ls.bl_rotated)
+                ls.transform.Rotate(transform.right, 180, Space.Self);
+            else
+                ls.transform.Rotate(transform.forward, 180, Space.Self);
+
+            ls.bl_on = !ls.bl_on;
+        }
+
+        //Rotate self
         if (bl_rotated)
             transform.Rotate(transform.right, 180, Space.Self);
         else
             transform.Rotate(transform.forward, 180, Space.Self);
 
+        //Swap state
         bl_on = !bl_on;
-
-        AudioSource as_source = GetComponent<AudioSource>();
-        GameManager.soundManager.PlayClip(as_source.clip, as_source, true);
 
         if (bl_on && bl_fuseActive)
         {

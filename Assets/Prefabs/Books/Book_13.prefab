@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 2019061475536087457}
   - component: {fileID: 365642717023677115}
   - component: {fileID: 1403455418668313771}
+  - component: {fileID: 2409496835266396664}
   m_Layer: 0
   m_Name: Book_13
   m_TagString: Interactable
@@ -136,7 +137,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
@@ -156,6 +157,7 @@ MonoBehaviour:
   bl_pickupable: 0
   bl_mop: 0
   bl_duster: 0
+  bl_soapBar: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
@@ -163,6 +165,7 @@ MonoBehaviour:
   bl_hideable: 0
   bl_toThrow: 1
   bl_canDamagePlayer: 0
+  bl_sharp: 0
   v3_heldRotationMod: {x: -97, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
@@ -320,3 +323,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bl_onShelf: 0
+--- !u!65 &2409496835266396664
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6274501568933537580}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 40.924866, y: 48.669537, z: 14.740559}
+  m_Center: {x: -0.0007343292, y: 23.813211, z: 2.6079738}

@@ -30,4 +30,12 @@ public class BookshelfTrigger : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        Book book = other.GetComponent<Book>();
+        if (book == null) return;
+        if (book.bl_onShelf) return;
+        book.bl_onShelf = true;
+    }
+
 }

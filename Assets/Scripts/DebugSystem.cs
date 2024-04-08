@@ -8,8 +8,10 @@ public class DebugSystem : MonoBehaviour
 {
 
     public bool bl_inDebug;
+    public bool bl_inFPS;
     public TextMeshProUGUI tmp_leftText;
     public TextMeshProUGUI tmp_rightText;
+    public TextMeshProUGUI tmp_fpsText;
 
     GhostBehavior gb_ghost;
     PlayerController pc_player;
@@ -49,6 +51,25 @@ public class DebugSystem : MonoBehaviour
             {
                 EnterDebug();
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.F4))
+        {
+            if (bl_inFPS)
+            {
+                bl_inFPS = false;
+                GameManager.menuManager.ExitFPS();
+            }
+            else
+            {
+                bl_inFPS = true;
+                GameManager.menuManager.EnterFPS();
+            }
+        }
+
+        if (bl_inFPS)
+        {
+            tmp_fpsText.text = (1 / Time.unscaledDeltaTime).ToString("0000");
         }
 
         if (bl_inDebug)
@@ -218,5 +239,6 @@ public class DebugSystem : MonoBehaviour
         bl_inDebug = false;
         GameManager.menuManager.ExitDebug();
     }
+
 
 }
