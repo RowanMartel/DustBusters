@@ -21,7 +21,7 @@ public class CollisionSfx : MonoBehaviour
         if (as_source == null || ac_collide == null || collision.gameObject.CompareTag("Player")) return;
 
         // collision must not be with a child
-        if (collision.transform.parent.gameObject == gameObject) return;
+        if (collision.transform.parent != null && collision.transform.parent.gameObject == gameObject) return;
 
         GameManager.soundManager.PlayClip(ac_collide, as_source, true);
     }
