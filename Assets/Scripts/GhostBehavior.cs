@@ -367,10 +367,16 @@ public class GhostBehavior : MonoBehaviour
             }
         }
 
-        //Switch Hiding Spot if player enters that region
+        if(go_curHeldItem != null && !bl_hiding)
+        {
+            Debug.Log("Ghost held something without hiding it!!");
+            bl_hiding = true;
+        }
+
+        //Switch Hiding Spot if needed
         if (bl_hiding)
         {
-            if (hs_curHidingSpot.a_go_region.Contains<GameObject>(pc_player.go_curRegion) || nav_agent.pathStatus == NavMeshPathStatus.PathPartial)
+            if (hs_curHidingSpot.a_go_region.Contains(pc_player.go_curRegion) || nav_agent.pathStatus == NavMeshPathStatus.PathPartial || tr_currentPatrolPoint.gameObject.GetComponent<HidingSpot>() == null)
             {
                 ChooseHidingPlace();
             }
