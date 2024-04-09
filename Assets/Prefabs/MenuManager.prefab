@@ -6214,7 +6214,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2704807646000791781}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: EnterGameSequence
+        m_MethodName: EnterGameSequenceBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15138,6 +15138,7 @@ MonoBehaviour:
   go_endScreen: {fileID: 1679767963453221598}
   go_debugScreen: {fileID: 3060102955518323861}
   go_controlsScreen: {fileID: 1976622195079596191}
+  go_fpsScreen: {fileID: 0}
   img_crosshair: {fileID: 1656632223118251713}
   bl_choreListUp: 0
   ac_sliderUpdate: {fileID: 8300000, guid: 5a8183ca5d8810e4888a57cc3db14bdf, type: 3}
@@ -19850,7 +19851,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2704807646000791781}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: QuitToTitleSequence
+        m_MethodName: QuitToTitleSequenceBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -22339,8 +22340,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bl_inDebug: 0
+  bl_inFPS: 0
   tmp_leftText: {fileID: 4756143924325547278}
   tmp_rightText: {fileID: 2648447408481965567}
+  tmp_fpsText: {fileID: 0}
 --- !u!1 &8319585783415419381
 GameObject:
   m_ObjectHideFlags: 0

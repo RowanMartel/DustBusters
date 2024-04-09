@@ -77,6 +77,7 @@ public class MenuManager : MonoBehaviour
     protected int int_endSequence = 0;
     protected int int_quitToMenuSequence = 0;
     protected int int_clearScreenSequence = 0;
+    private bool bl_transitioningScene = false;
 
     // Volume and Look Sensativity slider references
     protected Slider sli_volume;
@@ -417,11 +418,17 @@ public class MenuManager : MonoBehaviour
     }
 
     // This handles the transition from the TitleScreen scene to the Game scene and brings up the Orientation Note and Start buttons with LeanTween with animation in steps
+    public void EnterGameSequenceBtn()
+    {
+        if (bl_transitioningScene) return;
+        EnterGameSequence();
+    }
     public void EnterGameSequence()
     {
         switch (int_enterSequence)
         {
             case 0:
+                bl_transitioningScene = true;
                 if (StartTransitionToGame != null)
                     StartTransitionToGame(this, new EventArgs());
                 ready = false;
@@ -446,6 +453,7 @@ public class MenuManager : MonoBehaviour
                 int_enterSequence = 0;
                 Cursor.lockState = CursorLockMode.Confined;
                 ready = true;
+                bl_transitioningScene = false;
                 break;
         }
     }
@@ -478,11 +486,17 @@ public class MenuManager : MonoBehaviour
     }
 
     //Go To Title Screen with fade transitions
+    public void QuitToTitleSequenceBtn()
+    {
+        if (bl_transitioningScene) return;
+        QuitToTitleSequence();
+    }
     public void QuitToTitleSequence()
     {
         switch (int_quitToMenuSequence)
         {
             case 0:
+                bl_transitioningScene = true;
                 int_quitToMenuSequence++;
                 LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 1, 1f).setOnComplete(QuitToTitleSequence).setIgnoreTimeScale(true);
                 break;
@@ -501,6 +515,7 @@ public class MenuManager : MonoBehaviour
                 Cursor.lockState = CursorLockMode.Confined;
                 int_quitToMenuSequence = 0;
                 if (bl_paused) bl_paused = false;
+                bl_transitioningScene = false;
                 break;
         }
     }
