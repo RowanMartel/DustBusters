@@ -75,12 +75,14 @@ public class TVStatic : Interactable
 
     void Pause(object source, EventArgs e)
     {
+        if(bl_on && bl_powered)
         as_staticAudio.Pause();
     }
 
     void UnPause(object source, EventArgs e)
     {
-        as_staticAudio.UnPause();
+        if (bl_on && bl_powered)
+            as_staticAudio.UnPause();
     }
 
     //Unsubscribe when destroyed
