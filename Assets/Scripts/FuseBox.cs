@@ -12,6 +12,7 @@ public class FuseBox : Interactable
     LightSwitch[] a_ls_switches;
     TVStatic[] a_tv_static;
     Radio[] a_rad_radio;
+    public GameObject[] a_go_otherLightObjs;
 
     int int_timesToFlicker;
     public float flt_timeTweenFlicker;
@@ -102,6 +103,10 @@ public class FuseBox : Interactable
         {
             rad.PowerOn();
         }
+        foreach (GameObject go in a_go_otherLightObjs)
+        {
+            go.SetActive(true);
+        }
         bl_ready = true;
     }
 
@@ -122,6 +127,10 @@ public class FuseBox : Interactable
         foreach (Radio rad in a_rad_radio)
         {
             rad.PowerOff();
+        }
+        foreach (GameObject go in a_go_otherLightObjs)
+        {
+            go.SetActive(false);
         }
         bl_ready = true;
     }
