@@ -664,6 +664,8 @@ public class MenuManager : MonoBehaviour
 
         if (!bl_paused)
         {
+            if (bl_choreListUp) ToggleChoreSheet();
+
             bl_allowPause = false;
             bl_paused = true;
 
