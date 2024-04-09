@@ -77,7 +77,7 @@ public class MusicManager : MonoBehaviour
     void FadeIn()
     {
         as_source.volume = 0;
-        LeanTween.value(0f, Settings.flt_musicVolume, 3f).setOnUpdate(FadingUpdate).setIgnoreTimeScale(true);
+        LeanTween.value(0f, Settings.flt_musicVolume, 5f).setOnUpdate(FadingUpdate).setIgnoreTimeScale(true);
         as_source.Play();
     }
 
