@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,6 +25,9 @@ public class LightSwitch : Interactable
     public LightSwitch[] l_ls_secondarySwitches;
     public LightSwitch ls_primarySwitch;
     public bool bl_isSecondarySwitch;
+
+    // event for when any lightswitch is toggled, used by tutorial
+    public static event EventHandler<EventArgs> AnySwitchToggled;
 
     // toggle all lights on or off at start
     private void Start()
@@ -86,10 +90,10 @@ public class LightSwitch : Interactable
     // rotates the lightswitch model 180 degrees and then toggles the lights
     void Toggle()
     {
+        AnySwitchToggled?.Invoke(this, new EventArgs());
 
         AudioSource as_source = GetComponent<AudioSource>();
         GameManager.soundManager.PlayClip(as_source.clip, as_source, true);
-
 
         //If this isn't the primary lightswitch, then tell the primary lightswitch to Toggle
         if (bl_isSecondarySwitch)
