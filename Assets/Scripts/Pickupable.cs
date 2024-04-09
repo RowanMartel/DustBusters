@@ -45,8 +45,8 @@ public class Pickupable : Interactable
 
     protected Rigidbody rb;
     public Rigidbody RB { get { return rb; } }
-    protected Collider[] l_col;
-    public Collider[] l_Col { get { return l_col; } }
+    protected Collider[] a_col;
+    public Collider[] a_Col { get { return a_col; } }
     [HideInInspector] public bool bl_held;
     protected MeshRenderer ren_meshRenderer;
     // holds the default material for objects that change materials
@@ -60,7 +60,7 @@ public class Pickupable : Interactable
         bl_pickupable = true;
         ren_meshRenderer = GetComponent<MeshRenderer>();
         rb = GetComponent<Rigidbody>();
-        l_col = GetComponents<Collider>();
+        a_col = GetComponents<Collider>();
         bl_held = false;
         mat_base = ren_meshRenderer.material;
     }
@@ -68,8 +68,15 @@ public class Pickupable : Interactable
     //Trigger Enter/Exit scripts are used to make sure objects don't stuck in the environment when picked up
     private void OnTriggerEnter(Collider other)
     {
-        if (!l_Col[0].isTrigger)return;
-        if(other.isTrigger || l_Col.Contains(other) || l_col_overlapping.Contains(other)) return;
+        if (a_col.Length > 0)
+        {
+            if (!a_Col[0].isTrigger || a_Col.Contains(other)) return;
+        }
+        if(l_col_overlapping.Count > 0)
+        {
+            if (l_col_overlapping.Contains(other)) return;
+        }
+        if(other.isTrigger) return;
         l_col_overlapping.Add(other);
     }
 
@@ -78,7 +85,7 @@ public class Pickupable : Interactable
         l_col_overlapping.Remove(other);
         if(l_col_overlapping.Count <= 0)
         {
-            foreach(Collider co in l_col)
+            foreach(Collider co in a_col)
             {
                 co.isTrigger = false;
             }
@@ -87,7 +94,7 @@ public class Pickupable : Interactable
 
     public void Drop()
     {
-        foreach (Collider co in l_col)
+        foreach (Collider co in a_col)
         {
             co.isTrigger = false;
         }
@@ -102,7 +109,7 @@ public class Pickupable : Interactable
         }
 
         l_col_overlapping.Clear();
-        foreach (Collider co in l_col)
+        foreach (Collider co in a_col)
         {
             co.isTrigger = true;
         }

@@ -363,6 +363,7 @@ public class MenuManager : MonoBehaviour
         {
             case 0:
                 Time.timeScale = 0;
+                Bl_allowPause = false;
                 go_deathScreen.SetActive(true);
                 if (DeathScreenEntered != null)
                     DeathScreenEntered(this, new EventArgs());
