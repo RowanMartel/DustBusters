@@ -61,6 +61,8 @@ public class PlayerController : MonoBehaviour
     public Transform tr_footOrigin;
     public LayerMask lm_stairsRay;
 
+    public Transform tr_doorPusherTrans;
+
     private void Awake()
     {
         GameManager.playerController = this;
@@ -267,6 +269,8 @@ public class PlayerController : MonoBehaviour
             }
             else // if the player isn't on the stairs, push them with a forwards force
                 rb_player.AddForce(transform.forward * Settings.int_playerSpeed);
+
+            tr_doorPusherTrans.localEulerAngles = new Vector3(0, 0, 0);
         }
 
         if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D)) // if pressing forwards and right,
@@ -301,6 +305,7 @@ public class PlayerController : MonoBehaviour
                 rb_player.AddForce(0.75f * Settings.int_playerSpeed * transform.forward);
                 rb_player.AddForce(0.75f * Settings.int_playerSpeed * transform.right);
             }
+            tr_doorPusherTrans.localEulerAngles = new Vector3(0, 45, 0);
         }
 
         if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S)) // if pressing right but not forwards or backwards,
@@ -323,6 +328,7 @@ public class PlayerController : MonoBehaviour
             }
             else
                 rb_player.AddForce(transform.right * Settings.int_playerSpeed);
+            tr_doorPusherTrans.localEulerAngles = new Vector3(0, 90, 0);
         }
 
         if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.S)) // if pressing backwards and right,
@@ -355,6 +361,7 @@ public class PlayerController : MonoBehaviour
                 rb_player.AddForce(0.75f * Settings.int_playerSpeed * -transform.forward);
                 rb_player.AddForce(0.75f * Settings.int_playerSpeed * transform.right);
             }
+            tr_doorPusherTrans.localEulerAngles = new Vector3(0, 135, 0);
         }
 
         if (Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A)) // if pressing backwards but not left or right,
@@ -377,6 +384,7 @@ public class PlayerController : MonoBehaviour
             }
             else
                 rb_player.AddForce(-transform.forward * Settings.int_playerSpeed);
+            tr_doorPusherTrans.localEulerAngles = new Vector3(0, 180, 0);
         }
 
         if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A)) // if pressing forwards and left,
@@ -411,6 +419,7 @@ public class PlayerController : MonoBehaviour
                 rb_player.AddForce(0.75f * Settings.int_playerSpeed * -transform.forward);
                 rb_player.AddForce(0.75f * Settings.int_playerSpeed * -transform.right);
             }
+            tr_doorPusherTrans.localEulerAngles = new Vector3(0, 225, 0);
         }
 
         if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S)) // if pressing left but not forwards or backwards,
@@ -433,6 +442,7 @@ public class PlayerController : MonoBehaviour
             }
             else
                 rb_player.AddForce(-transform.right * Settings.int_playerSpeed);
+            tr_doorPusherTrans.localEulerAngles = new Vector3(0, 270, 0);
         }
 
         if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A)) // if pressing forwards and left,
@@ -467,6 +477,7 @@ public class PlayerController : MonoBehaviour
                 rb_player.AddForce(0.75f * Settings.int_playerSpeed * transform.forward);
                 rb_player.AddForce(0.75f * Settings.int_playerSpeed * -transform.right);
             }
+            tr_doorPusherTrans.localEulerAngles = new Vector3(0, 315, 0);
         }
     }
 
