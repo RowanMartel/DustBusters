@@ -8668,7 +8668,7 @@ PrefabInstance:
       objectReference: {fileID: 2016799939}
     - target: {fileID: 3252823415719424403, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
       propertyPath: int_framesToRend
-      value: 16
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3252823415719424403, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
       propertyPath: a_go_regions.Array.size
@@ -37425,6 +37425,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: CarpetLarge
       objectReference: {fileID: 0}
+    - target: {fileID: 4924368947013267689, guid: 9d4a6f55993d9a24fb27f05c8bf68e2a, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4924368947013267689, guid: 9d4a6f55993d9a24fb27f05c8bf68e2a, type: 3}
+      propertyPath: m_TagString
+      value: Floor
+      objectReference: {fileID: 0}
     - target: {fileID: 6752010214738222405, guid: 9d4a6f55993d9a24fb27f05c8bf68e2a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.3880272
@@ -37468,13 +37476,73 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4924368947013267689, guid: 9d4a6f55993d9a24fb27f05c8bf68e2a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1081323760}
+    - targetCorrespondingSourceObject: {fileID: 4924368947013267689, guid: 9d4a6f55993d9a24fb27f05c8bf68e2a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1081323759}
   m_SourcePrefab: {fileID: 100100000, guid: 9d4a6f55993d9a24fb27f05c8bf68e2a, type: 3}
 --- !u!4 &1081323757 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6752010214738222405, guid: 9d4a6f55993d9a24fb27f05c8bf68e2a, type: 3}
   m_PrefabInstance: {fileID: 1081323756}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1081323758 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4924368947013267689, guid: 9d4a6f55993d9a24fb27f05c8bf68e2a, type: 3}
+  m_PrefabInstance: {fileID: 1081323756}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &1081323759
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1081323758}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
+--- !u!64 &1081323760
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1081323758}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1018448459831504016, guid: 6ccb986e364aa9b49b02ea9e6e591e23, type: 3}
 --- !u!114 &1084471854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64631,7 +64699,7 @@ PrefabInstance:
       objectReference: {fileID: 2016799939}
     - target: {fileID: 3252823415719424403, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
       propertyPath: int_framesToRend
-      value: 16
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3252823415719424403, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
       propertyPath: a_go_regions.Array.size
@@ -74119,6 +74187,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 1.2500076
       objectReference: {fileID: 0}
+    - target: {fileID: 6741529847202523144, guid: f57bdf226e8a5704cb1391af84551a4f, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 6745060558489937981, guid: f57bdf226e8a5704cb1391af84551a4f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.75069
@@ -74510,6 +74582,10 @@ PrefabInstance:
     - target: {fileID: 7178655990465388701, guid: f57bdf226e8a5704cb1391af84551a4f, type: 3}
       propertyPath: m_LocalPosition.z
       value: 18.750008
+      objectReference: {fileID: 0}
+    - target: {fileID: 7196346739183104218, guid: f57bdf226e8a5704cb1391af84551a4f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.248
       objectReference: {fileID: 0}
     - target: {fileID: 7209098726769124438, guid: f57bdf226e8a5704cb1391af84551a4f, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -75103,6 +75179,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: -2282541470071705062, guid: 0691ab5013057b04b98354756bfdf4c6, type: 3}
+    - target: {fileID: 8093082934638950034, guid: f57bdf226e8a5704cb1391af84551a4f, type: 3}
+      propertyPath: m_Layer
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 8093793795999195094, guid: f57bdf226e8a5704cb1391af84551a4f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -89914,6 +89994,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2016799939}
     - target: {fileID: 3252823415719424403, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
+      propertyPath: int_framesToRend
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3252823415719424403, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
       propertyPath: a_go_regions.Array.data[0]
       value: 
       objectReference: {fileID: 1333493158}
@@ -90276,7 +90360,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 262144
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -90305,7 +90389,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 262144
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -90334,7 +90418,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 262144
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -90363,7 +90447,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 262144
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -90392,7 +90476,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 262144
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -90421,7 +90505,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 262144
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -90450,7 +90534,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 262144
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -90479,7 +90563,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 262144
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -90508,7 +90592,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 262144
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -90537,7 +90621,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 262144
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -90566,7 +90650,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 262144
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -90595,7 +90679,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 262144
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -90624,7 +90708,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 262144
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -90653,7 +90737,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 262144
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -90682,7 +90766,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 262144
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -90711,7 +90795,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 262144
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -90740,7 +90824,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 262144
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -91090,6 +91174,10 @@ PrefabInstance:
     - target: {fileID: 2065111465756357855, guid: 825cce5ddc5b238428d89013da8f147d, type: 3}
       propertyPath: m_Name
       value: Rug
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065111465756357855, guid: 825cce5ddc5b238428d89013da8f147d, type: 3}
+      propertyPath: m_TagString
+      value: Floor
       objectReference: {fileID: 0}
     - target: {fileID: 6752052636914212494, guid: 825cce5ddc5b238428d89013da8f147d, type: 3}
       propertyPath: m_LocalPosition.x
