@@ -73,7 +73,6 @@ public class JackInTheBoxManager : Toy
     //Prepare jack in the box to spring
     public void ActivateJack()
     {
-        if (base.bl_inBox) return;
         bl_turnHandle = true;
         bl_readyToPop = true;
         GameManager.soundManager.PlayClip(ac_jackMusic01, as_jackAudio, false);

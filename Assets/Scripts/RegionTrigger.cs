@@ -209,7 +209,7 @@ public class RegionTrigger : MonoBehaviour
                 }
             }
         }
-        else if (currentChore.choreTask == TaskManager.Task.FindKey || currentChore.choreTask == TaskManager.Task.EscapeHouse)    //Handles Key
+        else if (currentChore.choreTask == TaskManager.Task.FindKey)    //Handles Key
         {
             foreach (Pickupable pu in l_pu_pickupables)
             {
