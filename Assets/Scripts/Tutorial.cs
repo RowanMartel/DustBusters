@@ -59,7 +59,7 @@ public class Tutorial : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Return) ||
             Input.GetKeyUp(KeyCode.KeypadEnter))
         {
-            int_tutorialSegment = 10;
+            int_tutorialSegment = 11;
             GameManager.taskManager.SetCurrentChore(1);
         }
 
