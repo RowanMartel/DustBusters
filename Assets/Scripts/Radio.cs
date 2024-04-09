@@ -31,6 +31,7 @@ public class Radio : Interactable
         GameManager.menuManager.GamePaused += FadeOut;
         GameManager.menuManager.GameUnpaused += FadeIn;
         GameManager.menuManager.MusicVolumeChanged += UpdateVolume;
+        GameManager.menuManager.DeathScreenEntered += FadeOut;
 
         as_source.volume = Settings.flt_musicVolume;
         radioMixer = as_source.outputAudioMixerGroup.audioMixer;
@@ -43,11 +44,13 @@ public class Radio : Interactable
         GameManager.menuManager.GamePaused -= FadeOut;
         GameManager.menuManager.GameUnpaused -= FadeIn;
         GameManager.menuManager.MusicVolumeChanged -= UpdateVolume;
+        GameManager.menuManager.DeathScreenEntered -= FadeOut;
     }
+
     // Update is called once per frame
     void Update()
     {
-        if(!as_source.isPlaying && /*!GameManager.menuManager.Bl_paused &&*/ !bl_fadingOrPaused)
+        if(!as_source.isPlaying && !bl_fadingOrPaused)
         {
             int_curBroadcast++;
             if(int_curBroadcast >=  a_ac_broadcasts.Length)
@@ -82,7 +85,6 @@ public class Radio : Interactable
         radioMixer.GetFloat("RadioVolume", out value);
         if (bl_playing && bl_powered)
         {
-            //as_source.volume = Settings.flt_musicVolume;
             if (int_curTweenID != 0)
             {
                 LeanTween.cancel(int_curTweenID);
@@ -104,7 +106,6 @@ public class Radio : Interactable
 
     void FadingUpdate(float flt)
     {
-        // as_source.volume = flt;
         radioMixer.SetFloat("RadioVolume", flt);
     }
 
