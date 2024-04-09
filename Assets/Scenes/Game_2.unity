@@ -35531,9 +35531,17 @@ PrefabInstance:
       propertyPath: m_IncludeLayers.m_Bits
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 2867341851300888891, guid: 72d741a00d541e04baad2c76ddb8866d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3760491735845872384, guid: 72d741a00d541e04baad2c76ddb8866d, type: 3}
       propertyPath: m_Name
       value: jack-in-the-box
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354439268198273109, guid: 72d741a00d541e04baad2c76ddb8866d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4354439268198273109, guid: 72d741a00d541e04baad2c76ddb8866d, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
@@ -35562,6 +35570,14 @@ PrefabInstance:
     - target: {fileID: 4929649113636729153, guid: 72d741a00d541e04baad2c76ddb8866d, type: 3}
       propertyPath: m_IncludeLayers.m_Bits
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6304699711347171219, guid: 72d741a00d541e04baad2c76ddb8866d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6309544962816523551, guid: 72d741a00d541e04baad2c76ddb8866d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7185281813804325816, guid: 72d741a00d541e04baad2c76ddb8866d, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
@@ -35618,6 +35634,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3760491735845872384, guid: 72d741a00d541e04baad2c76ddb8866d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1070801648}
+    - targetCorrespondingSourceObject: {fileID: 3760491735845872384, guid: 72d741a00d541e04baad2c76ddb8866d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1070801649}
   m_SourcePrefab: {fileID: 100100000, guid: 72d741a00d541e04baad2c76ddb8866d, type: 3}
 --- !u!4 &1070801645 stripped
 Transform:
@@ -35653,6 +35672,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ac_collide: {fileID: 8300000, guid: 151382696de75d246a4c25b2bb05b4e5, type: 3}
+--- !u!65 &1070801649
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070801647}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 269.4636, y: 263.6012, z: 263.60123}
+  m_Center: {x: -2.931183, y: -0.0000076293945, z: -0.0009765625}
 --- !u!1001 &1073191008
 PrefabInstance:
   m_ObjectHideFlags: 0
