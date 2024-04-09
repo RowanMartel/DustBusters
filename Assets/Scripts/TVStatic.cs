@@ -23,6 +23,7 @@ public class TVStatic : Interactable
         GameManager.menuManager.SoundVolumeChanged += UpdateVolume;
         GameManager.menuManager.GamePaused += Pause;
         GameManager.menuManager.GameUnpaused += UnPause;
+        GameManager.menuManager.DeathScreenEntered += Die;
         bl_powered = true;
     }
 
@@ -85,12 +86,18 @@ public class TVStatic : Interactable
             as_staticAudio.UnPause();
     }
 
+    void Die(object source, EventArgs e)
+    {
+        as_staticAudio.Stop();
+    }
+
     //Unsubscribe when destroyed
     private void OnDestroy()
     {
         GameManager.menuManager.SoundVolumeChanged -= UpdateVolume;
         GameManager.menuManager.GamePaused -= Pause;
         GameManager.menuManager.GameUnpaused -= UnPause;
+        GameManager.menuManager.DeathScreenEntered -= Die;
     }
 
 }
