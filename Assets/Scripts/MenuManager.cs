@@ -852,7 +852,7 @@ public class MenuManager : MonoBehaviour
             {
                 if (go_lookingAtObject.GetComponent<Mirror>().bl_clean == false)
                 {
-                    if (go_heldObject == null || go_heldObject.GetComponent<Pickupable>().bl_duster == false) st_tooltipMessage = "Soap required to clean";
+                    if (go_heldObject == null || go_heldObject.GetComponent<Pickupable>().bl_soapBar == false) st_tooltipMessage = "Soap required to clean";
                     else st_tooltipMessage = "Press \"E\" to clean";
                 }
             }
