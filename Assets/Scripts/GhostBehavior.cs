@@ -371,6 +371,10 @@ public class GhostBehavior : MonoBehaviour
         {
             Debug.Log("Ghost held something without hiding it!!");
             bl_hiding = true;
+        }else if(go_curHeldItem == null && bl_hiding)
+        {
+            Debug.Log("Ghost held nothing but is still hiding!");
+            bl_hiding = false;
         }
 
         //Switch Hiding Spot if needed
