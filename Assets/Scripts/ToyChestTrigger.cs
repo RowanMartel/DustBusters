@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ToyChestTrigger : MonoBehaviour
@@ -23,6 +24,11 @@ public class ToyChestTrigger : MonoBehaviour
             toy.bl_inBox = true;
             CheckIfComplete();
         }
+        SpookyLookAtPlayer lookAt = other.GetComponent<SpookyLookAtPlayer>();
+        if(lookAt != null)
+        {
+            lookAt.bl_canMove = false;
+        }
     }
 
     //Makes the toy not in the box and reassign the task as needed
@@ -31,6 +37,8 @@ public class ToyChestTrigger : MonoBehaviour
         Toy toy = other.GetComponent<Toy>();
         if(toy != null)
         {
+            CheckIfComplete();
+
             toy.bl_inBox = false;
 
             if (tm_taskManager.li_taskList.Contains(TaskManager.Task.PutAwayToys) ||
@@ -38,6 +46,13 @@ public class ToyChestTrigger : MonoBehaviour
                 tm_taskManager.li_taskList.Contains(TaskManager.Task.EscapeHouse)) return;
 
             tm_taskManager.AddTask(TaskManager.Task.PutAwayToys);
+
+            CheckIfComplete();
+        }
+        SpookyLookAtPlayer lookAt = other.GetComponent<SpookyLookAtPlayer>();
+        if (lookAt != null)
+        {
+            lookAt.bl_canMove = true;
         }
     }
 
@@ -45,10 +60,22 @@ public class ToyChestTrigger : MonoBehaviour
     public void CheckIfComplete()
     {
         if (!tm_taskManager.li_taskList.Contains(TaskManager.Task.PutAwayToys)) return;
+
+        int int_toysInBox = 0;
         foreach (Toy toy in li_toys)
         {
-            if (!toy.bl_inBox) return;
+            if (toy.bl_inBox)
+            {
+                int_toysInBox++;
+            }
         }
+
+        if(int_toysInBox < li_toys.Count)
+        {
+            tm_taskManager.UpdateTask(int_toysInBox, TaskManager.Task.PutAwayToys);
+            return;
+        }
+
         tm_taskManager.CompleteTask(TaskManager.Task.PutAwayToys);
     }
 

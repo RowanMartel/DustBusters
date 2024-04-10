@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Pickupable : Interactable
@@ -6,8 +7,11 @@ public class Pickupable : Interactable
     [Tooltip("Check if object can be used to mop the floor")]
     public bool bl_mop;
 
-    [Tooltip("Check if object can be used to sweep cobwebs and clean the mirror")]
+    [Tooltip("Check if object can be used to sweep cobwebs")]
     public bool bl_duster;
+
+    [Tooltip("check if object can be used to clean the mirror")]
+    public bool bl_soapBar;
 
     [Tooltip("Check if object can be used to light the fireplace")]
     public bool bl_lighter;
@@ -30,6 +34,9 @@ public class Pickupable : Interactable
     [Tooltip("Check if this object can damage the player")]
     public bool bl_canDamagePlayer;
 
+    [Tooltip("check if the damage SFX from this object should be blunt or sharp")]
+    public bool bl_sharp;
+
     [Tooltip("Rotation applied when held")]
     public Vector3 v3_heldRotationMod;
 
@@ -38,8 +45,8 @@ public class Pickupable : Interactable
 
     protected Rigidbody rb;
     public Rigidbody RB { get { return rb; } }
-    protected Collider col;
-    public Collider Col { get { return col; } }
+    protected Collider[] a_col;
+    public Collider[] a_Col { get { return a_col; } }
     [HideInInspector] public bool bl_held;
     protected MeshRenderer ren_meshRenderer;
     // holds the default material for objects that change materials
@@ -53,7 +60,7 @@ public class Pickupable : Interactable
         bl_pickupable = true;
         ren_meshRenderer = GetComponent<MeshRenderer>();
         rb = GetComponent<Rigidbody>();
-        col = GetComponent<Collider>();
+        a_col = GetComponents<Collider>();
         bl_held = false;
         mat_base = ren_meshRenderer.material;
     }
@@ -61,7 +68,15 @@ public class Pickupable : Interactable
     //Trigger Enter/Exit scripts are used to make sure objects don't stuck in the environment when picked up
     private void OnTriggerEnter(Collider other)
     {
-        if (!Col.isTrigger || other.isTrigger || other == Col || l_col_overlapping.Contains(other)) return;
+        if (a_col.Length > 0)
+        {
+            if (!a_Col[0].isTrigger || a_Col.Contains(other)) return;
+        }
+        if(l_col_overlapping.Count > 0)
+        {
+            if (l_col_overlapping.Contains(other)) return;
+        }
+        if(other.isTrigger) return;
         l_col_overlapping.Add(other);
     }
 
@@ -70,13 +85,19 @@ public class Pickupable : Interactable
         l_col_overlapping.Remove(other);
         if(l_col_overlapping.Count <= 0)
         {
-            col.isTrigger = false;
+            foreach(Collider co in a_col)
+            {
+                co.isTrigger = false;
+            }
         }
     }
 
     public void Drop()
     {
-        Col.isTrigger = false;
+        foreach (Collider co in a_col)
+        {
+            co.isTrigger = false;
+        }
     }
 
     // turns collider off when picked up, until item is in hand. This should prevent things from getting stuck in hand.
@@ -88,6 +109,9 @@ public class Pickupable : Interactable
         }
 
         l_col_overlapping.Clear();
-        Col.isTrigger = true;
+        foreach (Collider co in a_col)
+        {
+            co.isTrigger = true;
+        }
     }
 }

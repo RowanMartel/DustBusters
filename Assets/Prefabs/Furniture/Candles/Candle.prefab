@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 3628813115918963503}
   - component: {fileID: 1250226758749906602}
   m_Layer: 0
-  m_Name: candle
+  m_Name: Candle
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -127,6 +127,7 @@ MonoBehaviour:
   bl_pickupable: 0
   bl_mop: 0
   bl_duster: 0
+  bl_soapBar: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
@@ -134,11 +135,14 @@ MonoBehaviour:
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
-  v3_heldRotationMod: {x: -20, y: 0, z: 0}
+  bl_sharp: 0
+  v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: -0.2, z: 0}
   bl_held: 0
   go_fireFX: {fileID: 5219250312805161273}
   ps_fire: {fileID: 7789725414934829081}
+  ac_candleLightSound: {fileID: 8300000, guid: d88cf55a0c147f149b875e4b500b9089, type: 3}
+  as_candleSoundSource: {fileID: 3628813115918963503}
   bl_lit: 0
 --- !u!114 &1094781217254557497
 MonoBehaviour:

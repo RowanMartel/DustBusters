@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     protected GameObject go_heldPosition;
     protected GameObject go_heldObject;
     public float flt_heldObjDistFromWall;
+    protected GameObject go_heldPosContainer;
 
     public GameObject Go_heldObject {  get { return go_heldObject; } }
 
@@ -61,6 +62,8 @@ public class PlayerController : MonoBehaviour
     public Transform tr_footOrigin;
     public LayerMask lm_stairsRay;
 
+    public Transform tr_doorPusherTrans;
+
     private void Awake()
     {
         GameManager.playerController = this;
@@ -79,6 +82,7 @@ public class PlayerController : MonoBehaviour
 
         rb_player = GetComponent<Rigidbody>();
         go_cameraContainer = GameObject.Find("Player/CameraContainer");
+        go_heldPosContainer = GameObject.Find("Player/HeldPosContainer");
 
         as_source = GetComponent<AudioSource>();
 
@@ -98,7 +102,7 @@ public class PlayerController : MonoBehaviour
         menuManager.UpdateTooltip(go_lookingAtObject, go_heldObject);
 
         // Player's ability to interact
-        if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0)) Interact();
+        if ((Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0)) && En_state == State.active) Interact();
 
         if(!GameManager.menuManager.Bl_paused) if (Input.GetKeyDown(KeyCode.C)) GameManager.menuManager.ToggleChoreSheet();
 
@@ -119,7 +123,9 @@ public class PlayerController : MonoBehaviour
 
             // Handles Crouch
             if (Input.GetKeyDown(KeyCode.LeftShift)) LeanTween.moveLocalY(go_cameraContainer, 0f, 0.25f);
-            if (Input.GetKeyUp(KeyCode.LeftShift)) LeanTween.moveLocalY(go_cameraContainer, 0.5f, 0.25f);
+            if (Input.GetKeyUp(KeyCode.LeftShift)) LeanTween.moveLocalY(go_cameraContainer, 1f, 0.25f);
+            if (Input.GetKeyDown(KeyCode.LeftShift)) LeanTween.moveLocalY(go_heldPosContainer, -0.5f, 0.25f);
+            if (Input.GetKeyUp(KeyCode.LeftShift)) LeanTween.moveLocalY(go_heldPosContainer, 0.5f, 0.25f);
         }
 
         // Toggles pause
@@ -153,13 +159,13 @@ public class PlayerController : MonoBehaviour
 
             //Casts a ray to ensure that the object isn't being shoved into a wall
             RaycastHit hit;
-            Debug.DrawRay(go_cameraContainer.transform.position, v3_modifiedHeldPosition - go_cameraContainer.transform.position, Color.red);
-            if(Physics.Raycast(go_cameraContainer.transform.position, v3_modifiedHeldPosition - go_cameraContainer.transform.position, out hit, Vector3.Distance(go_cameraContainer.transform.position, v3_modifiedHeldPosition)))
+            Debug.DrawRay(go_heldPosContainer.transform.position, v3_modifiedHeldPosition - go_heldPosContainer.transform.position, Color.red);
+            if(Physics.Raycast(go_heldPosContainer.transform.position, v3_modifiedHeldPosition - go_heldPosContainer.transform.position, out hit, Vector3.Distance(go_heldPosContainer.transform.position, v3_modifiedHeldPosition)))
             {
                 if (hit.collider != null)
                 {
                     // Debug.Log(hit.collider.gameObject.name);
-                    v3_modifiedHeldPosition = hit.point - ((hit.point - go_cameraContainer.transform.position) * flt_heldObjDistFromWall);
+                    v3_modifiedHeldPosition = hit.point - ((hit.point - go_heldPosContainer.transform.position) * flt_heldObjDistFromWall);
                 }
             }
 
@@ -230,7 +236,8 @@ public class PlayerController : MonoBehaviour
 
         float flipCamV = camV * -1;
 
-        go_cameraContainer.transform.localRotation = Quaternion.Euler(flipCamV, 0, 0);
+        go_cameraContainer.transform.localRotation = Quaternion.Euler(flipCamV * Settings.flt_lookSensitivity, 0, 0);
+        go_heldPosContainer.transform.localRotation = Quaternion.Euler(flipCamV * Settings.flt_lookSensitivity, 0, 0);
 
         flt_playerRotate = Input.GetAxis("Mouse X");
 
@@ -241,6 +248,7 @@ public class PlayerController : MonoBehaviour
     public void LookAt(Vector3 position)
     {
         LeanTween.rotateLocal(go_cameraContainer, position, 0.25f);
+        LeanTween.rotateLocal(go_heldPosContainer, position, 0.25f);
     }
 
     // This handles the player's basic forward/backward/left/right movement, mapped to the WASD keys.
@@ -267,6 +275,8 @@ public class PlayerController : MonoBehaviour
             }
             else // if the player isn't on the stairs, push them with a forwards force
                 rb_player.AddForce(transform.forward * Settings.int_playerSpeed);
+
+            tr_doorPusherTrans.localEulerAngles = new Vector3(0, 0, 0);
         }
 
         if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D)) // if pressing forwards and right,
@@ -301,6 +311,7 @@ public class PlayerController : MonoBehaviour
                 rb_player.AddForce(0.75f * Settings.int_playerSpeed * transform.forward);
                 rb_player.AddForce(0.75f * Settings.int_playerSpeed * transform.right);
             }
+            tr_doorPusherTrans.localEulerAngles = new Vector3(0, 45, 0);
         }
 
         if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S)) // if pressing right but not forwards or backwards,
@@ -323,6 +334,7 @@ public class PlayerController : MonoBehaviour
             }
             else
                 rb_player.AddForce(transform.right * Settings.int_playerSpeed);
+            tr_doorPusherTrans.localEulerAngles = new Vector3(0, 90, 0);
         }
 
         if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.S)) // if pressing backwards and right,
@@ -355,6 +367,7 @@ public class PlayerController : MonoBehaviour
                 rb_player.AddForce(0.75f * Settings.int_playerSpeed * -transform.forward);
                 rb_player.AddForce(0.75f * Settings.int_playerSpeed * transform.right);
             }
+            tr_doorPusherTrans.localEulerAngles = new Vector3(0, 135, 0);
         }
 
         if (Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A)) // if pressing backwards but not left or right,
@@ -377,6 +390,7 @@ public class PlayerController : MonoBehaviour
             }
             else
                 rb_player.AddForce(-transform.forward * Settings.int_playerSpeed);
+            tr_doorPusherTrans.localEulerAngles = new Vector3(0, 180, 0);
         }
 
         if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A)) // if pressing forwards and left,
@@ -411,6 +425,7 @@ public class PlayerController : MonoBehaviour
                 rb_player.AddForce(0.75f * Settings.int_playerSpeed * -transform.forward);
                 rb_player.AddForce(0.75f * Settings.int_playerSpeed * -transform.right);
             }
+            tr_doorPusherTrans.localEulerAngles = new Vector3(0, 225, 0);
         }
 
         if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S)) // if pressing left but not forwards or backwards,
@@ -433,6 +448,7 @@ public class PlayerController : MonoBehaviour
             }
             else
                 rb_player.AddForce(-transform.right * Settings.int_playerSpeed);
+            tr_doorPusherTrans.localEulerAngles = new Vector3(0, 270, 0);
         }
 
         if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A)) // if pressing forwards and left,
@@ -467,6 +483,7 @@ public class PlayerController : MonoBehaviour
                 rb_player.AddForce(0.75f * Settings.int_playerSpeed * transform.forward);
                 rb_player.AddForce(0.75f * Settings.int_playerSpeed * -transform.right);
             }
+            tr_doorPusherTrans.localEulerAngles = new Vector3(0, 315, 0);
         }
     }
 
@@ -575,11 +592,22 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Floor"))
         {
-            if (!bl_isGrounded && collision.relativeVelocity.y > 0) GameManager.soundManager.PlayClip(ac_land, as_source, true);
             bl_isGrounded = true;
         }
         if (collision.gameObject.layer == 15)
             bl_onStairs = true;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Floor"))
+        {
+            if (!bl_isGrounded && collision.relativeVelocity.y > 2)
+            {
+                GameManager.soundManager.PlayClip(ac_land, as_source, true);
+                Debug.Log("y vel: " + collision.relativeVelocity.y);
+            }
+        }
     }
 
     //Player loses ground when they leave the ground

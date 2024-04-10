@@ -9,12 +9,10 @@ public class CupboardTrigger : MonoBehaviour
     // counts the dish as being in the cupboard, then checks if complete
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Cupboard Trigger");
         Dish dish = other.GetComponent<Dish>();
         if (!dish || dish.bl_dirtyDish || dish.bl_broken) return;
 
         dish.inCupboard = true;
-        Debug.Log("Accepted Dish");
 
         CheckIfComplete();
     }
@@ -26,6 +24,8 @@ public class CupboardTrigger : MonoBehaviour
         if (!plate || plate.bl_dirtyDish || plate.bl_broken) return;
 
         plate.inCupboard = false;
+
+        CheckIfComplete();
 
         if (GameManager.taskManager.li_taskList.Contains(TaskManager.Task.PutAwayDishes) ||
             GameManager.taskManager.li_taskList.Contains(TaskManager.Task.FindKey) ||
@@ -40,8 +40,22 @@ public class CupboardTrigger : MonoBehaviour
     public void CheckIfComplete()
     {
         if (!GameManager.taskManager.li_taskList.Contains(TaskManager.Task.PutAwayDishes)) return;
+
+        int int_dishesInCupboard = 0;
         foreach (Dish dish in li_dishes)
-            if (!dish.inCupboard) return;
+        {
+            if (dish.inCupboard && !dish.bl_dirtyDish)
+            {
+                int_dishesInCupboard++;
+            }
+        }
+
+        if (int_dishesInCupboard < li_dishes.Count)
+        {
+            Debug.Log(int_dishesInCupboard);
+            GameManager.taskManager.UpdateTask(int_dishesInCupboard, li_dishes.Count, TaskManager.Task.PutAwayDishes);
+            return;
+        }
 
         GameManager.taskManager.CompleteTask(TaskManager.Task.PutAwayDishes);
     }

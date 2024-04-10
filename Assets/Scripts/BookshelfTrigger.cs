@@ -26,7 +26,16 @@ public class BookshelfTrigger : MonoBehaviour
         if(book != null)
         {
             libraryManager.RemoveBook(book);
+            libraryManager.CheckIfComplete();
         }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        Book book = other.GetComponent<Book>();
+        if (book == null) return;
+        if (book.bl_onShelf) return;
+        libraryManager.PutAwayBook(book);
     }
 
 }

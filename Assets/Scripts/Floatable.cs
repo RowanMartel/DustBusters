@@ -56,7 +56,6 @@ public class Floatable : MonoBehaviour
     //Reset gravity
     public void StopFloat()
     {
-        Debug.Log(rb.gameObject.name);
         rb.useGravity = true;
         bl_isFloating = false;
     }

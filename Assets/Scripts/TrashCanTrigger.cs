@@ -31,7 +31,7 @@ public class TrashCanTrigger : MonoBehaviour
         if (!plate || !plate.bl_broken) return;
 
         plate.inTrash = false;
-
+        CheckIfComplete();
         if (GameManager.taskManager.li_taskList.Contains(TaskManager.Task.ThrowOutBrokenDishes) ||
             GameManager.taskManager.li_taskList.Contains(TaskManager.Task.FindKey) ||
             GameManager.taskManager.li_taskList.Contains(TaskManager.Task.EscapeHouse))
@@ -42,17 +42,26 @@ public class TrashCanTrigger : MonoBehaviour
     // reassigns or completes the task
     public void CheckIfComplete()
     {
+        int int_inTrash = 0;
         foreach (Dish dish in li_dishes)
         {
             if (!dish.inTrash)
             {
-                if (GameManager.taskManager.li_taskList.Contains(TaskManager.Task.ThrowOutBrokenDishes) ||
-                    GameManager.taskManager.li_taskList.Contains(TaskManager.Task.FindKey) ||
+                if (GameManager.taskManager.li_taskList.Contains(TaskManager.Task.FindKey) ||
                     GameManager.taskManager.li_taskList.Contains(TaskManager.Task.EscapeHouse))
                     return;
                 GameManager.taskManager.AddTask(TaskManager.Task.ThrowOutBrokenDishes);
-                return;
             }
+            else
+            {
+                int_inTrash++;
+            }
+        }
+
+        if (int_inTrash < li_dishes.Count)
+        {
+            GameManager.taskManager.UpdateTask(int_inTrash, li_dishes.Count, TaskManager.Task.ThrowOutBrokenDishes);
+            return;
         }
         GameManager.taskManager.CompleteTask(TaskManager.Task.ThrowOutBrokenDishes);
     }

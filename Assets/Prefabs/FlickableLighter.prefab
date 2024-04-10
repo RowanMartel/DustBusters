@@ -468,12 +468,17 @@ MonoBehaviour:
   bl_pickupable: 0
   bl_mop: 0
   bl_duster: 0
+  bl_soapBar: 0
   bl_lighter: 1
   bl_frontDoorKey: 0
+  bl_remote: 0
+  bl_doorKnob: 0
   bl_hideable: 0
-  bl_breakable: 0
+  bl_toThrow: 0
   bl_canDamagePlayer: 0
-  v3_heldRotationMod: {x: 0, y: -28.85, z: -54.31}
+  bl_sharp: 0
+  v3_heldRotationMod: {x: 0, y: 180, z: 0}
+  v3_heldPositionMod: {x: 0.3, y: -0.3, z: -0.1}
   bl_held: 0
 --- !u!114 &4146481510118986029
 MonoBehaviour:

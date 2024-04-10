@@ -97,7 +97,7 @@ MeshCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -257,6 +257,7 @@ MonoBehaviour:
   bl_pickupable: 1
   bl_mop: 0
   bl_duster: 0
+  bl_soapBar: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
@@ -264,9 +265,11 @@ MonoBehaviour:
   bl_hideable: 0
   bl_toThrow: 0
   bl_canDamagePlayer: 0
+  bl_sharp: 0
   v3_heldRotationMod: {x: 0, y: -90, z: 20}
   v3_heldPositionMod: {x: 0, y: -0.15, z: -0.3}
   bl_held: 0
+  bl_inBox: 0
   go_lid: {fileID: 6309544962816523551}
   go_clown: {fileID: 6304699711347171219}
   go_handle: {fileID: 2867341851300888891}
@@ -489,7 +492,7 @@ MeshCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -597,7 +600,7 @@ MeshCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -703,7 +706,7 @@ MeshCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0

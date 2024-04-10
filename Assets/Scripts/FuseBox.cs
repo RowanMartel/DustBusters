@@ -11,6 +11,8 @@ public class FuseBox : Interactable
 
     LightSwitch[] a_ls_switches;
     TVStatic[] a_tv_static;
+    Radio[] a_rad_radio;
+    public GameObject[] a_go_otherLightObjs;
 
     int int_timesToFlicker;
     public float flt_timeTweenFlicker;
@@ -30,6 +32,7 @@ public class FuseBox : Interactable
     {
         a_ls_switches = FindObjectsByType<LightSwitch>(FindObjectsSortMode.None);
         a_tv_static = FindObjectsByType<TVStatic>(FindObjectsSortMode.None);
+        a_rad_radio = FindObjectsByType<Radio>(FindObjectsSortMode.None);
         SetSwitchesOn();
         flt_curFlickerTime = 0;
         int_timesToFlicker = 0;
@@ -85,8 +88,6 @@ public class FuseBox : Interactable
     //Lets all switches know they should have power
     void SetSwitchesOn()
     {
-        Debug.Log("Switches ON");
-
         GameManager.soundManager.PlayClip(ac_activate, as_source, true);
         as_loop.Play();
         foreach (LightSwitch ls_switch in a_ls_switches)
@@ -98,14 +99,20 @@ public class FuseBox : Interactable
             tv.bl_powered = true;
             tv.Refresh();
         }
+        foreach (Radio rad in a_rad_radio)
+        {
+            rad.PowerOn();
+        }
+        foreach (GameObject go in a_go_otherLightObjs)
+        {
+            go.SetActive(true);
+        }
         bl_ready = true;
     }
 
     //Lets all switches know they shouldn't have power
     void SetSwitchesOff()
     {
-        Debug.Log("Switches OFF");
-
         GameManager.soundManager.PlayClip(ac_deactivate, as_source, true);
         as_loop.Stop();
         foreach (LightSwitch ls_switch in a_ls_switches)
@@ -116,6 +123,14 @@ public class FuseBox : Interactable
         {
             tv.bl_powered = false;
             tv.Refresh();
+        }
+        foreach (Radio rad in a_rad_radio)
+        {
+            rad.PowerOff();
+        }
+        foreach (GameObject go in a_go_otherLightObjs)
+        {
+            go.SetActive(false);
         }
         bl_ready = true;
     }

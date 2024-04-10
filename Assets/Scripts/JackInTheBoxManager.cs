@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,25 @@ public class JackInTheBoxManager : Toy
     protected bool bl_turnHandle = false;
     protected bool bl_readyToPop = false;
     protected bool bl_sprung = false;
+
+    protected override void Start()
+    {
+        base.Start();
+        GameManager.menuManager.DeathScreenEntered += EndAudio;
+        GameManager.menuManager.CreditsEntered += EndAudio;
+    }
+
+    void EndAudio(object source, EventArgs e)
+    {
+        as_jackAudio.Stop();
+    }
+
+    private void OnDestroy()
+    {
+
+        GameManager.menuManager.DeathScreenEntered -= EndAudio;
+        GameManager.menuManager.CreditsEntered -= EndAudio;
+    }
 
     private void Update()
     {
@@ -53,6 +73,7 @@ public class JackInTheBoxManager : Toy
     //Prepare jack in the box to spring
     public void ActivateJack()
     {
+        if (base.bl_inBox) return;
         bl_turnHandle = true;
         bl_readyToPop = true;
         GameManager.soundManager.PlayClip(ac_jackMusic01, as_jackAudio, false);

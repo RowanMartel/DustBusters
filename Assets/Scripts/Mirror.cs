@@ -15,14 +15,24 @@ public class Mirror : Interactable
 
     public List<float> l_flt_chanceForSpookByAggro;
     public List<GameObject> l_go_spookyThingByAggro;
-    public Transform tr_spawnSpooky;
+    public List<Transform> l_tr_spawnSpookyByAggro;
 
     public Texture2D dusterPointer;
 
+    public static bool bl_jumpscared;
+
     [HideInInspector] public bool bl_paused = false;
+
+    public bool bl_rotated;
+
+    // jump scare audio variables
+    [SerializeField] AudioSource as_source;
+    [SerializeField] AudioClip ac_cardboardJumpscare;
+    [SerializeField] AudioClip ac_scaryJumpscare;
 
     private void Awake()
     {
+        bl_jumpscared = false;
         GameManager.menuManager.GamePaused += OnPause;
         GameManager.menuManager.GameUnpaused += OnUnpause;
     }
@@ -31,7 +41,7 @@ public class Mirror : Interactable
     public override void Interact()
     {
         if (GameManager.playerController.Go_heldObject == null ||
-            !GameManager.playerController.Go_heldObject.GetComponent<Pickupable>().bl_duster)
+            !GameManager.playerController.Go_heldObject.GetComponent<Pickupable>().bl_soapBar)
             return;
 
         if (bl_clean) return;
@@ -69,12 +79,22 @@ public class Mirror : Interactable
             //Spooky Encounter
             int int_aggro = GameManager.ghost.int_curAggressionLevel - 1;
             float flt_rand = UnityEngine.Random.Range(0, 100);
-            if(flt_rand <= l_flt_chanceForSpookByAggro[int_aggro])
+            if(flt_rand <= l_flt_chanceForSpookByAggro[int_aggro] && bl_jumpscared == false)
             {
+                bl_jumpscared = true;
                 GameObject go_spooky = Instantiate(l_go_spookyThingByAggro[int_aggro]);
-                go_spooky.transform.position = tr_spawnSpooky.position;
+                go_spooky.transform.position = l_tr_spawnSpookyByAggro[int_aggro].position;
+                if (bl_rotated)
+                {
+                    //go_spooky.transform.rotation.SetEulerAngles(new Vector3(go_spooky.transform.rotation.x, go_spooky.transform.rotation.y - 90, go_spooky.transform.rotation.z));
+                    go_spooky.transform.Rotate(new Vector3(go_spooky.transform.rotation.x, go_spooky.transform.rotation.y - 90, go_spooky.transform.rotation.z));
+                }
+                // play the corresponding noise
+                if (int_aggro < 2)
+                    as_source.PlayOneShot(ac_cardboardJumpscare, Settings.flt_volume);
+                else
+                    as_source.PlayOneShot(ac_scaryJumpscare, Settings.flt_volume);
             }
-
         }
     }
 

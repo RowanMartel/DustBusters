@@ -169,6 +169,7 @@ Transform:
   - {fileID: 4889853186980733548}
   - {fileID: 3315374263009936661}
   - {fileID: 8712629412008422283}
+  - {fileID: 2949029215325413961}
   m_Father: {fileID: 6703882999351095727}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!33 &5713647038472761502
@@ -231,10 +232,10 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 32768
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -272,13 +273,18 @@ MonoBehaviour:
   - 60
   - 60
   l_go_spookyThingByAggro:
-  - {fileID: 2311904872776881757, guid: 2803575f24e03ca4f8948d6d1ecaa882, type: 3}
-  - {fileID: 2311904872776881757, guid: 2803575f24e03ca4f8948d6d1ecaa882, type: 3}
-  - {fileID: 2856823131281717404, guid: 32bb79c9a8eb1be48aac3246a2601ec0, type: 3}
-  - {fileID: 2856823131281717404, guid: 32bb79c9a8eb1be48aac3246a2601ec0, type: 3}
-  tr_spawnSpooky: {fileID: 8712629412008422283}
+  - {fileID: 1896009831047940418, guid: fa783b843444bb44a93c1f0decd9d32e, type: 3}
+  - {fileID: 1896009831047940418, guid: fa783b843444bb44a93c1f0decd9d32e, type: 3}
+  - {fileID: 3865221035029141004, guid: 7d231885c657a3d41a80991b314b2b95, type: 3}
+  - {fileID: 3865221035029141004, guid: 7d231885c657a3d41a80991b314b2b95, type: 3}
+  l_tr_spawnSpookyByAggro:
+  - {fileID: 8712629412008422283}
+  - {fileID: 8712629412008422283}
+  - {fileID: 2949029215325413961}
+  - {fileID: 2949029215325413961}
   dusterPointer: {fileID: 2800000, guid: 2328404053d548e4b99d92ca0959e741, type: 3}
   bl_paused: 0
+  bl_rotated: 0
 --- !u!114 &3347143441680812913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394,10 +400,10 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 32768
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -432,7 +438,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -538,6 +544,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10.000002, y: 6.68, z: 10.000003}
   m_Center: {x: 0, y: -0.000015258789, z: -0.000011444092}
+--- !u!1 &2524678214519592398
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2949029215325413961}
+  m_Layer: 0
+  m_Name: GhostTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2949029215325413961
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2524678214519592398}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.5, y: -0.5, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: -0.00504, y: 0.06936, z: 0.01237}
+  m_LocalScale: {x: 0.018181818, y: 0.01818182, z: 0.01818182}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9008285968794427782}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 90}
 --- !u!1 &3825235404493931145
 GameObject:
   m_ObjectHideFlags: 0
@@ -548,7 +585,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8712629412008422283}
   m_Layer: 0
-  m_Name: SpookyTransform
+  m_Name: CardboardTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -562,13 +599,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3825235404493931145}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.081749916, z: -0.000000009753487}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0.5, y: -0.5, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: -0.00504, y: 0.05853, z: 0.03705}
+  m_LocalScale: {x: 0.018181818, y: 0.01818182, z: 0.01818182}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9008285968794427782}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 90}
 --- !u!1 &4400968150967081861
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,7 +636,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4400968150967081861}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.13176876, z: -0, w: 0.9912805}
+  m_LocalRotation: {x: 0, y: 0.13177197, z: 0, w: 0.9912801}
   m_LocalPosition: {x: 0.00279, y: 0.00057, z: -0.00415}
   m_LocalScale: {x: -0.0003599521, y: 0.00035995207, z: 0.00035995207}
   m_ConstrainProportionsScale: 0
@@ -666,10 +703,10 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 32768
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -704,7 +741,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -840,7 +877,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5522781876312868505}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.11154356, z: -0, w: 0.9937596}
+  m_LocalRotation: {x: 0, y: -0.11154704, z: 0, w: 0.99375916}
   m_LocalPosition: {x: 0.00274, y: 0.00057, z: 0.00685}
   m_LocalScale: {x: -0.0003599521, y: 0.00035995207, z: 0.00035995207}
   m_ConstrainProportionsScale: 0
@@ -907,10 +944,10 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 32768
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -945,7 +982,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1174,7 +1211,7 @@ Camera:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6634210670911918623}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
@@ -1199,7 +1236,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 1000
+  far clip plane: 10
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -1235,6 +1272,12 @@ MonoBehaviour:
   intXMod: -1
   intYMod: 1
   intZMod: -1
+  a_go_regions:
+  - {fileID: 0}
+  - {fileID: 0}
+  int_framesToRend: 16
+  go_renderObj: {fileID: 6392317366478282081}
+  ren_renderer: {fileID: 8584845477321624713}
 --- !u!1 &7030302229302463726
 GameObject:
   m_ObjectHideFlags: 0
@@ -1332,10 +1375,10 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 32768
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -1370,7 +1413,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

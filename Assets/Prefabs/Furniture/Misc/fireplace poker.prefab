@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 5213308097486674725}
   - component: {fileID: 1667857984761030431}
   - component: {fileID: 2161799818136040685}
-  - component: {fileID: 2880508198588106510}
   - component: {fileID: 8171298026231410015}
   - component: {fileID: 340769797993158269}
   - component: {fileID: 7840469541161777112}
+  - component: {fileID: 1673835450714114267}
   m_Layer: 0
   m_Name: fireplace poker
   m_TagString: Interactable
@@ -87,28 +87,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &2880508198588106510
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2781749491877078055}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -3092185132941033997, guid: 23f03095efc36f743a89989e6546641b, type: 3}
 --- !u!54 &8171298026231410015
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -151,6 +129,7 @@ MonoBehaviour:
   bl_pickupable: 0
   bl_mop: 0
   bl_duster: 0
+  bl_soapBar: 0
   bl_lighter: 0
   bl_frontDoorKey: 0
   bl_remote: 0
@@ -158,6 +137,7 @@ MonoBehaviour:
   bl_hideable: 0
   bl_toThrow: 1
   bl_canDamagePlayer: 1
+  bl_sharp: 1
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
@@ -179,3 +159,24 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!65 &1673835450714114267
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2781749491877078055}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0109049585, y: 0.14175938, z: 0.0063520786}
+  m_Center: {x: -0.0023962373, y: 0.06092904, z: 0}
