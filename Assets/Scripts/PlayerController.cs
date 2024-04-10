@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     protected GameObject go_heldPosition;
     protected GameObject go_heldObject;
     public float flt_heldObjDistFromWall;
+    protected GameObject go_heldPosContainer;
 
     public GameObject Go_heldObject {  get { return go_heldObject; } }
 
@@ -81,6 +82,7 @@ public class PlayerController : MonoBehaviour
 
         rb_player = GetComponent<Rigidbody>();
         go_cameraContainer = GameObject.Find("Player/CameraContainer");
+        go_heldPosContainer = GameObject.Find("Player/HeldPosContainer");
 
         as_source = GetComponent<AudioSource>();
 
@@ -121,7 +123,9 @@ public class PlayerController : MonoBehaviour
 
             // Handles Crouch
             if (Input.GetKeyDown(KeyCode.LeftShift)) LeanTween.moveLocalY(go_cameraContainer, 0f, 0.25f);
-            if (Input.GetKeyUp(KeyCode.LeftShift)) LeanTween.moveLocalY(go_cameraContainer, 0.5f, 0.25f);
+            if (Input.GetKeyUp(KeyCode.LeftShift)) LeanTween.moveLocalY(go_cameraContainer, 1f, 0.25f);
+            if (Input.GetKeyDown(KeyCode.LeftShift)) LeanTween.moveLocalY(go_heldPosContainer, -0.5f, 0.25f);
+            if (Input.GetKeyUp(KeyCode.LeftShift)) LeanTween.moveLocalY(go_heldPosContainer, 0.5f, 0.25f);
         }
 
         // Toggles pause
@@ -155,13 +159,13 @@ public class PlayerController : MonoBehaviour
 
             //Casts a ray to ensure that the object isn't being shoved into a wall
             RaycastHit hit;
-            Debug.DrawRay(go_cameraContainer.transform.position, v3_modifiedHeldPosition - go_cameraContainer.transform.position, Color.red);
-            if(Physics.Raycast(go_cameraContainer.transform.position, v3_modifiedHeldPosition - go_cameraContainer.transform.position, out hit, Vector3.Distance(go_cameraContainer.transform.position, v3_modifiedHeldPosition)))
+            Debug.DrawRay(go_heldPosContainer.transform.position, v3_modifiedHeldPosition - go_heldPosContainer.transform.position, Color.red);
+            if(Physics.Raycast(go_heldPosContainer.transform.position, v3_modifiedHeldPosition - go_heldPosContainer.transform.position, out hit, Vector3.Distance(go_heldPosContainer.transform.position, v3_modifiedHeldPosition)))
             {
                 if (hit.collider != null)
                 {
                     // Debug.Log(hit.collider.gameObject.name);
-                    v3_modifiedHeldPosition = hit.point - ((hit.point - go_cameraContainer.transform.position) * flt_heldObjDistFromWall);
+                    v3_modifiedHeldPosition = hit.point - ((hit.point - go_heldPosContainer.transform.position) * flt_heldObjDistFromWall);
                 }
             }
 
@@ -233,6 +237,7 @@ public class PlayerController : MonoBehaviour
         float flipCamV = camV * -1;
 
         go_cameraContainer.transform.localRotation = Quaternion.Euler(flipCamV * Settings.flt_lookSensitivity, 0, 0);
+        go_heldPosContainer.transform.localRotation = Quaternion.Euler(flipCamV * Settings.flt_lookSensitivity, 0, 0);
 
         flt_playerRotate = Input.GetAxis("Mouse X");
 
@@ -243,6 +248,7 @@ public class PlayerController : MonoBehaviour
     public void LookAt(Vector3 position)
     {
         LeanTween.rotateLocal(go_cameraContainer, position, 0.25f);
+        LeanTween.rotateLocal(go_heldPosContainer, position, 0.25f);
     }
 
     // This handles the player's basic forward/backward/left/right movement, mapped to the WASD keys.

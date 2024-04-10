@@ -572,7 +572,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 50105022}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: FrontDoorRotator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5314,6 +5314,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.00047585246
       objectReference: {fileID: 0}
+    - target: {fileID: 2729694883782221539, guid: a137a69c917120245957388d6d524c2d, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 393215
+      objectReference: {fileID: 0}
     - target: {fileID: 3044325781436062001, guid: a137a69c917120245957388d6d524c2d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.28
@@ -10042,9 +10046,17 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: af0da17a712782c4c8273ab9a7b7b802, type: 2}
+    - target: {fileID: -1128988570036385566, guid: d5dcffcb00612e94d8c6ae619175826e, type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d5dcffcb00612e94d8c6ae619175826e, type: 3}
       propertyPath: m_Name
       value: FrontDoor
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d5dcffcb00612e94d8c6ae619175826e, type: 3}
+      propertyPath: m_Layer
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d5dcffcb00612e94d8c6ae619175826e, type: 3}
       propertyPath: m_TagString
@@ -40241,7 +40253,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1276701504}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Doors
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62320,7 +62332,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 3839
+    m_Bits: 134911
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -74942,7 +74954,7 @@ GameObject:
   - component: {fileID: 1719592044}
   - component: {fileID: 1719592042}
   - component: {fileID: 3469287838121233450}
-  m_Layer: 2
+  m_Layer: 17
   m_Name: ExtensionHall1stBath
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74979,7 +74991,7 @@ GameObject:
   - component: {fileID: 1773405491}
   - component: {fileID: 1773405489}
   - component: {fileID: 3469287837890145633}
-  m_Layer: 2
+  m_Layer: 17
   m_Name: KitchenLivingRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75000,7 +75012,7 @@ GameObject:
   - component: {fileID: 1913991075}
   - component: {fileID: 1913991073}
   - component: {fileID: 3469287837783246801}
-  m_Layer: 2
+  m_Layer: 17
   m_Name: TeenBedroom2ndHall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75021,7 +75033,7 @@ GameObject:
   - component: {fileID: 2081058571}
   - component: {fileID: 2081058569}
   - component: {fileID: 3469287837683681097}
-  m_Layer: 2
+  m_Layer: 17
   m_Name: LinenCloset2ndHall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75058,7 +75070,7 @@ GameObject:
   - component: {fileID: 1414135409}
   - component: {fileID: 1414135407}
   - component: {fileID: 3469287838359197219}
-  m_Layer: 2
+  m_Layer: 17
   m_Name: TeenBedroomCloset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75079,7 +75091,7 @@ GameObject:
   - component: {fileID: 1524114294}
   - component: {fileID: 1524114292}
   - component: {fileID: 3469287838181903168}
-  m_Layer: 2
+  m_Layer: 17
   m_Name: FoyerLibrary
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75100,7 +75112,7 @@ GameObject:
   - component: {fileID: 665372104}
   - component: {fileID: 665372102}
   - component: {fileID: 3469287837052611982}
-  m_Layer: 2
+  m_Layer: 17
   m_Name: MasterBedroomCloset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75121,7 +75133,7 @@ GameObject:
   - component: {fileID: 791286008}
   - component: {fileID: 791286006}
   - component: {fileID: 3469287836926638270}
-  m_Layer: 2
+  m_Layer: 17
   m_Name: LibraryLivingRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75142,7 +75154,7 @@ GameObject:
   - component: {fileID: 887886003}
   - component: {fileID: 887886001}
   - component: {fileID: 3469287836738287841}
-  m_Layer: 2
+  m_Layer: 17
   m_Name: KidBedroomCloset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75163,7 +75175,7 @@ GameObject:
   - component: {fileID: 1032389083}
   - component: {fileID: 1032389081}
   - component: {fileID: 3469287836618549657}
-  m_Layer: 2
+  m_Layer: 17
   m_Name: ExtensionHallLivingRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75184,7 +75196,7 @@ GameObject:
   - component: {fileID: 1036801444}
   - component: {fileID: 1036801442}
   - component: {fileID: 3469287836622929362}
-  m_Layer: 2
+  m_Layer: 17
   m_Name: ExtensionHallStorage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75205,7 +75217,7 @@ GameObject:
   - component: {fileID: 993592684}
   - component: {fileID: 993592682}
   - component: {fileID: 3469287836590239018}
-  m_Layer: 2
+  m_Layer: 17
   m_Name: MasterBedroom2ndHall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75226,7 +75238,7 @@ GameObject:
   - component: {fileID: 99083548}
   - component: {fileID: 99083547}
   - component: {fileID: 3469287837559786839}
-  m_Layer: 2
+  m_Layer: 17
   m_Name: FoyerKitchen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75263,7 +75275,7 @@ GameObject:
   - component: {fileID: 141945241}
   - component: {fileID: 141945239}
   - component: {fileID: 3469287837349151195}
-  m_Layer: 2
+  m_Layer: 17
   m_Name: BathroomCloset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75300,7 +75312,7 @@ GameObject:
   - component: {fileID: 363975218}
   - component: {fileID: 363975216}
   - component: {fileID: 3469287837285988964}
-  m_Layer: 2
+  m_Layer: 17
   m_Name: KidBedroom2ndHall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75321,7 +75333,7 @@ GameObject:
   - component: {fileID: 323907951}
   - component: {fileID: 323907949}
   - component: {fileID: 3469287837268711717}
-  m_Layer: 2
+  m_Layer: 17
   m_Name: 2ndHall2ndBath
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75342,7 +75354,7 @@ GameObject:
   - component: {fileID: 326264563}
   - component: {fileID: 326264561}
   - component: {fileID: 3469287837264776865}
-  m_Layer: 2
+  m_Layer: 17
   m_Name: Study2ndHall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80072,7 +80084,7 @@ GameObject:
   - component: {fileID: 1602470165}
   - component: {fileID: 1602470164}
   - component: {fileID: 1602470163}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: doorknob
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -80095,7 +80107,7 @@ GameObject:
   - component: {fileID: 2007989602}
   - component: {fileID: 2007989601}
   - component: {fileID: 2007989600}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: doorknob
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -80118,7 +80130,7 @@ GameObject:
   - component: {fileID: 757116598}
   - component: {fileID: 757116597}
   - component: {fileID: 757116596}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: doorknob
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -80141,7 +80153,7 @@ GameObject:
   - component: {fileID: 1101704222}
   - component: {fileID: 1101704221}
   - component: {fileID: 1101704220}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: doorknob
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -80164,7 +80176,7 @@ GameObject:
   - component: {fileID: 6321751}
   - component: {fileID: 6321750}
   - component: {fileID: 6321749}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: doorknob
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -80187,7 +80199,7 @@ GameObject:
   - component: {fileID: 852713967}
   - component: {fileID: 852713966}
   - component: {fileID: 852713965}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: doorknob
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -80210,7 +80222,7 @@ GameObject:
   - component: {fileID: 1417820821}
   - component: {fileID: 1417820820}
   - component: {fileID: 1417820819}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: doorknob
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -80233,7 +80245,7 @@ GameObject:
   - component: {fileID: 1687267099}
   - component: {fileID: 1687267098}
   - component: {fileID: 1687267097}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: doorknob
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -80256,7 +80268,7 @@ GameObject:
   - component: {fileID: 1862243126}
   - component: {fileID: 1862243125}
   - component: {fileID: 1862243124}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: doorknob
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -80279,7 +80291,7 @@ GameObject:
   - component: {fileID: 1859740345}
   - component: {fileID: 1859740344}
   - component: {fileID: 1859740343}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: doorknob
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -80302,7 +80314,7 @@ GameObject:
   - component: {fileID: 1994773759}
   - component: {fileID: 1994773758}
   - component: {fileID: 1994773757}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: doorknob
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -80325,7 +80337,7 @@ GameObject:
   - component: {fileID: 1298425450}
   - component: {fileID: 1298425449}
   - component: {fileID: 1298425448}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: doorknob
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -80348,7 +80360,7 @@ GameObject:
   - component: {fileID: 972952955}
   - component: {fileID: 972952954}
   - component: {fileID: 972952953}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: doorknob
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -80371,7 +80383,7 @@ GameObject:
   - component: {fileID: 119127085}
   - component: {fileID: 119127084}
   - component: {fileID: 119127083}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: doorknob
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -80394,7 +80406,7 @@ GameObject:
   - component: {fileID: 787591154}
   - component: {fileID: 787591153}
   - component: {fileID: 787591152}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: doorknob
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -80417,7 +80429,7 @@ GameObject:
   - component: {fileID: 186167531}
   - component: {fileID: 186167530}
   - component: {fileID: 186167529}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: doorknob
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -80440,7 +80452,7 @@ GameObject:
   - component: {fileID: 2024626965}
   - component: {fileID: 2024626964}
   - component: {fileID: 2024626963}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: doorknob
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -82136,7 +82148,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 131076
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 262144
@@ -82165,7 +82177,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 131076
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 262144
@@ -82194,7 +82206,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 131076
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 262144
@@ -82223,7 +82235,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 131076
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 262144
@@ -82252,7 +82264,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 131076
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 262144
@@ -82281,7 +82293,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 131076
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 262144
@@ -82310,7 +82322,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 131076
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 262144
@@ -82339,7 +82351,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 131076
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 262144
@@ -82368,7 +82380,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 131076
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 262144
@@ -82397,7 +82409,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 131076
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 262144
@@ -82426,7 +82438,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 131076
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 262144
@@ -82455,7 +82467,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 131076
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 262144
@@ -82484,7 +82496,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 131076
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 262144
@@ -82513,7 +82525,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 131076
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 262144
@@ -82542,7 +82554,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 131076
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 262144
@@ -82571,7 +82583,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 131076
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 262144
@@ -82600,7 +82612,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 131076
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 262144
