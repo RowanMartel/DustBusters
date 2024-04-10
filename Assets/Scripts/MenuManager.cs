@@ -244,8 +244,16 @@ public class MenuManager : MonoBehaviour
     // Hides the player's GUI
     public void ToggleGUI()
     {
-        if (go_gameScreen.activeSelf) go_gameScreen.SetActive(false);
-        else go_gameScreen.SetActive(true);
+        if (go_gameScreen.activeSelf)
+        {
+            go_gameScreen.SetActive(false);
+            tmp_currentChore.gameObject.SetActive(false);
+        }
+        else
+        {
+            go_gameScreen.SetActive(true);
+            tmp_currentChore.gameObject.SetActive(true);
+        }
     }
 
     // Brings up needed Menu screen with a LeanTween transition
