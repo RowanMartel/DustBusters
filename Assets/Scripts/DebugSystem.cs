@@ -137,7 +137,7 @@ public class DebugSystem : MonoBehaviour
 
                 //Update Text
                 tmp_leftText.text = "Debug Mode Enabled:\n-Press R to enter\n end game\n-Press G to freeze\n the ghost\n-Press 1-4 to set\n the ghost's aggro level\n-Player can jump: " + pc_player.bl_isGrounded + "\n-Player Current Region: " + pc_player.go_curRegion.name + "\n\nGhost Patrol Point:\n" + gb_ghost.tr_currentPatrolPoint.gameObject + "\n\nGhost Held Item: " + gb_ghost.go_curHeldItem;
-                tmp_rightText.text = "Ghost Aggro Level: " + gb_ghost.int_curAggressionLevel + "\nGhost Current Task:\n" + GetTaskString(gb_ghost.l_tsk_currentTasks[gb_ghost.int_curIndex]) + "\nGhost Task List:\n" + TaskListToString(gb_ghost.l_tsk_currentTasks) + "Ghost Current Region: " + gb_ghost.go_curRegion;
+                tmp_rightText.text = "Ghost Aggro Level: " + gb_ghost.int_curAggressionLevel + "\nGhost Current Task:\n" + GetTaskString(gb_ghost.l_tsk_currentTasks[gb_ghost.int_curIndex]) + "\nGhost Task List:\n" + TaskListToString(gb_ghost.l_tsk_currentTasks) + "Ghost Current Region: " + gb_ghost.go_curRegion + "Is Hiding?: " + gb_ghost.bl_hiding;
             }
             else
             {

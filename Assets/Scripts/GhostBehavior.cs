@@ -352,7 +352,7 @@ public class GhostBehavior : MonoBehaviour
 
         //Travel to current patrol point and perform task
         nav_agent.SetDestination(tr_currentPatrolPoint.position);
-        if(flt_distToSwitch > Vector3.Distance(transform.position, tr_currentPatrolPoint.position))
+        if(flt_distToSwitch >= Vector3.Distance(transform.position, tr_currentPatrolPoint.position))
         {
             PerformTask();
 
@@ -371,6 +371,10 @@ public class GhostBehavior : MonoBehaviour
         {
             Debug.Log("Ghost held something without hiding it!!");
             bl_hiding = true;
+        }else if(go_curHeldItem == null && bl_hiding)
+        {
+            Debug.Log("Ghost held nothing but is still hiding!");
+            bl_hiding = false;
         }
 
         //Switch Hiding Spot if needed
