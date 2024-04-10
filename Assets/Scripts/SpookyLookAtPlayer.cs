@@ -13,6 +13,8 @@ public class SpookyLookAtPlayer : MonoBehaviour
     public bool bl_canMove;
     public bool bl_isPickupable;
     public Vector3 v3_rotationOffset;
+    public float flt_delay;
+    float flt_curDelay;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +26,7 @@ public class SpookyLookAtPlayer : MonoBehaviour
         if (!ren_renderer) ren_renderer = ren_altRenderer;
         rb_rigidbody = GetComponent<Rigidbody>();
         bl_canMove = true;
+        flt_curDelay = flt_delay;
     }
 
     // Update is called once per frame
@@ -32,7 +35,9 @@ public class SpookyLookAtPlayer : MonoBehaviour
         //Debug.Log(ren_renderer.isVisible);
         if (bl_canMove)
         {
-            if (!ren_renderer.isVisible)
+            if (flt_curDelay > 0)
+                flt_curDelay -= Time.deltaTime;
+            if (!ren_renderer.isVisible && flt_curDelay <= 0)
             {
                 transform.LookAt(go_player.transform.position);
 
@@ -45,6 +50,7 @@ public class SpookyLookAtPlayer : MonoBehaviour
     }
     private void OnBecameInvisible()
     {
+        flt_curDelay = flt_delay;
         if (bl_canMove && bl_isPickupable)
         {
             rb_rigidbody.isKinematic = true;
