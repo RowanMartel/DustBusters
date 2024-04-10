@@ -45,7 +45,8 @@ public class HealthSystem : MonoBehaviour
             !collision.gameObject.GetComponent<Pickupable>() ||
             !collision.gameObject.GetComponent<Rigidbody>() ||
             collision.gameObject.GetComponent<Rigidbody>().velocity.magnitude < 5 ||
-            int_dmgTimer < int_dmgTimerCooldown)
+            int_dmgTimer < int_dmgTimerCooldown ||
+            collision.gameObject == playerController.Go_heldObject)
             return;
 
         Pickupable pu_pickupable = collision.gameObject.GetComponent<Pickupable>();
