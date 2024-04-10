@@ -195,6 +195,7 @@ public class TaskManager : MonoBehaviour
                 chore.go_check.SetActive(true);
                 chore.bl_choreComplete = true;
                 chore.tmp_choreText.color = Color.grey;
+                chore.tmp_choreText.text = "<s>" + chore.tmp_choreText.text + "</s>";
             }
         }
 
@@ -247,17 +248,7 @@ public class TaskManager : MonoBehaviour
                 chore.go_check.SetActive(false);
                 chore.bl_choreComplete = false;
                 chore.tmp_choreText.color = Color.black;
-                return;
-            }
-        }
-
-        // If the added chore does not appear on the chores list at all, this will add it to the next available spot
-        foreach(Chore chore in l_chores)
-        {
-            if (chore.choreTask == Task.Empty)
-            {
-                chore.choreTask = task;
-                chore.go_box.SetActive(true);
+                //Reset text to appropriate text
                 switch (task)
                 {
                     case Task.CleanDishes:
@@ -297,9 +288,61 @@ public class TaskManager : MonoBehaviour
                         chore.tmp_choreText.text = "Put away the toys in the kid's room";
                         break;
                 }
+                return;
+            }
+        }
 
+        // If the added chore does not appear on the chores list at all, this will add it to the next available spot
+        foreach(Chore chore in l_chores)
+        {
+            //Adds new task
+            if (chore.choreTask == Task.Empty)
+            {
+                chore.choreTask = task;
+                chore.go_box.SetActive(true);
+                //Reset text to appropriate text
+                switch (task)
+                {
+                    case Task.CleanDishes:
+                        chore.tmp_choreText.text = "Clean the dirty dishes in the kitchen";
+                        break;
+                    case Task.PutAwayDishes:
+                        chore.tmp_choreText.text = "Put away the clean dishes in the kitchen";
+                        break;
+                    case Task.CleanCobwebs:
+                        chore.tmp_choreText.text = "Dust the cobwebs in the basement";
+                        break;
+                    case Task.CleanMirror:
+                        chore.tmp_choreText.text = "Clean the bathroom mirrors";
+                        break;
+                    case Task.ThrowOutBrokenDishes:
+                        chore.tmp_choreText.text = "Throw out the broken dishes";
+                        break;
+                    case Task.EscapeHouse:
+                        chore.tmp_choreText.text = "Escape the house";
+                        break;
+                    case Task.FindKey:
+                        chore.tmp_choreText.text = "Find the front door key";
+                        break;
+                    case Task.LightFireplace:
+                        chore.tmp_choreText.text = "Light the fireplace with the lighter";
+                        break;
+                    case Task.MopFloor:
+                        chore.tmp_choreText.text = "Sweep the laundry room and basement";
+                        break;
+                    case Task.PutAwayBooks:
+                        chore.tmp_choreText.text = "Tidy the books in the library";
+                        break;
+                    case Task.ResetBreakerBox:
+                        chore.tmp_choreText.text = "Reset the breaker box in the basement";
+                        break;
+                    case Task.PutAwayToys:
+                        chore.tmp_choreText.text = "Put away the toys in the kid's room";
+                        break;
+                }
                 break;
             }
+            
         }
     }
 
