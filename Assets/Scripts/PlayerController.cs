@@ -124,8 +124,8 @@ public class PlayerController : MonoBehaviour
             // Handles Crouch
             if (Input.GetKeyDown(KeyCode.LeftShift)) LeanTween.moveLocalY(go_cameraContainer, 0f, 0.25f);
             if (Input.GetKeyUp(KeyCode.LeftShift)) LeanTween.moveLocalY(go_cameraContainer, 1f, 0.25f);
-            if (Input.GetKeyDown(KeyCode.LeftShift)) LeanTween.moveLocalY(go_heldPosContainer, -0.5f, 0.25f);
-            if (Input.GetKeyUp(KeyCode.LeftShift)) LeanTween.moveLocalY(go_heldPosContainer, 0.5f, 0.25f);
+            if (Input.GetKeyDown(KeyCode.LeftShift)) LeanTween.moveLocalY(go_heldPosContainer, 0f, 0.25f);
+            if (Input.GetKeyUp(KeyCode.LeftShift)) LeanTween.moveLocalY(go_heldPosContainer, 1f, 0.25f);
         }
 
         // Toggles pause
@@ -155,12 +155,12 @@ public class PlayerController : MonoBehaviour
         {
             Pickupable pu_pickup = go_heldObject.GetComponent<Pickupable>();            
 
-            Vector3 v3_modifiedHeldPosition = go_heldPosition.transform.TransformPoint(go_heldPosition.transform.localPosition.x + pu_pickup.v3_heldPositionMod.x, go_heldPosition.transform.localPosition.y - 0.5f + pu_pickup.v3_heldPositionMod.y, go_heldPosition.transform.localPosition.z - 1 + pu_pickup.v3_heldPositionMod.z);
+            Vector3 v3_modifiedHeldPosition = go_heldPosition.transform.TransformPoint(go_heldPosition.transform.localPosition.x + pu_pickup.v3_heldPositionMod.x, go_heldPosition.transform.localPosition.y /*- 0.5f*/ + pu_pickup.v3_heldPositionMod.y, go_heldPosition.transform.localPosition.z - 1 + pu_pickup.v3_heldPositionMod.z);
 
             //Casts a ray to ensure that the object isn't being shoved into a wall
             RaycastHit hit;
             Debug.DrawRay(go_heldPosContainer.transform.position, v3_modifiedHeldPosition - go_heldPosContainer.transform.position, Color.red);
-            if(Physics.Raycast(go_heldPosContainer.transform.position, v3_modifiedHeldPosition - go_heldPosContainer.transform.position, out hit, Vector3.Distance(go_heldPosContainer.transform.position, v3_modifiedHeldPosition)))
+            if(Physics.Raycast(go_heldPosContainer.transform.position, v3_modifiedHeldPosition - go_heldPosContainer.transform.position, out hit, Vector3.Distance(go_heldPosContainer.transform.position, v3_modifiedHeldPosition), lookMask))
             {
                 if (hit.collider != null)
                 {
