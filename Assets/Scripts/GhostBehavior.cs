@@ -352,7 +352,7 @@ public class GhostBehavior : MonoBehaviour
 
         //Travel to current patrol point and perform task
         nav_agent.SetDestination(tr_currentPatrolPoint.position);
-        if(flt_distToSwitch > Vector3.Distance(transform.position, tr_currentPatrolPoint.position))
+        if(flt_distToSwitch >= Vector3.Distance(transform.position, tr_currentPatrolPoint.position))
         {
             PerformTask();
 
