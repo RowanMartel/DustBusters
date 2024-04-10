@@ -232,7 +232,7 @@ public class PlayerController : MonoBehaviour
     {
         float camV = flt_cameraVertical + Input.GetAxis("Mouse Y");
 
-        flt_cameraVertical = Mathf.Clamp(camV, -90f, 80f);
+        flt_cameraVertical = Mathf.Clamp(camV, -90f / Settings.flt_lookSensitivity, 80f / Settings.flt_lookSensitivity);
 
         float flipCamV = camV * -1;
 
