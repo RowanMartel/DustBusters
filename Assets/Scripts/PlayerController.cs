@@ -232,7 +232,7 @@ public class PlayerController : MonoBehaviour
 
         float flipCamV = camV * -1;
 
-        go_cameraContainer.transform.localRotation = Quaternion.Euler(flipCamV, 0, 0);
+        go_cameraContainer.transform.localRotation = Quaternion.Euler(flipCamV * Settings.flt_lookSensitivity, 0, 0);
 
         flt_playerRotate = Input.GetAxis("Mouse X");
 
@@ -586,11 +586,22 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Floor"))
         {
-            if (!bl_isGrounded && collision.relativeVelocity.y > 0) GameManager.soundManager.PlayClip(ac_land, as_source, true);
             bl_isGrounded = true;
         }
         if (collision.gameObject.layer == 15)
             bl_onStairs = true;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Floor"))
+        {
+            if (!bl_isGrounded && collision.relativeVelocity.y > 2)
+            {
+                GameManager.soundManager.PlayClip(ac_land, as_source, true);
+                Debug.Log("y vel: " + collision.relativeVelocity.y);
+            }
+        }
     }
 
     //Player loses ground when they leave the ground
