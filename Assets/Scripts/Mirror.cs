@@ -25,6 +25,11 @@ public class Mirror : Interactable
 
     public bool bl_rotated;
 
+    // jump scare audio variables
+    [SerializeField] AudioSource as_source;
+    [SerializeField] AudioClip ac_cardboardJumpscare;
+    [SerializeField] AudioClip ac_scaryJumpscare;
+
     private void Awake()
     {
         bl_jumpscared = false;
@@ -84,8 +89,12 @@ public class Mirror : Interactable
                     //go_spooky.transform.rotation.SetEulerAngles(new Vector3(go_spooky.transform.rotation.x, go_spooky.transform.rotation.y - 90, go_spooky.transform.rotation.z));
                     go_spooky.transform.Rotate(new Vector3(go_spooky.transform.rotation.x, go_spooky.transform.rotation.y - 90, go_spooky.transform.rotation.z));
                 }
+                // play the corresponding noise
+                if (int_aggro < 2)
+                    as_source.PlayOneShot(ac_cardboardJumpscare, Settings.flt_volume);
+                else
+                    as_source.PlayOneShot(ac_scaryJumpscare, Settings.flt_volume);
             }
-
         }
     }
 

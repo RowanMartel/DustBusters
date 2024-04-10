@@ -65,6 +65,8 @@ public class GhostBehavior : MonoBehaviour
     [Tooltip("Seconds")]
     public float flt_keyTakeCooldown;
     float flt_curKeyCooldown;
+    public float flt_breakerCooldown;
+    float flt_curBreakerCooldown;
 
     //Variables around interacting with Light
     [Header("Light Interaction")]
@@ -162,6 +164,7 @@ public class GhostBehavior : MonoBehaviour
         bl_frozen = false;
         go_floatTrigger.SetActive(false);
         flt_curKeyCooldown = 0;
+        flt_curBreakerCooldown = 0;
         a_candles = FindObjectsByType<Candle>(FindObjectsSortMode.None);
         as_aSource.volume = Settings.flt_musicVolume;
         GameManager.menuManager.SoundVolumeChanged += UpdateVolume;
@@ -182,9 +185,13 @@ public class GhostBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(flt_curKeyCooldown > 0)
+        if(flt_curKeyCooldown >= 0)
         {
             flt_curKeyCooldown -= Time.deltaTime;
+        }
+        if (flt_curBreakerCooldown >= 0)
+        {
+            flt_curBreakerCooldown -= Time.deltaTime;
         }
 
         //The below happens for all aggression levels
@@ -598,9 +605,10 @@ public class GhostBehavior : MonoBehaviour
         //FuseBox fb_fuseBox = tr_currentPatrolPoint.GetComponent<FuseBox>();
         if (tr_currentPatrolPoint.CompareTag("FuseBox"))
         {
-            if (fb_fuseBox.bl_isOn)
+            if (fb_fuseBox.bl_isOn && flt_curBreakerCooldown <= 0)
             {
                 fb_fuseBox.Interact();
+                flt_curBreakerCooldown = flt_breakerCooldown;
             }
             return;
         }
@@ -682,6 +690,8 @@ public class GhostBehavior : MonoBehaviour
     //Remove task from ghost's current task list
     public void RemoveTask(TaskManager.Task tsk_task)
     {
+        if (int_curAggressionLevel == 4 && tsk_task == TaskManager.Task.ResetBreakerBox) return;
+
         if (!l_tsk_currentTasks.Contains(tsk_task)){
             return;
         }
@@ -797,7 +807,7 @@ public class GhostBehavior : MonoBehaviour
         l_tsk_currentTasks.Clear();
         l_pl_currentPoints.Clear();
 
-        int_curAggressionLevel = 4;
+        SetAggressionLevel(4);
 
         for (int i = 0; i < l_tsk_endGameTasks.Count; i++)
         {
