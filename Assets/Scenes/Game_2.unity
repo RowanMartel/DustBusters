@@ -5412,6 +5412,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a137a69c917120245957388d6d524c2d, type: 3}
+--- !u!4 &223603285 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7891985766164049367, guid: a137a69c917120245957388d6d524c2d, type: 3}
+  m_PrefabInstance: {fileID: 223603284}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &223603286 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3044325781436062001, guid: a137a69c917120245957388d6d524c2d, type: 3}
@@ -8262,7 +8267,7 @@ PrefabInstance:
     - target: {fileID: 3252823415719424403, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
       propertyPath: tfPlayerTarget
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 223603285}
     - target: {fileID: 3252823415719424403, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
       propertyPath: int_framesToRend
       value: 4
@@ -59890,7 +59895,7 @@ PrefabInstance:
     - target: {fileID: 3252823415719424403, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
       propertyPath: tfPlayerTarget
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 223603285}
     - target: {fileID: 3252823415719424403, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
       propertyPath: int_framesToRend
       value: 4
@@ -81301,7 +81306,7 @@ PrefabInstance:
     - target: {fileID: 3252823415719424403, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
       propertyPath: tfPlayerTarget
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 223603285}
     - target: {fileID: 3252823415719424403, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
       propertyPath: int_framesToRend
       value: 4
