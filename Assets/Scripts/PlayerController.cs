@@ -232,7 +232,7 @@ public class PlayerController : MonoBehaviour
 
         float flipCamV = camV * -1;
 
-        go_cameraContainer.transform.localRotation = Quaternion.Euler(flipCamV, 0, 0);
+        go_cameraContainer.transform.localRotation = Quaternion.Euler(flipCamV * Settings.flt_lookSensitivity, 0, 0);
 
         flt_playerRotate = Input.GetAxis("Mouse X");
 
