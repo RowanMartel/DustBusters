@@ -31,6 +31,7 @@ public class Exit : Interactable
 
     private void GoToEnd()
     {
+        if (GameManager.menuManager.bl_choreListUp) GameManager.menuManager.ToggleChoreSheet();
         FindObjectOfType<MenuManager>().ToEnd();
     }
 }
