@@ -59,6 +59,7 @@ public class Pickupable : Interactable
     Vector3 v3_startRot;
 
     public int int_ignoreLiveBoxFrames = 0;
+    public int int_startingLayer;
 
     protected virtual void Start()
     {
@@ -70,6 +71,7 @@ public class Pickupable : Interactable
         mat_base = ren_meshRenderer.material;
         v3_startPos = transform.position;
         v3_startRot = transform.eulerAngles;
+        int_startingLayer = gameObject.layer;
     }
 
     //Trigger Enter/Exit scripts are used to make sure objects don't stuck in the environment when picked up
