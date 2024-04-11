@@ -544,7 +544,6 @@ public class MenuManager : MonoBehaviour
         switch (int_endSequence)
         {
             case 0:
-                bl_paused = true;
                 int_endSequence++;
                 LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 1, 1f).setOnComplete(ToEnd).setIgnoreTimeScale(true);
                 break;
@@ -670,7 +669,13 @@ public class MenuManager : MonoBehaviour
     // Toggles the pause state
     public void TogglePause()
     {
-        if (!bl_allowPause) return;
+        if (!bl_allowPause)
+        {
+            Debug.Log("Tried to pause when not allowed");
+            return;
+        }
+
+        Debug.Log("Paused Anyway");
 
         if (!bl_paused)
         {

@@ -55,6 +55,9 @@ public class Pickupable : Interactable
 
     List<Collider> l_col_overlapping = new List<Collider>();
 
+    Vector3 v3_startPos;
+    Vector3 v3_startRot;
+
     protected virtual void Start()
     {
         bl_pickupable = true;
@@ -63,6 +66,8 @@ public class Pickupable : Interactable
         a_col = GetComponents<Collider>();
         bl_held = false;
         mat_base = ren_meshRenderer.material;
+        v3_startPos = transform.position;
+        v3_startRot = transform.eulerAngles;
     }
 
     //Trigger Enter/Exit scripts are used to make sure objects don't stuck in the environment when picked up
@@ -114,4 +119,12 @@ public class Pickupable : Interactable
             co.isTrigger = true;
         }
     }
+
+    public void Respawn()
+    {
+        rb.Sleep();
+        transform.position = v3_startPos;
+        transform.eulerAngles = v3_startRot;
+    }
+
 }

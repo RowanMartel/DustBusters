@@ -50,6 +50,7 @@ public class Dish : Pickupable
     // changes the model and adjusts all tasks relating to this dish to either remove or add it as a requirement
     void Break()
     {
+        if (bl_broken) return;
         GameManager.soundManager.PlayClip(ac_break, as_source, true);
         GetComponent<MeshFilter>().mesh = brokenMesh;
         bl_broken = true;
