@@ -10813,6 +10813,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: teddy bear
       objectReference: {fileID: 0}
+    - target: {fileID: 5081028212650867115, guid: 6b9a1df0d42ed5f4d964c01b62d53397, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 524283
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -20597,6 +20601,14 @@ PrefabInstance:
     - target: {fileID: 3075704882147656415, guid: e12448762819ba54993224607613c3d2, type: 3}
       propertyPath: m_Size.z
       value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 3075704882147656415, guid: e12448762819ba54993224607613c3d2, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 32768
+      objectReference: {fileID: 0}
+    - target: {fileID: 4611627009247911554, guid: e12448762819ba54993224607613c3d2, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 524283
       objectReference: {fileID: 0}
     - target: {fileID: 6610876887252037603, guid: e12448762819ba54993224607613c3d2, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
@@ -34983,7 +34995,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 695391366558912724, guid: 72d741a00d541e04baad2c76ddb8866d, type: 3}
       propertyPath: m_IncludeLayers.m_Bits
-      value: 4294967295
+      value: 524283
       objectReference: {fileID: 0}
     - target: {fileID: 2867341851300888891, guid: 72d741a00d541e04baad2c76ddb8866d, type: 3}
       propertyPath: m_IsActive
@@ -35003,7 +35015,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4354439268198273109, guid: 72d741a00d541e04baad2c76ddb8866d, type: 3}
       propertyPath: m_IncludeLayers.m_Bits
-      value: 4294967295
+      value: 524283
       objectReference: {fileID: 0}
     - target: {fileID: 4425230805743114136, guid: 72d741a00d541e04baad2c76ddb8866d, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
@@ -35011,7 +35023,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4425230805743114136, guid: 72d741a00d541e04baad2c76ddb8866d, type: 3}
       propertyPath: m_IncludeLayers.m_Bits
-      value: 4294967295
+      value: 524283
       objectReference: {fileID: 0}
     - target: {fileID: 4542292762947597838, guid: 72d741a00d541e04baad2c76ddb8866d, type: 3}
       propertyPath: m_PlayOnAwake
@@ -35039,7 +35051,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7185281813804325816, guid: 72d741a00d541e04baad2c76ddb8866d, type: 3}
       propertyPath: m_IncludeLayers.m_Bits
-      value: 4294967295
+      value: 524283
       objectReference: {fileID: 0}
     - target: {fileID: 8094112473105271325, guid: 72d741a00d541e04baad2c76ddb8866d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -37882,6 +37894,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1357425210}
     m_Modifications:
+    - target: {fileID: 1677787701405913012, guid: 9b8131fe7ea055a489455fab05c5188b, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 524283
+      objectReference: {fileID: 0}
     - target: {fileID: 2587739584116260816, guid: 9b8131fe7ea055a489455fab05c5188b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.2220001
@@ -38100,7 +38116,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 32768
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -44810,6 +44826,10 @@ PrefabInstance:
       propertyPath: m_IncludeLayers.m_Bits
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 2348910043767717817, guid: 75de34d6b3e9ddc428445cb06e8218f3, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 524283
+      objectReference: {fileID: 0}
     - target: {fileID: 3940888642917188958, guid: 75de34d6b3e9ddc428445cb06e8218f3, type: 3}
       propertyPath: bl_canFloat
       value: 0
@@ -44873,6 +44893,10 @@ PrefabInstance:
     - target: {fileID: 7638898356280092107, guid: 75de34d6b3e9ddc428445cb06e8218f3, type: 3}
       propertyPath: m_Size.z
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7638898356280092107, guid: 75de34d6b3e9ddc428445cb06e8218f3, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 32768
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -68303,6 +68327,10 @@ PrefabInstance:
       propertyPath: m_IncludeLayers.m_Bits
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 1496704600657483669, guid: 3ed6a9411a0616e46bf7f75070436518, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 524283
+      objectReference: {fileID: 0}
     - target: {fileID: 2271058483027208264, guid: 3ed6a9411a0616e46bf7f75070436518, type: 3}
       propertyPath: m_Name
       value: wooden car
@@ -68318,6 +68346,10 @@ PrefabInstance:
     - target: {fileID: 2618502827919252724, guid: 3ed6a9411a0616e46bf7f75070436518, type: 3}
       propertyPath: m_Size.z
       value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 2618502827919252724, guid: 3ed6a9411a0616e46bf7f75070436518, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 32768
       objectReference: {fileID: 0}
     - target: {fileID: 6497377580579930785, guid: 3ed6a9411a0616e46bf7f75070436518, type: 3}
       propertyPath: bl_canFloat
@@ -86480,7 +86512,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 131076
+    m_Bits: 131077
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 262144
@@ -86509,7 +86541,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 131076
+    m_Bits: 131077
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 262144
@@ -86538,7 +86570,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 131076
+    m_Bits: 131077
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 262144
@@ -86567,7 +86599,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 131076
+    m_Bits: 131077
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 262144
@@ -86596,7 +86628,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 131076
+    m_Bits: 131077
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 262144
@@ -86625,7 +86657,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 131076
+    m_Bits: 131077
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 262144
@@ -86654,7 +86686,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 131076
+    m_Bits: 131077
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 262144
@@ -86683,7 +86715,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 131076
+    m_Bits: 131077
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 262144
@@ -86712,7 +86744,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 131076
+    m_Bits: 131077
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 262144
@@ -86741,7 +86773,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 131076
+    m_Bits: 131077
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 262144
@@ -86770,7 +86802,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 131076
+    m_Bits: 131077
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 262144
@@ -86799,7 +86831,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 131076
+    m_Bits: 131077
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 262144
@@ -86828,7 +86860,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 131076
+    m_Bits: 131077
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 262144
@@ -86857,7 +86889,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 131076
+    m_Bits: 131077
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 262144
@@ -86886,7 +86918,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 131076
+    m_Bits: 131077
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 262144
@@ -86915,7 +86947,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 131076
+    m_Bits: 131077
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 262144
@@ -86944,7 +86976,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 131076
+    m_Bits: 131077
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 262144
