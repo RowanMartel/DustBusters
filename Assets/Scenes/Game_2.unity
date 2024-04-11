@@ -1761,7 +1761,7 @@ HingeJoint:
   m_Anchor: {x: 2, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 72.14128, y: 37.849472, z: 0.303644}
+  m_ConnectedAnchor: {x: 7.6170006, y: 2.882, z: 7.226}
   serializedVersion: 2
   m_UseSpring: 1
   m_Spring:
@@ -2772,7 +2772,7 @@ HingeJoint:
   m_Anchor: {x: 2, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -1313.0588, y: 460.5575, z: 1608.6042}
+  m_ConnectedAnchor: {x: -8.466, y: 7.1090803, z: -6.6259995}
   serializedVersion: 2
   m_UseSpring: 1
   m_Spring:
@@ -3887,89 +3887,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &166421782
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 166421783}
-  - component: {fileID: 166421785}
-  m_Layer: 0
-  m_Name: Floor 1 Debug Cam
-  m_TagString: MinimapCam
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &166421783
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 166421782}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 7.19, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 630044954}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!20 &166421785
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 166421782}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_Iso: 200
-  m_ShutterSpeed: 0.005
-  m_Aperture: 16
-  m_FocusDistance: 10
-  m_FocalLength: 50
-  m_BladeCount: 5
-  m_Curvature: {x: 2, y: 11}
-  m_BarrelClipping: 0.25
-  m_Anamorphism: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 20
-  field of view: 60
-  orthographic: 1
-  orthographic size: 22.4
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 1023
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 8400000, guid: 2d48959a9a48d9d4eabb7fe462491f60, type: 2}
-  m_TargetDisplay: 1
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
 --- !u!1001 &170317405
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8741,7 +8658,7 @@ HingeJoint:
   m_Anchor: {x: 2, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -1207.8589, y: 460.5575, z: 1132.7041}
+  m_ConnectedAnchor: {x: -3.7069998, y: 7.1090803, z: -5.5739994}
   serializedVersion: 2
   m_UseSpring: 1
   m_Spring:
@@ -8807,7 +8724,7 @@ HingeJoint:
   m_Anchor: {x: 2, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -114.658745, y: 460.5575, z: 240.1038}
+  m_ConnectedAnchor: {x: 5.219, y: 7.1090803, z: 5.358}
   serializedVersion: 2
   m_UseSpring: 1
   m_Spring:
@@ -10979,7 +10896,7 @@ HingeJoint:
   m_Anchor: {x: 2, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -978.55896, y: 460.5575, z: 148.10384}
+  m_ConnectedAnchor: {x: 6.139, y: 7.1090803, z: -3.2810001}
   serializedVersion: 2
   m_UseSpring: 1
   m_Spring:
@@ -16996,10 +16913,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 166421783}
   - {fileID: 1970133146}
-  - {fileID: 2097532589}
-  - {fileID: 891499350}
   - {fileID: 791176777}
   - {fileID: 1160791621}
   - {fileID: 1534131717}
@@ -17932,7 +17846,7 @@ HingeJoint:
   m_Anchor: {x: 2, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -883.45874, y: 460.5575, z: 1735.0043}
+  m_ConnectedAnchor: {x: -9.73, y: 7.1090803, z: -2.33}
   serializedVersion: 2
   m_UseSpring: 1
   m_Spring:
@@ -22026,7 +21940,7 @@ HingeJoint:
   m_Anchor: {x: 2, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -734.15875, y: 37.849472, z: 1583.1041}
+  m_ConnectedAnchor: {x: -8.2109995, y: 2.882, z: -0.8369999}
   serializedVersion: 2
   m_UseSpring: 1
   m_Spring:
@@ -29081,7 +28995,7 @@ HingeJoint:
   m_Anchor: {x: 2, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -894.4591, y: 460.5575, z: -810.0964}
+  m_ConnectedAnchor: {x: 15.721001, y: 7.1090803, z: -2.4400005}
   serializedVersion: 2
   m_UseSpring: 1
   m_Spring:
@@ -29135,89 +29049,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!1 &891499349
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 891499350}
-  - component: {fileID: 891499351}
-  m_Layer: 0
-  m_Name: Basement Debug Cam
-  m_TagString: MinimapCam
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &891499350
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 891499349}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 2.75, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 630044954}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!20 &891499351
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 891499349}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_Iso: 200
-  m_ShutterSpeed: 0.005
-  m_Aperture: 16
-  m_FocusDistance: 10
-  m_FocalLength: 50
-  m_BladeCount: 5
-  m_Curvature: {x: 2, y: 11}
-  m_BarrelClipping: 0.25
-  m_Anamorphism: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 20
-  field of view: 60
-  orthographic: 1
-  orthographic size: 22.4
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 2047
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 8400000, guid: 0c79e2b0d28f4244eb5dc4dd6833bd1c, type: 2}
-  m_TargetDisplay: 1
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
 --- !u!1 &893242948
 GameObject:
   m_ObjectHideFlags: 0
@@ -32360,7 +32191,7 @@ HingeJoint:
   m_Anchor: {x: 2, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -889.9589, y: 460.5575, z: 990.3041}
+  m_ConnectedAnchor: {x: -2.283, y: 7.1090803, z: -2.3950005}
   serializedVersion: 2
   m_UseSpring: 1
   m_Spring:
@@ -32925,7 +32756,7 @@ HingeJoint:
   m_Anchor: {x: 2, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -1247.1588, y: 37.849472, z: 1948.3043}
+  m_ConnectedAnchor: {x: -11.862999, y: 2.882, z: -5.966999}
   serializedVersion: 2
   m_UseSpring: 1
   m_Spring:
@@ -33120,7 +32951,7 @@ HingeJoint:
   m_Anchor: {x: 2, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -1247.1586, y: 37.849472, z: 2548.9045}
+  m_ConnectedAnchor: {x: -17.869, y: 2.882, z: -5.966999}
   serializedVersion: 2
   m_UseSpring: 1
   m_Spring:
@@ -49363,7 +49194,7 @@ HingeJoint:
   m_Anchor: {x: 2, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -435.55887, y: 460.5575, z: -358.99625}
+  m_ConnectedAnchor: {x: 11.209999, y: 7.1090803, z: 2.1490002}
   serializedVersion: 2
   m_UseSpring: 1
   m_Spring:
@@ -52729,7 +52560,7 @@ HingeJoint:
   m_Anchor: {x: 2, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 76.241425, y: 37.849472, z: 779.9282}
+  m_ConnectedAnchor: {x: -0.17924309, y: 2.882, z: 7.267}
   serializedVersion: 2
   m_UseSpring: 1
   m_Spring:
@@ -57620,7 +57451,7 @@ HingeJoint:
   m_Anchor: {x: 2, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -1697.6589, y: 37.849472, z: 2277.9045}
+  m_ConnectedAnchor: {x: -15.159, y: 2.882, z: -10.472}
   serializedVersion: 2
   m_UseSpring: 1
   m_Spring:
@@ -58545,7 +58376,7 @@ HingeJoint:
   m_Anchor: {x: 2, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -734.159, y: 37.849472, z: -658.2963}
+  m_ConnectedAnchor: {x: 14.202999, y: 2.882, z: -0.8369999}
   serializedVersion: 2
   m_UseSpring: 1
   m_Spring:
@@ -62688,7 +62519,7 @@ HingeJoint:
   m_Anchor: {x: 2, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -345.9588, y: 460.5575, z: 148.10379}
+  m_ConnectedAnchor: {x: 6.139, y: 7.1090803, z: 3.045}
   serializedVersion: 2
   m_UseSpring: 1
   m_Spring:
@@ -70049,7 +69880,7 @@ HingeJoint:
   m_Anchor: {x: 2, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -528.05896, y: 460.5575, z: 148.10379}
+  m_ConnectedAnchor: {x: 6.139, y: 7.1090803, z: 1.223999}
   serializedVersion: 2
   m_UseSpring: 1
   m_Spring:
@@ -70376,89 +70207,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2093041347}
   m_Mesh: {fileID: -4409252299797191627, guid: 7fcc52c3b30802f46b5508f6560ca3a5, type: 3}
---- !u!1 &2097532588
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2097532589}
-  - component: {fileID: 2097532591}
-  m_Layer: 0
-  m_Name: Floor 2 Debug Cam
-  m_TagString: MinimapCam
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2097532589
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2097532588}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 22.13, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 630044954}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!20 &2097532591
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2097532588}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_Iso: 200
-  m_ShutterSpeed: 0.005
-  m_Aperture: 16
-  m_FocusDistance: 10
-  m_FocalLength: 50
-  m_BladeCount: 5
-  m_Curvature: {x: 2, y: 11}
-  m_BarrelClipping: 0.25
-  m_Anamorphism: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 20
-  field of view: 60
-  orthographic: 1
-  orthographic size: 22.4
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 2047
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 8400000, guid: d49581e63c3e0f24c99a165cb62f6470, type: 2}
-  m_TargetDisplay: 1
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
 --- !u!1001 &2100941554
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -81339,6 +81087,10 @@ PrefabInstance:
     - target: {fileID: 5375263448726402046, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
       propertyPath: l_flt_chanceForSpookByAggro.Array.data[2]
       value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 6634210670911918623, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6703882999351095727, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
       propertyPath: m_LocalPosition.x
