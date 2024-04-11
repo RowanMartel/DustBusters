@@ -58,6 +58,8 @@ public class Pickupable : Interactable
     Vector3 v3_startPos;
     Vector3 v3_startRot;
 
+    public int int_ignoreLiveBoxFrames = 0;
+
     protected virtual void Start()
     {
         bl_pickupable = true;
@@ -120,8 +122,14 @@ public class Pickupable : Interactable
         }
     }
 
+    private void LateUpdate ()
+    {
+        if (int_ignoreLiveBoxFrames > 0) int_ignoreLiveBoxFrames--;
+    }
+
     public void Respawn()
     {
+        if (int_ignoreLiveBoxFrames > 0) return;
         rb.Sleep();
         transform.position = v3_startPos;
         transform.eulerAngles = v3_startRot;
