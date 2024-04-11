@@ -17,6 +17,9 @@ public class FloorSplat : MonoBehaviour
 
     public Material mat_bloody;
 
+    public GameObject go_dustParticles;
+    public Color clr_dustColor;
+
     private void Start()
     {
         Physics.queriesHitTriggers = true;
@@ -28,10 +31,15 @@ public class FloorSplat : MonoBehaviour
     // cleans the splat a little whenever the mouse goes over it
     private void OnMouseExit()
     {
-        if (bl_cleaned || !floorMess.bl_gameActive) return;
+        if (bl_cleaned || !floorMess.bl_gameActive || floorMess.bl_paused) return;
         int_dirtLevel--;
         ren.material.color = new Color(ren.material.color.r, ren.material.color.g, ren.material.color.g, ren.material.color.a - .2f);
-        GameManager.soundManager.PlayClip(ac_clean, as_clean);
+        GameManager.soundManager.PlayClip(ac_clean, as_clean, true);
+
+        //Dust particle effect
+        GameObject go_dust = Instantiate(go_dustParticles, transform);
+        go_dust.GetComponent<ParticleSystem>().startColor = clr_dustColor;
+        
         if (int_dirtLevel == 0)
         {
             bl_cleaned = true;

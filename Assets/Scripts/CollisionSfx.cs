@@ -14,8 +14,15 @@ public class CollisionSfx : MonoBehaviour
     // plays the collide sfx whenever the object collides with something
     private void OnCollisionEnter(Collision collision)
     {
+        // magnitude of the collision must be greater than or equal to 4
+        if (collision.relativeVelocity.magnitude < 4) return;
+
+        // collision must not be with the player
         if (as_source == null || ac_collide == null || collision.gameObject.CompareTag("Player")) return;
 
-        GameManager.soundManager.PlayClip(ac_collide, as_source);
+        // collision must not be with a child
+        if (collision.transform.parent != null && collision.transform.parent.gameObject == gameObject) return;
+
+        GameManager.soundManager.PlayClip(ac_collide, as_source, true);
     }
 }
