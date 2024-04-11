@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
 
     protected Rigidbody rb_player;
 
+    public Collider[] a_col_playerColliders;
 
     // State prevents the player from moving when in menus or doing chores
     public enum State
@@ -617,6 +618,26 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.layer == 15)
             bl_onStairs = false;
+    }
+
+    //Disable player colliders and rb
+    public void DisablePhysics()
+    {
+        foreach (Collider col in a_col_playerColliders)
+        {
+            col.enabled = false;
+        }
+        rb_player.useGravity = false;
+    }
+
+    //Enable player colliders and rb
+    public void EnablePhysics()
+    {
+        foreach (Collider col in a_col_playerColliders)
+        {
+            col.enabled = true;
+        }
+        rb_player.useGravity = true;
     }
 
     // This turns player control on and off and handles mouse confinement
