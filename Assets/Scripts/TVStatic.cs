@@ -30,7 +30,7 @@ public class TVStatic : Interactable
     //Checks if the tv is set to on and has power, and sets the static accordingly
     public void Refresh()
     {
-        as_staticAudio.volume = Settings.flt_musicVolume;
+        as_staticAudio.volume = Settings.flt_volume;
 
         if (bl_powered == false || bl_on == false)
         {
@@ -71,7 +71,7 @@ public class TVStatic : Interactable
 
     void UpdateVolume(object source, EventArgs e)
     {
-        as_staticAudio.volume = Settings.flt_musicVolume;
+        as_staticAudio.volume = Settings.flt_volume;
     }
 
     void Pause(object source, EventArgs e)

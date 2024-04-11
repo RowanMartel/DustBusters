@@ -26,6 +26,7 @@ public class Exit : Interactable
 
         GameManager.playerController.En_state = PlayerController.State.inactive;
         Time.timeScale = 0;
+        GameManager.menuManager.Bl_allowPause = false;
         LeanTween.rotateLocal(parent, new Vector3(parent.transform.rotation.x, parent.transform.rotation.y + 125, parent.transform.rotation.z), 3).setEase(LeanTweenType.easeOutSine).setOnComplete(GoToEnd).setIgnoreTimeScale(true);
     }
 

@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
 
     protected Rigidbody rb_player;
 
+    public Collider[] a_col_playerColliders;
 
     // State prevents the player from moving when in menus or doing chores
     public enum State
@@ -104,7 +105,7 @@ public class PlayerController : MonoBehaviour
         // Player's ability to interact
         if ((Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0)) && En_state == State.active) Interact();
 
-        if(!GameManager.menuManager.Bl_paused) if (Input.GetKeyDown(KeyCode.C)) GameManager.menuManager.ToggleChoreSheet();
+        if(!GameManager.menuManager.Bl_paused && GameManager.menuManager.Bl_allowPause) if (Input.GetKeyDown(KeyCode.C)) GameManager.menuManager.ToggleChoreSheet();
 
         if (en_state == State.active)
         {
@@ -201,7 +202,7 @@ public class PlayerController : MonoBehaviour
     // This drops the held item
     void DropItem()
     {
-        go_heldObject.layer = 0;
+        go_heldObject.layer = go_heldObject.GetComponent<Pickupable>().int_startingLayer;
         go_heldObject.GetComponent<Rigidbody>().useGravity = true;
         Physics.IgnoreCollision(go_heldObject.GetComponent<Collider>(), GetComponent<Collider>(), false);
         go_heldObject.GetComponent<Pickupable>().Drop();
@@ -619,6 +620,26 @@ public class PlayerController : MonoBehaviour
             bl_onStairs = false;
     }
 
+    //Disable player colliders and rb
+    public void DisablePhysics()
+    {
+        foreach (Collider col in a_col_playerColliders)
+        {
+            col.enabled = false;
+        }
+        rb_player.useGravity = false;
+    }
+
+    //Enable player colliders and rb
+    public void EnablePhysics()
+    {
+        foreach (Collider col in a_col_playerColliders)
+        {
+            col.enabled = true;
+        }
+        rb_player.useGravity = true;
+    }
+
     // This turns player control on and off and handles mouse confinement
     public void TogglePlayerControl()
     {
@@ -636,9 +657,12 @@ public class PlayerController : MonoBehaviour
                 break;
             // turning active from inactive
             case State.inactive:
-                en_state = State.active;
-                if (!GameManager.Bl_inCleaningGame) Cursor.lockState = CursorLockMode.Locked;
-                if (Go_heldObject != null && !GameManager.menuManager.Bl_paused && !GameManager.menuManager.bl_choreListUp)
+                if (!GameManager.Bl_inCleaningGame)
+                {
+                    en_state = State.active;
+                    Cursor.lockState = CursorLockMode.Locked;
+                }
+                if (Go_heldObject != null && !GameManager.menuManager.Bl_paused && !GameManager.menuManager.bl_choreListUp && !GameManager.Bl_inCleaningGame)
                 {
                     Go_heldObject.GetComponent<Renderer>().enabled = true;
                     Go_heldObject.GetComponent<Rigidbody>().Sleep();
