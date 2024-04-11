@@ -91,7 +91,7 @@ public class MenuManager : MonoBehaviour
     protected GameObject go_restartButton;
 
     // Bools related to the Pause system
-    protected bool bl_paused = false;
+    protected bool bl_paused = true;
     public bool Bl_paused { get { return bl_paused; } set { bl_paused = value; } }
     protected bool bl_allowPause = false;
     public bool Bl_allowPause { get { return bl_allowPause; } set { bl_allowPause = value; } }
@@ -475,6 +475,7 @@ public class MenuManager : MonoBehaviour
             case 0:
                 if (bl_gameStarted) return;
                 bl_gameStarted = true;
+                bl_paused = false;
                 int_startSequence++;
                 LeanTween.moveLocal(go_startButton, new Vector3(0f, -300f, 0f), 0.5f).setEase(LeanTweenType.easeInSine).setOnComplete(StartGameSequence).setIgnoreTimeScale(true);
                 break;
@@ -523,7 +524,7 @@ public class MenuManager : MonoBehaviour
             case 2:
                 Cursor.lockState = CursorLockMode.Confined;
                 int_quitToMenuSequence = 0;
-                if (bl_paused) bl_paused = false;
+                // if (bl_paused) bl_paused = false;
                 bl_transitioningScene = false;
                 break;
         }
