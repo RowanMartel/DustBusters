@@ -544,7 +544,6 @@ public class MenuManager : MonoBehaviour
         switch (int_endSequence)
         {
             case 0:
-                bl_paused = true;
                 int_endSequence++;
                 LeanTween.alpha(img_fadeOverlay.GetComponent<RectTransform>(), 1, 1f).setOnComplete(ToEnd).setIgnoreTimeScale(true);
                 break;
