@@ -15,7 +15,8 @@ public class FloorMess : Interactable
     public Texture2D broomPointer;
 
     [HideInInspector] public bool bl_paused = false;
-    
+    bool bl_frameClicked = false;
+
     private void Awake()
     {
         GameManager.menuManager.GamePaused += OnPause;
@@ -26,10 +27,13 @@ public class FloorMess : Interactable
     public override void Interact()
     {
         if (GameManager.playerController.Go_heldObject == null ||
-            !GameManager.playerController.Go_heldObject.GetComponent<Pickupable>().bl_mop)
+            !GameManager.playerController.Go_heldObject.GetComponent<Pickupable>().bl_mop ||
+            bl_frameClicked)
             return;
 
         if (bl_clean) return;
+
+        bl_frameClicked = true;
 
         bl_gameActive = !bl_gameActive;
 
@@ -41,9 +45,24 @@ public class FloorMess : Interactable
         GameManager.menuManager.img_crosshair.enabled = !GameManager.menuManager.img_crosshair.enabled;
 
         if (bl_gameActive)
+        {
+            GameManager.playerController.DisablePhysics();
             Cursor.SetCursor(broomPointer, Vector2.zero, CursorMode.Auto);
+        }
         else
+        {
+            GameManager.playerController.EnablePhysics();
             Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        }
+    }
+
+    private void Update()
+    {
+        if ((Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0)) && bl_gameActive && !GameManager.menuManager.Bl_paused)
+        {
+            Interact();
+        }
+        if (bl_frameClicked) bl_frameClicked = false;
     }
 
     // ticks down splats int, then checks if the minigame is complete
@@ -55,6 +74,7 @@ public class FloorMess : Interactable
             GameManager.taskManager.CompleteTask(TaskManager.Task.MopFloor);
             GameManager.Bl_inCleaningGame = false;
             GameManager.playerController.TogglePlayerControl();
+            GameManager.playerController.EnablePhysics();
             bl_gameActive = false;
             bl_clean = true;
             go_virtualCam.SetActive(false); // return to player virtual cam
