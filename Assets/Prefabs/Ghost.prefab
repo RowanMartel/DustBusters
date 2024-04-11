@@ -4854,7 +4854,7 @@ Transform:
   m_GameObject: {fileID: 5249318149542838128}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.638, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5091,7 +5091,7 @@ Transform:
   m_GameObject: {fileID: 7263785423210560717}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5565,8 +5565,8 @@ MonoBehaviour:
   go_curHeldItem: {fileID: 0}
   go_heldItemParent: {fileID: 7263785423210560717}
   tr_heldItemSpinner: {fileID: 717651196072784010}
-  flt_spinSpeed: 180
-  flt_heldItemWobble: 60
+  flt_spinSpeed: 0
+  flt_heldItemWobble: 0
   bl_hiding: 0
   a_hs_hidingPlaces:
   - {fileID: 0}
