@@ -15,7 +15,8 @@ public class FloorMess : Interactable
     public Texture2D broomPointer;
 
     [HideInInspector] public bool bl_paused = false;
-    bool bl_frameClicked = false;
+    bool bl_frameClickedEnter = false;
+    bool bl_frameClickedExit = false;
 
     private void Awake()
     {
@@ -28,12 +29,13 @@ public class FloorMess : Interactable
     {
         if (GameManager.playerController.Go_heldObject == null ||
             !GameManager.playerController.Go_heldObject.GetComponent<Pickupable>().bl_mop ||
-            bl_frameClicked)
+            bl_frameClickedEnter || bl_frameClickedExit)
             return;
 
         if (bl_clean) return;
 
-        bl_frameClicked = true;
+        bl_frameClickedEnter = true;
+        bl_frameClickedExit = true;
 
         bl_gameActive = !bl_gameActive;
 
@@ -58,11 +60,12 @@ public class FloorMess : Interactable
 
     private void Update()
     {
+        if (bl_frameClickedExit) bl_frameClickedExit = false;
         if ((Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0)) && bl_gameActive && !GameManager.menuManager.Bl_paused)
         {
             Interact();
         }
-        if (bl_frameClicked) bl_frameClicked = false;
+        if (bl_frameClickedEnter) bl_frameClickedEnter = false;
     }
 
     // ticks down splats int, then checks if the minigame is complete
