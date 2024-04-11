@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Mirror : Interactable
@@ -22,6 +23,7 @@ public class Mirror : Interactable
     public static bool bl_jumpscared;
 
     [HideInInspector] public bool bl_paused = false;
+    bool bl_frameClicked = false;
 
     public bool bl_rotated;
 
@@ -41,10 +43,13 @@ public class Mirror : Interactable
     public override void Interact()
     {
         if (GameManager.playerController.Go_heldObject == null ||
-            !GameManager.playerController.Go_heldObject.GetComponent<Pickupable>().bl_soapBar)
+            !GameManager.playerController.Go_heldObject.GetComponent<Pickupable>().bl_soapBar ||
+            bl_frameClicked)
             return;
 
         if (bl_clean) return;
+
+        bl_frameClicked = true;
 
         bl_gameActive = !bl_gameActive;
 
@@ -56,9 +61,24 @@ public class Mirror : Interactable
         GameManager.menuManager.img_crosshair.enabled = !GameManager.menuManager.img_crosshair.enabled;
 
         if (bl_gameActive)
+        {
+            GameManager.playerController.DisablePhysics();
             Cursor.SetCursor(dusterPointer, Vector2.zero, CursorMode.Auto);
+        }
         else
+        {
+            GameManager.playerController.EnablePhysics();
             Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        }
+    }
+
+    private void Update()
+    {
+        if ((Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0)) && bl_gameActive && !GameManager.menuManager.Bl_paused)
+        {
+            Interact();
+        }
+        if (bl_frameClicked) bl_frameClicked = false;
     }
 
     // ticks down splats int, then checks if the minigame is complete
@@ -70,6 +90,7 @@ public class Mirror : Interactable
             GameManager.taskManager.CompleteTask(TaskManager.Task.CleanMirror);
             GameManager.Bl_inCleaningGame = false;
             GameManager.playerController.TogglePlayerControl();
+            GameManager.playerController.EnablePhysics();
             bl_gameActive = false;
             bl_clean = true;
             go_virtualCam.SetActive(false); // return to player virtual cam
