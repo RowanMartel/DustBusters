@@ -669,7 +669,13 @@ public class MenuManager : MonoBehaviour
     // Toggles the pause state
     public void TogglePause()
     {
-        if (!bl_allowPause) return;
+        if (!bl_allowPause)
+        {
+            Debug.Log("Tried to pause when not allowed");
+            return;
+        }
+
+        Debug.Log("Paused Anyway");
 
         if (!bl_paused)
         {
