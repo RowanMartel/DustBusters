@@ -50,6 +50,10 @@ public class SpookyLookAtPlayer : MonoBehaviour
     }
     private void OnBecameInvisible()
     {
+        if(GetComponent<Pickupable>() != null)
+        {
+            GetComponent<Pickupable>().int_ignoreLiveBoxFrames = 2;
+        }
         flt_curDelay = flt_delay;
         if (bl_canMove && bl_isPickupable)
         {
@@ -59,6 +63,10 @@ public class SpookyLookAtPlayer : MonoBehaviour
 
     private void OnBecameVisible()
     {
+        if (GetComponent<Pickupable>() != null)
+        {
+            GetComponent<Pickupable>().int_ignoreLiveBoxFrames = 2;
+        }
         if (bl_canMove && bl_isPickupable)
         {
             rb_rigidbody.isKinematic = false;
