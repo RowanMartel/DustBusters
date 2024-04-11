@@ -8679,7 +8679,7 @@ PrefabInstance:
       objectReference: {fileID: 8400000, guid: cb22b6f6b05d73546922b6e35a9778ab, type: 2}
     - target: {fileID: 3406293664878737047, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 139007
+      value: 663295
       objectReference: {fileID: 0}
     - target: {fileID: 3600765353620922682, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
       propertyPath: m_PlayOnAwake
@@ -63269,7 +63269,7 @@ PrefabInstance:
       objectReference: {fileID: 8400000, guid: a47b2d6ad7265cc4b937674aacfab028, type: 2}
     - target: {fileID: 3406293664878737047, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 139007
+      value: 663295
       objectReference: {fileID: 0}
     - target: {fileID: 3600765353620922682, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
       propertyPath: m_PlayOnAwake
@@ -65756,7 +65756,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 134911
+    m_Bits: 659199
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -79241,10 +79241,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: map
       objectReference: {fileID: 0}
-    - target: {fileID: 7829277347693728319, guid: 1a04a31905210804f885d2ea7b4fc9ba, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8132188358276443882, guid: 1a04a31905210804f885d2ea7b4fc9ba, type: 3}
       propertyPath: a_cams.Array.data[0]
       value: 
@@ -79256,30 +79252,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7829277347693728319, guid: 1a04a31905210804f885d2ea7b4fc9ba, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 892005548497816093}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a04a31905210804f885d2ea7b4fc9ba, type: 3}
 --- !u!1 &892005548497816092 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7829277347693728319, guid: 1a04a31905210804f885d2ea7b4fc9ba, type: 3}
   m_PrefabInstance: {fileID: 892005548497816091}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &892005548497816093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 892005548497816092}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6bc21f26c6eaba41be7fb924520ab77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bl_canFloat: 0
-  bl_isFloating: 1
 --- !u!4 &894612564993771430
 Transform:
   m_ObjectHideFlags: 0
@@ -85672,7 +85651,7 @@ PrefabInstance:
       objectReference: {fileID: 1625500754}
     - target: {fileID: 3406293664878737047, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 139007
+      value: 663295
       objectReference: {fileID: 0}
     - target: {fileID: 5375263448726402046, guid: 435a54808b67f2a4db8800b76f13e0cc, type: 3}
       propertyPath: as_source

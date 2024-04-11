@@ -23,6 +23,10 @@ public class Radio : Interactable
     // Start is called before the first frame update
     void Start()
     {
+        foreach (AudioClip clip in a_ac_broadcasts)
+        {
+            clip.LoadAudioData();
+        }
         as_source.clip = a_ac_broadcasts[int_curBroadcast];
         as_source.Play();
 

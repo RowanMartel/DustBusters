@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8704732636879001741}
   - component: {fileID: 7031596834032100610}
   - component: {fileID: 6557747861828968306}
-  m_Layer: 5
+  m_Layer: 19
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +113,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7337395234093905542}
   - component: {fileID: 7707902203849877781}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 524288
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 6958728226359114083}
   - component: {fileID: 229546361553850549}
   - component: {fileID: 7599037657433709904}
-  m_Layer: 5
+  m_Layer: 19
   m_Name: Floor 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -280,7 +280,7 @@ GameObject:
   - component: {fileID: 3828814184591632622}
   - component: {fileID: 900008856711887544}
   - component: {fileID: 5185670093899905969}
-  m_Layer: 5
+  m_Layer: 19
   m_Name: Floor 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -360,7 +360,8 @@ GameObject:
   - component: {fileID: 8924925800858206385}
   - component: {fileID: 8132188358276443882}
   - component: {fileID: 1953503560321998551}
-  m_Layer: 0
+  - component: {fileID: 3934021381176197595}
+  m_Layer: 19
   m_Name: MapItem
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -509,6 +510,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 180, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!114 &1034896788408510282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -653,6 +655,20 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
 --- !u!114 &1953503560321998551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7829277347693728319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6bc21f26c6eaba41be7fb924520ab77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bl_canFloat: 0
+  bl_isFloating: 1
+--- !u!114 &3934021381176197595
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
