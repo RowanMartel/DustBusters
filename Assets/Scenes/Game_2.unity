@@ -168,6 +168,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!64 &6321751
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1011,6 +1012,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!54 &67962806
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2248,6 +2250,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!54 &117771937
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2483,6 +2486,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!64 &119127085
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3886,6 +3890,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!54 &161471910
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4506,6 +4511,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!64 &186167531
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -8176,6 +8182,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!114 &295102925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8221,6 +8228,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!64 &295102927
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -8992,6 +9000,10 @@ PrefabInstance:
     - target: {fileID: 8632036232834869719, guid: b6141ef49756cef43b87956dc3dd8bb0, type: 3}
       propertyPath: m_Name
       value: Sink (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8632036232834869719, guid: b6141ef49756cef43b87956dc3dd8bb0, type: 3}
+      propertyPath: m_TagString
+      value: Floor
       objectReference: {fileID: 0}
     - target: {fileID: 8971442675850687341, guid: b6141ef49756cef43b87956dc3dd8bb0, type: 3}
       propertyPath: m_LocalScale.x
@@ -10239,6 +10251,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: -0.75, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!114 &345168140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11629,6 +11642,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: -85, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!54 &372883590
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12982,6 +12996,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!54 &460944575
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -14518,6 +14533,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!54 &511811244
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -16212,6 +16228,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!54 &577272659
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -18096,6 +18113,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!54 &638650254
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -21310,6 +21328,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!54 &750563255
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -21559,6 +21578,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!64 &757116598
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -21729,6 +21749,10 @@ PrefabInstance:
     - target: {fileID: 8632036232834869719, guid: b6141ef49756cef43b87956dc3dd8bb0, type: 3}
       propertyPath: m_Name
       value: Sink
+      objectReference: {fileID: 0}
+    - target: {fileID: 8632036232834869719, guid: b6141ef49756cef43b87956dc3dd8bb0, type: 3}
+      propertyPath: m_TagString
+      value: Floor
       objectReference: {fileID: 0}
     - target: {fileID: 8971442675850687341, guid: b6141ef49756cef43b87956dc3dd8bb0, type: 3}
       propertyPath: m_LocalScale.x
@@ -22568,6 +22592,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!64 &787591154
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -23557,6 +23582,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!54 &806439212
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -24011,6 +24037,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!54 &831132087
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -29288,6 +29315,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!64 &852713967
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -29780,6 +29808,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!54 &867324145
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -32092,6 +32121,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!64 &972952955
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -35705,6 +35735,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!64 &1101704222
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -36259,6 +36290,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!1 &1112762509 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 12124ef1b443f2f4698f16858cdefe65, type: 3}
@@ -43230,6 +43262,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!64 &1298425450
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -45087,6 +45120,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!54 &1357252519
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -45445,6 +45479,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!54 &1362886617
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -52130,6 +52165,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!64 &1417820821
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -53389,6 +53425,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!54 &1467760480
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -54703,6 +54740,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!54 &1496823605
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -55264,6 +55302,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!114 &1518866942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58125,6 +58164,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!64 &1602470165
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -59810,6 +59850,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: -90, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!54 &1668943760
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -60413,6 +60454,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!64 &1687267099
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -62248,6 +62290,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: -90, z: -50}
   v3_heldPositionMod: {x: 0.3, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!54 &1799884719
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -63947,6 +63990,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!1 &1857991534
 GameObject:
   m_ObjectHideFlags: 0
@@ -64133,6 +64177,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!64 &1859740345
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -64329,6 +64374,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!64 &1862243126
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -65807,6 +65853,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 180, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!54 &1913259659
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -70825,6 +70872,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!64 &1994773759
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -71292,6 +71340,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!64 &2007989602
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -71745,6 +71794,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!64 &2024626965
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -72792,6 +72842,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!114 &2035880571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72837,6 +72888,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!54 &2035880573
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -73696,6 +73748,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!54 &2057299414
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -76201,6 +76254,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!114 &2126552400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76246,6 +76300,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!114 &2126552402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76291,6 +76346,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!64 &2126552404
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -77071,6 +77127,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!54 &2142801715
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -84036,6 +84093,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 90, z: 40}
   v3_heldPositionMod: {x: 0.3, y: -0.7, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!54 &2651889406568945555
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -87046,6 +87104,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: 0, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!54 &3596502411098567344
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -89982,6 +90041,10 @@ PrefabInstance:
     - target: {fileID: 8632036232834869719, guid: b6141ef49756cef43b87956dc3dd8bb0, type: 3}
       propertyPath: m_Name
       value: Sink
+      objectReference: {fileID: 0}
+    - target: {fileID: 8632036232834869719, guid: b6141ef49756cef43b87956dc3dd8bb0, type: 3}
+      propertyPath: m_TagString
+      value: Floor
       objectReference: {fileID: 0}
     - target: {fileID: 8971442675850687341, guid: b6141ef49756cef43b87956dc3dd8bb0, type: 3}
       propertyPath: m_LocalScale.x
@@ -96499,6 +96562,7 @@ MonoBehaviour:
   v3_heldRotationMod: {x: 0, y: 0, z: 0}
   v3_heldPositionMod: {x: 0, y: -0.3, z: 0}
   bl_held: 0
+  int_ignoreLiveBoxFrames: 0
 --- !u!54 &8509081638347883601
 Rigidbody:
   m_ObjectHideFlags: 0
