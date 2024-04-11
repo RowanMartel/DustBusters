@@ -9,6 +9,8 @@ public class LiveBox : MonoBehaviour
         if(other.GetComponent<Pickupable>() != null)
         {
             other.GetComponent<Pickupable>().Respawn();
+            GhostBehavior gb = GameManager.ghost;
+            if (other == gb.go_curHeldItem) gb.GetRobbed();
         }
     }
 }

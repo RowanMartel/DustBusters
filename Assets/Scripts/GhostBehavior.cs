@@ -864,6 +864,7 @@ public class GhostBehavior : MonoBehaviour
         if (go_curHeldItem != null)
             DropItem();
 
+        go_item.GetComponent<Pickupable>().int_ignoreLiveBoxFrames = 2;
         go_item.transform.parent = go_heldItemParent.transform;
         go_item.transform.localPosition = Vector3.zero;
         go_item.GetComponent<Rigidbody>().useGravity = false;
@@ -875,6 +876,7 @@ public class GhostBehavior : MonoBehaviour
     public void DropItem()
     {
         if (go_curHeldItem == null) return;
+        go_curHeldItem.GetComponent<Pickupable>().int_ignoreLiveBoxFrames = 2;
         go_curHeldItem.transform.parent = null;
         go_curHeldItem.GetComponent<Rigidbody>().velocity = Vector3.zero;
         go_curHeldItem.GetComponent<Rigidbody>().useGravity = true;
