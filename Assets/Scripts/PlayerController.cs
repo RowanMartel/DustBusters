@@ -202,7 +202,7 @@ public class PlayerController : MonoBehaviour
     // This drops the held item
     void DropItem()
     {
-        go_heldObject.layer = 0;
+        go_heldObject.layer = go_heldObject.GetComponent<Pickupable>().int_startingLayer;
         go_heldObject.GetComponent<Rigidbody>().useGravity = true;
         Physics.IgnoreCollision(go_heldObject.GetComponent<Collider>(), GetComponent<Collider>(), false);
         go_heldObject.GetComponent<Pickupable>().Drop();
